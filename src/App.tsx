@@ -1,22 +1,24 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 import "./app.css";
-import { BrowserRouter, Route, Routes, RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
+import { Dashboard } from "./components/Dashboard";
+import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { LoginForm } from "./components/LoginForm/LoginForm";
-import { Footer } from "./components/Footer";
-import { Dashboard } from "./components/Dashboard";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { Signup } from "./components/SignUp/SignUp";
-import { useFetchData } from "./hooks/UseFetchData";
+import { Signup } from "./components/Signup";
+import { useFetchData } from "./hooks/useFetchData";
 import { reducer } from "./state/reducer";
 import { BookDetails } from "./components/BookDetails";
 
 type TUsers = { id: string; name: string; email: string };
-
-
-
-
-
 
 export const StateContext = createContext<{
   username: string;
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/details",
+    element: (
+      <PrivateRoute>
+        <BookDetails />
+      </PrivateRoute>
+    ),
+  },
+  {
     path: "/login",
     element: <LoginForm />,
   },
@@ -40,17 +50,15 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
-
-  {
-    path: "/book",
-    element: <PrivateRoute><BookDetails /></PrivateRoute>
-  }
-
-
 ]);
 
 export function App(props: { title: string }) {
-
+  // const [users, setUsers] = useState<TUsers[]>([]);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/users")
+  //     .then((res) => res.json())
+  //     .then((users) => setUsers(users));
+  // }, []);
 
   const [appState, dispatch] = useReducer(reducer, { username: "" });
 
@@ -61,8 +69,11 @@ export function App(props: { title: string }) {
       <Header title={props.title} />
       <div className="content">
         <StateContext.Provider
-          value={{ username: appState.username, dispatch, }}>
-
+          value={{
+            username: appState.username,
+            dispatch,
+          }}
+        >
           <RouterProvider router={router} />
         </StateContext.Provider>
       </div>
