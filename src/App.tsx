@@ -77,6 +77,11 @@ export function App(props: { title: string }) {
           <RouterProvider router={router} />
         </StateContext.Provider>
       </div>
+
+
+
+
+
       <Footer />
     </div>
   );

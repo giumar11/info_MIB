@@ -1,9 +1,26 @@
 import React from "react";
+import logo from "./Logos/logo-viola.png"
+
+
+
 
 export function Header(props: { title: string }) {
+
+
   return (
-    <div className="header">
-      <h1>{props.title} hey this is an update</h1>
+    
+    <><div className="header">
+
+
+      <img src={logo} />
+
+
     </div>
+    
+    <div className="payoff">
+
+        <h2 className="titleH2">The first platform to take care of your sexual and reproductive health, daily.</h2>
+      </div></>
+    
   );
 }
