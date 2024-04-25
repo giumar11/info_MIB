@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { object, string, date } from "yup";
 import { StateContext } from "../../App";
 import { ErrorMessage } from "../ErrorMessage";
@@ -10,25 +10,28 @@ import { BrowserRouter, Route, RouterProvider, Routes,
 
 
 
-// export type TFormValues = { username: string; password: string; termsofuse: checkbox };
-// export type TFormErrors = TFormValues;
+export type TFormValues = { username: string; password: string; };
+export type TFormErrors = TFormValues;
 
 
 
 
 export function LoginForm() {
 const navigate = useNavigate();
-
-
+const [errorMessage, setErrorMessage] = useState("");
 const { dispatch } = useContext(StateContext);
   
-   
+useEffect(() => {
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) navigate("/");
+}, []);   
+
 const formik = useFormik({
   initialValues: {
     username: "",
     email: "",
     password: "", 
-    termsofuse: true,
+    termsofuse: false,
   },
 
 
@@ -36,15 +39,26 @@ const formik = useFormik({
   validateOnChange: true,
   validateOnBlur: true, 
 
-  onSubmit: (values)  => {
-    dispatch({
-      type: "UPDATE_USERNAME",
-      payload: values.username,
-    });
-    navigate("/");
-    },
-
-  });
+  onSubmit: (values) => {
+    fetch("https://dummyjson.com/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          navigate("/");
+        } else {
+          setErrorMessage(res.message);
+        }
+      });
+  },
+});
 
 
   return (
@@ -99,9 +113,10 @@ onBlur={formik.handleBlur}
 
 </div>
     
-      
+
+
         <div className="div-btn">
-                <button type="submit" className="btn">Log in</button>
+                <button type="submit" className="btn" onClick ={() => navigate("/")}>Log in</button>
             </div>
             
             <div className="register-access">

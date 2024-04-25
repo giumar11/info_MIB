@@ -6,9 +6,7 @@ type TData = { id: string; cover_image: string; title: string; author: string; p
 
 export function Dashboard() {
 
-  const { username } = useContext(StateContext);
-
-
+  const [name, setName] = useState("");
   const [data, setData] = useState<TData[]>([]);
   const [selectedGenre, setSelectedGenre] = useState();
   const navigate = useNavigate();
@@ -39,29 +37,39 @@ export function Dashboard() {
     setSelectedGenre(e.target.value);
   };
 
+  // flatMap(): per mappare ogni elemento dell'array data in un array di generi.
+  // new Set(): per rimuovere i duplicati dal nuovo array generato.
+  // useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
+
   const options = useMemo(() => {
-    return
-    new Set(data.flatMap(item => item.genre))
-  }, [])
+      return data.map((item) => item.genre)
+    }, [])
 
   return (
 
-    <><div className="welcome-user">
-      Welcome to Geen.ai, {username}</div><div className="container">
+
+    <>
+    
+    <div className="welcome-user">
+      Welcome to Geen.ai, {name} </div>
+      
+      <div className="container">
 
         {status === "SUCCESS" ? (
 
 
           <><div className="select-option">
             <p>Select a SRH professional:</p>
-            <select className="select-field" value={selectedGenre}
+           
+           
+            <select className="select-field" 
+              value={selectedGenre}
               onChange={handleGenreChange}>
 
               <option value="">All</option>
               {[...options].sort().map(genre => (
                 <option key={genre} value={genre}> {genre} </option>
               ))}
-
             </select>
 
           </div><div className="bookshelf">
@@ -71,7 +79,7 @@ export function Dashboard() {
                     <div
                       className="book"
                       key={item.id}
-                      onClick={() => navigate(`/book?id=${item.id}`)}>
+                      onClick={() => navigate(`/details?id=${item.id}`)}>
 
                       <div className="image-space">
                         <img className="book-cover" src={item.cover_image} />

@@ -1,19 +1,21 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const navigate = useNavigate();
-  const jwt = useMemo(() => localStorage.getItem("jwt"), []);
-
-  useEffect(() => {
-    if (!jwt) {
-      navigate("/login");
+    
+    const isAuthenticated = true
+    const navigate = useNavigate();
+    
+    
+    useEffect(() => {
+      if (!isAuthenticated) {
+        navigate("/login");
+      }
+    }, []);
+  
+    if (!isAuthenticated) {
+      return null;
+    } else {
+      return children;
     }
-  }, [jwt]);
-
-  if (!jwt) {
-    return null;
-  } else {
-    return children;
   }
-}
