@@ -1,26 +1,32 @@
+
+
+
 import React, { useState, useContext } from "react";
+// Importazione delle librerie necessarie per gestire il routing
 import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, useNavigate } from "react-router-dom";
-import { StateContext } from "../../App";
-import { ErrorMessage } from "../ErrorMessage";
-import { GiArchiveRegister } from "react-icons/gi";
+import { StateContext } from "../../App"; // Importazione del contesto globale dell'applicazione
+import { ErrorMessage } from "../ErrorMessage"; // Importazione del componente per la gestione degli errori
+ // Icona per l'interfaccia utente da inserire
+ // Importazione di etichette e messaggi utilizzati nei campi del form
 import { REQUIRED_FIELD_BOOLEAN } from "../labels";
 import { REQUIRED_FIELD } from "../labels";
 import { MATCH_PASSWORD } from "../labels";
-import { Form, useFormik } from "formik";
-import { validationSchema } from "./ValidationSchema";
-import { object, string, date } from "yup";
+import { Form, useFormik } from "formik"; // Importazione di Formik per la gestione dei form
+import { validationSchema } from "./ValidationSchema"; // Schema di validazione dei campi del form
+import { object, string, date } from "yup"; // Importazione della libreria Yup per la validazione
 import YUP from "yup";
 
+// Funzione principale del componente per il modulo di registrazione
 export function Signup() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook per la navigazione tra le pagine
 
-  const { dispatch } = useContext(StateContext);
+  const { dispatch } = useContext(StateContext); // Accesso allo stato globale tramite il contesto
 
-  
+  // Configurazione di Formik per la gestione del form e la validazione
   const formik = useFormik ({
     initialValues: {
-   
+   // Valori iniziali per ogni campo del form
     name: "",
     lastname: "",
     genderassigned: "",
@@ -35,23 +41,29 @@ export function Signup() {
     termsconditions: true,
   },
 
-  validationSchema: validationSchema,
+  validationSchema: validationSchema, // Schema Yup per la validazione del form
 
-  validateOnChange: true,
+  validateOnChange: true, // Esegui la validazione a ogni modifica
 
-  validateOnBlur: true,
+  validateOnBlur: true, // Esegui la validazione quando un campo perde il focus
 
+  
+  
+  // Funzione da eseguire al submit del form
   onSubmit:(values) => {
+    // Aggiornamento dello stato globale con il nome utente
     dispatch({
       type: "UPDATE_USERNAME", payload: values.username,
     });
 
+    // Simulazione dell'invio dei dati a un endpoint remoto in attesa di backend
     fetch ("https://jsonplaceholder.typicode.com/posts", 
     {
-      method: "POST",
-      body: JSON.stringify(values),
+      method: "POST",  // Metodo POST per inviare i dati
+      body: JSON.stringify(values), // Converti i dati del form in JSON
      });
 
+     // Navigazione verso la homepage dopo la registrazione
     navigate("/");
   }});
 
@@ -59,7 +71,7 @@ export function Signup() {
 
   
 
-
+// Ritorna il modulo di registrazione come JSX
   return (
 
     <form 
@@ -71,6 +83,7 @@ export function Signup() {
 
       <div className="col">
 
+{/* Campo per il nome */}
         <div className="riga-form-register">
           <label htmlFor="name" className="form-label left">Name:</label>
           <input
@@ -85,6 +98,7 @@ export function Signup() {
           ) : null}
         </div>
 
+{/* Campo per il cognome */}
         <div className="riga-form-register">
           <label htmlFor="lastname" className="form-label left">Lastname:</label>
           <input
@@ -100,6 +114,7 @@ export function Signup() {
 
       </div>
 
+ {/* Campo per il genere assegnato alla nascita */}
       <div className="col">
         <div className="riga-form-register">
           <label htmlFor="genderassigned" className="form-label left">Gender assigned at birth:</label>
@@ -123,7 +138,7 @@ export function Signup() {
           ) : null}
         </div>
 
-
+{/* Campo per il genere autoidentificato */}
         <div className="riga-form-register">
           <label htmlFor="genderselfidentified" className="form-label left">Gender self-identified:</label>
           <select
@@ -151,6 +166,7 @@ export function Signup() {
 
       <div className="col">
 
+{/* Campo per l'età */}
         <div className="riga-form-register">
           <label htmlFor="age" className="form-label left">Age:</label>
           <input
@@ -166,6 +182,7 @@ export function Signup() {
 
       </div>
 
+{/* Campo per la cittadinanza */}
       <div className="col">
         <div className="riga-form-register">
           <label htmlFor="citizenship" className="form-label left">Citizenship:</label>
@@ -180,7 +197,7 @@ export function Signup() {
           ) : null}
         </div>
 
-
+{/* Campo per l'etnia */}
         <div className="riga-form-register">
           <label htmlFor="ethnicity" className="form-label left">Ethnicity:</label>
           <input
@@ -196,6 +213,7 @@ export function Signup() {
 
       </div>
 
+{/* Campo per il nome utente */}
       <div className="col">
         <div className="riga-form-register">
           <label htmlFor="username" className="form-label left">Username:</label>
@@ -210,6 +228,7 @@ export function Signup() {
           ) : null}
         </div>
 
+{/* Campo per l'email */}
         <div className="riga-form-register">
           <label htmlFor="email" className="form-label left">Email:</label>
           <input
@@ -225,6 +244,7 @@ export function Signup() {
         </div>
       </div>
 
+{/* Campo per la password */}
       <div className="col">
       <div className="riga-form-register">
         <label htmlFor="password" className="form-label left">Password:</label>
@@ -240,6 +260,7 @@ export function Signup() {
         ) : null}
       </div>
 
+{/* Campo per la conferma della password */}
       <div className="riga-form-register">
         <label htmlFor="confirmpassword" className="form-label left">Confirm your password:</label>
         <input
@@ -255,6 +276,7 @@ export function Signup() {
       </div>
     </div>
 
+{/* Checkbox per termini e condizioni */}
     <div className="col">
     <div className="riga-form-register">
     <input id="termsconditions" type="checkbox" name="generic"
@@ -271,7 +293,7 @@ accept the <a href="#">Terms and Conditions</a>
 </div>
 
 
-
+{/* Checkbox per la newsletter */}
 <div className="riga-form-register">
   <input type="checkbox" name="newsletter" 
   onChange={formik.handleChange} 
@@ -283,6 +305,8 @@ deals or recommendations by email (optional)
 </div>
 </div>
     
+
+    {/* Pulsante di invio del form */}
     <div className="div-btn">
         <button id="contact-submit" type="submit" className="btn">Submit</button>
       </div>

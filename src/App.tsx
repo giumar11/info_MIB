@@ -24,17 +24,17 @@ type TUsers = {
   email: string 
 };
 
+// Creazione del contesto globale per lo stato dell'applicazione
 export const StateContext = createContext<{
   username: string;
   dispatch: React.Dispatch<any>;
 } | null>(null);
 
-// devo creare un'istanza del router. Dentro passo un array di oggetti con gli elementi che devo fare vedere.
+// devo creare un'istanza del router. Dentro passo un array di oggetti con i componenti che devo fare vedere e le rispettive rotte
 // CreateBrowserRouter: It uses the DOM History API to update the URL and manage the history stack.
-
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/", // Rotta per la dashboard protetta da autenticazione
     element: (
       <PrivateRoute>
         <Dashboard />
@@ -42,23 +42,25 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/details",
+    path: "/details", // Rotta per i dettagli del libro/professionista, anche questa protetta
     element: (
       <PrivateRoute>
         <BookDetails />
       </PrivateRoute>
     ),
   },
-  {
-    path: "/login",
+  { 
+    path: "/login", // Rotta per il modulo di login
     element: <LoginForm />,
   },
   {
-    path: "/signup",
+    path: "/signup", // Rotta per il modulo di registrazione
     element: <Signup />,
   },
 ]);
 
+
+// Funzione principale del componente dell'app
 export function App(props: { title: string }) {
   // const [users, setUsers] = useState<TUsers[]>([]);
   // useEffect(() => {
@@ -67,12 +69,15 @@ export function App(props: { title: string }) {
   //     .then((users) => setUsers(users));
   // }, []);
 
+  // Gestione dello stato dell'applicazione con useReducer
   const [appState, dispatch] = useReducer(reducer, { username: "" });
 
   // const data = useFetchData();
 
+    // Ritorna la struttura dell'applicazione come JSX
   return (
     <div className="app">
+      {/* Intestazione dell'app con titolo passato come proprietà */}
       <Header title={props.title} />
       <div className="content">
         <StateContext.Provider
@@ -81,6 +86,7 @@ export function App(props: { title: string }) {
             dispatch,
           }}
         >
+          {/* RouterProvider per gestire il routing tra le pagine */}
           <RouterProvider router={router} />
         </StateContext.Provider>
       </div>
