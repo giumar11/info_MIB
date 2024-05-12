@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import {
   BrowserRouter,
   Route,
@@ -62,12 +62,12 @@ const router = createBrowserRouter([
 
 // Funzione principale del componente dell'app
 export function App(props: { title: string }) {
-  // const [users, setUsers] = useState<TUsers[]>([]);
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/users")
-  //     .then((res) => res.json())
-  //     .then((users) => setUsers(users));
-  // }, []);
+const [users, setUsers] = useState<TUsers[]>([]);
+useEffect(() => {
+fetch("http://localhost:3000/users")
+ .then((res) => res.json())
+      .then((users) => setUsers(users));
+  }, []);
 
   // Gestione dello stato dell'applicazione con useReducer
   const [appState, dispatch] = useReducer(reducer, { username: "" });
