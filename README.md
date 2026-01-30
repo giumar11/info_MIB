@@ -1,29 +1,12 @@
-# Geen.ai - Analisi delle patologie a elevata complessità assistenziale in Italia
+Analisi criticità indirizzamento servizi sociosanitari Italia
 
-Questo repository contiene l'applicazione Geen.ai e un'analisi delle patologie che richiedono un elevato livello di complessità assistenziale in Italia, con un focus sull'identificazione di condizioni che necessitano della consultazione di molteplici specialisti. L'obiettivo è fornire una base di dati strutturata per lo sviluppo di strumenti informativi, come un chatbot, in grado di navigare queste informazioni.
+Questo repository contiene un'analisi dei problemi di indirizzamento in ambito sociosanitario in Italia. L'obiettivo è fornire una base di dati strutturata per lo sviluppo di strumenti informativi in grado di navigare queste informazioni.
 
 Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui ISTAT, Ministero della Salute, Istituto Superiore di Sanità (ISS) e Orphanet.
 
 ---
 
-## Applicazione React
-
-### Getting started
-
-```bash
-npm i
-npm start
-```
-
-### Managing the database
-
-```bash
-npx prisma studio
-```
-
----
-
-## Sezione 1: Patologie a Elevata Complessità
+## Sezione 1: Patologie a elevata complessità
 
 ### Metodologia
 
@@ -31,16 +14,16 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 I principali proxy utilizzati sono:
 
-1.  **Malattie Rare**: Per definizione, queste patologie hanno una bassa prevalenza, il che comporta spesso un'odissea diagnostica e la necessità di consultare numerosi specialisti e centri di riferimento.
-2.  **Patologie Oncologiche**: I tumori richiedono un approccio gestito da un team multidisciplinare (GOM o MDT) che include oncologo, chirurgo, radioterapista, anatomo-patologo e altri specialisti d'organo.
-3.  **Multimorbidità negli Anziani**: La coesistenza di tre o più patologie croniche nella popolazione anziana (over 65) implica la gestione coordinata da parte di più medici (MMG, geriatra, specialisti d'organo).
-4.  **Patologie Croniche Complesse**: Condizioni come il diabete con complicanze, lo scompenso cardiaco o le malattie autoimmuni sistemiche colpiscono più organi e apparati, rendendo necessario l'intervento di diversi specialisti.
+1.  **Malattie rare**: Per definizione, queste patologie hanno una bassa prevalenza, il che comporta spesso un'odissea diagnostica e la necessità di consultare numerosi specialisti e centri di riferimento.
+2.  **Patologie oncologiche**: I tumori richiedono un approccio gestito da un team multidisciplinare (GOM o MDT) che include oncologo, chirurgo, radioterapista, anatomo-patologo e altri specialisti d'organo.
+3.  **Multimorbidità negli anziani**: La coesistenza di tre o più patologie croniche nella popolazione anziana (over 65) implica la gestione coordinata da parte di più medici (MMG, geriatra, specialisti d'organo).
+4.  **Patologie croniche complesse**: Condizioni come il diabete con complicanze, lo scompenso cardiaco o le malattie autoimmuni sistemiche colpiscono più organi e apparati, rendendo necessario l'intervento di diversi specialisti.
 
-### Fonti Dati
+### Fonti dati
 
 Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 
-| Fonte | Dataset | Descrizione | Anno | Formato Originale |
+| Fonte | Dataset | Descrizione | Anno | Formato originale |
 |---|---|---|---|---|
 | **Orphanet** | Dati epidemiologici malattie rare | Contiene dati di prevalenza, incidenza, età di esordio e classificazione per 6.443 malattie rare. | 2025 | XML |
 | **Ministero della Salute** | Rapporto annuale SDO | Dati sui ricoveri ospedalieri, classificati per MDC (Major Diagnostic Category) e DRG. | 2023 | PDF, XLSX |
@@ -48,7 +31,7 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 | **ISTAT** | Report "Condizioni di salute degli anziani" | Analisi sulla multimorbidità e le condizioni di vita della popolazione over 65. | 2019 | PDF |
 | **ISS** | Sorveglianza PASSI e PASSI d'Argento | Dati su fattori di rischio e prevalenza delle patologie croniche nella popolazione adulta e anziana. | Vari | Web/PDF |
 
-### Struttura dei Dataset
+### Struttura dei dataset
 
 -   `/datasets/raw`: Contiene i dataset originali scaricati dalle fonti istituzionali.
 -   `/datasets/processed`: Contiene i dataset puliti, strutturati e arricchiti in formato CSV e JSON, pronti per essere utilizzati.
@@ -58,7 +41,7 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 
 ---
 
-## Sezione 2: Analisi Criticità Sistema Sanitario
+## Sezione 2: Analisi criticità sistema sanitario
 
 Questa sezione contiene una raccolta di report e fonti dati che analizzano le principali problematiche del sistema sanitario italiano e lo confrontano con altri paesi.
 
@@ -78,4 +61,4 @@ Questa sezione contiene una raccolta di report e fonti dati che analizzano le pr
 
 ---
 
-*Questo progetto è stato realizzato a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
+*Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
