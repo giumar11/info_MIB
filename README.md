@@ -6,7 +6,7 @@ Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui 
 
 ---
 
-## Dataset Sanitari
+## Dataset sanitari
 
 ### Metodologia
 
@@ -14,10 +14,10 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 I principali proxy utilizzati sono:
 
-1.  **Malattie Rare**: Per definizione, queste patologie hanno una bassa prevalenza, il che comporta spesso un'odissea diagnostica e la necessità di consultare numerosi specialisti e centri di riferimento.
-2.  **Patologie Oncologiche**: I tumori richiedono un approccio gestito da un team multidisciplinare (GOM o MDT) che include oncologo, chirurgo, radioterapista, anatomo-patologo e altri specialisti d'organo.
-3.  **Multimorbidità negli Anziani**: La coesistenza di tre o più patologie croniche nella popolazione anziana (over 65) implica la gestione coordinata da parte di più medici (MMG, geriatra, specialisti d'organo).
-4.  **Patologie Croniche Complesse**: Condizioni come il diabete con complicanze, lo scompenso cardiaco o le malattie autoimmuni sistemiche colpiscono più organi e apparati, rendendo necessario l'intervento di diversi specialisti.
+1.  **Malattie rare**: Per definizione, queste patologie hanno una bassa prevalenza, il che comporta spesso un'odissea diagnostica e la necessità di consultare numerosi specialisti e centri di riferimento.
+2.  **Patologie oncologiche**: I tumori richiedono un approccio gestito da un team multidisciplinare (GOM o MDT) che include oncologo, chirurgo, radioterapista, anatomo-patologo e altri specialisti d'organo.
+3.  **Multimorbidità negli anziani**: La coesistenza di tre o più patologie croniche nella popolazione anziana (over 65) implica la gestione coordinata da parte di più medici (MMG, geriatra, specialisti d'organo).
+4.  **Patologie croniche complesse**: Condizioni come il diabete con complicanze, lo scompenso cardiaco o le malattie autoimmuni sistemiche colpiscono più organi e apparati, rendendo necessario l'intervento di diversi specialisti.
 
 ### Fonti dati
 
@@ -63,7 +63,7 @@ Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata comp
 
 *Fonte: Elaborazione su dati ISTAT, PASSI, PASSI d'Argento.*
 
-### Struttura dei Dataset
+### Struttura dei dataset
 
 -   `/datasets/raw`: Contiene i dataset originali scaricati dalle fonti istituzionali.
 -   `/datasets/processed`: Contiene i dataset puliti, strutturati e arricchiti in formato CSV e JSON, pronti per essere utilizzati.
@@ -71,9 +71,9 @@ Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata comp
 -   `/docs`: Documentazione di dettaglio sui singoli dataset e sulle variabili.
 -   `/docs/FONTI_DATI.md`: Elenco completo di tutte le fonti dati istituzionali con URL e descrizioni.
 
-### Come Utilizzare i Dati per il Chatbot
+### Come utilizzare i dati
 
-I dataset nella cartella `/datasets/processed` sono il punto di partenza ideale per alimentare un chatbot o altri sistemi informativi. In particolare:
+I dataset nella cartella `/datasets/processed` sono il punto di partenza ideale per alimentare sistemi informativi. In particolare:
 
 -   `pdta_multidisciplinari.json`: Fornisce un elenco di patologie complesse con gli specialisti tipicamente coinvolti.
 -   `malattie_rare_italia.json`: Contiene l'elenco delle malattie rare con dati di prevalenza e un punteggio di complessità calcolato.
@@ -81,4 +81,4 @@ I dataset nella cartella `/datasets/processed` sono il punto di partenza ideale 
 
 ---
 
-*Questo progetto è stato realizzato a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
+*Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
