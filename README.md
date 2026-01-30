@@ -19,7 +19,7 @@ I principali proxy utilizzati sono:
 3.  **Multimorbidità negli Anziani**: La coesistenza di tre o più patologie croniche nella popolazione anziana (over 65) implica la gestione coordinata da parte di più medici (MMG, geriatra, specialisti d'organo).
 4.  **Patologie Croniche Complesse**: Condizioni come il diabete con complicanze, lo scompenso cardiaco o le malattie autoimmuni sistemiche colpiscono più organi e apparati, rendendo necessario l'intervento di diversi specialisti.
 
-### Fonti Dati
+### Fonti dati
 
 Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 
@@ -36,11 +36,11 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 | **ENPAM** | Guida Specialisti Ambulatoriali | Accordo Collettivo Nazionale, medicina territoriale. | 2024 | PDF |
 | **AGENAS** | Portale Statistico | Volumi prestazioni specialistiche, tempi di attesa. | 2025 | Dashboard |
 
-### Risultati Principali
+### Risultati principali
 
 Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata complessità assistenziale, che rappresentano un buon proxy per le condizioni che richiedono il maggior numero di specialisti.
 
-#### Patologie a Maggiore Complessità per Numero Medio di Specialisti
+#### Patologie a maggiore complessità per numero medio di specialisti
 
 | Categoria di Patologia | N. Medio Specialisti Coinvolti | Specialisti Tipici | Fonte Dati Primaria |
 |---|---|---|---|
