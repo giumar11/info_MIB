@@ -6,6 +6,26 @@ Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui 
 
 ---
 
+## Sezione 2: Analisi criticità sistema sanitario
+
+Questa sezione contiene una raccolta di report e fonti dati che analizzano le principali problematiche del sistema sanitario italiano e lo confrontano con altri paesi.
+
+**Tematiche:**
+- Carenza di personale medico e infermieristico
+- Liste d'attesa e rinuncia alle cure
+- Spesa sanitaria out-of-pocket e privatizzazione
+- Welfare sanitario e fondi integrativi
+- Performance e disuguaglianze regionali
+- Confronti internazionali (USA, Europa)
+
+**Documentazione:**
+- `docs/sistema_sanitario/CATALOGO_FONTI.md`: Catalogo completo delle fonti dati con link e analisi.
+
+**Dataset:**
+- `datasets/raw/sistema_sanitario/`: Cartella contenente i report originali in formato PDF (oltre 100 MB di dati).
+
+---
+  
 ## Sezione 1: Patologie a elevata complessità
 
 ### Metodologia
@@ -39,25 +59,6 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 -   `/docs`: Documentazione di dettaglio sui singoli dataset e sulle variabili.
 -   `/docs/FONTI_DATI.md`: Elenco completo di tutte le fonti dati istituzionali con URL e descrizioni.
 
----
-
-## Sezione 2: Analisi criticità sistema sanitario
-
-Questa sezione contiene una raccolta di report e fonti dati che analizzano le principali problematiche del sistema sanitario italiano e lo confrontano con altri paesi.
-
-**Tematiche:**
-- Carenza di personale medico e infermieristico
-- Liste d'attesa e rinuncia alle cure
-- Spesa sanitaria out-of-pocket e privatizzazione
-- Welfare sanitario e fondi integrativi
-- Performance e disuguaglianze regionali
-- Confronti internazionali (USA, Europa)
-
-**Documentazione:**
-- `docs/sistema_sanitario/CATALOGO_FONTI.md`: Catalogo completo delle fonti dati con link e analisi.
-
-**Dataset:**
-- `datasets/raw/sistema_sanitario/`: Cartella contenente i report originali in formato PDF (oltre 100 MB di dati).
 
 ---
 
