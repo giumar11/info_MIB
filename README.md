@@ -6,7 +6,7 @@ Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui 
 
 ---
 
-## Sezione 2: Analisi criticità sistema sanitario
+## Sezione 1: Analisi criticità sistema sanitario
 
 Questa sezione contiene una raccolta di report e fonti dati che analizzano le principali problematiche del sistema sanitario italiano e lo confrontano con altri paesi.
 
@@ -26,7 +26,7 @@ Questa sezione contiene una raccolta di report e fonti dati che analizzano le pr
 
 ---
   
-## Sezione 1: Patologie a elevata complessità
+## Sezione 2: Patologie a elevata complessità
 
 ### Metodologia
 
