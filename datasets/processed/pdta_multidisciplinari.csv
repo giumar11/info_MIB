@@ -1,0 +1,11 @@
+patologia,codice_icd10,specialisti_coinvolti,n_specialisti,prevalenza_italia,fonte
+Tumore della mammella,C50,"Senologo, Oncologo medico, Radioterapista, Chirurgo plastico, Psicologo, Radiologo, Anatomo-patologo",7,1 donna su 8,"AIOM, Rapporto SDO"
+Tumore del colon-retto,C18-C20,"Gastroenterologo, Chirurgo, Oncologo, Radioterapista, Nutrizionista, Stomaterapeuta",6,50.000 nuovi casi/anno,"AIOM, Rapporto SDO"
+Diabete mellito tipo 2 complicato,E11,"Diabetologo, Cardiologo, Nefrologo, Oculista, Neurologo, Podologo, Dietista",7,3.5 milioni di persone,"AMD-SID, ISTAT"
+Scompenso cardiaco cronico,I50,"Cardiologo, Internista, Nefrologo, Pneumologo, Geriatra, Palliativista",6,1 milione di persone,"ESC, Rapporto SDO"
+Sclerosi multipla,G35,"Neurologo, Fisiatra, Urologo, Psicologo, Oculista, Fisioterapista",6,130.000 persone,"AISM, Orphanet"
+Artrite reumatoide,M05-M06,"Reumatologo, Ortopedico, Fisiatra, Dermatologo, Pneumologo, Cardiologo",6,400.000 persone,"SIR, ISTAT"
+BPCO con insufficienza respiratoria,J44,"Pneumologo, Cardiologo, Fisiatra, Nutrizionista, Palliativista",5,3.5 milioni di persone,"AIPO, ISTAT"
+Malattia di Parkinson,G20,"Neurologo, Geriatra, Fisiatra, Logopedista, Psicologo, Nutrizionista",6,300.000 persone,"SIN, ISTAT"
+Lupus eritematoso sistemico,M32,"Reumatologo, Nefrologo, Dermatologo, Cardiologo, Pneumologo, Ematologo, Ginecologo",7,60.000 persone,"SIR, Orphanet"
+Fibrosi cistica,E84,"Pneumologo, Gastroenterologo, Endocrinologo, Nutrizionista, Fisioterapista, Psicologo, Genetista",7,6.000 persone,"Registro FC, Orphanet"
