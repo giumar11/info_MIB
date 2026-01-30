@@ -1,0 +1,121 @@
+{
+  "info": "Schema NoSQL (document-based) per il chatbot Geen.ai, ottimizzato per query conversazionali",
+  "database": "MongoDB / Firestore",
+  "collections": [
+    {
+      "name": "patologie",
+      "description": "Collection principale, un documento per ogni patologia con dati denormalizzati",
+      "schema": {
+        "_id": "ObjectId (auto)",
+        "nome": "String (indicizzato per full-text search)",
+        "codice_icd10": "String",
+        "codice_orpha": "String (unico)",
+        "tipo": "String (comune, rara, oncologica, ...)",
+        "descrizione": "String",
+        "complessita": {
+          "score": "Number (0-10)",
+          "livello": "String (bassa, media, alta)"
+        },
+        "specialisti": [
+          {
+            "nome": "String",
+            "ruolo": "String (primario, consulente)",
+            "fase": "String (diagnosi, trattamento)"
+          }
+        ],
+        "prevalenza": {
+          "classe": "String",
+          "valore_stimato": "Number",
+          "geo": "String",
+          "fonte": "String"
+        },
+        "segmenti_demografici": [
+          {
+            "fascia_eta": "String (es. 65-74)",
+            "genere": "String (M, F, A)",
+            "prevalenza_percentuale": "Number",
+            "popolazione_affetta": "Number",
+            "anno": "Number"
+          }
+        ],
+        "ricoveri_mdc": {
+          "codice": "String",
+          "descrizione": "String",
+          "ricoveri_annui": "Number"
+        },
+        "pdta_info": {
+          "nome": "String",
+          "fonte": "String"
+        },
+        "fonti": [
+          {
+            "nome": "String",
+            "url": "String"
+          }
+        ],
+        "last_updated": "Timestamp"
+      },
+      "indexes": [
+        {
+          "keys": {"nome": "text"},
+          "name": "idx_nome_text"
+        },
+        {
+          "keys": {"codice_orpha": 1},
+          "name": "idx_orpha_unique",
+          "unique": true
+        },
+        {
+          "keys": {"tipo": 1},
+          "name": "idx_tipo"
+        },
+        {
+          "keys": {"specialisti.nome": 1},
+          "name": "idx_specialisti_nome"
+        },
+        {
+          "keys": {"complessita.livello": 1},
+          "name": "idx_complessita"
+        }
+      ]
+    },
+    {
+      "name": "specialisti",
+      "description": "Collection di supporto per descrivere le specializzazioni",
+      "schema": {
+        "_id": "ObjectId (auto)",
+        "nome": "String (unico)",
+        "area_medica": "String",
+        "tipo": "String (medico, chirurgico, ...)",
+        "descrizione": "String"
+      },
+      "indexes": [
+        {
+          "keys": {"nome": 1},
+          "name": "idx_nome_unique",
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "popolazione_segmenti",
+      "description": "Dati aggregati sulla popolazione per query demografiche",
+      "schema": {
+        "_id": "ObjectId (auto)",
+        "anno_riferimento": "Number",
+        "tipo_segmento": "String (fascia_eta, genere, multimorbidita)",
+        "segmento": "String (es. 75+, M, 3+ patologie)",
+        "popolazione": "Number",
+        "percentuale": "Number",
+        "patologie_croniche_media": "Number (opzionale)"
+      },
+      "indexes": [
+        {
+          "keys": {"anno_riferimento": 1, "tipo_segmento": 1, "segmento": 1},
+          "name": "idx_segmento_query",
+          "unique": true
+        }
+      ]
+    }
+  ]
+}

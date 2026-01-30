@@ -1,0 +1,50 @@
+[
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "0-14",
+    "popolazione": 7500000,
+    "percentuale": 12.7,
+    "patologie_croniche_media": 0.2
+  },
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "15-24",
+    "popolazione": 5800000,
+    "percentuale": 9.8,
+    "patologie_croniche_media": 0.3
+  },
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "25-44",
+    "popolazione": 13200000,
+    "percentuale": 22.4,
+    "patologie_croniche_media": 0.5
+  },
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "45-64",
+    "popolazione": 17500000,
+    "percentuale": 29.7,
+    "patologie_croniche_media": 1.2
+  },
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "65-74",
+    "popolazione": 7200000,
+    "percentuale": 12.2,
+    "patologie_croniche_media": 2.3
+  },
+  {
+    "anno_riferimento": 2023,
+    "tipo_segmento": "fascia_eta",
+    "segmento": "75+",
+    "popolazione": 7800000,
+    "percentuale": 13.2,
+    "patologie_croniche_media": 3.5
+  }
+]
