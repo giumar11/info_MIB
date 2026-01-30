@@ -1,4 +1,4 @@
-# Geen.ai - Analisi delle Patologie a Elevata Complessità Assistenziale in Italia
+# Geen.ai - Analisi delle patologie a elevata complessità assistenziale in Italia
 
 Questo repository contiene l'applicazione Geen.ai e un'analisi delle patologie che richiedono un elevato livello di complessità assistenziale in Italia, con un focus sull'identificazione di condizioni che necessitano della consultazione di molteplici specialisti. L'obiettivo è fornire una base di dati strutturata per lo sviluppo di strumenti informativi, come un chatbot, in grado di navigare queste informazioni.
 
