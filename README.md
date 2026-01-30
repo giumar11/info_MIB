@@ -47,6 +47,11 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 | **ISTAT** | Health for All (HFA) | Database con 4.000 indicatori su salute e sanità, incluse le patologie croniche dichiarate. | 2025 | DBF/Proprietario |
 | **ISTAT** | Report "Condizioni di salute degli anziani" | Analisi sulla multimorbidità e le condizioni di vita della popolazione over 65. | 2019 | PDF |
 | **ISS** | Sorveglianza PASSI e PASSI d'Argento | Dati su fattori di rischio e prevalenza delle patologie croniche nella popolazione adulta e anziana. | Vari | Web/PDF |
+| **GIMBE** | 8° Rapporto sul SSN | Analisi critica su spesa sanitaria, mobilità sanitaria, rinuncia alle cure. | 2024 | PDF |
+| **UNIAMO** | Report Malattie Rare 2024 | Federazione Italiana Malattie Rare - Report annuale. | 2024 | PDF |
+| **Osservatorio sulla Salute** | Rapporto 2025 | Stato di salute delle regioni italiane. | 2025 | PDF |
+| **ENPAM** | Guida Specialisti Ambulatoriali | Accordo Collettivo Nazionale, medicina territoriale. | 2024 | PDF |
+| **AGENAS** | Portale Statistico | Volumi prestazioni specialistiche, tempi di attesa. | 2025 | Dashboard |
 
 ### Risultati Principali
 
@@ -81,6 +86,7 @@ Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata comp
 -   `/datasets/processed`: Contiene i dataset puliti, strutturati e arricchiti in formato CSV e JSON, pronti per essere utilizzati.
 -   `/scripts`: Contiene gli script Python utilizzati per il download, la pulizia, l'analisi e la generazione dei dataset processati.
 -   `/docs`: Documentazione di dettaglio sui singoli dataset e sulle variabili.
+-   `/docs/FONTI_DATI.md`: Elenco completo di tutte le fonti dati istituzionali con URL e descrizioni.
 
 ### Come Utilizzare i Dati per il Chatbot
 
