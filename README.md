@@ -23,7 +23,7 @@ npx prisma studio
 
 ---
 
-## Dataset Sanitari
+## Sezione 1: Patologie a Elevata Complessità
 
 ### Metodologia
 
@@ -47,38 +47,6 @@ Sono state raccolte e analizzate le seguenti fonti dati istituzionali:
 | **ISTAT** | Health for All (HFA) | Database con 4.000 indicatori su salute e sanità, incluse le patologie croniche dichiarate. | 2025 | DBF/Proprietario |
 | **ISTAT** | Report "Condizioni di salute degli anziani" | Analisi sulla multimorbidità e le condizioni di vita della popolazione over 65. | 2019 | PDF |
 | **ISS** | Sorveglianza PASSI e PASSI d'Argento | Dati su fattori di rischio e prevalenza delle patologie croniche nella popolazione adulta e anziana. | Vari | Web/PDF |
-| **GIMBE** | 8° Rapporto sul SSN | Analisi critica su spesa sanitaria, mobilità sanitaria, rinuncia alle cure. | 2024 | PDF |
-| **UNIAMO** | Report Malattie Rare 2024 | Federazione Italiana Malattie Rare - Report annuale. | 2024 | PDF |
-| **Osservatorio sulla Salute** | Rapporto 2025 | Stato di salute delle regioni italiane. | 2025 | PDF |
-| **ENPAM** | Guida Specialisti Ambulatoriali | Accordo Collettivo Nazionale, medicina territoriale. | 2024 | PDF |
-| **AGENAS** | Portale Statistico | Volumi prestazioni specialistiche, tempi di attesa. | 2025 | Dashboard |
-
-### Risultati Principali
-
-Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata complessità assistenziale, che rappresentano un buon proxy per le condizioni che richiedono il maggior numero di specialisti.
-
-#### Patologie a Maggiore Complessità per Numero Medio di Specialisti
-
-| Categoria di Patologia | N. Medio Specialisti Coinvolti | Specialisti Tipici | Fonte Dati Primaria |
-|---|---|---|---|
-| **Malattie Rare** | 6-7+ | Genetista, Specialisti d'organo multipli, Centro di Riferimento | Orphadata, Registro Malattie Rare |
-| **Tumori Solidi Complessi** | 5-7 | Oncologo, Chirurgo, Radioterapista, Anatomo-patologo, Radiologo | Rapporto SDO, Linee Guida AIOM |
-| **Malattie Autoimmuni Sistemiche** | 5-6 | Reumatologo, Immunologo, Nefrologo, Dermatologo, Pneumologo | ISTAT HFA, Registri di patologia |
-| **Multimorbidità nell'Anziano (3+ patologie)** | 5+ | Geriatra, Medico di Medicina Generale, Cardiologo, Diabetologo, Fisiatra | ISTAT Report Anziani, PASSI d'Argento |
-| **Diabete con Complicanze Multiple** | 4-6 | Diabetologo, Cardiologo, Nefrologo, Oculista, Neurologo, Podologo | Standard AMD-SID, PASSI |
-| **Scompenso Cardiaco Cronico Avanzato** | 4-6 | Cardiologo, Internista, Nefrologo, Pneumologo, Geriatra, Palliativista | Rapporto SDO, Linee Guida ESC |
-
-#### Segmentazione per Età e Carico di Patologie Croniche
-
-| Fascia d'Età | Popolazione (2023) | % Popolazione | N. Medio Patologie Croniche | Note |
-|---|---|---|---|---|
-| 0-14 | 7.500.000 | 12.7% | 0.2 | Prevalenza di malattie rare e congenite. |
-| 15-44 | 19.000.000 | 32.2% | 0.4 | Bassa prevalenza di cronicità. |
-| 45-64 | 17.500.000 | 29.7% | 1.2 | Aumento incidenza tumori e malattie cardiovascolari. |
-| **65-74** | 7.200.000 | 12.2% | **2.3** | Inizio della multimorbidità. |
-| **75+** | 7.800.000 | 13.2% | **3.5+** | Elevata prevalenza di multimorbidità e non autosufficienza. |
-
-*Fonte: Elaborazione su dati ISTAT, PASSI, PASSI d'Argento.*
 
 ### Struttura dei Dataset
 
@@ -88,13 +56,25 @@ Dall'analisi dei dati sono emersi i seguenti cluster di patologie a elevata comp
 -   `/docs`: Documentazione di dettaglio sui singoli dataset e sulle variabili.
 -   `/docs/FONTI_DATI.md`: Elenco completo di tutte le fonti dati istituzionali con URL e descrizioni.
 
-### Come Utilizzare i Dati per il Chatbot
+---
 
-I dataset nella cartella `/datasets/processed` sono il punto di partenza ideale per alimentare un chatbot o altri sistemi informativi. In particolare:
+## Sezione 2: Analisi Criticità Sistema Sanitario
 
--   `pdta_multidisciplinari.json`: Fornisce un elenco di patologie complesse con gli specialisti tipicamente coinvolti.
--   `malattie_rare_italia.json`: Contiene l'elenco delle malattie rare con dati di prevalenza e un punteggio di complessità calcolato.
--   `segmentazione_popolazione.json`: Offre dati aggregati per segmentare la popolazione per età, genere e carico di patologie.
+Questa sezione contiene una raccolta di report e fonti dati che analizzano le principali problematiche del sistema sanitario italiano e lo confrontano con altri paesi.
+
+**Tematiche:**
+- Carenza di personale medico e infermieristico
+- Liste d'attesa e rinuncia alle cure
+- Spesa sanitaria out-of-pocket e privatizzazione
+- Welfare sanitario e fondi integrativi
+- Performance e disuguaglianze regionali
+- Confronti internazionali (USA, Europa)
+
+**Documentazione:**
+- `docs/sistema_sanitario/CATALOGO_FONTI.md`: Catalogo completo delle fonti dati con link e analisi.
+
+**Dataset:**
+- `datasets/raw/sistema_sanitario/`: Cartella contenente i report originali in formato PDF (oltre 100 MB di dati).
 
 ---
 
