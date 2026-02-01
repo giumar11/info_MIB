@@ -1,0 +1,459 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>HelpTracciato</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.0  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20090527;16523000">
+</HEAD>
+<BODY LANG="it-IT" DIR="LTR">
+<H3 ALIGN=CENTER>Struttura del tracciato record 
+</H3>
+<P>Il tracciato record descrive il contenuto del file di microdati;
+per ciascuna variabile rilevata nell&rsquo;indagine nel tracciato
+record sono descritte le informazioni necessarie per la sua
+elaborazione: 
+</P>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0 STYLE="page-break-before: auto; page-break-after: auto; page-break-inside: auto">
+		<COL WIDTH=41*>
+		<COL WIDTH=215*>
+		<TR VALIGN=TOP>
+			<TD WIDTH=16% HEIGHT=50 BGCOLOR="#ff8040">
+				<P ALIGN=CENTER><STRONG>Nome campo</STRONG></P>
+			</TD>
+			<TD WIDTH=84% BGCOLOR="#ff8040">
+				<P ALIGN=CENTER><STRONG>Descrizione</STRONG></P>
+				<P ALIGN=CENTER><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Num. ordine</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Num. progressivo della variabile nel tracciato record</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Lunghezza</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Lunghezza in bytes della variabile 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Nome campo</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Nome breve o nome informatico della variabile
+				(es: num. progressivo del quesito nel questionario) 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Tipo variabile</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Indica se la variabile &egrave; categorica, &egrave; possibile
+				visualizzare la classificazione associata alla variabile cliccando su <U>Categorica</U></P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Nome della variabile di aggregazione</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Eventuale nome della variabile che aggrega la variabile
+				descritta (es: la variabile 'Provincia' aggrega la variabile
+				'Comune') 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Note</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Eventuali ulteriori indicazioni sulla variabile</P>
+			</TD>
+		</TR>
+		
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Tipo record</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>L'eventuale presenza nel tracciato di valori diversi nel campo tipo record
+indica l'esistenza di piu' variabili definite nelle stesse posizioni fisiche del tracciato record che  
+hanno significati logici diversi.
+Pertanto le variabili appartenenti a tipi record diversi fra loro, non costituiscono variabili aggiuntive,
+ma sono ridefinizioni della stessa variabile al fine di poter collegare ad esempio classificazioni diverse.</P>
+			</TD>
+		</TR>		
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Nome variabile</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P><SPAN LANG="en-US">Descrizione estesa della variabile (es. testo del 
+				quesito del questionario)</SPAN> 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Formato campo</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>A per alfabetico o N per numerico 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Numero decimali</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Se la variabile &egrave; numerica con decimali viene indicato
+				il numero di decimali 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Separatore decimali</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Se presente il separatore tra le unit&agrave; ed i decimali
+				viene indicato il simbolo adottato 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Segno aritmetico</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Se presente il segno aritmetico viene indicato come '+' o '-' 
+				</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=16%>
+				<P><STRONG>Unit&agrave; di misura</STRONG></P>
+			</TD>
+			<TD WIDTH=84%>
+				<P>Unit&agrave; con la quale &egrave; stata misurata la variabile
+								</P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P><STRONG>Esempio di tracciato record</STRONG></P>
+<P>Indagine: <FONT COLOR="#ff0000">Nome dell'indagine</FONT> Anno
+2005 <BR>Tracciato record lungo: 227 caratteri 
+</P>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0>
+		<TR>
+			<TD BGCOLOR="#ff8040">
+				<P>Num. ordine</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Lunghezza</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Nome campo</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Tipo variabile</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Aggregazione</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Note</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Tipo record</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Nome variabile</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Formato campo</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Num. decimali</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Seaparatore decimali</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Segno aritmetico</P>
+			</TD>
+			<TD BGCOLOR="#ff8040">
+				<P>Unit&agrave; di misura</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>1</P>
+			</TD>
+			<TD>
+				<P>1</P>
+			</TD>
+			<TD>
+				<P>Id</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+            <TD>
+				<P>&nbsp;</P>
+			</TD>			
+			<TD>
+				<P>0</P>
+			</TD>
+			<TD>
+				<P>N. progressivo</P>
+			</TD>
+			<TD>
+				<P>A</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>3</P>
+			</TD>
+			<TD>
+				<P>3</P>
+			</TD>
+			<TD>
+				<P>nuts</P>
+			</TD>
+			<TD>
+				<P><U>Categorica</U></P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>0</P>
+			</TD>
+			<TD>
+				<P>Regione</P>
+			</TD>
+			<TD>
+				<P>A</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>15</P>
+			</TD>
+			<TD>
+				<P>11</P>
+			</TD>
+			<TD>
+				<P>turnmar</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>. : missing</P>
+			</TD>
+			<TD>
+				<P>0</P>
+			</TD>
+			<TD>
+				<P>Quota di fatturato 2004</P>
+			</TD>
+			<TD>
+				<P>N</P>
+			</TD>
+			<TD>
+				<P>9</P>
+			</TD>
+			<TD>
+				<P>,</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>...</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+			<TD>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P>Esempio: la variabile 'turnmar' inizia a posizione 15, &egrave; numerica di 11 posizioni,
+di cui 9 cifre decimali ed un intero con il separatore ',' tra gli
+interi e i decimali. Inoltre nel campo 'Note' viene indicato che la
+presenza del solo carattere '.' ha il significato di missing.</P>
+</BODY>
+</HTML>

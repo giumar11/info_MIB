@@ -1,0 +1,3 @@
+infile dictionary using  ISTAT_MFR_EHIS_Microdati_2019_ESEMPIO_STRUTTURA_FILE.txt {
+_firstlineoffile(2)
+}
