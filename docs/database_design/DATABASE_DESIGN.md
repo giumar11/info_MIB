@@ -1,12 +1,6 @@
-# Proposta Schema Database per Geen.ai
+# Proposta schema database per Geen.ai
 
-**Autore:** Manus AI  
-**Data:** 30 Gennaio 2026  
-**Versione:** 1.0
-
----
-
-## Sommario Esecutivo
+## Sommario esecutivo
 
 Questo documento presenta la proposta di schema database per il progetto Geen.ai, un sistema informativo che raccoglie dati sanitari istituzionali italiani per identificare le patologie che richiedono la consultazione di più specialisti. Lo schema è stato progettato per supportare un chatbot conversazionale che permetta agli utenti di interrogare informazioni su patologie, specialisti coinvolti e segmentazione della popolazione italiana.
 
@@ -14,7 +8,7 @@ L'analisi dei dataset disponibili ha identificato **6.453 patologie** (di cui 6.
 
 ---
 
-## Dataset Analizzati
+## Dataset nalizzati
 
 | Dataset | Formato | Record | Contenuto Principale |
 |---------|---------|--------|----------------------|
