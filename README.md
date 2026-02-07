@@ -220,3 +220,5 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 *Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
 
 Le fonti dati utilizzate sono soggette alle rispettive licenze indicate nel file `sources_catalog.csv`.
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/giumar11/info_MIB)
