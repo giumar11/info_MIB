@@ -6,7 +6,7 @@ Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui 
 
 ---
 
-## Catalogo Fonti Machine-Readable
+## Catalogo fonti machine-readable
 
 Il file `sources_catalog.csv` nella root del repository contiene un catalogo strutturato di tutte le fonti dati con i seguenti campi:
 
@@ -26,16 +26,16 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 ---
 
-## Sezione 1: Governance e Performance SSN
+## Sezione 1: Governance e performance SSN
 
-### A) Open Data del SSN
+### A) Open data del SSN
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
 | **dati.salute.gov.it** | Portale Open Data Ministero della Salute con dataset normalizzati | https://www.dati.salute.gov.it/ |
 | **SDO - Dimissioni Ospedaliere** | Dataset su ricoveri per età, sesso, tipologia | `datasets/raw/ministero_salute/` |
 
-### B) Esiti e Performance (PNE)
+### B) Esiti e performance (PNE)
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
@@ -43,7 +43,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 **Percorso:** `datasets/raw/governance/pne/`
 
-### C) LEA e Nuovo Sistema di Garanzia
+### C) LEA e nuovo sistema di garanzia
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
@@ -51,7 +51,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 **Percorso:** `datasets/raw/governance/lea_nsg/`
 
-### D) Liste d'Attesa (PNGLA)
+### D) Liste d'attesa (PNGLA)
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
@@ -63,7 +63,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 ## Sezione 2: Finanza del SSN
 
-### E) OpenBDAP - Finanza Enti SSN
+### E) OpenBDAP - Finanza enti SSN
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
@@ -71,7 +71,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 **Percorso:** `datasets/raw/finanza/openbdap/`
 
-### F) Spesa Farmaceutica (OsMed)
+### F) Spesa farmaceutica (OsMed)
 
 | Fonte | Descrizione | URL |
 |-------|-------------|-----|
@@ -81,9 +81,9 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 ---
 
-## Sezione 3: Riforme Strutturali
+## Sezione 3: Riforme strutturali
 
-### G) DM 77/2022 - Assistenza Territoriale
+### G) DM 77/2022 - Assistenza territoriale
 
 | Elemento | Descrizione |
 |----------|-------------|
@@ -115,7 +115,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 ---
 
-## Sezione 4: Comparatori Internazionali
+## Sezione 4: Comparatori internazionali
 
 | Fonte | Descrizione | Copertura | URL |
 |-------|-------------|-----------|-----|
@@ -129,7 +129,7 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 ---
 
-## Sezione 5: Criticità Sistema Sanitario
+## Sezione 5: Criticità sistema sanitario
 
 Questa sezione contiene report e analisi sulle principali problematiche del SSN italiano.
 
@@ -154,7 +154,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 
 ---
 
-## Sezione 6: Patologie a Elevata Complessità
+## Sezione 6: Patologie a elevata complessità
 
 ### Metodologia
 
@@ -165,7 +165,7 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 3. **Multimorbidità anziani**: Gestione coordinata 3+ patologie croniche
 4. **Patologie croniche complesse**: Coinvolgimento multi-organo
 
-### Fonti Dati Patologie
+### Fonti dati patologie
 
 | Fonte | Dataset | Anno | Formato |
 |-------|---------|------|---------|
@@ -179,7 +179,7 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
-## Struttura Repository
+## Struttura repository
 
 ```
 info_MIB/
@@ -206,7 +206,7 @@ info_MIB/
 
 ---
 
-## Data Dictionary
+## Data dictionary
 
 Per i dataset core sono disponibili dizionari dati dettagliati:
 
@@ -215,7 +215,7 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 ---
 
-## Licenza e Disclaimer
+## Licenza e disclaimer
 
 *Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
 
