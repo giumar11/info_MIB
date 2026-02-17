@@ -1,0 +1,475 @@
+{
+  "data_compilazione": "2026-02-17",
+  "descrizione": "Catalogo delle principali società scientifiche italiane con rapporti e dati rilevanti per l'analisi delle criticità dei percorsi sociosanitari multi-specialistici",
+  "societa": [
+    {
+      "acronimo": "AIOM",
+      "nome_completo": "Associazione Italiana di Oncologia Medica",
+      "url": "https://www.aiom.it/",
+      "area_medica": "Oncologia",
+      "rapporti_principali": [
+        {
+          "titolo": "I numeri del cancro in Italia 2024",
+          "autori": "AIOM, AIRTUM, Fondazione AIOM, ONS, PASSI, PASSI d'Argento, SIAPEC-IAP",
+          "anno": 2024,
+          "url": "https://www.aiom.it/i-numeri-del-cancro-in-italia/",
+          "dati_chiave": {
+            "nuove_diagnosi_anno": 395900,
+            "prevalenza_totale": 3600000,
+            "sopravvivenza_5_anni_uomini_percentuale": 55,
+            "sopravvivenza_5_anni_donne_percentuale": 63,
+            "tumori_piu_frequenti_uomini": [
+              "Prostata",
+              "Polmone",
+              "Colon-retto",
+              "Vescica"
+            ],
+            "tumori_piu_frequenti_donne": [
+              "Mammella",
+              "Colon-retto",
+              "Polmone",
+              "Tiroide"
+            ],
+            "mortalita_annua": 187900
+          },
+          "tipo": "Rapporto epidemiologico annuale"
+        },
+        {
+          "titolo": "Linee Guida AIOM",
+          "anno": 2024,
+          "url": "https://www.aiom.it/linee-guida-aiom/",
+          "descrizione": "42 linee guida su prevenzione, diagnosi, trattamento e follow-up delle neoplasie",
+          "n_linee_guida": 42,
+          "tipo": "Linee guida cliniche"
+        }
+      ],
+      "rilevanza_progetto": "Dati fondamentali su incidenza, prevalenza e mortalità oncologica. Le neoplasie sono tra le principali patologie multi-specialistiche."
+    },
+    {
+      "acronimo": "AIRTUM",
+      "nome_completo": "Associazione Italiana Registri Tumori",
+      "url": "https://www.registri-tumori.it/",
+      "area_medica": "Epidemiologia oncologica",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto AIRTUM 2024 - I tumori in Italia",
+          "anno": 2024,
+          "url": "https://www.registri-tumori.it/cms/pubblicazioni",
+          "dati_chiave": {
+            "registri_attivi": 53,
+            "popolazione_coperta_percentuale": 72,
+            "incidenza_standardizzata_uomini_x100000": 510,
+            "incidenza_standardizzata_donne_x100000": 430
+          },
+          "tipo": "Rapporto epidemiologico"
+        },
+        {
+          "titolo": "Sopravvivenza per tumore in Italia - AIRTUM 2024",
+          "anno": 2024,
+          "url": "https://www.registri-tumori.it/cms/pubblicazioni",
+          "descrizione": "Dati di sopravvivenza per sede tumorale, età e regione",
+          "tipo": "Rapporto statistico"
+        }
+      ],
+      "rilevanza_progetto": "Dati epidemiologici di base per tutte le neoplasie per regione e periodo."
+    },
+    {
+      "acronimo": "ANMCO",
+      "nome_completo": "Associazione Nazionale Medici Cardiologi Ospedalieri",
+      "url": "https://www.anmco.it/",
+      "area_medica": "Cardiologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Osservatorio ANMCO - Scompenso Cardiaco",
+          "anno": 2024,
+          "url": "https://www.anmco.it/pages/pubblicazioni/",
+          "dati_chiave": {
+            "pazienti_scompenso_italia": 1000000,
+            "nuovi_casi_anno": 170000,
+            "ricoveri_anno": 190000,
+            "mortalita_1_anno_percentuale": 20,
+            "mortalita_5_anni_percentuale": 50,
+            "costo_medio_ricovero_euro": 4800
+          },
+          "tipo": "Report osservatorio"
+        },
+        {
+          "titolo": "Registro IN-HF (Italian Network on Heart Failure)",
+          "anno": 2024,
+          "url": "https://www.anmco.it/pages/pubblicazioni/",
+          "descrizione": "Registro multicentrico prospettico sullo scompenso cardiaco in Italia con dati di 220 centri",
+          "tipo": "Registro clinico"
+        }
+      ],
+      "rilevanza_progetto": "Le malattie cardiovascolari sono la prima causa di morte in Italia e richiedono percorsi multi-specialistici complessi."
+    },
+    {
+      "acronimo": "SIC",
+      "nome_completo": "Società Italiana di Cardiologia",
+      "url": "https://www.sicardiologia.it/",
+      "area_medica": "Cardiologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto sullo stato della Cardiologia in Italia",
+          "anno": 2024,
+          "url": "https://www.sicardiologia.it/scientifica/pubblicazioni",
+          "dati_chiave": {
+            "decessi_cardiovascolari_anno": 217000,
+            "percentuale_decessi_totali": 35.8,
+            "infarti_miocardio_anno": 120000,
+            "ictus_anno": 185000,
+            "ipertesi_italia": 18000000
+          },
+          "tipo": "Report annuale"
+        }
+      ],
+      "rilevanza_progetto": "Dati sulla mortalità cardiovascolare e sulla rete emergenziale cardiologica."
+    },
+    {
+      "acronimo": "SID",
+      "nome_completo": "Società Italiana di Diabetologia",
+      "url": "https://www.siditalia.it/",
+      "area_medica": "Diabetologia / Endocrinologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Italian Diabetes Monitor - Annuario SID/AMD 2024",
+          "autori": "SID, AMD (Associazione Medici Diabetologi)",
+          "anno": 2024,
+          "url": "https://www.siditalia.it/clinica/linee-guida-societarie",
+          "dati_chiave": {
+            "diabetici_italia": 4000000,
+            "diabete_tipo2_percentuale": 90,
+            "diabete_tipo1_percentuale": 10,
+            "prevalenza_percentuale_pop": 6.8,
+            "diabete_non_diagnosticato_percentuale": 30,
+            "costo_annuo_per_paziente_euro": 3660,
+            "costo_totale_annuo_miliardi_euro": 14.6,
+            "complicanze_cardiovascolari_percentuale": 32,
+            "complicanze_renali_percentuale": 22,
+            "complicanze_oculari_percentuale": 28,
+            "complicanze_neuropatia_percentuale": 25
+          },
+          "tipo": "Annuario statistico"
+        },
+        {
+          "titolo": "Standard Italiani per la Cura del Diabete Mellito SID-AMD",
+          "anno": 2024,
+          "url": "https://www.siditalia.it/clinica/standard-di-cura",
+          "descrizione": "Standard di cura condivisi SID-AMD, aggiornamento 2024",
+          "tipo": "Linee guida nazionali"
+        }
+      ],
+      "rilevanza_progetto": "Il diabete complicato richiede 7 specialisti diversi. La rete diabetologica italiana è un modello di gestione multidisciplinare."
+    },
+    {
+      "acronimo": "SIMG",
+      "nome_completo": "Società Italiana di Medicina Generale e delle Cure Primarie",
+      "url": "https://www.simg.it/",
+      "area_medica": "Medicina Generale / Cure Primarie",
+      "rapporti_principali": [
+        {
+          "titolo": "Health Search - Report Annuale 2024",
+          "anno": 2024,
+          "url": "https://www.healthsearch.it/",
+          "dati_chiave": {
+            "mmg_partecipanti": 900,
+            "pazienti_database": 1500000,
+            "prevalenza_ipertensione_percentuale": 30.2,
+            "prevalenza_diabete_percentuale": 8.1,
+            "prevalenza_bpco_percentuale": 3.2,
+            "prevalenza_depressione_percentuale": 7.8,
+            "pazienti_multimorbidi_percentuale_over65": 68.5,
+            "media_patologie_croniche_over65": 3.2,
+            "accessi_mmg_pro_capite_anno": 7.8
+          },
+          "tipo": "Report database epidemiologico"
+        },
+        {
+          "titolo": "Rapporto SIMG sulla Medicina Generale 2024",
+          "anno": 2024,
+          "url": "https://www.simg.it/pubblicazioni/",
+          "dati_chiave": {
+            "mmg_attivi_italia": 40250,
+            "mmg_mancanti": 5500,
+            "mmg_pensionamento_entro_2027": 7300,
+            "assistiti_medi_per_mmg": 1350,
+            "percentuale_mmg_over_60": 42
+          },
+          "tipo": "Report organizzativo"
+        }
+      ],
+      "rilevanza_progetto": "Dati epidemiologici dal network di MMG fondamentali per comprendere multimorbidità e bisogni di indirizzamento multi-specialistico."
+    },
+    {
+      "acronimo": "SIN",
+      "nome_completo": "Società Italiana di Neurologia",
+      "url": "https://www.neuro.it/",
+      "area_medica": "Neurologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto SIN sulle Malattie Neurologiche in Italia 2024",
+          "anno": 2024,
+          "url": "https://www.neuro.it/web/eventi/NEURO/pubblicazioni.cfm",
+          "dati_chiave": {
+            "malattie_cerebrovascolari_ictus_anno": 185000,
+            "malattia_alzheimer_pazienti": 700000,
+            "demenze_totali": 1200000,
+            "malattia_parkinson_pazienti": 300000,
+            "sclerosi_multipla_pazienti": 137000,
+            "epilessia_pazienti": 500000,
+            "cefalee_croniche_pazienti": 6000000,
+            "costo_demenze_miliardi_anno": 15.0,
+            "costo_ictus_miliardi_anno": 3.5
+          },
+          "tipo": "Report epidemiologico"
+        }
+      ],
+      "rilevanza_progetto": "Le malattie neurologiche richiedono percorsi multi-specialistici complessi (neurologia, riabilitazione, psicologia, geriatria)."
+    },
+    {
+      "acronimo": "SIR",
+      "nome_completo": "Società Italiana di Reumatologia",
+      "url": "https://www.reumatologia.it/",
+      "area_medica": "Reumatologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Libro Bianco della Reumatologia Italiana",
+          "anno": 2024,
+          "url": "https://www.reumatologia.it/pubblicazioni/",
+          "dati_chiave": {
+            "pazienti_reumatici_italia": 5500000,
+            "artrite_reumatoide_pazienti": 400000,
+            "lupus_eritematoso_pazienti": 60000,
+            "spondilite_anchilosante_pazienti": 150000,
+            "artrite_psoriasica_pazienti": 250000,
+            "sclerodermia_pazienti": 25000,
+            "osteoporosi_pazienti": 5000000,
+            "costo_biologici_milioni_anno": 850,
+            "reumatologi_italia": 1600,
+            "rapporto_reumatologi_pazienti": "1:3.400",
+            "tempi_attesa_prima_visita_giorni": 120
+          },
+          "tipo": "Libro Bianco"
+        }
+      ],
+      "rilevanza_progetto": "Le malattie reumatiche autoimmuni sono paradigmatiche della multimorbidità e del bisogno multi-specialistico."
+    },
+    {
+      "acronimo": "AIPO-ITS",
+      "nome_completo": "Associazione Italiana Pneumologi Ospedalieri - Italian Thoracic Society",
+      "url": "https://www.aiponet.it/",
+      "area_medica": "Pneumologia",
+      "rapporti_principali": [
+        {
+          "titolo": "White Book della Pneumologia Italiana",
+          "anno": 2024,
+          "url": "https://www.aiponet.it/pubblicazioni/",
+          "dati_chiave": {
+            "bpco_pazienti_italia": 3500000,
+            "bpco_non_diagnosticata_percentuale": 50,
+            "asma_pazienti": 3000000,
+            "fibrosi_polmonare_idiopatica_pazienti": 15000,
+            "apnee_ostruttive_sonno_pazienti": 6000000,
+            "tumore_polmone_nuovi_casi_anno": 44000,
+            "ricoveri_bpco_riacutizzata_anno": 130000,
+            "mortalita_bpco_anno": 20000,
+            "pneumologi_ospedalieri": 2200,
+            "centri_pneumologia_italia": 350
+          },
+          "tipo": "White Book"
+        }
+      ],
+      "rilevanza_progetto": "La BPCO è una delle patologie croniche più impattanti e richiede gestione multi-specialistica (cardiologo, fisiatra, nutrizionista)."
+    },
+    {
+      "acronimo": "SIN-Nefro",
+      "nome_completo": "Società Italiana di Nefrologia",
+      "url": "https://sinitaly.org/",
+      "area_medica": "Nefrologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Registro Italiano Dialisi e Trapianto (RIDT)",
+          "anno": 2024,
+          "url": "https://ridt.sinitaly.org/",
+          "dati_chiave": {
+            "malattia_renale_cronica_pazienti_italia": 4000000,
+            "mrc_stadio3_5_pazienti": 2400000,
+            "pazienti_dialisi": 50000,
+            "nuovi_pazienti_dialisi_anno": 10000,
+            "pazienti_trapianto_funzionante": 28000,
+            "trapianti_rene_anno": 2200,
+            "mortalita_dialisi_percentuale_anno": 15,
+            "costo_dialisi_paziente_anno_euro": 35000,
+            "costo_totale_dialisi_miliardi": 1.75,
+            "centri_dialisi": 750
+          },
+          "tipo": "Registro nazionale"
+        }
+      ],
+      "rilevanza_progetto": "La malattia renale cronica è una complicanza trasversale a diabete, ipertensione e malattie autoimmuni."
+    },
+    {
+      "acronimo": "SIGE",
+      "nome_completo": "Società Italiana di Gastroenterologia ed Endoscopia Digestiva",
+      "url": "https://www.sige.it/",
+      "area_medica": "Gastroenterologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Libro Bianco della Gastroenterologia Italiana",
+          "anno": 2024,
+          "url": "https://www.sige.it/pubblicazioni/",
+          "dati_chiave": {
+            "malattie_infiammatorie_croniche_intestinali_pazienti": 250000,
+            "crohn_pazienti": 100000,
+            "colite_ulcerosa_pazienti": 150000,
+            "celiachia_diagnosticata": 250000,
+            "celiachia_stimata_non_diagnosticata": 400000,
+            "cirrosi_epatica_pazienti": 180000,
+            "epatocarcinoma_nuovi_casi_anno": 12800,
+            "epatite_c_trattati_daa": 250000,
+            "steatosi_epatica_nafld_prevalenza_percentuale": 25,
+            "colonscopie_screening_anno": 320000
+          },
+          "tipo": "Libro Bianco"
+        }
+      ],
+      "rilevanza_progetto": "Le IBD e le epatopatie richiedono gestione multi-specialistica e follow-up complessi."
+    },
+    {
+      "acronimo": "SIE",
+      "nome_completo": "Società Italiana di Endocrinologia",
+      "url": "https://www.societaitalianadiendocrinologia.it/",
+      "area_medica": "Endocrinologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto SIE sulle Malattie Endocrine in Italia",
+          "anno": 2024,
+          "url": "https://www.societaitalianadiendocrinologia.it/pubblicazioni/",
+          "dati_chiave": {
+            "malattie_tiroidee_pazienti": 6000000,
+            "ipotiroidismo_pazienti": 3500000,
+            "tumori_tiroide_nuovi_casi_anno": 13000,
+            "osteoporosi_pazienti": 5000000,
+            "fratture_osteoporotiche_anno": 560000,
+            "deficit_vitamina_d_percentuale_pop": 50,
+            "iperprolattinemia_pazienti": 200000,
+            "acromegalia_pazienti": 4000,
+            "morbo_addison_pazienti": 12000,
+            "endocrinologi_italia": 2800
+          },
+          "tipo": "Report epidemiologico"
+        }
+      ],
+      "rilevanza_progetto": "Le endocrinopatie sono trasversali a molte patologie croniche e richiedono approccio integrato."
+    },
+    {
+      "acronimo": "SIGG",
+      "nome_completo": "Società Italiana di Gerontologia e Geriatria",
+      "url": "https://www.sigg.it/",
+      "area_medica": "Geriatria / Gerontologia",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto SIGG sull'invecchiamento in Italia 2024",
+          "anno": 2024,
+          "url": "https://www.sigg.it/pubblicazioni/",
+          "dati_chiave": {
+            "over_65_italia": 14200000,
+            "over_80_italia": 4500000,
+            "percentuale_over65_su_pop": 24.1,
+            "indice_vecchiaia": 193.3,
+            "over65_multimorbidi_3_plus_percentuale": 46.7,
+            "over65_politerapia_5_plus_farmaci_percentuale": 39.0,
+            "over65_fragilita_percentuale": 15.0,
+            "over65_non_autosufficienti": 3800000,
+            "rsa_posti_letto": 280000,
+            "adi_assistiti_anno": 980000,
+            "geriatri_italia": 2100,
+            "rapporto_geriatri_over65": "1:6.700"
+          },
+          "tipo": "Report annuale"
+        }
+      ],
+      "rilevanza_progetto": "Il paziente anziano multimorbido è il principale beneficiario di un sistema di indirizzamento multi-specialistico efficiente."
+    },
+    {
+      "acronimo": "SIMI",
+      "nome_completo": "Società Italiana di Medicina Interna",
+      "url": "https://www.simi.it/",
+      "area_medica": "Medicina Interna",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto FADOI-SIMI sulla Medicina Interna Ospedaliera",
+          "autori": "SIMI, FADOI",
+          "anno": 2024,
+          "url": "https://www.simi.it/pubblicazioni/",
+          "dati_chiave": {
+            "ricoveri_medicina_interna_anno": 1800000,
+            "percentuale_ricoveri_totali": 20.2,
+            "eta_media_ricoverati": 76.5,
+            "degenza_media_giorni": 9.2,
+            "comorbidita_media_pazienti": 4.8,
+            "mortalita_intra_ospedaliera_percentuale": 7.5,
+            "riospedalizzazione_30_giorni_percentuale": 18.2,
+            "internisti_ospedalieri": 8500
+          },
+          "tipo": "Report ospedaliero"
+        }
+      ],
+      "rilevanza_progetto": "La Medicina Interna è il reparto che più gestisce pazienti complessi multimorbidi, snodo centrale del percorso multi-specialistico."
+    },
+    {
+      "acronimo": "SIP",
+      "nome_completo": "Società Italiana di Psichiatria",
+      "url": "https://www.psichiatria.it/",
+      "area_medica": "Psichiatria / Salute Mentale",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto sulla Salute Mentale in Italia 2024",
+          "autori": "SIP, Ministero della Salute (SISM)",
+          "anno": 2024,
+          "url": "https://www.psichiatria.it/pubblicazioni/",
+          "dati_chiave": {
+            "utenti_servizi_salute_mentale": 850000,
+            "depressione_prevalenza_percentuale": 5.4,
+            "depressione_pazienti_stimati": 3200000,
+            "disturbi_ansia_pazienti": 6500000,
+            "schizofrenia_pazienti": 245000,
+            "disturbi_alimentari_pazienti": 3000000,
+            "suicidi_anno": 4000,
+            "psichiatri_pubblici": 4200,
+            "psicologi_ssn": 5800,
+            "csm_centri_salute_mentale": 1400,
+            "spesa_salute_mentale_percentuale_fondo_sanitario": 3.4
+          },
+          "tipo": "Report epidemiologico"
+        }
+      ],
+      "rilevanza_progetto": "La comorbidità psichiatrica è frequente nelle malattie croniche e spesso trascurata nei percorsi multi-specialistici."
+    },
+    {
+      "acronimo": "SItI",
+      "nome_completo": "Società Italiana di Igiene, Medicina Preventiva e Sanità Pubblica",
+      "url": "https://www.societaitalianaigiene.org/",
+      "area_medica": "Igiene / Sanità Pubblica / Prevenzione",
+      "rapporti_principali": [
+        {
+          "titolo": "Rapporto Prevenzione SItI 2024",
+          "anno": 2024,
+          "url": "https://www.societaitalianaigiene.org/pubblicazioni/",
+          "dati_chiave": {
+            "copertura_vaccinale_influenza_over65_percentuale": 56.2,
+            "copertura_vaccinale_mpr_24_mesi_percentuale": 93.8,
+            "copertura_vaccinale_hpv_femmine_percentuale": 71.5,
+            "copertura_vaccinale_hpv_maschi_percentuale": 46.8,
+            "copertura_vaccinale_pneumococco_over65_percentuale": 32.0,
+            "copertura_vaccinale_herpes_zoster_over65_percentuale": 12.0,
+            "spesa_prevenzione_percentuale_fondo_sanitario": 4.2,
+            "obiettivo_oms_prevenzione_percentuale": 5.0
+          },
+          "tipo": "Report annuale"
+        }
+      ],
+      "rilevanza_progetto": "Dati sulla prevenzione e le coperture vaccinali, complementari ai dati di screening ONS."
+    }
+  ]
+}

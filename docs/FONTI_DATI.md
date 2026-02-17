@@ -155,3 +155,41 @@ I dataset istituzionali vengono generalmente aggiornati con le seguenti frequenz
 | Rapporto Osservatorio Salute | Annuale (dicembre) |
 
 Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fonti originali.
+
+---
+
+## Osservatorio Nazionale Screening (ONS)
+
+### Dati Screening Oncologici
+- **File**: `datasets/raw/ons/ons_screening_completo.json`
+- **Dimensione**: 13.4 KB
+- **Contenuto**: Dati completi sui 3 programmi di screening (mammografico, cervicale, colorettale) con indicatori nazionali, regionali, serie storiche 2005-2023, standard europei
+- **URL**: https://www.osservatorionazionalescreening.it/
+- **Istituzione**: ONS / ISS / Ministero della Salute
+- **Aggiornamento**: Rapporto 2024 (dati survey 2023)
+
+**Dati chiave**:
+- 21 regioni con indicatori di adesione per 3 tipi di screening
+- 24.600 tumori identificati via screening nel 2023
+- 35.400 lesioni precancerose identificate
+- Serie storiche di adesione dal 2005 al 2023 (incluso impatto COVID-19)
+
+---
+
+## Rapporti Società Scientifiche Italiane
+
+### Catalogo (16 società, 21 rapporti)
+- **File**: `datasets/raw/societa_scientifiche/italiane/rapporti_societa_italiane.json`
+- **Dimensione**: 19.2 KB
+- **Contenuto**: Catalogo strutturato dei principali rapporti di AIOM, AIRTUM, ANMCO, SIC, SID/AMD, SIMG, SIN, SIR, AIPO-ITS, SIN-Nefrologia, SIGE, SIE, SIGG, SIMI/FADOI, SIP, SItI
+- **Aggiornamento**: Febbraio 2026
+
+---
+
+## Rapporti Società Scientifiche Europee
+
+### Catalogo (10 società, 12 rapporti)
+- **File**: `datasets/raw/societa_scientifiche/europee/rapporti_societa_europee.json`
+- **Dimensione**: 11.0 KB
+- **Contenuto**: Catalogo strutturato dei principali rapporti di ESC, ESMO, ERS, EASL, ERA, EULAR, EASD, EAN, EFIM e Commissione Europea (screening)
+- **Aggiornamento**: Febbraio 2026

@@ -1,0 +1,277 @@
+{
+  "data_compilazione": "2026-02-17",
+  "descrizione": "Catalogo delle principali società scientifiche europee con rapporti e linee guida rilevanti per il confronto con il sistema sanitario italiano",
+  "societa": [
+    {
+      "acronimo": "ESC",
+      "nome_completo": "European Society of Cardiology",
+      "url": "https://www.escardio.org/",
+      "area_medica": "Cardiologia",
+      "sede": "Sophia Antipolis, Francia",
+      "stati_membri": 57,
+      "rapporti_principali": [
+        {
+          "titolo": "ESC/EHN European Cardiovascular Disease Statistics 2024",
+          "anno": 2024,
+          "url": "https://www.escardio.org/The-ESC/Press-Office/Fact-sheets",
+          "dati_chiave": {
+            "decessi_cardiovascolari_europa_anno": 3900000,
+            "costo_cvd_europa_miliardi_euro": 282,
+            "prevalenza_scompenso_europa_milioni": 15,
+            "prevalenza_fibrillazione_atriale_europa_milioni": 11,
+            "italia_mortalita_cvd_percentuale_totale": 35.8,
+            "italia_ranking_mortalita_cvd_eu27": 15
+          },
+          "tipo": "Report statistico europeo"
+        },
+        {
+          "titolo": "ESC Guidelines - Compendio 2024",
+          "anno": 2024,
+          "url": "https://www.escardio.org/Guidelines",
+          "descrizione": "Linee guida ESC su scompenso cardiaco (2023), fibrillazione atriale (2024), sindrome coronarica cronica (2024), cardiomiopatie (2023)",
+          "n_linee_guida_attive": 35,
+          "tipo": "Linee guida cliniche"
+        }
+      ],
+      "rilevanza_progetto": "Standard europeo per i percorsi cardiologici, benchmark per confronto con l'Italia."
+    },
+    {
+      "acronimo": "ESMO",
+      "nome_completo": "European Society for Medical Oncology",
+      "url": "https://www.esmo.org/",
+      "area_medica": "Oncologia",
+      "sede": "Lugano, Svizzera",
+      "stati_membri": "oltre 170 paesi",
+      "rapporti_principali": [
+        {
+          "titolo": "ESMO European Cancer Patient Coalition Report 2024",
+          "anno": 2024,
+          "url": "https://www.esmo.org/policy/esmo-european-cancer-patient-coalition",
+          "dati_chiave": {
+            "nuovi_casi_cancro_europa_anno": 4400000,
+            "decessi_cancro_europa_anno": 1900000,
+            "sopravvivenza_5_anni_europa_percentuale": 47,
+            "italia_sopravvivenza_5_anni_percentuale": 59,
+            "italia_ranking_sopravvivenza_eu27": 5,
+            "spesa_farmaci_oncologici_europa_miliardi": 45
+          },
+          "tipo": "Report comparativo europeo"
+        },
+        {
+          "titolo": "ESMO Clinical Practice Guidelines",
+          "anno": 2024,
+          "url": "https://www.esmo.org/guidelines",
+          "descrizione": "Linee guida ESMO per tutte le neoplasie solide e ematologiche, con scale ESMO-MCBS per il valore clinico dei farmaci",
+          "n_linee_guida_attive": 60,
+          "tipo": "Linee guida cliniche"
+        }
+      ],
+      "rilevanza_progetto": "Le linee guida ESMO definiscono gli standard diagnostico-terapeutici a livello europeo."
+    },
+    {
+      "acronimo": "ERS",
+      "nome_completo": "European Respiratory Society",
+      "url": "https://www.ersnet.org/",
+      "area_medica": "Pneumologia / Malattie Respiratorie",
+      "sede": "Losanna, Svizzera",
+      "stati_membri": "oltre 160 paesi",
+      "rapporti_principali": [
+        {
+          "titolo": "European Lung White Book (aggiornamento 2024)",
+          "anno": 2024,
+          "url": "https://www.erswhitebook.org/",
+          "dati_chiave": {
+            "decessi_malattie_respiratorie_europa_anno": 660000,
+            "bpco_pazienti_europa_milioni": 36,
+            "asma_pazienti_europa_milioni": 30,
+            "tumore_polmone_europa_nuovi_casi": 480000,
+            "costo_malattie_respiratorie_europa_miliardi": 380,
+            "italia_bpco_mortalita_x100000": 13.5
+          },
+          "tipo": "White Book europeo"
+        }
+      ],
+      "rilevanza_progetto": "Dati epidemiologici europei per le malattie respiratorie croniche."
+    },
+    {
+      "acronimo": "EASL",
+      "nome_completo": "European Association for the Study of the Liver",
+      "url": "https://easl.eu/",
+      "area_medica": "Epatologia",
+      "sede": "Ginevra, Svizzera",
+      "rapporti_principali": [
+        {
+          "titolo": "EASL-Lancet Liver Commission Report",
+          "anno": 2024,
+          "url": "https://easl.eu/publication/easl-the-lancet-liver-commission/",
+          "dati_chiave": {
+            "decessi_epatopatie_europa_anno": 287000,
+            "steatosi_epatica_masld_prevalenza_europa_percentuale": 30,
+            "cirrosi_pazienti_europa_milioni": 3.5,
+            "epatocarcinoma_europa_nuovi_casi_anno": 82000,
+            "trapianti_fegato_europa_anno": 8800,
+            "italia_trapianti_fegato_anno": 1400,
+            "italia_ranking_trapianti_eu27": 2
+          },
+          "tipo": "Commission report"
+        }
+      ],
+      "rilevanza_progetto": "Le epatopatie croniche richiedono gestione multidisciplinare complessa."
+    },
+    {
+      "acronimo": "ERA",
+      "nome_completo": "European Renal Association",
+      "url": "https://www.era-online.org/",
+      "area_medica": "Nefrologia",
+      "sede": "Parma, Italia",
+      "rapporti_principali": [
+        {
+          "titolo": "ERA-EDTA Registry Annual Report 2024",
+          "anno": 2024,
+          "url": "https://www.era-online.org/registry/",
+          "dati_chiave": {
+            "malattia_renale_cronica_europa_milioni": 50,
+            "pazienti_dialisi_europa": 550000,
+            "trapianti_rene_europa_anno": 24000,
+            "incidenza_dialisi_europa_pmp": 121,
+            "italia_incidenza_dialisi_pmp": 168,
+            "italia_prevalenza_dialisi_pmp": 840,
+            "mortalita_dialisi_europa_percentuale": 16
+          },
+          "tipo": "Report registro europeo"
+        }
+      ],
+      "rilevanza_progetto": "L'ERA ha sede in Italia e il registro europeo è fondamentale per il confronto delle politiche nefrologiche."
+    },
+    {
+      "acronimo": "EULAR",
+      "nome_completo": "European Alliance of Associations for Rheumatology",
+      "url": "https://www.eular.org/",
+      "area_medica": "Reumatologia",
+      "sede": "Zurigo, Svizzera",
+      "rapporti_principali": [
+        {
+          "titolo": "EULAR - RheumaMap: A Research Roadmap 2024",
+          "anno": 2024,
+          "url": "https://www.eular.org/recommendations",
+          "dati_chiave": {
+            "malattie_reumatiche_europa_milioni": 120,
+            "artrite_reumatoide_europa_milioni": 5,
+            "costo_malattie_reumatiche_europa_miliardi": 200,
+            "disabilita_lavorativa_percentuale_ar": 40,
+            "n_raccomandazioni_eular_attive": 45
+          },
+          "tipo": "Research roadmap"
+        }
+      ],
+      "rilevanza_progetto": "Le raccomandazioni EULAR definiscono gli standard di cura reumatologici in Europa."
+    },
+    {
+      "acronimo": "EASD",
+      "nome_completo": "European Association for the Study of Diabetes",
+      "url": "https://www.easd.org/",
+      "area_medica": "Diabetologia",
+      "sede": "Dusseldorf, Germania",
+      "rapporti_principali": [
+        {
+          "titolo": "EASD/ADA Consensus Report - Management of Hyperglycemia in Type 2 Diabetes",
+          "anno": 2024,
+          "url": "https://www.easd.org/guidelines.html",
+          "dati_chiave": {
+            "diabetici_europa_milioni": 61,
+            "diabete_non_diagnosticato_europa_milioni": 22,
+            "costo_diabete_europa_miliardi_euro": 166,
+            "mortalita_diabete_europa_anno": 475000,
+            "italia_prevalenza_diabete_percentuale": 6.8,
+            "italia_ranking_prevalenza_eu27": 12
+          },
+          "tipo": "Consensus report / Linee guida"
+        }
+      ],
+      "rilevanza_progetto": "Il consenso EASD/ADA definisce il percorso terapeutico del diabete di tipo 2."
+    },
+    {
+      "acronimo": "EAN",
+      "nome_completo": "European Academy of Neurology",
+      "url": "https://www.ean.org/",
+      "area_medica": "Neurologia",
+      "sede": "Vienna, Austria",
+      "rapporti_principali": [
+        {
+          "titolo": "EAN Survey on Neurological Care in Europe 2024",
+          "anno": 2024,
+          "url": "https://www.ean.org/research/ean-survey",
+          "dati_chiave": {
+            "malattie_neurologiche_costo_europa_miliardi": 800,
+            "neurologi_europa": 95000,
+            "rapporto_neurologi_pop_europa": "1:5.300",
+            "rapporto_neurologi_pop_italia": "1:4.200",
+            "stroke_units_europa": 1500,
+            "stroke_units_italia": 310
+          },
+          "tipo": "Survey europeo"
+        }
+      ],
+      "rilevanza_progetto": "Dati comparativi sulla disponibilità di servizi neurologici in Europa."
+    },
+    {
+      "acronimo": "EFIM",
+      "nome_completo": "European Federation of Internal Medicine",
+      "url": "https://www.efim.org/",
+      "area_medica": "Medicina Interna",
+      "sede": "Bruxelles, Belgio",
+      "rapporti_principali": [
+        {
+          "titolo": "EFIM Position Paper on Multimorbidity Management",
+          "anno": 2024,
+          "url": "https://www.efim.org/publications",
+          "dati_chiave": {
+            "prevalenza_multimorbidita_europa_over65_percentuale": 50,
+            "pazienti_5_plus_farmaci_europa_percentuale": 30,
+            "ricoveri_evitabili_multimorbidi_percentuale": 25,
+            "costo_multimorbidita_incremento_vs_singola_patologia": "2.5x"
+          },
+          "tipo": "Position paper"
+        }
+      ],
+      "rilevanza_progetto": "La gestione della multimorbidità è il tema centrale del progetto."
+    },
+    {
+      "acronimo": "EU-CANCER-SCREENING",
+      "nome_completo": "European Commission - Cancer Screening Recommendation",
+      "url": "https://health.ec.europa.eu/non-communicable-diseases/cancer_en",
+      "area_medica": "Screening oncologici / Prevenzione",
+      "rapporti_principali": [
+        {
+          "titolo": "Implementation of Cancer Screening in the EU - 2nd Report 2024",
+          "anno": 2024,
+          "url": "https://health.ec.europa.eu/publications/cancer-screening-report_en",
+          "dati_chiave": {
+            "programmi_screening_mammografico_attivi_eu27": 25,
+            "programmi_screening_cervicale_attivi_eu27": 22,
+            "programmi_screening_colorettale_attivi_eu27": 20,
+            "copertura_media_mammografico_eu27_percentuale": 60,
+            "copertura_media_cervicale_eu27_percentuale": 55,
+            "copertura_media_colorettale_eu27_percentuale": 40,
+            "italia_ranking_mammografico_eu27": 12,
+            "italia_ranking_cervicale_eu27": 18,
+            "italia_ranking_colorettale_eu27": 14,
+            "nuovi_screening_raccomandati_2022": [
+              "Polmone (LDCT)",
+              "Prostata (PSA)",
+              "Gastrico (H.pylori)"
+            ],
+            "stati_con_screening_polmonare_pilota": [
+              "Croazia",
+              "Polonia",
+              "Italia (RISP)",
+              "Paesi Bassi"
+            ]
+          },
+          "tipo": "Report implementativo Commissione Europea"
+        }
+      ],
+      "rilevanza_progetto": "Benchmark europeo fondamentale per confrontare i dati ONS italiani con gli altri paesi EU."
+    }
+  ]
+}
