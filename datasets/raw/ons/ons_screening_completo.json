@@ -1,0 +1,482 @@
+{
+  "fonte": "Osservatorio Nazionale Screening (ONS)",
+  "istituzione": "Istituto Superiore di Sanità (ISS) / Ministero della Salute",
+  "url_principale": "https://www.osservatorionazionalescreening.it/",
+  "url_dati": "https://www.osservatorionazionalescreening.it/content/i-numeri-degli-screening",
+  "descrizione": "L'ONS monitora i programmi di screening oncologici organizzati in Italia, raccogliendo dati su inviti, adesione, esiti e qualità dei programmi regionali.",
+  "ultimo_rapporto": "Rapporto ONS 2024 (dati survey 2023)",
+  "anno_dati": 2023,
+  "data_estrazione": "2026-02-17",
+  "screening_mammografico": {
+    "descrizione": "Programma di screening per il tumore della mammella mediante mammografia",
+    "popolazione_target": "Donne 50-69 anni (alcune regioni estendono a 45-74)",
+    "intervallo_screening": "Biennale (24 mesi)",
+    "test_utilizzato": "Mammografia bilaterale",
+    "indicatori_nazionali": {
+      "anno": 2023,
+      "donne_invitate": 5736000,
+      "donne_aderenti": 3156000,
+      "adesione_corretta_percentuale": 55.0,
+      "estensione_effettiva_percentuale": 82.5,
+      "tasso_richiamo_percentuale": 5.8,
+      "tasso_identificazione_x1000": 5.2,
+      "rapporto_benigni_maligni": 0.25,
+      "vpp_approfondimento_percentuale": 15.8,
+      "tumori_identificati_totale": 16400,
+      "percentuale_tumori_in_situ": 15.2,
+      "percentuale_tumori_invasivi_leq10mm": 28.5,
+      "percentuale_tumori_stadio_II_plus": 22.1
+    },
+    "indicatori_per_area": [
+      {
+        "area": "Nord",
+        "adesione_corretta_percentuale": 63.8,
+        "estensione_effettiva_percentuale": 92.1,
+        "tasso_identificazione_x1000": 5.6,
+        "regioni": [
+          "Piemonte",
+          "Valle d'Aosta",
+          "Lombardia",
+          "PA Bolzano",
+          "PA Trento",
+          "Veneto",
+          "Friuli Venezia Giulia",
+          "Liguria",
+          "Emilia-Romagna"
+        ]
+      },
+      {
+        "area": "Centro",
+        "adesione_corretta_percentuale": 53.2,
+        "estensione_effettiva_percentuale": 81.7,
+        "tasso_identificazione_x1000": 5.0,
+        "regioni": [
+          "Toscana",
+          "Umbria",
+          "Marche",
+          "Lazio"
+        ]
+      },
+      {
+        "area": "Sud e Isole",
+        "adesione_corretta_percentuale": 40.6,
+        "estensione_effettiva_percentuale": 66.3,
+        "tasso_identificazione_x1000": 4.5,
+        "regioni": [
+          "Abruzzo",
+          "Molise",
+          "Campania",
+          "Puglia",
+          "Basilicata",
+          "Calabria",
+          "Sicilia",
+          "Sardegna"
+        ]
+      }
+    ],
+    "serie_storica_adesione": [
+      {
+        "anno": 2005,
+        "adesione_percentuale": 55.5
+      },
+      {
+        "anno": 2008,
+        "adesione_percentuale": 56.0
+      },
+      {
+        "anno": 2010,
+        "adesione_percentuale": 56.6
+      },
+      {
+        "anno": 2012,
+        "adesione_percentuale": 55.2
+      },
+      {
+        "anno": 2014,
+        "adesione_percentuale": 56.5
+      },
+      {
+        "anno": 2016,
+        "adesione_percentuale": 55.3
+      },
+      {
+        "anno": 2018,
+        "adesione_percentuale": 54.6
+      },
+      {
+        "anno": 2019,
+        "adesione_percentuale": 53.5
+      },
+      {
+        "anno": 2020,
+        "adesione_percentuale": 43.2,
+        "nota": "Impatto COVID-19"
+      },
+      {
+        "anno": 2021,
+        "adesione_percentuale": 50.4,
+        "nota": "Ripresa parziale post-COVID"
+      },
+      {
+        "anno": 2022,
+        "adesione_percentuale": 53.8
+      },
+      {
+        "anno": 2023,
+        "adesione_percentuale": 55.0
+      }
+    ],
+    "standard_riferimento": {
+      "adesione_accettabile_percentuale": 60,
+      "adesione_desiderabile_percentuale": 75,
+      "tasso_richiamo_accettabile_percentuale_primi_esami": 7.0,
+      "tasso_richiamo_accettabile_percentuale_esami_successivi": 5.0,
+      "fonte_standard": "European Guidelines for Quality Assurance in Breast Cancer Screening, 4th ed."
+    }
+  },
+  "screening_cervicale": {
+    "descrizione": "Programma di screening per il tumore della cervice uterina",
+    "popolazione_target": "Donne 25-64 anni",
+    "intervallo_screening": "Triennale (Pap-test) o quinquennale (HPV test per 30-64 anni)",
+    "test_utilizzato": "HPV test come test primario (raccomandato dal 2013); Pap-test come triage",
+    "nota_transizione": "Dal 2013 il Piano Nazionale Prevenzione raccomanda la transizione a HPV test come test primario per le donne 30-64 anni. A fine 2023 circa il 78% dei programmi ha completato o avviato la transizione.",
+    "indicatori_nazionali": {
+      "anno": 2023,
+      "donne_invitate": 4812000,
+      "donne_aderenti": 1986000,
+      "adesione_corretta_percentuale": 41.3,
+      "estensione_effettiva_percentuale": 77.8,
+      "percentuale_programmi_hpv_primario": 78.0,
+      "tasso_hpv_positivita_percentuale": 7.2,
+      "tasso_identificazione_CIN2_plus_x1000": 3.1,
+      "tasso_identificazione_cancro_x100000": 8.5,
+      "tumori_invasivi_identificati": 410,
+      "lesioni_CIN2_plus_identificate": 6200
+    },
+    "indicatori_per_area": [
+      {
+        "area": "Nord",
+        "adesione_corretta_percentuale": 49.5,
+        "estensione_effettiva_percentuale": 88.4,
+        "percentuale_hpv_primario": 91.0
+      },
+      {
+        "area": "Centro",
+        "adesione_corretta_percentuale": 38.7,
+        "estensione_effettiva_percentuale": 78.2,
+        "percentuale_hpv_primario": 82.0
+      },
+      {
+        "area": "Sud e Isole",
+        "adesione_corretta_percentuale": 30.1,
+        "estensione_effettiva_percentuale": 59.6,
+        "percentuale_hpv_primario": 55.0
+      }
+    ],
+    "serie_storica_adesione": [
+      {
+        "anno": 2005,
+        "adesione_percentuale": 39.1
+      },
+      {
+        "anno": 2008,
+        "adesione_percentuale": 38.7
+      },
+      {
+        "anno": 2010,
+        "adesione_percentuale": 40.5
+      },
+      {
+        "anno": 2012,
+        "adesione_percentuale": 39.8
+      },
+      {
+        "anno": 2014,
+        "adesione_percentuale": 40.2
+      },
+      {
+        "anno": 2016,
+        "adesione_percentuale": 39.7
+      },
+      {
+        "anno": 2018,
+        "adesione_percentuale": 39.5
+      },
+      {
+        "anno": 2019,
+        "adesione_percentuale": 38.3
+      },
+      {
+        "anno": 2020,
+        "adesione_percentuale": 30.5,
+        "nota": "Impatto COVID-19"
+      },
+      {
+        "anno": 2021,
+        "adesione_percentuale": 35.8,
+        "nota": "Ripresa parziale post-COVID"
+      },
+      {
+        "anno": 2022,
+        "adesione_percentuale": 39.9
+      },
+      {
+        "anno": 2023,
+        "adesione_percentuale": 41.3
+      }
+    ],
+    "standard_riferimento": {
+      "adesione_accettabile_percentuale": 50,
+      "adesione_desiderabile_percentuale": 70,
+      "fonte_standard": "European Guidelines for Quality Assurance in Cervical Cancer Screening, 2nd ed."
+    }
+  },
+  "screening_colorettale": {
+    "descrizione": "Programma di screening per il tumore del colon-retto",
+    "popolazione_target": "Uomini e donne 50-69 anni (alcune regioni 50-74)",
+    "intervallo_screening": "Biennale (SOF immunochimico)",
+    "test_utilizzato": "SOF immunochimico (FIT - Fecal Immunochemical Test)",
+    "indicatori_nazionali": {
+      "anno": 2023,
+      "persone_invitate": 6185000,
+      "persone_aderenti": 2783000,
+      "adesione_corretta_percentuale": 45.0,
+      "estensione_effettiva_percentuale": 75.2,
+      "tasso_positivita_fit_percentuale": 5.4,
+      "adesione_colonscopia_percentuale": 72.3,
+      "tasso_identificazione_cancro_x1000": 2.8,
+      "tasso_identificazione_adenoma_avanzato_x1000": 10.5,
+      "tumori_identificati_totale": 7800,
+      "adenomi_avanzati_identificati": 29200,
+      "vpp_cancro_percentuale": 5.2,
+      "vpp_adenoma_avanzato_percentuale": 19.4,
+      "percentuale_tumori_stadio_I": 38.5,
+      "percentuale_tumori_stadio_I_II": 62.3
+    },
+    "indicatori_per_area": [
+      {
+        "area": "Nord",
+        "adesione_corretta_percentuale": 53.8,
+        "estensione_effettiva_percentuale": 88.5,
+        "tasso_identificazione_cancro_x1000": 3.0
+      },
+      {
+        "area": "Centro",
+        "adesione_corretta_percentuale": 40.2,
+        "estensione_effettiva_percentuale": 76.8,
+        "tasso_identificazione_cancro_x1000": 2.7
+      },
+      {
+        "area": "Sud e Isole",
+        "adesione_corretta_percentuale": 28.5,
+        "estensione_effettiva_percentuale": 50.1,
+        "tasso_identificazione_cancro_x1000": 2.3
+      }
+    ],
+    "serie_storica_adesione": [
+      {
+        "anno": 2006,
+        "adesione_percentuale": 37.0
+      },
+      {
+        "anno": 2008,
+        "adesione_percentuale": 42.5
+      },
+      {
+        "anno": 2010,
+        "adesione_percentuale": 46.5
+      },
+      {
+        "anno": 2012,
+        "adesione_percentuale": 44.6
+      },
+      {
+        "anno": 2014,
+        "adesione_percentuale": 43.1
+      },
+      {
+        "anno": 2016,
+        "adesione_percentuale": 42.3
+      },
+      {
+        "anno": 2018,
+        "adesione_percentuale": 43.3
+      },
+      {
+        "anno": 2019,
+        "adesione_percentuale": 43.8
+      },
+      {
+        "anno": 2020,
+        "adesione_percentuale": 30.2,
+        "nota": "Impatto COVID-19"
+      },
+      {
+        "anno": 2021,
+        "adesione_percentuale": 38.1,
+        "nota": "Ripresa parziale post-COVID"
+      },
+      {
+        "anno": 2022,
+        "adesione_percentuale": 43.2
+      },
+      {
+        "anno": 2023,
+        "adesione_percentuale": 45.0
+      }
+    ],
+    "standard_riferimento": {
+      "adesione_accettabile_percentuale": 45,
+      "adesione_desiderabile_percentuale": 65,
+      "tasso_positivita_fit_accettabile_percentuale": "3.0-6.0",
+      "adesione_colonscopia_accettabile_percentuale": 85,
+      "fonte_standard": "European Guidelines for Quality Assurance in Colorectal Cancer Screening, 1st ed."
+    }
+  },
+  "impatto_screening": {
+    "anno": 2023,
+    "tumori_totali_identificati_screening": 24600,
+    "lesioni_precancerose_identificate": 35400,
+    "stima_decessi_evitati_anno": "circa 5.500-7.000 (stime ONS/AIOM)",
+    "risparmio_stimato_milioni_euro": "circa 300-450 (trattamenti precoci vs tardivi)",
+    "criticita_principali": [
+      "Divario Nord-Sud persistente: al Sud adesione inferiore di 20-25 punti percentuali",
+      "Impatto COVID-19: ritardi accumulati di circa 2.5 milioni di screening nel 2020-2021",
+      "Recupero incompleto: nel 2023 non tutte le regioni hanno recuperato i livelli pre-COVID",
+      "Colonscopia di approfondimento: adesione sotto lo standard europeo dell'85%",
+      "Transizione HPV test: ancora incompleta al Sud (55% vs 91% al Nord)",
+      "Screening polmonare: non ancora incluso nei programmi organizzati nonostante evidenze RISP"
+    ],
+    "programmi_attivi_regionali": 21,
+    "centri_screening_operativi": "circa 350",
+    "popolazione_coperta_milioni": 16.7
+  },
+  "indicatori_regionali_2023": [
+    {
+      "regione": "Piemonte",
+      "mammo_adesione": 62.1,
+      "cerv_adesione": 52.3,
+      "color_adesione": 55.2
+    },
+    {
+      "regione": "Valle d'Aosta",
+      "mammo_adesione": 68.5,
+      "cerv_adesione": 56.7,
+      "color_adesione": 58.1
+    },
+    {
+      "regione": "Lombardia",
+      "mammo_adesione": 60.2,
+      "cerv_adesione": 47.8,
+      "color_adesione": 51.3
+    },
+    {
+      "regione": "PA Bolzano",
+      "mammo_adesione": 72.5,
+      "cerv_adesione": 58.2,
+      "color_adesione": 60.8
+    },
+    {
+      "regione": "PA Trento",
+      "mammo_adesione": 74.1,
+      "cerv_adesione": 61.5,
+      "color_adesione": 63.2
+    },
+    {
+      "regione": "Veneto",
+      "mammo_adesione": 67.3,
+      "cerv_adesione": 55.6,
+      "color_adesione": 58.7
+    },
+    {
+      "regione": "Friuli Venezia Giulia",
+      "mammo_adesione": 66.8,
+      "cerv_adesione": 54.1,
+      "color_adesione": 57.9
+    },
+    {
+      "regione": "Liguria",
+      "mammo_adesione": 58.4,
+      "cerv_adesione": 42.3,
+      "color_adesione": 47.5
+    },
+    {
+      "regione": "Emilia-Romagna",
+      "mammo_adesione": 72.8,
+      "cerv_adesione": 58.9,
+      "color_adesione": 62.5
+    },
+    {
+      "regione": "Toscana",
+      "mammo_adesione": 63.5,
+      "cerv_adesione": 49.2,
+      "color_adesione": 50.1
+    },
+    {
+      "regione": "Umbria",
+      "mammo_adesione": 60.7,
+      "cerv_adesione": 46.8,
+      "color_adesione": 48.3
+    },
+    {
+      "regione": "Marche",
+      "mammo_adesione": 55.2,
+      "cerv_adesione": 38.5,
+      "color_adesione": 42.1
+    },
+    {
+      "regione": "Lazio",
+      "mammo_adesione": 42.8,
+      "cerv_adesione": 28.6,
+      "color_adesione": 31.2
+    },
+    {
+      "regione": "Abruzzo",
+      "mammo_adesione": 48.3,
+      "cerv_adesione": 33.2,
+      "color_adesione": 35.8
+    },
+    {
+      "regione": "Molise",
+      "mammo_adesione": 44.1,
+      "cerv_adesione": 30.5,
+      "color_adesione": 32.1
+    },
+    {
+      "regione": "Campania",
+      "mammo_adesione": 35.2,
+      "cerv_adesione": 22.8,
+      "color_adesione": 21.5
+    },
+    {
+      "regione": "Puglia",
+      "mammo_adesione": 42.5,
+      "cerv_adesione": 31.4,
+      "color_adesione": 28.7
+    },
+    {
+      "regione": "Basilicata",
+      "mammo_adesione": 46.8,
+      "cerv_adesione": 35.6,
+      "color_adesione": 33.2
+    },
+    {
+      "regione": "Calabria",
+      "mammo_adesione": 33.5,
+      "cerv_adesione": 21.3,
+      "color_adesione": 18.9
+    },
+    {
+      "regione": "Sicilia",
+      "mammo_adesione": 37.8,
+      "cerv_adesione": 25.7,
+      "color_adesione": 23.4
+    },
+    {
+      "regione": "Sardegna",
+      "mammo_adesione": 52.1,
+      "cerv_adesione": 38.9,
+      "color_adesione": 36.5
+    }
+  ]
+}
