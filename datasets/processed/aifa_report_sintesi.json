@@ -1,0 +1,180 @@
+{
+  "fonte": "AIFA - Agenzia Italiana del Farmaco",
+  "url": "https://www.aifa.gov.it/",
+  "rapporti": [
+    {
+      "titolo": "Rapporto OsMed 2024 - L'uso dei farmaci in Italia",
+      "acronimo": "OsMed",
+      "tipo": "Rapporto annuale consumo farmaceutico",
+      "url": "https://www.aifa.gov.it/rapporti-osmed",
+      "frequenza": "Annuale",
+      "dati_chiave": {
+        "spesa_farmaceutica_totale_miliardi_euro": 37.2,
+        "variazione_vs_anno_precedente_percentuale": 2.8,
+        "spesa_a_carico_ssn_percentuale": 72,
+        "spesa_privata_miliardi_euro": 10.4,
+        "consumo_ddd_per_1000_abitanti_die": 1195.4,
+        "cittadini_con_almeno_1_prescrizione_percentuale": 68,
+        "donne_con_prescrizione_percentuale": 72.1,
+        "uomini_con_prescrizione_percentuale": 63.6,
+        "spesa_pro_capite_euro": 212.9,
+        "over64_assorbono_percentuale_spesa": 50,
+        "classe_terapeutica_top_spesa": "Cardiovascolari",
+        "cardiovascolari_spesa_pro_capite_euro": 52.97,
+        "cardiovascolari_consumo_ddd": 501.47,
+        "farmaci_orfani_disponibili_su_autorizzati_ema": "140 su 147",
+        "farmaci_orfani_spesa_miliardi_euro": 2.36,
+        "farmaci_orfani_variazione_percentuale": 5.9,
+        "farmaci_innovativi_triennio_2022_2024": 46,
+        "antibiotici_ddd_per_1000_abitanti_die": 16.9,
+        "antibiotici_variazione_percentuale": -1.3,
+        "antibiotici_vs_media_europea": "10% sopra la media UE",
+        "bambini_con_prescrizione_percentuale": 50.9,
+        "prevalenza_nord_percentuale": 64.9,
+        "prevalenza_centro_percentuale": 70.3,
+        "prevalenza_sud_percentuale": 70.8
+      }
+    },
+    {
+      "titolo": "Rapporto Vaccini 2023",
+      "acronimo": "RapportoVaccini",
+      "tipo": "Rapporto sorveglianza post-marketing vaccini",
+      "url": "https://www.aifa.gov.it/rapporto-vaccini",
+      "frequenza": "Annuale",
+      "dati_chiave": {}
+    },
+    {
+      "titolo": "21° Rapporto sulla Sperimentazione Clinica dei Medicinali in Italia",
+      "acronimo": "OsSC",
+      "tipo": "Rapporto annuale sperimentazione clinica",
+      "url": "https://www.aifa.gov.it/rapporto-sulla-sperimentazione-clinica-dei-medicinali-in-italia",
+      "frequenza": "Annuale",
+      "dati_chiave": {
+        "sperimentazioni_valutate": 764,
+        "sperimentazioni_autorizzate": 611,
+        "tasso_autorizzazione_percentuale": 80,
+        "internazionali_percentuale": 85.8,
+        "nazionali_percentuale": 14.2,
+        "area_terapeutica_top": "Oncologia",
+        "oncologia_percentuale": 34.7,
+        "fase_I_percentuale": "11-18",
+        "nota_fase_I": "Percentuale inferiore a Francia, Germania, UK, Spagna"
+      }
+    },
+    {
+      "titolo": "Rapporto sulle Attività AIFA 2024",
+      "acronimo": "RapportoAttivita",
+      "tipo": "Rapporto annuale attività istituzionali",
+      "url": "https://www.aifa.gov.it/rapporto-sulle-attivita-aifa",
+      "frequenza": "Annuale",
+      "dati_chiave": {
+        "farmaci_autorizzati_2024": 889,
+        "farmaci_rimborsati_ssn": 228,
+        "ricavi_totali_milioni_euro": 159.52,
+        "utile_milioni_euro": 31.5,
+        "nota_riforma": "Riforma AIFA attuata con DM n.3 dell'8 gennaio 2024"
+      }
+    },
+    {
+      "titolo": "Registri di Monitoraggio Farmaci AIFA",
+      "acronimo": "RegistriAIFA",
+      "tipo": "Piattaforma di monitoraggio prescrittivo",
+      "url": "https://www.aifa.gov.it/registri-farmaci-sottoposti-a-monitoraggio",
+      "frequenza": "Continuo",
+      "dati_chiave": {
+        "tipologie_mea": [
+          "Payment by Result",
+          "Risk Sharing",
+          "Success Fee",
+          "Cost Sharing",
+          "Capping"
+        ],
+        "registri_oncologici_analizzati": 129,
+        "trattamenti_monitorati_oncologia": 420000,
+        "eta_mediana_pazienti_reali_vs_trial": "+5.3 anni rispetto ai trial clinici",
+        "fonte_lancet": "The Lancet Regional Health - Europe, maggio 2024"
+      }
+    },
+    {
+      "titolo": "Liste di Trasparenza AIFA",
+      "acronimo": "ListeTrasparenza",
+      "tipo": "Liste farmaci equivalenti con prezzo di riferimento",
+      "url": "https://www.aifa.gov.it/liste-di-trasparenza",
+      "frequenza": "Mensile",
+      "dati_chiave": {}
+    },
+    {
+      "titolo": "Prontuario Farmaceutico Nazionale (PFN)",
+      "acronimo": "PFN",
+      "tipo": "Formulario nazionale farmaci rimborsabili SSN",
+      "url": "https://www.aifa.gov.it/liste-dei-farmaci",
+      "frequenza": "Continuo (aggiornamento a ogni nuova determina)",
+      "dati_chiave": {}
+    },
+    {
+      "titolo": "Monitoraggio Note AIFA",
+      "acronimo": "NoteAIFA",
+      "tipo": "Monitoraggio delle note prescrittive regolatorie",
+      "url": "https://www.aifa.gov.it/monitoraggio-note-aifa",
+      "frequenza": "Continuo",
+      "dati_chiave": {}
+    },
+    {
+      "titolo": "Horizon Scanning - Scenario dei Medicinali in Arrivo 2025",
+      "acronimo": "HorizonScanning",
+      "tipo": "Report prospettico sui farmaci in pipeline",
+      "url": "https://www.aifa.gov.it/pubblicazioni",
+      "frequenza": "Annuale",
+      "dati_chiave": {}
+    }
+  ],
+  "spesa_farmaceutica_2024": {
+    "anno": 2024,
+    "spesa_totale_miliardi_euro": 37.2,
+    "spesa_ssn_miliardi_euro": 26.8,
+    "spesa_privata_miliardi_euro": 10.4,
+    "ripartizione_per_canale": {
+      "farmaceutica_convenzionata_miliardi": 9.5,
+      "farmaceutica_ospedaliera_miliardi": 14.2,
+      "acquisto_diretto_miliardi": 3.1,
+      "privata_classe_c_miliardi": 7.8,
+      "automedicazione_otc_sop_miliardi": 2.6
+    },
+    "top_classi_terapeutiche_per_spesa": [
+      {
+        "classe": "Cardiovascolari",
+        "spesa_pro_capite_euro": 52.97,
+        "consumo_ddd": 501.47
+      },
+      {
+        "classe": "Antineoplastici e immunomodulatori",
+        "spesa_pro_capite_euro": 48.5,
+        "nota": "Principale voce di spesa ospedaliera"
+      },
+      {
+        "classe": "Apparato gastrointestinale e metabolismo",
+        "spesa_pro_capite_euro": 28.3
+      },
+      {
+        "classe": "Sistema nervoso centrale",
+        "spesa_pro_capite_euro": 22.1
+      },
+      {
+        "classe": "Antimicrobici per uso sistemico",
+        "spesa_pro_capite_euro": 18.5
+      },
+      {
+        "classe": "Sangue e organi emopoietici",
+        "spesa_pro_capite_euro": 16.8
+      },
+      {
+        "classe": "Apparato respiratorio",
+        "spesa_pro_capite_euro": 14.2
+      },
+      {
+        "classe": "Apparato muscolo-scheletrico",
+        "spesa_pro_capite_euro": 8.9
+      }
+    ]
+  }
+}

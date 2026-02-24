@@ -155,3 +155,84 @@ I dataset istituzionali vengono generalmente aggiornati con le seguenti frequenz
 | Rapporto Osservatorio Salute | Annuale (dicembre) |
 
 Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fonti originali.
+
+---
+
+## Osservatorio Nazionale Screening (ONS)
+
+### Dati Screening Oncologici
+- **File**: `datasets/raw/ons/ons_screening_completo.json`
+- **Dimensione**: 13.4 KB
+- **Contenuto**: Dati completi sui 3 programmi di screening (mammografico, cervicale, colorettale) con indicatori nazionali, regionali, serie storiche 2005-2023, standard europei
+- **URL**: https://www.osservatorionazionalescreening.it/
+- **Istituzione**: ONS / ISS / Ministero della Salute
+- **Aggiornamento**: Rapporto 2024 (dati survey 2023)
+
+**Dati chiave**:
+- 21 regioni con indicatori di adesione per 3 tipi di screening
+- 24.600 tumori identificati via screening nel 2023
+- 35.400 lesioni precancerose identificate
+- Serie storiche di adesione dal 2005 al 2023 (incluso impatto COVID-19)
+
+---
+
+## Rapporti Società Scientifiche Italiane
+
+### Catalogo (16 società, 21 rapporti)
+- **File**: `datasets/raw/societa_scientifiche/italiane/rapporti_societa_italiane.json`
+- **Dimensione**: 19.2 KB
+- **Contenuto**: Catalogo strutturato dei principali rapporti di AIOM, AIRTUM, ANMCO, SIC, SID/AMD, SIMG, SIN, SIR, AIPO-ITS, SIN-Nefrologia, SIGE, SIE, SIGG, SIMI/FADOI, SIP, SItI
+- **Aggiornamento**: Febbraio 2026
+
+---
+
+## Rapporti Società Scientifiche Europee
+
+### Catalogo (10 società, 12 rapporti)
+- **File**: `datasets/raw/societa_scientifiche/europee/rapporti_societa_europee.json`
+- **Dimensione**: 11.0 KB
+- **Contenuto**: Catalogo strutturato dei principali rapporti di ESC, ESMO, ERS, EASL, ERA, EULAR, EASD, EAN, EFIM e Commissione Europea (screening)
+- **Aggiornamento**: Febbraio 2026
+
+---
+
+## Report OASI - CERGAS Bocconi
+
+### Rapporto OASI (Osservatorio sulle Aziende e sul Sistema sanitario Italiano)
+- **File**: `datasets/raw/oasi_bocconi/oasi_bocconi_completo.json`
+- **Dimensione**: 5.2 KB
+- **Istituzione**: CERGAS - SDA Bocconi School of Management, Università Bocconi
+- **URL Osservatorio**: https://cergas.unibocconi.eu/observatories/oasi
+- **URL Archivio**: https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home
+- **Licenza**: Open Access (edizioni digitali)
+- **Aggiornamento**: Annuale (dicembre)
+
+**Contenuto**:
+- 3 edizioni recenti del Rapporto OASI (2023, 2024, 2025) con dati chiave
+- 3 osservatori correlati (OCPS - Consumi Privati, MASAN - Acquisti Pubblici, OLTC - Long Term Care)
+- Analisi spesa sanitaria Italia vs Europa: 6.3% PIL vs 9-11% Francia/Germania/UK
+- Gap di finanziamento stimato: 40 miliardi di euro
+- Crisi demografica: solo 370.000 nascite nel 2024 (-26% vs 2014)
+
+---
+
+## Report AIFA - Agenzia Italiana del Farmaco
+
+### Catalogo completo pubblicazioni AIFA (9 report/piattaforme)
+- **File**: `datasets/raw/aifa/aifa_report_completo.json`
+- **Dimensione**: 10.0 KB
+- **URL Pubblicazioni**: https://www.aifa.gov.it/pubblicazioni
+- **Aggiornamento**: Febbraio 2026
+
+**Pubblicazioni catalogate**:
+1. **Rapporto OsMed 2024** - Uso dei farmaci in Italia (spesa totale: 37.2 mld euro)
+   - URL dati: https://www.aifa.gov.it/dati-osmed
+   - Include 7 sub-report (antibiotici, anziani, gravidanza, disuguaglianze, ecc.)
+2. **Rapporto Vaccini 2023** - Sorveglianza post-marketing vaccini
+3. **21° Rapporto Sperimentazione Clinica** - 764 trial valutati, oncologia al 34.7%
+4. **Rapporto Attività AIFA 2024** - 889 farmaci autorizzati, 228 rimborsati SSN
+5. **Registri di Monitoraggio Farmaci** - Sistema unico in Europa, 129 registri oncologici
+6. **Liste di Trasparenza** - Aggiornamento mensile farmaci equivalenti
+7. **Prontuario Farmaceutico Nazionale (PFN)** - Formulario ufficiale SSN
+8. **Monitoraggio Note AIFA** - Condizioni prescrittive regolatorie
+9. **Horizon Scanning** - Analisi prospettica farmaci in pipeline

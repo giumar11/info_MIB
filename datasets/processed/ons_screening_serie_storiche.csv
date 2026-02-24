@@ -1,0 +1,37 @@
+anno,tipo_screening,adesione_percentuale,nota
+2005,mammografico,55.5,
+2008,mammografico,56.0,
+2010,mammografico,56.6,
+2012,mammografico,55.2,
+2014,mammografico,56.5,
+2016,mammografico,55.3,
+2018,mammografico,54.6,
+2019,mammografico,53.5,
+2020,mammografico,43.2,Impatto COVID-19
+2021,mammografico,50.4,Ripresa parziale post-COVID
+2022,mammografico,53.8,
+2023,mammografico,55.0,
+2005,cervicale,39.1,
+2008,cervicale,38.7,
+2010,cervicale,40.5,
+2012,cervicale,39.8,
+2014,cervicale,40.2,
+2016,cervicale,39.7,
+2018,cervicale,39.5,
+2019,cervicale,38.3,
+2020,cervicale,30.5,Impatto COVID-19
+2021,cervicale,35.8,Ripresa parziale post-COVID
+2022,cervicale,39.9,
+2023,cervicale,41.3,
+2006,colorettale,37.0,
+2008,colorettale,42.5,
+2010,colorettale,46.5,
+2012,colorettale,44.6,
+2014,colorettale,43.1,
+2016,colorettale,42.3,
+2018,colorettale,43.3,
+2019,colorettale,43.8,
+2020,colorettale,30.2,Impatto COVID-19
+2021,colorettale,38.1,Ripresa parziale post-COVID
+2022,colorettale,43.2,
+2023,colorettale,45.0,
