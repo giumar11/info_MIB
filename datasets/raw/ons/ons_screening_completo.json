@@ -6,7 +6,7 @@
   "descrizione": "L'ONS monitora i programmi di screening oncologici organizzati in Italia, raccogliendo dati su inviti, adesione, esiti e qualità dei programmi regionali.",
   "ultimo_rapporto": "Rapporto ONS 2024 (dati survey 2023)",
   "anno_dati": 2023,
-  "data_estrazione": "2026-02-17",
+  "data_estrazione": "2026-02-24",
   "screening_mammografico": {
     "descrizione": "Programma di screening per il tumore della mammella mediante mammografia",
     "popolazione_target": "Donne 50-69 anni (alcune regioni estendono a 45-74)",

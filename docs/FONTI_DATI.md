@@ -193,3 +193,46 @@ Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fo
 - **Dimensione**: 11.0 KB
 - **Contenuto**: Catalogo strutturato dei principali rapporti di ESC, ESMO, ERS, EASL, ERA, EULAR, EASD, EAN, EFIM e Commissione Europea (screening)
 - **Aggiornamento**: Febbraio 2026
+
+---
+
+## Report OASI - CERGAS Bocconi
+
+### Rapporto OASI (Osservatorio sulle Aziende e sul Sistema sanitario Italiano)
+- **File**: `datasets/raw/oasi_bocconi/oasi_bocconi_completo.json`
+- **Dimensione**: 5.2 KB
+- **Istituzione**: CERGAS - SDA Bocconi School of Management, Università Bocconi
+- **URL Osservatorio**: https://cergas.unibocconi.eu/observatories/oasi
+- **URL Archivio**: https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home
+- **Licenza**: Open Access (edizioni digitali)
+- **Aggiornamento**: Annuale (dicembre)
+
+**Contenuto**:
+- 3 edizioni recenti del Rapporto OASI (2023, 2024, 2025) con dati chiave
+- 3 osservatori correlati (OCPS - Consumi Privati, MASAN - Acquisti Pubblici, OLTC - Long Term Care)
+- Analisi spesa sanitaria Italia vs Europa: 6.3% PIL vs 9-11% Francia/Germania/UK
+- Gap di finanziamento stimato: 40 miliardi di euro
+- Crisi demografica: solo 370.000 nascite nel 2024 (-26% vs 2014)
+
+---
+
+## Report AIFA - Agenzia Italiana del Farmaco
+
+### Catalogo completo pubblicazioni AIFA (9 report/piattaforme)
+- **File**: `datasets/raw/aifa/aifa_report_completo.json`
+- **Dimensione**: 10.0 KB
+- **URL Pubblicazioni**: https://www.aifa.gov.it/pubblicazioni
+- **Aggiornamento**: Febbraio 2026
+
+**Pubblicazioni catalogate**:
+1. **Rapporto OsMed 2024** - Uso dei farmaci in Italia (spesa totale: 37.2 mld euro)
+   - URL dati: https://www.aifa.gov.it/dati-osmed
+   - Include 7 sub-report (antibiotici, anziani, gravidanza, disuguaglianze, ecc.)
+2. **Rapporto Vaccini 2023** - Sorveglianza post-marketing vaccini
+3. **21° Rapporto Sperimentazione Clinica** - 764 trial valutati, oncologia al 34.7%
+4. **Rapporto Attività AIFA 2024** - 889 farmaci autorizzati, 228 rimborsati SSN
+5. **Registri di Monitoraggio Farmaci** - Sistema unico in Europa, 129 registri oncologici
+6. **Liste di Trasparenza** - Aggiornamento mensile farmaci equivalenti
+7. **Prontuario Farmaceutico Nazionale (PFN)** - Formulario ufficiale SSN
+8. **Monitoraggio Note AIFA** - Condizioni prescrittive regolatorie
+9. **Horizon Scanning** - Analisi prospettica farmaci in pipeline

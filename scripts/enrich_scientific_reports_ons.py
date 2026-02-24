@@ -4,13 +4,19 @@ Script di arricchimento del repository con:
 1. Dati dell'Osservatorio Nazionale Screening (ONS) - screening cervicale, mammografico, colorettale
 2. Rapporti di società scientifiche italiane (AIOM, AIRTUM, SID, SIMG, SIR, SIN, SISA, SIOMMMS, ecc.)
 3. Rapporti di società scientifiche europee (ESC, ESMO, ERS, EASL, ERA, EULAR, ecc.)
+4. Report OASI - CERGAS Bocconi (Osservatorio sulle Aziende e sul Sistema sanitario Italiano)
+5. Report AIFA (Agenzia Italiana del Farmaco) - OsMed, Vaccini, Sperimentazione Clinica, Registri
 
 Output:
 - datasets/raw/ons/ - Dati grezzi ONS strutturati
 - datasets/raw/societa_scientifiche/italiane/ - Report società italiane
 - datasets/raw/societa_scientifiche/europee/ - Report società europee
+- datasets/raw/oasi_bocconi/ - Report OASI CERGAS Bocconi
+- datasets/raw/aifa/ - Report AIFA completi
 - datasets/processed/ons_screening_italia.json/csv
 - datasets/processed/rapporti_societa_scientifiche.json/csv
+- datasets/processed/oasi_bocconi_sintesi.json
+- datasets/processed/aifa_report_sintesi.json
 """
 
 import os
@@ -26,11 +32,13 @@ PROCESSED_DIR = os.path.join(BASE_DIR, 'datasets', 'processed')
 ONS_RAW_DIR = os.path.join(RAW_DIR, 'ons')
 SOCIETA_IT_DIR = os.path.join(RAW_DIR, 'societa_scientifiche', 'italiane')
 SOCIETA_EU_DIR = os.path.join(RAW_DIR, 'societa_scientifiche', 'europee')
+OASI_RAW_DIR = os.path.join(RAW_DIR, 'oasi_bocconi')
+AIFA_RAW_DIR = os.path.join(RAW_DIR, 'aifa')
 
 
 def create_directories():
     """Crea le directory necessarie."""
-    for d in [ONS_RAW_DIR, SOCIETA_IT_DIR, SOCIETA_EU_DIR, PROCESSED_DIR]:
+    for d in [ONS_RAW_DIR, SOCIETA_IT_DIR, SOCIETA_EU_DIR, OASI_RAW_DIR, AIFA_RAW_DIR, PROCESSED_DIR]:
         os.makedirs(d, exist_ok=True)
         print(f"  Directory: {os.path.relpath(d, BASE_DIR)}")
 
@@ -1128,7 +1136,490 @@ def build_societa_scientifiche_europee():
 
 
 # =============================================================================
-# SEZIONE 4: GENERAZIONE OUTPUT
+# SEZIONE 4: REPORT OASI - CERGAS BOCCONI
+# =============================================================================
+
+def build_oasi_bocconi():
+    """
+    Costruisce il dataset completo dei Report OASI pubblicati dal CERGAS
+    (Centre for Research on Health and Social Care Management) della
+    SDA Bocconi School of Management di Milano.
+    L'OASI (Osservatorio sulle Aziende e sul Sistema sanitario Italiano)
+    è attivo dal 1998 e pubblica il Rapporto annuale dal 2000.
+    """
+
+    oasi_data = {
+        "fonte": "OASI - Osservatorio sulle Aziende e sul Sistema sanitario Italiano",
+        "istituzione": "CERGAS - SDA Bocconi School of Management, Università Bocconi",
+        "sede": "Milano, Italia",
+        "anno_fondazione": 1998,
+        "primo_rapporto": 2000,
+        "url_principale": "https://cergas.unibocconi.eu/observatories/oasi",
+        "url_archivio_report": "https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home",
+        "url_cergas": "https://cergas.unibocconi.eu/",
+        "licenza": "Open Access (edizioni digitali)",
+        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "descrizione": (
+            "Il Rapporto OASI è il riferimento annuale per l'analisi del Servizio Sanitario "
+            "Nazionale italiano. Ogni edizione raccoglie i risultati di 15-20 progetti di ricerca "
+            "condotti da 25-30 ricercatori CERGAS, spesso in collaborazione con professionisti "
+            "sanitari e policy maker."
+        ),
+
+        "rapporti_annuali": [
+            {
+                "titolo": "Rapporto OASI 2025 (26a edizione)",
+                "anno": 2025,
+                "data_presentazione": "2025-12-03",
+                "url": "https://cergas.unibocconi.eu/oasi-2025",
+                "temi_principali": [
+                    "Crisi demografica e impatto sul SSN",
+                    "Carenza infermieristica e programmazione del personale",
+                    "Gap tra prescrizioni e prestazioni erogate dal SSN",
+                    "Procurement farmaceutico e dispositivi medici",
+                    "Collaborazione internazionale con HEALTHTECH Europe"
+                ],
+                "dati_chiave": {
+                    "nascite_italia_2024": 370_000,
+                    "calo_nascite_vs_2014_percentuale": -26,
+                    "crescita_over65_in_20_anni": "oltre 3 milioni",
+                    "speranza_vita_anni": 83.4,
+                    "prescrizioni_erogate_ssn_percentuale": 60,
+                    "nota_prescrizioni": "Solo il 60% delle prescrizioni si traduce in prestazione SSN; il resto va al privato o diventa rinuncia alle cure",
+                    "posti_medicina_raddoppiati": "da 10.500 a 19.500 (verso 24.000)",
+                    "domande_infermieristica_copertura_posti_percentuale": 84,
+                    "spesa_procurement_percentuale_spesa_sanitaria": 32
+                }
+            },
+            {
+                "titolo": "Rapporto OASI 2024 (25a edizione)",
+                "anno": 2024,
+                "data_presentazione": "2024-12-03",
+                "url": "https://cergas.unibocconi.eu/oasi-2024",
+                "url_pdf": "https://cergas.unibocconi.eu/sites/default/files/media/attach/00_Oasi_2024_Rapporto_OASI_2024.pdf",
+                "temi_principali": [
+                    "Sottofinanziamento cronico del SSN",
+                    "Spesa sanitaria privata in Italia",
+                    "Liste di attesa e criteri di priorità",
+                    "Disuguaglianze regionali e sociali nell'accesso",
+                    "Confronto internazionale con sistemi europei"
+                ],
+                "dati_chiave": {
+                    "spesa_pubblica_pil_percentuale": 6.3,
+                    "spesa_pubblica_pil_francia_percentuale": 9.0,
+                    "spesa_pubblica_pil_germania_percentuale": 10.0,
+                    "spesa_pubblica_pil_uk_percentuale": 11.0,
+                    "gap_finanziamento_miliardi_euro": 40,
+                    "spesa_privata_pil_percentuale": 2.2,
+                    "spesa_privata_su_totale_percentuale": 26,
+                    "nota_spesa": "L'Italia è descritta come 'un paese che non vuole spendere in salute, né pubblicamente né privatamente'",
+                    "variazione_consumi_servizi_tra_territori_stessa_regione_percentuale": 100
+                }
+            },
+            {
+                "titolo": "Rapporto OASI 2023 (24a edizione)",
+                "anno": 2023,
+                "url": "https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home",
+                "url_executive_summary_en": "https://cergas.unibocconi.eu/sites/default/files/media/attach/EXS_OASI_2023_ENG.pdf",
+                "temi_principali": [
+                    "Post-COVID e resilienza del SSN",
+                    "Personale sanitario e burnout",
+                    "PNRR M6 e riforme territoriali",
+                    "Assistenza domiciliare integrata"
+                ]
+            }
+        ],
+
+        "osservatori_correlati": [
+            {
+                "acronimo": "OCPS",
+                "nome": "Osservatorio sui Consumi Privati in Sanità",
+                "anno_fondazione": 2012,
+                "descrizione": "Analisi annuali sulla spesa sanitaria privata; contribuisce al Rapporto OASI e pubblica report autonomi",
+                "url": "https://cergas.unibocconi.eu/observatories/ocps"
+            },
+            {
+                "acronimo": "MASAN",
+                "nome": "Osservatorio sulla Gestione degli Acquisti Pubblici in Sanità",
+                "anno_fondazione": 2018,
+                "descrizione": "Think tank su procurement sanitario pubblico; pubblica capitoli dedicati nel Rapporto OASI, paper scientifici e policy paper",
+                "url": "https://cergas.unibocconi.eu/observatories/masan"
+            },
+            {
+                "acronimo": "OLTC",
+                "nome": "Osservatorio sulla Long Term Care",
+                "anno_fondazione": 2018,
+                "descrizione": "Focalizzato sull'assistenza agli anziani con bisogni di lungo termine in Italia",
+                "url": "https://cergas.unibocconi.eu/observatories/oltc"
+            }
+        ],
+
+        "copertura_tematica": [
+            "Struttura e attività del SSN (ospedali, ASL, distretti)",
+            "Analisi della spesa sanitaria (pubblica vs privata, pro capite, % PIL)",
+            "Confronti internazionali con altri sistemi sanitari europei",
+            "Erogatori privati accreditati e loro ruolo",
+            "Consumi sanitari privati (out-of-pocket, assicurazioni)",
+            "Assistenza agli anziani e long-term care",
+            "Procurement farmaceutico e dispositivi medici",
+            "Disparità regionali e disuguaglianze nell'accesso",
+            "Forza lavoro sanitaria (medici, infermieri, altri professionisti)",
+            "Liste di attesa e capacità di erogazione",
+            "Governance e politiche sanitarie"
+        ]
+    }
+
+    return oasi_data
+
+
+# =============================================================================
+# SEZIONE 5: REPORT AIFA (Agenzia Italiana del Farmaco)
+# =============================================================================
+
+def build_aifa_reports():
+    """
+    Costruisce il dataset completo di tutti i report e le pubblicazioni
+    dell'Agenzia Italiana del Farmaco (AIFA).
+    """
+
+    aifa_data = {
+        "fonte": "AIFA - Agenzia Italiana del Farmaco",
+        "istituzione": "Agenzia Italiana del Farmaco (AIFA)",
+        "natura_giuridica": "Ente pubblico che opera in autonomia sotto la direzione del Ministero della Salute",
+        "url_principale": "https://www.aifa.gov.it/",
+        "url_pubblicazioni": "https://www.aifa.gov.it/pubblicazioni",
+        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "descrizione": (
+            "AIFA è l'autorità nazionale competente per l'attività regolatoria dei farmaci in Italia. "
+            "Pubblica rapporti annuali sul consumo farmaceutico, sulla sperimentazione clinica, "
+            "sulla sorveglianza post-marketing e gestisce i registri di monitoraggio dei farmaci innovativi."
+        ),
+
+        "rapporti": [
+            # --- OSMED ---
+            {
+                "titolo": "Rapporto OsMed 2024 - L'uso dei farmaci in Italia",
+                "acronimo": "OsMed",
+                "tipo": "Rapporto annuale consumo farmaceutico",
+                "anno_dati": 2024,
+                "data_pubblicazione": "2025-11-10",
+                "url": "https://www.aifa.gov.it/rapporti-osmed",
+                "url_dati": "https://www.aifa.gov.it/dati-osmed",
+                "frequenza": "Annuale",
+                "dati_chiave": {
+                    "spesa_farmaceutica_totale_miliardi_euro": 37.2,
+                    "variazione_vs_anno_precedente_percentuale": 2.8,
+                    "spesa_a_carico_ssn_percentuale": 72,
+                    "spesa_privata_miliardi_euro": 10.4,
+                    "consumo_ddd_per_1000_abitanti_die": 1195.4,
+                    "cittadini_con_almeno_1_prescrizione_percentuale": 68,
+                    "donne_con_prescrizione_percentuale": 72.1,
+                    "uomini_con_prescrizione_percentuale": 63.6,
+                    "spesa_pro_capite_euro": 212.9,
+                    "over64_assorbono_percentuale_spesa": 50,
+                    "classe_terapeutica_top_spesa": "Cardiovascolari",
+                    "cardiovascolari_spesa_pro_capite_euro": 52.97,
+                    "cardiovascolari_consumo_ddd": 501.47,
+                    "farmaci_orfani_disponibili_su_autorizzati_ema": "140 su 147",
+                    "farmaci_orfani_spesa_miliardi_euro": 2.36,
+                    "farmaci_orfani_variazione_percentuale": 5.9,
+                    "farmaci_innovativi_triennio_2022_2024": 46,
+                    "antibiotici_ddd_per_1000_abitanti_die": 16.9,
+                    "antibiotici_variazione_percentuale": -1.3,
+                    "antibiotici_vs_media_europea": "10% sopra la media UE",
+                    "bambini_con_prescrizione_percentuale": 50.9,
+                    "prevalenza_nord_percentuale": 64.9,
+                    "prevalenza_centro_percentuale": 70.3,
+                    "prevalenza_sud_percentuale": 70.8
+                },
+                "sub_report": [
+                    "L'uso degli antibiotici in Italia",
+                    "L'uso dei farmaci in gravidanza",
+                    "L'uso dei farmaci nella popolazione anziana",
+                    "Importazione parallela ed esportazione dei medicinali",
+                    "Report regionali sul consumo dei farmaci",
+                    "Rapporto sulle politiche di assistenza farmaceutica delle Regioni in Piano di Rientro",
+                    "Atlante delle disuguaglianze sociali nell'uso dei farmaci"
+                ]
+            },
+
+            # --- RAPPORTO VACCINI ---
+            {
+                "titolo": "Rapporto Vaccini 2023",
+                "acronimo": "RapportoVaccini",
+                "tipo": "Rapporto sorveglianza post-marketing vaccini",
+                "anno_dati": 2023,
+                "data_pubblicazione": "2025-06-23",
+                "url": "https://www.aifa.gov.it/rapporto-vaccini",
+                "frequenza": "Annuale",
+                "descrizione": (
+                    "Report annuale sulla sorveglianza post-marketing dei vaccini in Italia, "
+                    "basato sulle segnalazioni spontanee di reazioni avverse nella Rete Nazionale "
+                    "di Farmacovigilanza. Dal 2023 include anche i dati sui vaccini COVID-19."
+                ),
+                "edizioni_disponibili": [2023, 2022, 2020, 2019, 2018, 2016],
+                "nota": "I report di sorveglianza specifici per vaccini COVID-19 (dic 2020 - dic 2022) sono disponibili separatamente"
+            },
+
+            # --- SPERIMENTAZIONE CLINICA ---
+            {
+                "titolo": "21° Rapporto sulla Sperimentazione Clinica dei Medicinali in Italia",
+                "acronimo": "OsSC",
+                "tipo": "Rapporto annuale sperimentazione clinica",
+                "anno_dati": 2023,
+                "data_pubblicazione": "2025-01-17",
+                "url": "https://www.aifa.gov.it/rapporto-sulla-sperimentazione-clinica-dei-medicinali-in-italia",
+                "url_pdf": "https://www.aifa.gov.it/documents/20142/241008/21-Rapporto-OsSC_2024.pdf",
+                "frequenza": "Annuale",
+                "dati_chiave": {
+                    "sperimentazioni_valutate": 764,
+                    "sperimentazioni_autorizzate": 611,
+                    "tasso_autorizzazione_percentuale": 80,
+                    "internazionali_percentuale": 85.8,
+                    "nazionali_percentuale": 14.2,
+                    "area_terapeutica_top": "Oncologia",
+                    "oncologia_percentuale": 34.7,
+                    "fase_I_percentuale": "11-18",
+                    "nota_fase_I": "Percentuale inferiore a Francia, Germania, UK, Spagna"
+                }
+            },
+
+            # --- RAPPORTO ATTIVITA' AIFA ---
+            {
+                "titolo": "Rapporto sulle Attività AIFA 2024",
+                "acronimo": "RapportoAttivita",
+                "tipo": "Rapporto annuale attività istituzionali",
+                "anno_dati": 2024,
+                "data_pubblicazione": "2025-10-15",
+                "url": "https://www.aifa.gov.it/rapporto-sulle-attivita-aifa",
+                "url_pdf": "https://www.aifa.gov.it/documents/20142/1786663/Rapporto_AIFA_2024.pdf",
+                "frequenza": "Annuale",
+                "dati_chiave": {
+                    "farmaci_autorizzati_2024": 889,
+                    "farmaci_rimborsati_ssn": 228,
+                    "ricavi_totali_milioni_euro": 159.52,
+                    "utile_milioni_euro": 31.5,
+                    "nota_riforma": "Riforma AIFA attuata con DM n.3 dell'8 gennaio 2024"
+                }
+            },
+
+            # --- REGISTRI DI MONITORAGGIO ---
+            {
+                "titolo": "Registri di Monitoraggio Farmaci AIFA",
+                "acronimo": "RegistriAIFA",
+                "tipo": "Piattaforma di monitoraggio prescrittivo",
+                "anno_avvio": 2005,
+                "piattaforma_attuale_dal": 2013,
+                "url": "https://www.aifa.gov.it/registri-farmaci-sottoposti-a-monitoraggio",
+                "url_analisi": "https://www.aifa.gov.it/web/guest/analisi-registri-di-monitoraggio",
+                "url_piattaforma": "https://registri.aifa.gov.it/",
+                "url_archivio_2025": "https://www.aifa.gov.it/archivio-registri-2025",
+                "url_archivio_2024": "https://www.aifa.gov.it/archivio-registri-2024",
+                "frequenza": "Continuo",
+                "descrizione": (
+                    "Sistema unico in Europa per la gestione delle prescrizioni/dispensazioni "
+                    "di farmaci innovativi e ad alto costo rimborsati dal SSN. Controlla "
+                    "l'appropriatezza prescrittiva e integra i Managed Entry Agreements (MEA)."
+                ),
+                "dati_chiave": {
+                    "tipologie_mea": [
+                        "Payment by Result",
+                        "Risk Sharing",
+                        "Success Fee",
+                        "Cost Sharing",
+                        "Capping"
+                    ],
+                    "registri_oncologici_analizzati": 129,
+                    "trattamenti_monitorati_oncologia": 420_000,
+                    "eta_mediana_pazienti_reali_vs_trial": "+5.3 anni rispetto ai trial clinici",
+                    "fonte_lancet": "The Lancet Regional Health - Europe, maggio 2024"
+                }
+            },
+
+            # --- LISTE DI TRASPARENZA ---
+            {
+                "titolo": "Liste di Trasparenza AIFA",
+                "acronimo": "ListeTrasparenza",
+                "tipo": "Liste farmaci equivalenti con prezzo di riferimento",
+                "url": "https://www.aifa.gov.it/liste-di-trasparenza",
+                "url_storico": "https://www.aifa.gov.it/storico-liste-di-trasparenza",
+                "frequenza": "Mensile",
+                "ultimo_aggiornamento": "2025-01-15",
+                "descrizione": (
+                    "Liste mensili aggiornate dei farmaci a brevetto scaduto (generici/equivalenti) "
+                    "con il prezzo di riferimento - importo massimo rimborsato dal SSN."
+                ),
+                "formati_disponibili": ["CSV per principio attivo", "CSV per nome commerciale", "Formato tabulare"],
+                "base_normativa": "Determinazione Direttoriale AIFA n.166 del 10 febbraio 2021, attuativa della Legge 178/2002"
+            },
+
+            # --- PRONTUARIO FARMACEUTICO NAZIONALE ---
+            {
+                "titolo": "Prontuario Farmaceutico Nazionale (PFN)",
+                "acronimo": "PFN",
+                "tipo": "Formulario nazionale farmaci rimborsabili SSN",
+                "url": "https://www.aifa.gov.it/liste-dei-farmaci",
+                "url_prezzi": "https://www.aifa.gov.it/prezzi-e-rimborso",
+                "frequenza": "Continuo (aggiornamento a ogni nuova determina)",
+                "descrizione": (
+                    "Elenco completo di tutti i farmaci prescrivibili a carico del SSN, con "
+                    "classificazione di rimborsabilità, prezzo e condizioni prescrittive."
+                )
+            },
+
+            # --- MONITORAGGIO NOTE AIFA ---
+            {
+                "titolo": "Monitoraggio Note AIFA",
+                "acronimo": "NoteAIFA",
+                "tipo": "Monitoraggio delle note prescrittive regolatorie",
+                "url": "https://www.aifa.gov.it/monitoraggio-note-aifa",
+                "frequenza": "Continuo",
+                "descrizione": (
+                    "Monitoraggio delle Note AIFA, ovvero le condizioni regolatorie "
+                    "che vincolano la prescrivibilità di determinati farmaci a specifiche "
+                    "indicazioni terapeutiche o popolazioni di pazienti."
+                )
+            },
+
+            # --- HORIZON SCANNING ---
+            {
+                "titolo": "Horizon Scanning - Scenario dei Medicinali in Arrivo 2025",
+                "acronimo": "HorizonScanning",
+                "tipo": "Report prospettico sui farmaci in pipeline",
+                "anno": 2025,
+                "url": "https://www.aifa.gov.it/pubblicazioni",
+                "frequenza": "Annuale",
+                "descrizione": (
+                    "Analisi prospettica dei medicinali in fase avanzata di sviluppo, "
+                    "con impatto atteso sul SSN e sulla spesa farmaceutica."
+                )
+            }
+        ],
+
+        "dati_aggregati_spesa_farmaceutica": {
+            "anno": 2024,
+            "spesa_totale_miliardi_euro": 37.2,
+            "spesa_ssn_miliardi_euro": 26.8,
+            "spesa_privata_miliardi_euro": 10.4,
+            "ripartizione_per_canale": {
+                "farmaceutica_convenzionata_miliardi": 9.5,
+                "farmaceutica_ospedaliera_miliardi": 14.2,
+                "acquisto_diretto_miliardi": 3.1,
+                "privata_classe_c_miliardi": 7.8,
+                "automedicazione_otc_sop_miliardi": 2.6
+            },
+            "top_classi_terapeutiche_per_spesa": [
+                {"classe": "Cardiovascolari", "spesa_pro_capite_euro": 52.97, "consumo_ddd": 501.47},
+                {"classe": "Antineoplastici e immunomodulatori", "spesa_pro_capite_euro": 48.50, "nota": "Principale voce di spesa ospedaliera"},
+                {"classe": "Apparato gastrointestinale e metabolismo", "spesa_pro_capite_euro": 28.30},
+                {"classe": "Sistema nervoso centrale", "spesa_pro_capite_euro": 22.10},
+                {"classe": "Antimicrobici per uso sistemico", "spesa_pro_capite_euro": 18.50},
+                {"classe": "Sangue e organi emopoietici", "spesa_pro_capite_euro": 16.80},
+                {"classe": "Apparato respiratorio", "spesa_pro_capite_euro": 14.20},
+                {"classe": "Apparato muscolo-scheletrico", "spesa_pro_capite_euro": 8.90}
+            ]
+        }
+    }
+
+    return aifa_data
+
+
+def create_oasi_readme():
+    """Crea README per la cartella OASI Bocconi."""
+    return """# Report OASI - CERGAS Bocconi
+
+## Fonte
+- **Istituzione**: CERGAS (Centre for Research on Health and Social Care Management)
+- **Università**: SDA Bocconi School of Management, Università Bocconi, Milano
+- **Osservatorio**: OASI - Osservatorio sulle Aziende e sul Sistema sanitario Italiano
+- **Attivo dal**: 1998 (primo rapporto 2000)
+- **URL Osservatorio**: https://cergas.unibocconi.eu/observatories/oasi
+- **URL Archivio Report**: https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home
+
+## Contenuto
+Il Rapporto OASI è il riferimento annuale per l'analisi del SSN italiano.
+Ogni edizione raccoglie 15-20 progetti di ricerca di 25-30 ricercatori CERGAS.
+
+### Edizioni disponibili
+- **OASI 2025** (26a edizione) - Presentato il 3 dicembre 2025
+- **OASI 2024** (25a edizione) - Presentato il 3 dicembre 2024
+- **OASI 2023** (24a edizione) - Con Executive Summary in inglese
+
+### Temi coperti
+- Struttura e attività del SSN
+- Spesa sanitaria pubblica e privata (confronto internazionale)
+- Disparità regionali e sociali
+- Forza lavoro sanitaria
+- Liste di attesa
+- Procurement farmaceutico e dispositivi medici
+- Assistenza agli anziani e long-term care
+
+### Osservatori correlati
+- **OCPS**: Consumi Privati in Sanità (dal 2012)
+- **MASAN**: Acquisti Pubblici in Sanità (dal 2018)
+- **OLTC**: Long Term Care (dal 2018)
+
+## Licenza
+Open Access (edizioni digitali)
+"""
+
+
+def create_aifa_readme():
+    """Crea README per la cartella AIFA."""
+    return """# Report AIFA - Agenzia Italiana del Farmaco
+
+## Fonte
+- **Istituzione**: AIFA - Agenzia Italiana del Farmaco
+- **Natura**: Ente pubblico sotto la direzione del Ministero della Salute
+- **URL**: https://www.aifa.gov.it/
+- **URL Pubblicazioni**: https://www.aifa.gov.it/pubblicazioni
+
+## Pubblicazioni principali
+
+### 1. Rapporto OsMed (annuale)
+L'uso dei farmaci in Italia - il rapporto di riferimento sul consumo farmaceutico.
+- **URL**: https://www.aifa.gov.it/rapporti-osmed
+- **Dati OsMed**: https://www.aifa.gov.it/dati-osmed
+- Spesa totale 2024: 37.2 miliardi di euro
+- Include sub-report su antibiotici, anziani, gravidanza, disuguaglianze
+
+### 2. Rapporto Vaccini (annuale)
+Sorveglianza post-marketing dei vaccini.
+- **URL**: https://www.aifa.gov.it/rapporto-vaccini
+
+### 3. Rapporto Sperimentazione Clinica (annuale)
+Stato della ricerca clinica in Italia.
+- **URL**: https://www.aifa.gov.it/rapporto-sulla-sperimentazione-clinica-dei-medicinali-in-italia
+- 764 sperimentazioni valutate (2023), oncologia al 34.7%
+
+### 4. Rapporto Attività AIFA (annuale)
+Attività istituzionali e risultati dell'Agenzia.
+- **URL**: https://www.aifa.gov.it/rapporto-sulle-attivita-aifa
+- 889 farmaci autorizzati nel 2024, 228 rimborsati SSN
+
+### 5. Registri di Monitoraggio Farmaci
+Sistema unico in Europa per farmaci innovativi e ad alto costo.
+- **URL**: https://www.aifa.gov.it/registri-farmaci-sottoposti-a-monitoraggio
+- **Piattaforma**: https://registri.aifa.gov.it/
+
+### 6. Liste di Trasparenza (mensile)
+Farmaci equivalenti con prezzo di riferimento SSN.
+- **URL**: https://www.aifa.gov.it/liste-di-trasparenza
+
+### 7. Prontuario Farmaceutico Nazionale (PFN)
+Formulario ufficiale dei farmaci rimborsabili SSN.
+- **URL**: https://www.aifa.gov.it/liste-dei-farmaci
+
+### 8. Horizon Scanning (annuale)
+Farmaci in pipeline con impatto atteso sul SSN.
+
+## Licenza
+Dati pubblici - AIFA / Ministero della Salute
+"""
+
+
+# =============================================================================
+# SEZIONE 6: GENERAZIONE OUTPUT
 # =============================================================================
 
 def save_json(data, filepath):
@@ -1347,15 +1838,15 @@ Dati pubblici raccolti da fonti istituzionali e società scientifiche.
 
 def main():
     print("=" * 70)
-    print("ARRICCHIMENTO REPOSITORY - RAPPORTI SCIENTIFICI E DATI ONS")
+    print("ARRICCHIMENTO REPOSITORY - RAPPORTI SCIENTIFICI, ONS, OASI, AIFA")
     print("=" * 70)
 
     # 1. Crea directory
-    print("\n[1/6] Creazione directory...")
+    print("\n[1/8] Creazione directory...")
     create_directories()
 
     # 2. Genera dati ONS
-    print("\n[2/6] Generazione dati Osservatorio Nazionale Screening...")
+    print("\n[2/8] Generazione dati Osservatorio Nazionale Screening...")
     ons_data = build_ons_data()
     save_json(ons_data, os.path.join(ONS_RAW_DIR, 'ons_screening_completo.json'))
 
@@ -1366,12 +1857,12 @@ def main():
     print(f"  Salvato: {os.path.relpath(readme_ons_path, BASE_DIR)}")
 
     # 3. Genera dati società scientifiche italiane
-    print("\n[3/6] Generazione catalogo società scientifiche italiane...")
+    print("\n[3/8] Generazione catalogo società scientifiche italiane...")
     it_data = build_societa_scientifiche_italiane()
     save_json(it_data, os.path.join(SOCIETA_IT_DIR, 'rapporti_societa_italiane.json'))
 
     # 4. Genera dati società scientifiche europee
-    print("\n[4/6] Generazione catalogo società scientifiche europee...")
+    print("\n[4/8] Generazione catalogo società scientifiche europee...")
     eu_data = build_societa_scientifiche_europee()
     save_json(eu_data, os.path.join(SOCIETA_EU_DIR, 'rapporti_societa_europee.json'))
 
@@ -1381,8 +1872,30 @@ def main():
         f.write(create_societa_scientifiche_readme())
     print(f"  Salvato: {os.path.relpath(readme_soc_path, BASE_DIR)}")
 
-    # 5. Genera dataset processed
-    print("\n[5/6] Generazione dataset processati...")
+    # 5. Genera dati OASI Bocconi
+    print("\n[5/8] Generazione dati OASI - CERGAS Bocconi...")
+    oasi_data = build_oasi_bocconi()
+    save_json(oasi_data, os.path.join(OASI_RAW_DIR, 'oasi_bocconi_completo.json'))
+
+    # README OASI
+    readme_oasi_path = os.path.join(OASI_RAW_DIR, 'README.md')
+    with open(readme_oasi_path, 'w', encoding='utf-8') as f:
+        f.write(create_oasi_readme())
+    print(f"  Salvato: {os.path.relpath(readme_oasi_path, BASE_DIR)}")
+
+    # 6. Genera dati AIFA
+    print("\n[6/8] Generazione dati AIFA...")
+    aifa_data = build_aifa_reports()
+    save_json(aifa_data, os.path.join(AIFA_RAW_DIR, 'aifa_report_completo.json'))
+
+    # README AIFA
+    readme_aifa_path = os.path.join(AIFA_RAW_DIR, 'README.md')
+    with open(readme_aifa_path, 'w', encoding='utf-8') as f:
+        f.write(create_aifa_readme())
+    print(f"  Salvato: {os.path.relpath(readme_aifa_path, BASE_DIR)}")
+
+    # 7. Genera dataset processed
+    print("\n[7/8] Generazione dataset processati...")
 
     # CSV regionali screening
     save_csv_screening(
@@ -1416,14 +1929,54 @@ def main():
     }
     save_json(screening_summary, os.path.join(PROCESSED_DIR, 'ons_screening_italia.json'))
 
-    # 6. Riepilogo
-    print("\n[6/6] Riepilogo finale...")
+    # JSON processato OASI Bocconi
+    oasi_summary = {
+        "fonte": oasi_data['fonte'],
+        "istituzione": oasi_data['istituzione'],
+        "url": oasi_data['url_principale'],
+        "rapporti": [
+            {
+                "titolo": r['titolo'],
+                "anno": r['anno'],
+                "url": r.get('url', ''),
+                "temi_principali": r.get('temi_principali', []),
+                "dati_chiave": r.get('dati_chiave', {})
+            }
+            for r in oasi_data['rapporti_annuali']
+        ],
+        "osservatori_correlati": oasi_data['osservatori_correlati']
+    }
+    save_json(oasi_summary, os.path.join(PROCESSED_DIR, 'oasi_bocconi_sintesi.json'))
+
+    # JSON processato AIFA
+    aifa_summary = {
+        "fonte": aifa_data['fonte'],
+        "url": aifa_data['url_principale'],
+        "rapporti": [
+            {
+                "titolo": r['titolo'],
+                "acronimo": r.get('acronimo', ''),
+                "tipo": r.get('tipo', ''),
+                "url": r.get('url', ''),
+                "frequenza": r.get('frequenza', ''),
+                "dati_chiave": r.get('dati_chiave', {})
+            }
+            for r in aifa_data['rapporti']
+        ],
+        "spesa_farmaceutica_2024": aifa_data['dati_aggregati_spesa_farmaceutica']
+    }
+    save_json(aifa_summary, os.path.join(PROCESSED_DIR, 'aifa_report_sintesi.json'))
+
+    # 8. Riepilogo
+    print("\n[8/8] Riepilogo finale...")
     print("=" * 70)
 
     n_it = len(it_data['societa'])
     n_eu = len(eu_data['societa'])
     n_rapporti_it = sum(len(s['rapporti_principali']) for s in it_data['societa'])
     n_rapporti_eu = sum(len(s['rapporti_principali']) for s in eu_data['societa'])
+    n_rapporti_aifa = len(aifa_data['rapporti'])
+    n_rapporti_oasi = len(oasi_data['rapporti_annuali'])
 
     print(f"\nOSSERVATORIO NAZIONALE SCREENING:")
     print(f"  - 3 programmi di screening (mammografico, cervicale, colorettale)")
@@ -1435,27 +1988,36 @@ def main():
     print(f"\nSOCIETA' SCIENTIFICHE ITALIANE:")
     print(f"  - {n_it} società catalogate")
     print(f"  - {n_rapporti_it} rapporti/linee guida mappati")
-    print(f"  - Aree: Oncologia, Cardiologia, Diabetologia, Neurologia, Reumatologia,")
-    print(f"          Pneumologia, Nefrologia, Gastroenterologia, Endocrinologia,")
-    print(f"          Geriatria, Medicina Interna, Psichiatria, Medicina Generale, Prevenzione")
 
     print(f"\nSOCIETA' SCIENTIFICHE EUROPEE:")
     print(f"  - {n_eu} società/istituzioni catalogate")
     print(f"  - {n_rapporti_eu} rapporti/linee guida mappati")
-    print(f"  - Benchmark europeo per confronto con dati italiani")
+
+    print(f"\nOASI - CERGAS BOCCONI:")
+    print(f"  - {n_rapporti_oasi} edizioni del Rapporto OASI (2023-2025)")
+    print(f"  - {len(oasi_data['osservatori_correlati'])} osservatori correlati (OCPS, MASAN, OLTC)")
+    print(f"  - Spesa pubblica Italia: {oasi_data['rapporti_annuali'][1]['dati_chiave']['spesa_pubblica_pil_percentuale']}% PIL vs 9-11% in Francia/Germania/UK")
+
+    print(f"\nAIFA - AGENZIA ITALIANA DEL FARMACO:")
+    print(f"  - {n_rapporti_aifa} report/piattaforme catalogati")
+    print(f"  - Spesa farmaceutica totale 2024: {aifa_data['dati_aggregati_spesa_farmaceutica']['spesa_totale_miliardi_euro']} miliardi euro")
+    print(f"  - {aifa_data['rapporti'][0]['dati_chiave']['farmaci_orfani_disponibili_su_autorizzati_ema']} farmaci orfani disponibili")
 
     print(f"\nFILE GENERATI:")
     print(f"  RAW:")
-    print(f"    - datasets/raw/ons/ons_screening_completo.json")
-    print(f"    - datasets/raw/ons/README.md")
+    print(f"    - datasets/raw/ons/ons_screening_completo.json + README.md")
     print(f"    - datasets/raw/societa_scientifiche/italiane/rapporti_societa_italiane.json")
     print(f"    - datasets/raw/societa_scientifiche/europee/rapporti_societa_europee.json")
     print(f"    - datasets/raw/societa_scientifiche/README.md")
+    print(f"    - datasets/raw/oasi_bocconi/oasi_bocconi_completo.json + README.md")
+    print(f"    - datasets/raw/aifa/aifa_report_completo.json + README.md")
     print(f"  PROCESSED:")
     print(f"    - datasets/processed/ons_screening_italia.json")
     print(f"    - datasets/processed/ons_screening_regionali_2023.csv")
     print(f"    - datasets/processed/ons_screening_serie_storiche.csv")
     print(f"    - datasets/processed/rapporti_societa_scientifiche.csv")
+    print(f"    - datasets/processed/oasi_bocconi_sintesi.json")
+    print(f"    - datasets/processed/aifa_report_sintesi.json")
 
     print(f"\n{'=' * 70}")
     print("ARRICCHIMENTO COMPLETATO CON SUCCESSO")
