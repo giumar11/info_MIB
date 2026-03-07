@@ -38,9 +38,11 @@ Rete Toscana Malattie Rare molto attiva.
 
 ## Altri PDTA
 
-| PDTA | Delibera | Anno |
-|------|----------|------|
-| Malattia Celiaca | DGRT 22/2018 | 2018 |
+| PDTA | Delibera | Anno | URL PDF |
+|------|----------|------|---------|
+| Diabete nell'Adulto | DGR 23/2019 | 2019 | https://www.regione.toscana.it/documents/10180/23793180/ALL+A+23-2019+PDTA-Diabete.pdf |
+| Malattia Celiaca | DGRT 22/2018 | 2018 | N/A |
+| Disturbi Alimentazione e Nutrizione (DAN) | Delibera 155/2025 | 2025 | N/A |
 
 ## ASL Locali
 

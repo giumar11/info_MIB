@@ -219,6 +219,34 @@ PDTA_DOWNLOADS = {
                 "title": "PDTA Demenze - ASL Roma 1 (declinazione aziendale)",
                 "year": 2024
             },
+            {
+                "id": "LAZ_ASL_002",
+                "filename": "PDTA_Scompenso_Cardiaco_ASL_Latina.pdf",
+                "url": "https://www.ausl.latina.it/attachments/article/2092/PDTA%20Scompenso%20Cardiaco%20def.pdf",
+                "title": "PDTA Scompenso Cardiaco - ASL Latina",
+                "year": None
+            },
+            {
+                "id": "LAZ_ASL_003",
+                "filename": "PDTA_Diabete_Mellito_ASL_Latina.pdf",
+                "url": "https://www.ausl.latina.it/attachments/article/2092/Aggiornamento%20PDTA%20per%20la%20gestione%20del%20paziente%20con%20Diabete%20mellito%20e%20Rete%20diabetologica.pdf",
+                "title": "PDTA Diabete Mellito - ASL Latina",
+                "year": None
+            },
+            {
+                "id": "LAZ_ASL_004",
+                "filename": "PDTA_Diabete_Mellito_Adulto_ASL_Frosinone.pdf",
+                "url": "https://www.asl.fr.it/wp-content/uploads/PDTA-Diabete-Mellito-adulto.pdf",
+                "title": "PDTA Diabete Mellito Adulto - ASL Frosinone",
+                "year": None
+            },
+            {
+                "id": "LAZ_REG_001",
+                "filename": "DCA_U00474_2015_Presa_Carico_Paziente_Cronico_Lazio.pdf",
+                "url": "https://www.regione.lazio.it/sites/default/files/decreti-commissario-ad-acta/SAN_DCA_U00474_7_ottobre_2015_Linee_di_indirizzo_per_la_gestione_a_livello_territoriale_della_presa_in_carico_del_paziente_cronico_e_relativo_percorso_attuativo.pdf",
+                "title": "Linee di indirizzo presa in carico paziente cronico - Lazio",
+                "year": 2015
+            },
         ],
         "campania": [
             {
@@ -256,8 +284,65 @@ PDTA_DOWNLOADS = {
                 "title": "PDTA Lesioni Cutanee / Piede Diabetico",
                 "year": 2024
             },
+            {
+                "id": "CAM_POL_001",
+                "filename": "PDTA_Polmone_ROC_2023.pdf",
+                "url": "https://www.reteoncologicacampana.it/wp-content/uploads/2025/01/PDTA-Polmone.pdf",
+                "title": "PDTA Tumore del Polmone - Campania ROC",
+                "year": 2023
+            },
+            {
+                "id": "CAM_PRO_001",
+                "filename": "PDTA_Prostata_2024.pdf",
+                "url": "https://www.regione.campania.it/assets/documents/09-pdta-prostata-2024.pdf",
+                "title": "PDTA Tumore della Prostata - Campania",
+                "year": 2024
+            },
+            {
+                "id": "CAM_MEL_001",
+                "filename": "PDTA_Melanoma_ROC_2023.pdf",
+                "url": "https://www.reteoncologicacampana.it/wp-content/uploads/2023/10/PDTA-MELANOMA-2023.pdf",
+                "title": "PDTA Melanoma - Campania ROC",
+                "year": 2023
+            },
+            {
+                "id": "CAM_MES_001",
+                "filename": "PDTA_Mesotelioma_2023.pdf",
+                "url": "https://www.regione.campania.it/assets/documents/23-pdta-mesotelioma-2023.pdf",
+                "title": "PDTA Mesotelioma - Campania",
+                "year": 2023
+            },
+            {
+                "id": "CAM_HIV_001",
+                "filename": "PDTA_HIV_AIDS_Campania_2018.pdf",
+                "url": "https://www.regione.campania.it/assets/documents/percorso-diagnostico-terapeutico-assistenziale-2018.pdf",
+                "title": "PDTA HIV/AIDS - Campania",
+                "year": 2018
+            },
         ],
-        "toscana": [],
+        "toscana": [
+            {
+                "id": "TOS_DIA_001",
+                "filename": "PDTA_Diabete_Adulto_Toscana_2019.pdf",
+                "url": "https://www.regione.toscana.it/documents/10180/23793180/ALL+A+23-2019+PDTA-Diabete.pdf/f1e8ea87-145f-08c4-6c3d-16b69f5f43c2?t=1578658143393",
+                "title": "PDTA Diabete nell'Adulto - Toscana",
+                "year": 2019
+            },
+            {
+                "id": "TOS_MAM_001",
+                "filename": "PDTA_Tumore_Mammella_Toscana_2024.pdf",
+                "url": "https://www.ispro.toscana.it/sites/default/files/ReteOncologica/Allegato%20Decreto%208098_2024.pdf",
+                "title": "PDTA Tumore della Mammella - Toscana (rev. 2024)",
+                "year": 2024
+            },
+            {
+                "id": "TOS_MIO_001",
+                "filename": "PDTA_Medicina_Integrata_Oncologia_Toscana_2021.pdf",
+                "url": "https://www.ispro.toscana.it/sites/default/files/ReteOncologica/Decreto_n.19664_del_11-11-2021-Allegato-A.pdf",
+                "title": "PDTA Medicina Integrata in Oncologia - Toscana",
+                "year": 2021
+            },
+        ],
         "friuli_venezia_giulia": [
             {
                 "id": "FVG_001",
@@ -274,17 +359,129 @@ PDTA_DOWNLOADS = {
                 "year": 2024
             },
         ],
-        "abruzzo": [],
-        "basilicata": [],
-        "calabria": [],
+        "abruzzo": [
+            {
+                "id": "ABR_MAM_001",
+                "filename": "PDTA_Tumore_Mammella_Abruzzo_DGR340_2017.pdf",
+                "url": "https://lnx.asl2abruzzo.it/formazione/attachments/article/517/Pacchetto%20PDTA%20della%20mammella1.5-1%20da%20inserire.pdf",
+                "title": "PDTA Tumore della Mammella - Abruzzo",
+                "year": 2017
+            },
+            {
+                "id": "ABR_COL_001",
+                "filename": "PDTA_Tumore_Colon_Retto_ASL2_Abruzzo.pdf",
+                "url": "https://lnx.asl2abruzzo.it/formazione/attachments/article/288/PDTAOK-PACCHETTO%20+ALLEGATI.pdf",
+                "title": "PDTA Tumore Colon-Retto - ASL 2 Abruzzo",
+                "year": None
+            },
+        ],
+        "basilicata": [
+            {
+                "id": "BAS_MAM_001",
+                "filename": "PDTA_Tumore_Mammella_Basilicata.pdf",
+                "url": "https://www.regione.basilicata.it/wp-content/uploads/giunta/docs/DOCUMENT_FILE_3085806.pdf",
+                "title": "PDTA Tumore della Mammella - Basilicata",
+                "year": None
+            },
+            {
+                "id": "BAS_HBV_001",
+                "filename": "PDTA_Epatite_B_Basilicata.pdf",
+                "url": "https://www.regione.basilicata.it/wp-content/uploads/giunta/docs/DOCUMENT_FILE_591188.pdf",
+                "title": "PDTA Epatite B - Basilicata",
+                "year": None
+            },
+            {
+                "id": "BAS_ASMA_001",
+                "filename": "PDTA_Asma_Bronchite_Cronica_Basilicata_2015.pdf",
+                "url": "https://www.regione.basilicata.it/wp-content/uploads/giunta/docs/DOCUMENT_FILE_3085810.pdf",
+                "title": "PDTA Asma e Bronchite Cronica - Basilicata",
+                "year": 2015
+            },
+        ],
+        "calabria": [
+            {
+                "id": "CAL_COL_001",
+                "filename": "PDTA_Carcinoma_Colon_Retto_Calabria_DCA84_2022.pdf",
+                "url": "https://www.regione.calabria.it/website/portalmedia/decreti/2022-08/ALLEGATO-DCA-n.84-del-16.8.2022.pdf",
+                "title": "PDTA Carcinoma Colon-Retto - Calabria",
+                "year": 2022
+            },
+            {
+                "id": "CAL_SCA_001",
+                "filename": "PDTA_Sindrome_Coronarica_Acuta_Calabria_2015.pdf",
+                "url": "https://www.sifoweb.it/images/pdf/attivita/sezioni-regionali/calabria/Normativa/2015/dca_n._75_del_6.07.2015_-_PDTA_per_la_Sindrome_Coronarica__Acuta_SCA.pdf",
+                "title": "PDTA Sindrome Coronarica Acuta - Calabria",
+                "year": 2015
+            },
+            {
+                "id": "CAL_PD_001",
+                "filename": "PDTA_Piede_Diabetico_Calabria_2017.pdf",
+                "url": "https://aemmedi.it/wp-content/uploads/2016/09/DCA_172_19_12_2017_piede_diabetico.pdf",
+                "title": "PDTA Piede Diabetico - Calabria",
+                "year": 2017
+            },
+            {
+                "id": "CAL_TAL_001",
+                "filename": "PDTA_Talassemie_Calabria_2023.pdf",
+                "url": "https://www.regione.calabria.it/wp-content/uploads/2023/07/rete-talassemie_pdta.pdf",
+                "title": "PDTA Talassemie e Emoglobinopatie - Calabria",
+                "year": 2023
+            },
+        ],
         "liguria": [],
         "marche": [],
         "molise": [],
-        "puglia": [],
-        "sardegna": [],
-        "sicilia": [],
+        "puglia": [
+            {
+                "id": "PUG_IVG_001",
+                "filename": "PDTA_IVG_Puglia_DGR1738_2025.pdf",
+                "url": "https://burp.regione.puglia.it/documents/20135/2715105/DEL_1738_2025.pdf",
+                "title": "PDTA IVG - Puglia",
+                "year": 2025
+            },
+        ],
+        "sardegna": [
+            {
+                "id": "SAR_END_001",
+                "filename": "PDTA_Endometriosi_Sardegna_2023.pdf",
+                "url": "https://delibere.regione.sardegna.it/api/assets/9914fe92-6b7c-4361-9eac-c4b37dc33088",
+                "title": "PDTA Endometriosi - Sardegna",
+                "year": 2023
+            },
+        ],
+        "sicilia": [
+            {
+                "id": "SIC_DIA_001",
+                "filename": "PDTA_Diabete_Mellito_Adulto_Sicilia_2018.pdf",
+                "url": "https://aemmedi.it/wp-content/uploads/2016/09/Sicilia_3_PDTA_AllegatoDA0602_16.04.2018_PDTA.pdf",
+                "title": "PDTA Diabete Mellito Adulto - Sicilia",
+                "year": 2018
+            },
+            {
+                "id": "SIC_ONC_001",
+                "filename": "PDTA_Oncologici_Sicilia_DA1077_2021.pdf",
+                "url": "https://www.regione.sicilia.it/sites/default/files/2021-11/1077%2026.10.2021%20DA%20PDTA.pdf",
+                "title": "PDTA Oncologici - Sicilia (DA 1077/2021)",
+                "year": 2021
+            },
+            {
+                "id": "SIC_PREV_001",
+                "filename": "PDTA_Prevenzione_Oncologica_Sicilia_DA877_2025.pdf",
+                "url": "https://www.regione.sicilia.it/sites/default/files/2025-09/Allegato%20al%20D.A.%20n.877%20del%208%20agosto%202025.pdf",
+                "title": "PDTA Prevenzione Oncologica - Sicilia",
+                "year": 2025
+            },
+        ],
         "trentino_alto_adige": [],
-        "umbria": [],
+        "umbria": [
+            {
+                "id": "UMB_ICT_001",
+                "filename": "PDTA_Ictus_Umbria_2021.pdf",
+                "url": "https://isa-aii.com/wp-content/uploads/2021/06/1_PDTA_Umbria.pdf",
+                "title": "PDTA Ictus - Umbria",
+                "year": 2021
+            },
+        ],
         "valle_d_aosta": [],
     },
 }
