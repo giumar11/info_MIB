@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>HelpClassificazioni</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.0  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20090527;16551900">
+	<META NAME="Info 1" CONTENT="">
+	<META NAME="Info 2" CONTENT="">
+	<META NAME="Info 3" CONTENT="">
+	<META NAME="Info 4" CONTENT="">
+</HEAD>
+<BODY LANG="it-IT" DIR="LTR">
+<H2 ALIGN=CENTER><FONT SIZE=4>Struttura dei file delle
+classificazioni</FONT></H2>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P>La struttura del file che descrive una classificazioni &egrave;
+formata da quattro campi nei quali sono descritti: 
+</P>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0>
+		<TR>
+			<TD HEIGHT=27 BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Codice</STRONG></P>
+			</TD>
+			<TD BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Descrizione</STRONG></P>
+			</TD>
+			<TD BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Aggregazione</STRONG></P>
+			</TD>
+			<TD BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Note</STRONG></P>
+			</TD>
+		</TR>
+		<TR>
+			<TD HEIGHT=27>
+				<P ALIGN=CENTER><EM>Modalit&agrave; della classificazione</EM></P>
+			</TD>
+			<TD>
+				<P ALIGN=CENTER><EM>Descrizione della modalit&agrave;</EM></P>
+			</TD>
+			<TD>
+				<P ALIGN=CENTER><EM>Codice dell'eventuale aggregazione</EM></P>
+			</TD>
+			<TD>
+				<P ALIGN=CENTER><EM>Informazioni sulla modalit&agrave;</EM></P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P>Nel primo campo &egrave; indicato la modalit&agrave; (codice)
+della classificazione a cui segue la descrizione alfabetica della
+modalit&agrave;, e se presente viene indicato il codice della
+variabile di classificazione che aggrega la classificazione in
+oggetto ( es: se si sta trattando la variabile di classificazione
+&ldquo;Comune&rdquo; il codice di aggregazione descritto &egrave; il
+corrispondente codice della classificazione &ldquo;Provincia&rdquo;).
+Infine, nel quarto campo pu&ograve; essere presente una ulteriore
+descrizione della modalit&agrave;. 
+</P>
+<P><STRONG>Esempio1:</STRONG> La classificazione &ldquo;NC8 &ndash;
+Classificazione combinata a due posizioni&rdquo; del 2001 con la
+descrizione associato a ciascun codice della classificazione.</P>
+<P ALIGN=CENTER>Elenco delle modalit&agrave; associate alla variabile
+categorica: NC8</P>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0 STYLE="page-break-before: auto; page-break-after: auto; page-break-inside: auto">
+		<COL WIDTH=31*>
+		<COL WIDTH=80*>
+		<COL WIDTH=77*>
+		<COL WIDTH=68*>
+		<TR>
+			<TD WIDTH=12% HEIGHT=27 BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Codice</STRONG></P>
+			</TD>
+			<TD WIDTH=31% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Descrizione</STRONG></P>
+			</TD>
+			<TD WIDTH=30% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Aggregazione</STRONG></P>
+			</TD>
+			<TD WIDTH=26% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Note</STRONG></P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>01</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>ANIMALI VIVI</P>
+			</TD>
+			<TD WIDTH=30%>
+				<P>&nbsp;</P>
+			</TD>
+			<TD WIDTH=26%>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>02</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>CARNI E FRATTAGLIE COMMESTIBILI</P>
+			</TD>
+			<TD WIDTH=30%>
+				<P>&nbsp;</P>
+			</TD>
+			<TD WIDTH=26%>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>...</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>...</P>
+			</TD>
+			<TD WIDTH=30%>
+				<P>&nbsp;</P>
+			</TD>
+			<TD WIDTH=26%>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=27 SDVAL="99" SDNUM="1040;">
+				<P>99</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>MERCI NON CLASSIFICATE ALTROVE</P>
+			</TD>
+			<TD WIDTH=30%>
+				<P>&nbsp;</P>
+			</TD>
+			<TD WIDTH=26%>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P><BR><BR>
+</P>
+<P><B>Esempio 2</B>: La classificazione &ldquo;Comuni del 2006&rdquo;:
+in questa classificazione &egrave; presente oltre al codice della
+classificazione ed alla descrizione dello stesso, anche il codice di
+aggregazione, in questo caso il codice provincia (001 = Torino &ndash;
+002 = Vercelli).</P>
+<P ALIGN=CENTER>Elenco delle modalit&agrave; associate alla variabile
+categorica: Comune</P>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0 STYLE="page-break-before: auto; page-break-after: auto; page-break-inside: auto">
+		<COL WIDTH=30*>
+		<COL WIDTH=80*>
+		<COL WIDTH=58*>
+		<COL WIDTH=89*>
+		<TR>
+			<TD WIDTH=12% HEIGHT=27 BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Codice</STRONG></P>
+			</TD>
+			<TD WIDTH=31% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Descrizione</STRONG></P>
+			</TD>
+			<TD WIDTH=23% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Aggregazione</STRONG></P>
+			</TD>
+			<TD WIDTH=35% BGCOLOR="#ff9966">
+				<P ALIGN=CENTER><STRONG>Note</STRONG></P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>001</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>Agli&egrave; 
+				</P>
+			</TD>
+			<TD WIDTH=23% SDVAL="1" SDNUM="1040;">
+				<P>001</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P>Comune della provincia di Torino</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>002</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>Airasca</P>
+			</TD>
+			<TD WIDTH=23%>
+				<P>001</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P>&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>...</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>...</P>
+			</TD>
+			<TD WIDTH=23%>
+				<P>...</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P>...&nbsp;</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=28>
+				<P>001</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P>Alagna Valsesia</P>
+			</TD>
+			<TD WIDTH=23%>
+				<P>002</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P>Comune della provincia di Vercelli</P>
+			</TD>
+		</TR>
+		<TR>
+			<TD WIDTH=12% HEIGHT=27>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=23%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<CENTER>
+	<TABLE WIDTH=100% BORDER=1 CELLPADDING=3 CELLSPACING=0>
+		<COL WIDTH=30*>
+		<COL WIDTH=80*>
+		<COL WIDTH=58*>
+		<COL WIDTH=89*>
+		<TR>
+			<TD WIDTH=12% HEIGHT=26>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=31%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=23%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=35%>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TABLE>
+</CENTER>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>

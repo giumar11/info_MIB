@@ -1,0 +1,112 @@
+{
+  "fonte": "OASI - Osservatorio sulle Aziende e sul Sistema sanitario Italiano",
+  "istituzione": "CERGAS - SDA Bocconi School of Management, Università Bocconi",
+  "sede": "Milano, Italia",
+  "anno_fondazione": 1998,
+  "primo_rapporto": 2000,
+  "url_principale": "https://cergas.unibocconi.eu/observatories/oasi",
+  "url_archivio_report": "https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home",
+  "url_cergas": "https://cergas.unibocconi.eu/",
+  "licenza": "Open Access (edizioni digitali)",
+  "data_estrazione": "2026-02-24",
+  "descrizione": "Il Rapporto OASI è il riferimento annuale per l'analisi del Servizio Sanitario Nazionale italiano. Ogni edizione raccoglie i risultati di 15-20 progetti di ricerca condotti da 25-30 ricercatori CERGAS, spesso in collaborazione con professionisti sanitari e policy maker.",
+  "rapporti_annuali": [
+    {
+      "titolo": "Rapporto OASI 2025 (26a edizione)",
+      "anno": 2025,
+      "data_presentazione": "2025-12-03",
+      "url": "https://cergas.unibocconi.eu/oasi-2025",
+      "temi_principali": [
+        "Crisi demografica e impatto sul SSN",
+        "Carenza infermieristica e programmazione del personale",
+        "Gap tra prescrizioni e prestazioni erogate dal SSN",
+        "Procurement farmaceutico e dispositivi medici",
+        "Collaborazione internazionale con HEALTHTECH Europe"
+      ],
+      "dati_chiave": {
+        "nascite_italia_2024": 370000,
+        "calo_nascite_vs_2014_percentuale": -26,
+        "crescita_over65_in_20_anni": "oltre 3 milioni",
+        "speranza_vita_anni": 83.4,
+        "prescrizioni_erogate_ssn_percentuale": 60,
+        "nota_prescrizioni": "Solo il 60% delle prescrizioni si traduce in prestazione SSN; il resto va al privato o diventa rinuncia alle cure",
+        "posti_medicina_raddoppiati": "da 10.500 a 19.500 (verso 24.000)",
+        "domande_infermieristica_copertura_posti_percentuale": 84,
+        "spesa_procurement_percentuale_spesa_sanitaria": 32
+      }
+    },
+    {
+      "titolo": "Rapporto OASI 2024 (25a edizione)",
+      "anno": 2024,
+      "data_presentazione": "2024-12-03",
+      "url": "https://cergas.unibocconi.eu/oasi-2024",
+      "url_pdf": "https://cergas.unibocconi.eu/sites/default/files/media/attach/00_Oasi_2024_Rapporto_OASI_2024.pdf",
+      "temi_principali": [
+        "Sottofinanziamento cronico del SSN",
+        "Spesa sanitaria privata in Italia",
+        "Liste di attesa e criteri di priorità",
+        "Disuguaglianze regionali e sociali nell'accesso",
+        "Confronto internazionale con sistemi europei"
+      ],
+      "dati_chiave": {
+        "spesa_pubblica_pil_percentuale": 6.3,
+        "spesa_pubblica_pil_francia_percentuale": 9.0,
+        "spesa_pubblica_pil_germania_percentuale": 10.0,
+        "spesa_pubblica_pil_uk_percentuale": 11.0,
+        "gap_finanziamento_miliardi_euro": 40,
+        "spesa_privata_pil_percentuale": 2.2,
+        "spesa_privata_su_totale_percentuale": 26,
+        "nota_spesa": "L'Italia è descritta come 'un paese che non vuole spendere in salute, né pubblicamente né privatamente'",
+        "variazione_consumi_servizi_tra_territori_stessa_regione_percentuale": 100
+      }
+    },
+    {
+      "titolo": "Rapporto OASI 2023 (24a edizione)",
+      "anno": 2023,
+      "url": "https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home",
+      "url_executive_summary_en": "https://cergas.unibocconi.eu/sites/default/files/media/attach/EXS_OASI_2023_ENG.pdf",
+      "temi_principali": [
+        "Post-COVID e resilienza del SSN",
+        "Personale sanitario e burnout",
+        "PNRR M6 e riforme territoriali",
+        "Assistenza domiciliare integrata"
+      ]
+    }
+  ],
+  "osservatori_correlati": [
+    {
+      "acronimo": "OCPS",
+      "nome": "Osservatorio sui Consumi Privati in Sanità",
+      "anno_fondazione": 2012,
+      "descrizione": "Analisi annuali sulla spesa sanitaria privata; contribuisce al Rapporto OASI e pubblica report autonomi",
+      "url": "https://cergas.unibocconi.eu/observatories/ocps"
+    },
+    {
+      "acronimo": "MASAN",
+      "nome": "Osservatorio sulla Gestione degli Acquisti Pubblici in Sanità",
+      "anno_fondazione": 2018,
+      "descrizione": "Think tank su procurement sanitario pubblico; pubblica capitoli dedicati nel Rapporto OASI, paper scientifici e policy paper",
+      "url": "https://cergas.unibocconi.eu/observatories/masan"
+    },
+    {
+      "acronimo": "OLTC",
+      "nome": "Osservatorio sulla Long Term Care",
+      "anno_fondazione": 2018,
+      "descrizione": "Focalizzato sull'assistenza agli anziani con bisogni di lungo termine in Italia",
+      "url": "https://cergas.unibocconi.eu/observatories/oltc"
+    }
+  ],
+  "copertura_tematica": [
+    "Struttura e attività del SSN (ospedali, ASL, distretti)",
+    "Analisi della spesa sanitaria (pubblica vs privata, pro capite, % PIL)",
+    "Confronti internazionali con altri sistemi sanitari europei",
+    "Erogatori privati accreditati e loro ruolo",
+    "Consumi sanitari privati (out-of-pocket, assicurazioni)",
+    "Assistenza agli anziani e long-term care",
+    "Procurement farmaceutico e dispositivi medici",
+    "Disparità regionali e disuguaglianze nell'accesso",
+    "Forza lavoro sanitaria (medici, infermieri, altri professionisti)",
+    "Liste di attesa e capacità di erogazione",
+    "Governance e politiche sanitarie"
+  ]
+}

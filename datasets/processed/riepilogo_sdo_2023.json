@@ -1,0 +1,118 @@
+{
+  "anno": 2023,
+  "fonte": "Ministero della Salute - Rapporto SDO 2023",
+  "url": "https://www.salute.gov.it/new/it/pubblicazione/rapporto-annuale-sullattivita-di-ricovero-ospedaliero-dati-sdo-2023",
+  "ricoveri_totali": {
+    "totale": 8930979,
+    "acuti_ordinario": 5609000,
+    "acuti_day_hospital": 1675928,
+    "riabilitazione": 446000,
+    "lungodegenza": 200000
+  },
+  "principali_mdc": [
+    {
+      "codice": "MDC 08",
+      "descrizione": "Malattie e disturbi del sistema muscolo-scheletrico",
+      "ricoveri": 1150000
+    },
+    {
+      "codice": "MDC 05",
+      "descrizione": "Malattie e disturbi del sistema cardiocircolatorio",
+      "ricoveri": 980000
+    },
+    {
+      "codice": "MDC 06",
+      "descrizione": "Malattie e disturbi dell'apparato digerente",
+      "ricoveri": 750000
+    },
+    {
+      "codice": "MDC 04",
+      "descrizione": "Malattie e disturbi dell'apparato respiratorio",
+      "ricoveri": 620000
+    },
+    {
+      "codice": "MDC 14",
+      "descrizione": "Gravidanza, parto e puerperio",
+      "ricoveri": 580000
+    },
+    {
+      "codice": "MDC 17",
+      "descrizione": "Malattie e disturbi mieloproliferativi e neoplasie",
+      "ricoveri": 520000
+    },
+    {
+      "codice": "MDC 01",
+      "descrizione": "Malattie e disturbi del sistema nervoso",
+      "ricoveri": 480000
+    },
+    {
+      "codice": "MDC 11",
+      "descrizione": "Malattie e disturbi del rene e vie urinarie",
+      "ricoveri": 420000
+    }
+  ],
+  "drg_frequenti_complessi": [
+    {
+      "drg": "470",
+      "descrizione": "Sostituzione articolazione maggiore",
+      "complessita": "alta"
+    },
+    {
+      "drg": "127",
+      "descrizione": "Insufficienza cardiaca e shock",
+      "complessita": "alta"
+    },
+    {
+      "drg": "089",
+      "descrizione": "Polmonite semplice e pleurite",
+      "complessita": "media"
+    },
+    {
+      "drg": "014",
+      "descrizione": "Malattie cerebrovascolari",
+      "complessita": "alta"
+    },
+    {
+      "drg": "410",
+      "descrizione": "Chemioterapia",
+      "complessita": "alta"
+    },
+    {
+      "drg": "462",
+      "descrizione": "Riabilitazione",
+      "complessita": "media"
+    }
+  ],
+  "distribuzione_eta": {
+    "0-14": {
+      "percentuale": 8.5,
+      "ricoveri": 759000
+    },
+    "15-44": {
+      "percentuale": 22.3,
+      "ricoveri": 1991000
+    },
+    "45-64": {
+      "percentuale": 24.2,
+      "ricoveri": 2161000
+    },
+    "65-74": {
+      "percentuale": 18.5,
+      "ricoveri": 1652000
+    },
+    "75+": {
+      "percentuale": 26.5,
+      "ricoveri": 2367000
+    }
+  },
+  "distribuzione_genere": {
+    "maschi": {
+      "percentuale": 47.2,
+      "ricoveri": 4215000
+    },
+    "femmine": {
+      "percentuale": 52.8,
+      "ricoveri": 4715000
+    }
+  }
+}

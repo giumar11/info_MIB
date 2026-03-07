@@ -1,0 +1,155 @@
+[
+  {
+    "patologia": "Tumore della mammella",
+    "codice_icd10": "C50",
+    "specialisti_coinvolti": [
+      "Senologo",
+      "Oncologo medico",
+      "Radioterapista",
+      "Chirurgo plastico",
+      "Psicologo",
+      "Radiologo",
+      "Anatomo-patologo"
+    ],
+    "n_specialisti": 7,
+    "prevalenza_italia": "1 donna su 8",
+    "fonte": "AIOM, Rapporto SDO"
+  },
+  {
+    "patologia": "Tumore del colon-retto",
+    "codice_icd10": "C18-C20",
+    "specialisti_coinvolti": [
+      "Gastroenterologo",
+      "Chirurgo",
+      "Oncologo",
+      "Radioterapista",
+      "Nutrizionista",
+      "Stomaterapeuta"
+    ],
+    "n_specialisti": 6,
+    "prevalenza_italia": "50.000 nuovi casi/anno",
+    "fonte": "AIOM, Rapporto SDO"
+  },
+  {
+    "patologia": "Diabete mellito tipo 2 complicato",
+    "codice_icd10": "E11",
+    "specialisti_coinvolti": [
+      "Diabetologo",
+      "Cardiologo",
+      "Nefrologo",
+      "Oculista",
+      "Neurologo",
+      "Podologo",
+      "Dietista"
+    ],
+    "n_specialisti": 7,
+    "prevalenza_italia": "3.5 milioni di persone",
+    "fonte": "AMD-SID, ISTAT"
+  },
+  {
+    "patologia": "Scompenso cardiaco cronico",
+    "codice_icd10": "I50",
+    "specialisti_coinvolti": [
+      "Cardiologo",
+      "Internista",
+      "Nefrologo",
+      "Pneumologo",
+      "Geriatra",
+      "Palliativista"
+    ],
+    "n_specialisti": 6,
+    "prevalenza_italia": "1 milione di persone",
+    "fonte": "ESC, Rapporto SDO"
+  },
+  {
+    "patologia": "Sclerosi multipla",
+    "codice_icd10": "G35",
+    "specialisti_coinvolti": [
+      "Neurologo",
+      "Fisiatra",
+      "Urologo",
+      "Psicologo",
+      "Oculista",
+      "Fisioterapista"
+    ],
+    "n_specialisti": 6,
+    "prevalenza_italia": "130.000 persone",
+    "fonte": "AISM, Orphanet"
+  },
+  {
+    "patologia": "Artrite reumatoide",
+    "codice_icd10": "M05-M06",
+    "specialisti_coinvolti": [
+      "Reumatologo",
+      "Ortopedico",
+      "Fisiatra",
+      "Dermatologo",
+      "Pneumologo",
+      "Cardiologo"
+    ],
+    "n_specialisti": 6,
+    "prevalenza_italia": "400.000 persone",
+    "fonte": "SIR, ISTAT"
+  },
+  {
+    "patologia": "BPCO con insufficienza respiratoria",
+    "codice_icd10": "J44",
+    "specialisti_coinvolti": [
+      "Pneumologo",
+      "Cardiologo",
+      "Fisiatra",
+      "Nutrizionista",
+      "Palliativista"
+    ],
+    "n_specialisti": 5,
+    "prevalenza_italia": "3.5 milioni di persone",
+    "fonte": "AIPO, ISTAT"
+  },
+  {
+    "patologia": "Malattia di Parkinson",
+    "codice_icd10": "G20",
+    "specialisti_coinvolti": [
+      "Neurologo",
+      "Geriatra",
+      "Fisiatra",
+      "Logopedista",
+      "Psicologo",
+      "Nutrizionista"
+    ],
+    "n_specialisti": 6,
+    "prevalenza_italia": "300.000 persone",
+    "fonte": "SIN, ISTAT"
+  },
+  {
+    "patologia": "Lupus eritematoso sistemico",
+    "codice_icd10": "M32",
+    "specialisti_coinvolti": [
+      "Reumatologo",
+      "Nefrologo",
+      "Dermatologo",
+      "Cardiologo",
+      "Pneumologo",
+      "Ematologo",
+      "Ginecologo"
+    ],
+    "n_specialisti": 7,
+    "prevalenza_italia": "60.000 persone",
+    "fonte": "SIR, Orphanet"
+  },
+  {
+    "patologia": "Fibrosi cistica",
+    "codice_icd10": "E84",
+    "specialisti_coinvolti": [
+      "Pneumologo",
+      "Gastroenterologo",
+      "Endocrinologo",
+      "Nutrizionista",
+      "Fisioterapista",
+      "Psicologo",
+      "Genetista"
+    ],
+    "n_specialisti": 7,
+    "prevalenza_italia": "6.000 persone",
+    "fonte": "Registro FC, Orphanet"
+  }
+]

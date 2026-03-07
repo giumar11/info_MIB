@@ -1,0 +1,172 @@
+{
+  "description": "GIMBE Report PDF collection manifest",
+  "download_date": "2026-03-07",
+  "note": "Run 'python3 scripts/download_gimbe_pdfs.py' to download missing PDFs",
+  "total": 15,
+  "downloaded": 12,
+  "failed": 3,
+  "files": [
+    {
+      "filename": "1_Rapporto_GIMBE_SSN_2016.pdf",
+      "category": "rapporto_annuale",
+      "edition": "1° Rapporto",
+      "year": 2016,
+      "url": "https://salviamo-ssn.it/var/contenuti/1_Rapporto_GIMBE.pdf",
+      "size_bytes": 0,
+      "sha256": null,
+      "status": "failed"
+    },
+    {
+      "filename": "2_Rapporto_GIMBE_SSN_2017.pdf",
+      "category": "rapporto_annuale",
+      "edition": "2° Rapporto",
+      "year": 2017,
+      "url": "https://salviamo-ssn.it/var/contenuti/2_Rapporto_GIMBE.pdf",
+      "size_bytes": 0,
+      "sha256": null,
+      "status": "failed"
+    },
+    {
+      "filename": "3_Rapporto_GIMBE_SSN_2018.pdf",
+      "category": "rapporto_annuale",
+      "edition": "3° Rapporto",
+      "year": 2018,
+      "url": "https://salviamo-ssn.it/var/contenuti/3_Rapporto_GIMBE.pdf",
+      "size_bytes": 3023044,
+      "size_human": "3.0 MB",
+      "sha256": "8c86f6ae41c45ae3c370189d83056c84252248859102a0b28009170cd9b9bc32",
+      "status": "ok"
+    },
+    {
+      "filename": "4_Rapporto_GIMBE_SSN_2019.pdf",
+      "category": "rapporto_annuale",
+      "edition": "4° Rapporto",
+      "year": 2019,
+      "url": "https://www.salviamo-ssn.it/var/contenuti/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+      "size_bytes": 5756804,
+      "size_human": "5.8 MB",
+      "sha256": "e2193f016694fb3d87528aba0c271cb3efece3a432a920c13273def487aa7b8b",
+      "status": "ok"
+    },
+    {
+      "filename": "5_Rapporto_GIMBE_SSN_2022.pdf",
+      "category": "rapporto_annuale",
+      "edition": "5° Rapporto",
+      "year": 2022,
+      "url": "https://www.quotidianosanita.it/allegati/allegato1665475004.pdf",
+      "size_bytes": 1966096,
+      "size_human": "2.0 MB",
+      "sha256": "74a7f83f29d28fd78050f66da990678e97c828d3c4b88284c70042d38d7a61d1",
+      "status": "ok"
+    },
+    {
+      "filename": "6_Rapporto_GIMBE_SSN_2023.pdf",
+      "category": "rapporto_annuale",
+      "edition": "6° Rapporto",
+      "year": 2023,
+      "url": "https://www.quotidianosanita.it/allegati/allegato1696924905.pdf",
+      "size_bytes": 6570008,
+      "size_human": "6.6 MB",
+      "sha256": "832564def7a12d6c979c3d5a92fd5325170753a04addedaec314238a0db9611a",
+      "status": "ok"
+    },
+    {
+      "filename": "7_Rapporto_GIMBE_SSN_2024.pdf",
+      "category": "rapporto_annuale",
+      "edition": "7° Rapporto",
+      "year": 2024,
+      "url": "https://www.camera.it/temiap/2024/10/09/OCD177-7603.pdf",
+      "size_bytes": 7736764,
+      "size_human": "7.7 MB",
+      "sha256": "15419faa8fad8254deb6d7710ae05f9ddbc34a72bf437974860dca640ee46265",
+      "status": "ok"
+    },
+    {
+      "filename": "8_Rapporto_GIMBE_SSN_2025.pdf",
+      "category": "rapporto_annuale",
+      "edition": "8° Rapporto",
+      "year": 2025,
+      "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+      "size_bytes": 30257096,
+      "size_human": "30.3 MB",
+      "sha256": "6bbb2c4026c6d72a9991d8caf1b78dffb1e3286d972cbdd9bdc6f2b660945fb4",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato.pdf",
+      "category": "osservatorio",
+      "edition": "1/2023",
+      "year": 2023,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+      "size_bytes": 1861995,
+      "size_human": "1.9 MB",
+      "sha256": "8811c337531250b63a80377d8db299c8e1c4a2cb3cc04322988f8820fdd4f73d",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2023.04_Filiera_healthcare.pdf",
+      "category": "osservatorio",
+      "edition": "4/2023",
+      "year": 2023,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+      "size_bytes": 2737509,
+      "size_human": "2.7 MB",
+      "sha256": "7fa2bcc008ead6830ccebebfe13954dcf49cf68759efe7b2bfe25d063bbf9495",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+      "category": "osservatorio",
+      "edition": "1/2024",
+      "year": 2024,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+      "size_bytes": 2644580,
+      "size_human": "2.6 MB",
+      "sha256": "2d98fdc122048d11ea6afef9496a461c59b49dbd1e24e72126e0d06571c46867",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata.pdf",
+      "category": "osservatorio",
+      "edition": "2/2024",
+      "year": 2024,
+      "url": "https://documenti.camera.it/leg19/documentiAcquisiti/COM01/Audizioni/leg19.com01.Audizioni.Memoria.PUBBLICO.ideGes.34026.26-03-2024-11-34-12.951.pdf",
+      "size_bytes": 1921683,
+      "size_human": "1.9 MB",
+      "sha256": "09bc40b188b82e6cca0bd4c40f0090fb31aca2dbebbf9dbca4e95c4f7e9139a8",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.03_Scuole_promuovono_salute.pdf",
+      "category": "osservatorio",
+      "edition": "3/2024",
+      "year": 2024,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+      "size_bytes": 1783883,
+      "size_human": "1.8 MB",
+      "sha256": "439dd590c52a866cbd292ef5e83e8aff884b4a8f41a081d5e6a62726c66b6d3b",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+      "category": "osservatorio",
+      "edition": "1/2025",
+      "year": 2025,
+      "url": "https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+      "size_bytes": 0,
+      "sha256": null,
+      "status": "failed"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+      "category": "osservatorio",
+      "edition": "2/2025",
+      "year": 2025,
+      "url": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+      "size_bytes": 3679442,
+      "size_human": "3.7 MB",
+      "sha256": "13ab4c832980a8dd2a09bcede9b242304007cfbd276e950bf4838cf58a5d7833",
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "fonte": "ISTAT, PASSI, PASSI d'Argento",
+  "anno_riferimento": 2023,
+  "popolazione_totale": 58997201,
+  "per_fascia_eta": [
+    {
+      "fascia": "0-14",
+      "popolazione": 7500000,
+      "percentuale": 12.7,
+      "patologie_croniche_media": 0.2
+    },
+    {
+      "fascia": "15-24",
+      "popolazione": 5800000,
+      "percentuale": 9.8,
+      "patologie_croniche_media": 0.3
+    },
+    {
+      "fascia": "25-44",
+      "popolazione": 13200000,
+      "percentuale": 22.4,
+      "patologie_croniche_media": 0.5
+    },
+    {
+      "fascia": "45-64",
+      "popolazione": 17500000,
+      "percentuale": 29.7,
+      "patologie_croniche_media": 1.2
+    },
+    {
+      "fascia": "65-74",
+      "popolazione": 7200000,
+      "percentuale": 12.2,
+      "patologie_croniche_media": 2.3
+    },
+    {
+      "fascia": "75+",
+      "popolazione": 7800000,
+      "percentuale": 13.2,
+      "patologie_croniche_media": 3.5
+    }
+  ],
+  "per_genere": {
+    "maschi": {
+      "popolazione": 28800000,
+      "percentuale": 48.8
+    },
+    "femmine": {
+      "popolazione": 30200000,
+      "percentuale": 51.2
+    }
+  },
+  "multimorbidita": {
+    "descrizione": "Persone con 3+ patologie croniche",
+    "over_65": {
+      "totale": 7000000,
+      "percentuale_over65": 46.7,
+      "fonte": "ISTAT Report Anziani 2019"
+    },
+    "distribuzione_n_patologie": {
+      "0": {
+        "percentuale": 35,
+        "descrizione": "Nessuna patologia cronica"
+      },
+      "1": {
+        "percentuale": 25,
+        "descrizione": "Una patologia cronica"
+      },
+      "2": {
+        "percentuale": 18,
+        "descrizione": "Due patologie croniche"
+      },
+      "3+": {
+        "percentuale": 22,
+        "descrizione": "Tre o più patologie croniche (multimorbidità)"
+      }
+    }
+  },
+  "patologie_croniche_prevalenti": [
+    {
+      "patologia": "Ipertensione",
+      "prevalenza_percentuale": 17.4,
+      "popolazione_affetta": 10270000
+    },
+    {
+      "patologia": "Artrosi/artrite",
+      "prevalenza_percentuale": 16.1,
+      "popolazione_affetta": 9500000
+    },
+    {
+      "patologia": "Malattie allergiche",
+      "prevalenza_percentuale": 10.7,
+      "popolazione_affetta": 6310000
+    },
+    {
+      "patologia": "Osteoporosi",
+      "prevalenza_percentuale": 8.1,
+      "popolazione_affetta": 4780000
+    },
+    {
+      "patologia": "Diabete",
+      "prevalenza_percentuale": 5.8,
+      "popolazione_affetta": 3420000
+    },
+    {
+      "patologia": "Bronchite cronica/BPCO",
+      "prevalenza_percentuale": 5.6,
+      "popolazione_affetta": 3300000
+    },
+    {
+      "patologia": "Malattie cardiache",
+      "prevalenza_percentuale": 4.4,
+      "popolazione_affetta": 2600000
+    },
+    {
+      "patologia": "Disturbi nervosi",
+      "prevalenza_percentuale": 4.2,
+      "popolazione_affetta": 2480000
+    },
+    {
+      "patologia": "Ulcera gastrica/duodenale",
+      "prevalenza_percentuale": 2.8,
+      "popolazione_affetta": 1650000
+    },
+    {
+      "patologia": "Tumore",
+      "prevalenza_percentuale": 2.7,
+      "popolazione_affetta": 1590000
+    }
+  ]
+}

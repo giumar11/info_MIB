@@ -1,0 +1,120 @@
+{
+  "indicatori_hfa_rilevanti": {},
+  "gruppi_tematici": {
+    "Gruppo 5": "Malattie croniche e infettive",
+    "Gruppo 6": "Limiti funzionali e dipendenze",
+    "Gruppo 7": "Condizioni di salute e speranza di vita",
+    "Gruppo 8": "Assistenza sanitaria"
+  },
+  "indicatori_chiave": {
+    "diabete": "Persone con diabete",
+    "ipertensione": "Persone con ipertensione",
+    "cardiopatia": "Persone con malattie cardiache",
+    "bronchite_cronica": "Persone con bronchite cronica/BPCO",
+    "artrosi": "Persone con artrosi/artrite",
+    "osteoporosi": "Persone con osteoporosi",
+    "tumore": "Persone con tumore",
+    "alzheimer": "Persone con Alzheimer/demenza",
+    "visite_specialistiche": "Visite mediche specialistiche",
+    "accertamenti_diagnostici": "Accertamenti diagnostici",
+    "ricoveri_acuti": "Ricoveri per acuti",
+    "ricoveri_riabilitazione": "Ricoveri riabilitazione",
+    "giornate_degenza": "Giornate di degenza"
+  },
+  "patologie_multi_specialistiche": {
+    "oncologiche": {
+      "descrizione": "Tumori e neoplasie",
+      "specialisti_tipici": [
+        "Oncologo",
+        "Chirurgo",
+        "Radioterapista",
+        "Anatomo-patologo",
+        "Radiologo"
+      ],
+      "n_specialisti_medio": 5,
+      "fonte": "PDTA oncologici regionali, Rapporto SDO"
+    },
+    "diabete_complicato": {
+      "descrizione": "Diabete con complicanze",
+      "specialisti_tipici": [
+        "Diabetologo",
+        "Cardiologo",
+        "Nefrologo",
+        "Oculista",
+        "Neurologo",
+        "Podologo"
+      ],
+      "n_specialisti_medio": 4,
+      "fonte": "Standard AMD-SID, PASSI"
+    },
+    "malattie_rare": {
+      "descrizione": "Malattie rare (Orphanet)",
+      "specialisti_tipici": [
+        "Centro di riferimento",
+        "Genetista",
+        "Specialisti d'organo multipli"
+      ],
+      "n_specialisti_medio": 6,
+      "fonte": "Orphadata, Registro Nazionale Malattie Rare"
+    },
+    "cardiopatie_complesse": {
+      "descrizione": "Cardiopatie con comorbidità",
+      "specialisti_tipici": [
+        "Cardiologo",
+        "Cardiochirurgo",
+        "Nefrologo",
+        "Pneumologo"
+      ],
+      "n_specialisti_medio": 4,
+      "fonte": "Rapporto SDO, PASSI"
+    },
+    "malattie_autoimmuni": {
+      "descrizione": "Malattie autoimmuni sistemiche",
+      "specialisti_tipici": [
+        "Reumatologo",
+        "Immunologo",
+        "Dermatologo",
+        "Nefrologo",
+        "Pneumologo"
+      ],
+      "n_specialisti_medio": 5,
+      "fonte": "ISTAT HFA, Registro malattie autoimmuni"
+    },
+    "malattie_neurologiche": {
+      "descrizione": "Malattie neurodegenerative",
+      "specialisti_tipici": [
+        "Neurologo",
+        "Geriatra",
+        "Fisiatra",
+        "Psichiatra",
+        "Logopedista"
+      ],
+      "n_specialisti_medio": 4,
+      "fonte": "PASSI d'Argento, ISTAT"
+    },
+    "multimorbidita_anziani": {
+      "descrizione": "Anziani con 3+ patologie croniche",
+      "specialisti_tipici": [
+        "MMG",
+        "Geriatra",
+        "Cardiologo",
+        "Diabetologo",
+        "Nefrologo",
+        "Fisiatra"
+      ],
+      "n_specialisti_medio": 5,
+      "fonte": "ISTAT Report Anziani, PASSI d'Argento"
+    },
+    "malattie_respiratorie_croniche": {
+      "descrizione": "BPCO e insufficienza respiratoria",
+      "specialisti_tipici": [
+        "Pneumologo",
+        "Cardiologo",
+        "Fisiatra",
+        "Nutrizionista"
+      ],
+      "n_specialisti_medio": 3,
+      "fonte": "ISTAT HFA, Rapporto SDO"
+    }
+  }
+}
