@@ -80,6 +80,57 @@ PDTA_DOWNLOADS = {
                 "year": 2023
             },
         ],
+        "societa_scientifiche": [
+            {
+                "id": "NAZ_CSR_001",
+                "filename": "PDTA_MICI_Accordo_Stato_Regioni_2015.pdf",
+                "url": "https://www.fnopi.it/archivio_news/attualita/1586/ACCORDO%20MICI.pdf",
+                "title": "PDTA Malattie Infiammatorie Croniche Intestinali (MICI)",
+                "year": 2015
+            },
+            {
+                "id": "NAZ_CSR_002",
+                "filename": "PDTA_Malattie_Reumatiche_2015.pdf",
+                "url": "https://www.sifoweb.it/images/pdf/attivita/attivita-scientifica/aree_scientifiche/Contin_assistenziale_H-T/documenti/PDTA_nelle_Malattie_REUMATICHE_INFIAMMATORIE_E_AUTOIMMUNI.pdf",
+                "title": "PDTA Malattie Reumatiche Infiammatorie e Autoimmuni",
+                "year": 2015
+            },
+            {
+                "id": "NAZ_CSR_004",
+                "filename": "Piano_Nazionale_Malattie_Rare_2023_2026.pdf",
+                "url": "https://www.malattierare.gov.it/normativa/download/792/PIANONAZIONALEMALATTIERARE2023(1).pdf",
+                "title": "Piano Nazionale Malattie Rare 2023-2026",
+                "year": 2023
+            },
+            {
+                "id": "NAZ_AIOM_002",
+                "filename": "AIOM_Ruolo_Oncologo_PDTA_2024.pdf",
+                "url": "https://www.aiom.it/wp-content/uploads/2024/11/2024_AIOM_RUOLO-COMPETENZE-ONCOLOGO-PDTA.pdf",
+                "title": "Ruolo e competenze dell'oncologo nei PDTA (AIOM)",
+                "year": 2024
+            },
+            {
+                "id": "NAZ_AMD_001",
+                "filename": "PDTA_Diabete_tipo1_AMD_SID_2019.pdf",
+                "url": "https://aemmedi.it/wp-content/uploads/2019/03/PDTA-Diabete-tipo-1.pdf",
+                "title": "PDTA Diabete tipo 1 (AMD/SID/SIEDP)",
+                "year": 2019
+            },
+            {
+                "id": "NAZ_SID_001",
+                "filename": "LG_Terapia_Diabete_tipo2_SID_AMD_2022.pdf",
+                "url": "https://www.siditalia.it/pdf/LG_379_diabete_ed2022_feb2023.pdf",
+                "title": "Linea Guida terapia diabete tipo 2 (SID/AMD)",
+                "year": 2022
+            },
+            {
+                "id": "NAZ_SID_002",
+                "filename": "LG_Terapia_Diabete_tipo1_SID_AMD_2024.pdf",
+                "url": "https://www.siditalia.it/pdf/LG-196-La-terapia-del-diabete-di-tipo-1-Ed-2024.pdf",
+                "title": "Linea Guida terapia diabete tipo 1 (SID/AMD, Ed. 2024)",
+                "year": 2024
+            },
+        ],
     },
     "regionale": {
         "lombardia": [
