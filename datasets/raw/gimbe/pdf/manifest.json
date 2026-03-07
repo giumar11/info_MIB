@@ -1,0 +1,112 @@
+{
+  "description": "GIMBE Report PDF collection manifest",
+  "download_date": "2026-03-07",
+  "note": "Run 'python3 scripts/download_gimbe_pdfs.py' to download missing PDFs",
+  "total": 12,
+  "downloaded": 2,
+  "pending": 10,
+  "files": [
+    {
+      "filename": "4_Rapporto_GIMBE_SSN_2019.pdf",
+      "category": "rapporto_annuale",
+      "edition": "4° Rapporto",
+      "year": 2019,
+      "url": "https://www.salviamo-ssn.it/var/contenuti/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "5_Rapporto_GIMBE_SSN_2022.pdf",
+      "category": "rapporto_annuale",
+      "edition": "5° Rapporto",
+      "year": 2022,
+      "url": "https://www.quotidianosanita.it/allegati/allegato1665475004.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "6_Rapporto_GIMBE_SSN_2023.pdf",
+      "category": "rapporto_annuale",
+      "edition": "6° Rapporto",
+      "year": 2023,
+      "url": "https://www.quotidianosanita.it/allegati/allegato1696924905.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "7_Rapporto_GIMBE_SSN_2024.pdf",
+      "category": "rapporto_annuale",
+      "edition": "7° Rapporto",
+      "year": 2024,
+      "url": "https://www.camera.it/temiap/2024/10/09/OCD177-7603.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "8_Rapporto_GIMBE_SSN_2025.pdf",
+      "category": "rapporto_annuale",
+      "edition": "8° Rapporto",
+      "year": 2025,
+      "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+      "size_bytes": 30314496,
+      "size_human": "30.3 MB",
+      "sha256": "6bbb2c4026c6d72a",
+      "status": "ok"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato.pdf",
+      "category": "osservatorio",
+      "edition": "1/2023",
+      "year": 2023,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2023.04_Filiera_healthcare.pdf",
+      "category": "osservatorio",
+      "edition": "4/2023",
+      "year": 2023,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+      "category": "osservatorio",
+      "edition": "1/2024",
+      "year": 2024,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata.pdf",
+      "category": "osservatorio",
+      "edition": "2/2024",
+      "year": 2024,
+      "url": "https://documenti.camera.it/leg19/documentiAcquisiti/COM01/Audizioni/leg19.com01.Audizioni.Memoria.PUBBLICO.ideGes.34026.26-03-2024-11-34-12.951.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2024.03_Scuole_promuovono_salute.pdf",
+      "category": "osservatorio",
+      "edition": "3/2024",
+      "year": 2024,
+      "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+      "category": "osservatorio",
+      "edition": "1/2025",
+      "year": 2025,
+      "url": "https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+      "status": "pending"
+    },
+    {
+      "filename": "Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+      "category": "osservatorio",
+      "edition": "2/2025",
+      "year": 2025,
+      "url": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+      "size_bytes": 3720192,
+      "size_human": "3.6 MB",
+      "sha256": "13ab4c832980a8dd",
+      "status": "ok"
+    }
+  ]
+}
