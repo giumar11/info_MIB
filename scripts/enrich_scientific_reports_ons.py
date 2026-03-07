@@ -6,6 +6,7 @@ Script di arricchimento del repository con:
 3. Rapporti di società scientifiche europee (ESC, ESMO, ERS, EASL, ERA, EULAR, ecc.)
 4. Report OASI - CERGAS Bocconi (Osservatorio sulle Aziende e sul Sistema sanitario Italiano)
 5. Report AIFA (Agenzia Italiana del Farmaco) - OsMed, Vaccini, Sperimentazione Clinica, Registri
+6. Report GIMBE completi - Rapporti SSN, Osservatorio, Mobilità, Liste Attesa, PNRR, COVID
 
 Output:
 - datasets/raw/ons/ - Dati grezzi ONS strutturati
@@ -13,10 +14,12 @@ Output:
 - datasets/raw/societa_scientifiche/europee/ - Report società europee
 - datasets/raw/oasi_bocconi/ - Report OASI CERGAS Bocconi
 - datasets/raw/aifa/ - Report AIFA completi
+- datasets/raw/gimbe/ - Report GIMBE completi
 - datasets/processed/ons_screening_italia.json/csv
 - datasets/processed/rapporti_societa_scientifiche.json/csv
 - datasets/processed/oasi_bocconi_sintesi.json
 - datasets/processed/aifa_report_sintesi.json
+- datasets/processed/gimbe_report_sintesi.json
 """
 
 import os
@@ -34,11 +37,12 @@ SOCIETA_IT_DIR = os.path.join(RAW_DIR, 'societa_scientifiche', 'italiane')
 SOCIETA_EU_DIR = os.path.join(RAW_DIR, 'societa_scientifiche', 'europee')
 OASI_RAW_DIR = os.path.join(RAW_DIR, 'oasi_bocconi')
 AIFA_RAW_DIR = os.path.join(RAW_DIR, 'aifa')
+GIMBE_RAW_DIR = os.path.join(RAW_DIR, 'gimbe')
 
 
 def create_directories():
     """Crea le directory necessarie."""
-    for d in [ONS_RAW_DIR, SOCIETA_IT_DIR, SOCIETA_EU_DIR, OASI_RAW_DIR, AIFA_RAW_DIR, PROCESSED_DIR]:
+    for d in [ONS_RAW_DIR, SOCIETA_IT_DIR, SOCIETA_EU_DIR, OASI_RAW_DIR, AIFA_RAW_DIR, GIMBE_RAW_DIR, PROCESSED_DIR]:
         os.makedirs(d, exist_ok=True)
         print(f"  Directory: {os.path.relpath(d, BASE_DIR)}")
 
@@ -1136,7 +1140,487 @@ def build_societa_scientifiche_europee():
 
 
 # =============================================================================
-# SEZIONE 4: REPORT OASI - CERGAS BOCCONI
+# SEZIONE 4: REPORT GIMBE - FONDAZIONE GIMBE
+# =============================================================================
+
+def build_gimbe_reports():
+    """
+    Costruisce il dataset completo di tutti i report e le pubblicazioni
+    della Fondazione GIMBE (Gruppo Italiano per la Medicina Basata sulle Evidenze).
+    Include: Rapporti annuali SSN, Report Osservatorio, monitoraggio COVID-19,
+    analisi liste d'attesa, mobilità sanitaria, autonomia differenziata, PNRR M6,
+    sanità digitale/FSE, forza lavoro, sprechi sanitari.
+    """
+
+    gimbe_data = {
+        "fonte": "Fondazione GIMBE",
+        "nome_completo": "Gruppo Italiano per la Medicina Basata sulle Evidenze",
+        "presidente": "Nino Cartabellotta",
+        "anno_fondazione": 1996,
+        "natura": "Organizzazione indipendente senza scopo di lucro",
+        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "descrizione": (
+            "Fondazione GIMBE promuove l'integrazione delle migliori evidenze scientifiche "
+            "in tutte le decisioni che riguardano la salute. Dal 2016 conduce la campagna "
+            "#SalviamoSSN con rapporti annuali presentati al Parlamento italiano."
+        ),
+
+        "url": {
+            "sito_principale": "https://www.gimbe.org/",
+            "salviamo_ssn": "https://salviamo-ssn.it/",
+            "covid_monitoring": "https://coronavirus.gimbe.org/",
+            "evidence_journal": "https://www.evidence.it/",
+            "education": "https://www.gimbeducation.it/",
+            "report_osservatorio": "https://www.gimbe.org/pagine/290/it/report-osservatorio-gimbe",
+            "conferenza": "https://www.conferenzagimbe.it/",
+            "carta_gimbe": "https://salviamo-ssn.it/salviamo-ssn/carta.it-IT.html"
+        },
+
+        # === RAPPORTI ANNUALI SUL SSN ===
+        "rapporti_annuali_ssn": [
+            {
+                "edizione": "1° Rapporto",
+                "titolo": "Rapporto sulla sostenibilità del SSN 2016-2025",
+                "anno": 2016,
+                "data_presentazione": "2016-06-07",
+                "sede": "Biblioteca del Senato 'Giovanni Spadolini'",
+                "url": "https://www.salviamo-ssn.it/rapporto/1-rapporto-gimbe.it-IT.html",
+                "dati_chiave": {
+                    "fabbisogno_sanitario_stimato_2025_miliardi": 200,
+                    "sprechi_recuperabili_anno_miliardi": 25,
+                    "prospettiva_temporale": "2016-2025"
+                }
+            },
+            {
+                "edizione": "2° Rapporto",
+                "titolo": "2° Rapporto GIMBE sulla sostenibilità del SSN",
+                "anno": 2017,
+                "data_presentazione": "2017-06-06",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://www.salviamo-ssn.it/attivita/rapporto/2-rapporto-gimbe.it-IT.html",
+                "dati_chiave": {
+                    "fabbisogno_sanitario_stimato_2025_miliardi": 210
+                }
+            },
+            {
+                "edizione": "3° Rapporto",
+                "titolo": "3° Rapporto GIMBE sulla sostenibilità del SSN",
+                "anno": 2018,
+                "data_presentazione": "2018-06-05",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://test.salviamo-ssn.it/rapporto/3-rapporto-gimbe.it-IT.html",
+                "dati_chiave": {
+                    "sprechi_totali_2017_miliardi": 21.59,
+                    "sprechi_percentuale_spesa_sanitaria": 19,
+                    "sprechi_dettaglio": {
+                        "sovra_utilizzo_miliardi": 6.48,
+                        "frodi_abusi_miliardi": 4.75,
+                        "costi_acquisto_eccessivi_miliardi": 2.16,
+                        "sotto_utilizzo_miliardi": 3.24,
+                        "complessita_amministrativa_miliardi": 2.37,
+                        "inadeguato_coordinamento_miliardi": 2.59
+                    },
+                    "incremento_nominale_fsn_2013_2018_miliardi": 7,
+                    "incremento_reale_netto_miliardi": "meno di 6"
+                }
+            },
+            {
+                "edizione": "4° Rapporto",
+                "titolo": "4° Rapporto GIMBE sulla sostenibilità del SSN",
+                "anno": 2019,
+                "data_presentazione": "2019-06-11",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://salviamo-ssn.it/attivita/rapporto/4-rapporto-gimbe.it-IT.html",
+                "url_pdf": "https://www.salviamo-ssn.it/var/contenuti/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+                "dati_chiave": {
+                    "spesa_no_value_percentuale": 9,
+                    "spesa_no_value_miliardi": 14.1,
+                    "spesa_low_negative_value_percentuale": 16,
+                    "spesa_low_negative_value_miliardi": 24.6,
+                    "spesa_totale_pil_percentuale": 8.9,
+                    "media_ocse_pil_percentuale": 8.8,
+                    "piano_rilancio_punti": 12
+                }
+            },
+            {
+                "edizione": "5° Rapporto",
+                "titolo": "5° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+                "anno": 2022,
+                "data_presentazione": "2022-10-11",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://www.salviamo-ssn.it/attivita/rapporto/5-rapporto-gimbe.it-IT.html",
+                "url_pdf": "https://www.quotidianosanita.it/allegati/allegato1665475004.pdf",
+                "dati_chiave": {
+                    "sfide_politiche": [
+                        "Approccio One Health",
+                        "Finanziamento pubblico",
+                        "Aggiornamento/monitoraggio/esigibilità LEA",
+                        "Governance Stato-Regioni"
+                    ],
+                    "nota": "Rischio concreto di perdere un modello sanitario pubblico, equo e universale"
+                }
+            },
+            {
+                "edizione": "6° Rapporto",
+                "titolo": "6° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+                "anno": 2023,
+                "data_presentazione": "2023-10-10",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://salviamo-ssn.it/attivita/rapporto/6-rapporto-gimbe.it-IT.html",
+                "url_pdf": "https://www.quotidianosanita.it/allegati/allegato1696924905.pdf",
+                "dati_chiave": {
+                    "principi_traditi": "Universalità, uguaglianza, equità",
+                    "piano_rilancio_punti": 14
+                }
+            },
+            {
+                "edizione": "7° Rapporto",
+                "titolo": "7° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+                "anno": 2024,
+                "data_presentazione": "2024-10-08",
+                "sede": "Sala Capitolare del Senato",
+                "url": "https://salviamo-ssn.it/attivita/rapporto/7-rapporto-gimbe.it-IT.html",
+                "url_pdf": "https://www.camera.it/temiap/2024/10/09/OCD177-7603.pdf",
+                "nota": "Introdotto da un messaggio del Presidente Mattarella",
+                "dati_chiave": {
+                    "rinuncia_cure_milioni_persone": 4.5,
+                    "rinuncia_motivi_economici_milioni": 2.5,
+                    "gap_spesa_pro_capite_vs_ocse_euro": 889,
+                    "gap_totale_vs_ocse_miliardi": 52.4,
+                    "incremento_spesa_2023_miliardi": 4.286,
+                    "incremento_a_carico_famiglie_miliardi": 3.806,
+                    "incremento_fondi_assicurazioni_milioni": 553,
+                    "crollo_spesa_prevenzione_percentuale": -18.6,
+                    "regioni_adempimento_lea_2022": 13,
+                    "fsn_incremento_2010_2024_miliardi": 28.4,
+                    "fsn_perso_pre_pandemia_2010_2019_miliardi": 37,
+                    "piano_rilancio_punti": 13
+                }
+            },
+            {
+                "edizione": "8° Rapporto",
+                "titolo": "8° Rapporto GIMBE sul SSN - La lenta agonia del Servizio Sanitario Nazionale",
+                "anno": 2025,
+                "data_presentazione": "2025-10-08",
+                "sede": "Sala della Regina, Camera dei Deputati",
+                "url": "https://www.salviamo-ssn.it/attivita/rapporto/8-rapporto-gimbe.it-IT.html",
+                "url_pdf": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+                "dati_chiave": {
+                    "gap_spesa_pro_capite_vs_ocse_euro": 727,
+                    "gap_totale_vs_ocse_miliardi": 42.9,
+                    "definanziamento_ultimi_3_anni_miliardi": 13.1,
+                    "spesa_famiglie_miliardi": 41.3,
+                    "rinuncia_cure_percentuale": "1 italiano su 10",
+                    "fsn_pil_2025_2026_percentuale": 6.1,
+                    "fsn_pil_2028_percentuale": 5.8,
+                    "gap_cumulativo_2025_2028_miliardi": 40.4,
+                    "medici_fuori_ssn": 93_000,
+                    "infermieri_x1000_abitanti": 6.5,
+                    "infermieri_x1000_media_ocse": 9.5,
+                    "strutture_sanitarie_totali": 30_000,
+                    "strutture_private_accreditate_percentuale": 58,
+                    "spesa_famiglie_privato_crescita_2016_2023_percentuale": 137,
+                    "case_comunita_pianificate": 1_723,
+                    "case_comunita_attive_con_servizi": 218,
+                    "case_comunita_attive_percentuale": 12.7,
+                    "case_comunita_con_personale_completo": 46,
+                    "case_comunita_con_personale_percentuale": 4.4,
+                    "ospedali_comunita_pianificati": 592,
+                    "ospedali_comunita_attivi": 153,
+                    "ospedali_comunita_attivi_percentuale": 26,
+                    "piano_rilancio_punti": 15
+                }
+            }
+        ],
+
+        # === REPORT OSSERVATORIO GIMBE ===
+        "report_osservatorio": [
+            {
+                "numero": "1/2023",
+                "titolo": "Regionalismo differenziato in sanità",
+                "data": "2023-01",
+                "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+                "tema": "Autonomia differenziata"
+            },
+            {
+                "numero": "4/2023",
+                "titolo": "Il ruolo della filiera healthcare nel SSN",
+                "data": "2023-11",
+                "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+                "tema": "Filiera sanitaria"
+            },
+            {
+                "numero": "1/2024",
+                "titolo": "La mobilità sanitaria interregionale nel 2021",
+                "data": "2024-01-16",
+                "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+                "tema": "Mobilità sanitaria"
+            },
+            {
+                "numero": "2/2024",
+                "titolo": "L'autonomia differenziata in sanità",
+                "data": "2024-03-21",
+                "url_pdf": "https://documenti.camera.it/leg19/documentiAcquisiti/COM01/Audizioni/leg19.com01.Audizioni.Memoria.PUBBLICO.ideGes.34026.26-03-2024-11-34-12.951.pdf",
+                "tema": "Autonomia differenziata"
+            },
+            {
+                "numero": "3/2024",
+                "titolo": "Scuole che Promuovono Salute",
+                "data": "2024-05-29",
+                "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+                "tema": "Promozione della salute"
+            },
+            {
+                "numero": "1/2025",
+                "titolo": "La mobilità sanitaria interregionale nel 2022",
+                "data": "2025-02-11",
+                "url_pdf": "https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+                "tema": "Mobilità sanitaria",
+                "dati_chiave": {
+                    "mobilita_record_miliardi": 5.04,
+                    "top_attrazione": ["Lombardia", "Emilia-Romagna", "Veneto"],
+                    "peggior_saldo_negativo": {
+                        "Calabria": -326.9,
+                        "Campania": -306.3,
+                        "Puglia": -253.2
+                    },
+                    "saldo_negativo_cumulativo_10_anni_miliardi": 14
+                }
+            },
+            {
+                "numero": "2/2025",
+                "titolo": "La spesa sanitaria privata in Italia nel 2023",
+                "data": "2025-02",
+                "url_pdf": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+                "tema": "Spesa sanitaria privata",
+                "dati_chiave": {
+                    "spesa_sanitaria_totale_miliardi": 176.1,
+                    "pubblica_percentuale": 74,
+                    "out_of_pocket_percentuale": 23,
+                    "intermediata_percentuale": 3,
+                    "out_of_pocket_miliardi": "oltre 40",
+                    "spesa_famiglie_basso_valore_percentuale": 40
+                }
+            }
+        ],
+
+        # === MOBILITA' SANITARIA ===
+        "mobilita_sanitaria": {
+            "descrizione": "Report annuali sulla migrazione sanitaria interregionale",
+            "dati_2023": {
+                "mobilita_record_miliardi": 5.15,
+                "ricoveri_fuori_regione_privato_percentuale": 54.5,
+                "ricoveri_fuori_regione_privato_miliardi": 1.966,
+                "top_saldo_positivo": {
+                    "Lombardia_milioni": 645.8,
+                    "Emilia_Romagna_milioni": 564.9,
+                    "Veneto_milioni": 212.1
+                }
+            }
+        },
+
+        # === LISTE DI ATTESA ===
+        "liste_attesa": {
+            "descrizione": "Monitoraggio periodico delle liste di attesa e del DL 73/2024",
+            "dati_2024": {
+                "rinuncia_prestazioni_milioni": 5.8,
+                "rinuncia_per_tempi_attesa_milioni": 4.0,
+                "variazione_vs_2023_percentuale": 51,
+                "rinuncia_motivi_economici_milioni": 3.1,
+                "decreti_attuativi_previsti": 6,
+                "decreti_attuativi_approvati_gen_2025": 1,
+                "decreti_attuativi_pubblicati_giu_2025": 3,
+                "piattaforma_pnla_servizi_monitorati_milioni": 57.8,
+                "nota": "A 18 mesi dalla legge, la piattaforma pubblica non offre dati disaggregati regionali"
+            }
+        },
+
+        # === FORZA LAVORO SANITARIA ===
+        "forza_lavoro": {
+            "descrizione": "Analisi sulla crisi del personale del SSN",
+            "medici": {
+                "totale_italia": 315_720,
+                "x1000_abitanti": 5.4,
+                "ranking_ocse": "2°",
+                "fuori_ssn": 93_000,
+                "fuori_ssn_percentuale": 29.4,
+                "dimissioni_volontarie_2022": 4_349,
+                "dimissioni_volontarie_2016": 1_564
+            },
+            "mmg": {
+                "mancanti_gen_2024": 5_575,
+                "calo_2019_2023": -4_749,
+                "calo_percentuale": -12.8,
+                "pensionamento_entro_2027": 7_300
+            },
+            "infermieri": {
+                "x1000_abitanti_italia": 6.5,
+                "x1000_abitanti_ocse": 9.5,
+                "gap_retributivo_vs_europa_percentuale": 19,
+                "domande_sotto_posti_disponibili": True,
+                "dimissioni_volontarie_2022": 6_651,
+                "infermieri_aggiuntivi_dm77": "19.450-26.850"
+            },
+            "personale_generale": {
+                "spending_review_2012_2024_miliardi_sottratti": 33,
+                "emigrazione_2000_2022": 180_000
+            }
+        },
+
+        # === MONITORAGGIO PNRR MISSIONE 6 ===
+        "pnrr_m6": {
+            "descrizione": "Monitoraggio indipendente degli investimenti PNRR in sanità",
+            "stanziamento_miliardi": 15.63,
+            "riduzioni_quantitative": {
+                "case_comunita_ridotte": -312,
+                "cot_ridotte": -120,
+                "ospedali_comunita_ridotti": -93,
+                "posti_terapia_intensiva_ridotti": -808,
+                "posti_semi_intensiva_ridotti": -995
+            },
+            "stato_spesa_nov_2023": {
+                "risorse_assegnate_percentuale": 83.6,
+                "risorse_spese_percentuale": 1
+            },
+            "case_comunita_mar_2025_operative_percentuale": 35,
+            "telemedicina_dic_2025": {
+                "pazienti_target": 300_000,
+                "pazienti_raggiunti": 467_479,
+                "fse_mmg_alimentazione_percentuale": 95.2,
+                "fse_mmg_target_percentuale": 85
+            }
+        },
+
+        # === MONITORAGGIO COVID-19 ===
+        "covid19_monitoring": {
+            "descrizione": "Monitoraggio indipendente dell'epidemia COVID-19 in Italia",
+            "url": "https://coronavirus.gimbe.org/",
+            "periodo": "Febbraio 2020 - Febbraio 2024",
+            "report_settimanali_totali": "oltre 200",
+            "sezioni": [
+                "Monitoraggio epidemia nazionale",
+                "Dati regionali/provinciali",
+                "Monitoraggio campagna vaccinale (da gennaio 2021)",
+                "Revisioni delle evidenze scientifiche",
+                "Advocacy e trasparenza",
+                "Impatto COVID-19 sull'assistenza ordinaria"
+            ],
+            "finanziamento": "Interamente autofinanziato",
+            "stato": "Sospeso da febbraio 2024"
+        },
+
+        # === SANITA' DIGITALE / FSE ===
+        "sanita_digitale": {
+            "descrizione": "Monitoraggio del Fascicolo Sanitario Elettronico e telemedicina",
+            "fse_consenso_cittadini_percentuale": 42,
+            "fse_consenso_range": {"max": "92% (Emilia-Romagna)", "min": "1% (Abruzzo, Calabria, Campania)"},
+            "tipologie_documenti_disponibili_tutte_regioni": 4,
+            "tipologie_documenti_target": 16,
+            "tipologie_nazionali_disponibili": 6,
+            "attivazione_servizi_digitali_range": {"max": "56% (Toscana)", "min": "7% (Calabria)"},
+            "mmg_accesso_fse_percentuale": 95,
+            "specialisti_abilitati_percentuale": 72
+        },
+
+        # === SPRECHI SANITARI ===
+        "sprechi_sanitari": {
+            "descrizione": "Tassonomia GIMBE degli sprechi in sanità",
+            "stima_2017_miliardi": 21.59,
+            "percentuale_spesa": 19,
+            "categorie": [
+                "Sovra-utilizzo (overuse)",
+                "Frodi e abusi",
+                "Costi di acquisto eccessivi",
+                "Sotto-utilizzo (underuse)",
+                "Complessità amministrativa",
+                "Inadeguato coordinamento dell'assistenza"
+            ],
+            "obiettivo": "Recuperare almeno 1 euro ogni 2 sprecati su 10 spesi",
+            "piano_nazionale_sprechi": "Mai varato in Italia"
+        },
+
+        # === ALTRE PUBBLICAZIONI ===
+        "altre_pubblicazioni": [
+            {
+                "titolo": "Evidence - Rivista open access",
+                "url": "https://www.evidence.it/",
+                "tipo": "Rivista scientifica",
+                "descrizione": "Traduzioni italiane di letteratura EBM, ricerche GIMBE, rapporti annuali in formato journal"
+            },
+            {
+                "titolo": "Carta GIMBE per la Tutela della Salute",
+                "url": "https://salviamo-ssn.it/salviamo-ssn/carta.it-IT.html",
+                "tipo": "Documento programmatico",
+                "descrizione": "Codifica principi di disinvestimento/riallocazione, sanità parsimoniosa, responsabilità del cittadino"
+            },
+            {
+                "titolo": "Conferenza Nazionale GIMBE",
+                "url": "https://www.conferenzagimbe.it/",
+                "tipo": "Conferenza annuale",
+                "edizioni": 16,
+                "periodo": "2006-2023",
+                "stato": "In pausa dal 2024 - risorse ridirezionate alla campagna #SalviamoSSN"
+            }
+        ]
+    }
+
+    return gimbe_data
+
+
+def create_gimbe_readme():
+    """Crea README per la cartella GIMBE."""
+    return """# Report Fondazione GIMBE - Catalogo Completo
+
+## Fonte
+- **Istituzione**: Fondazione GIMBE (Gruppo Italiano per la Medicina Basata sulle Evidenze)
+- **Presidente**: Nino Cartabellotta
+- **Anno fondazione**: 1996
+- **URL Principale**: https://www.gimbe.org/
+- **Campagna #SalviamoSSN**: https://salviamo-ssn.it/
+
+## Pubblicazioni principali
+
+### 1. Rapporto GIMBE sul SSN (annuale, dal 2016)
+8 edizioni (2016-2025), presentate al Parlamento italiano ogni ottobre.
+- 1° (2016), 2° (2017), 3° (2018), 4° (2019): Focus sostenibilità
+- 5° (2022), 6° (2023), 7° (2024), 8° (2025): Focus crisi del SSN
+- **8° Rapporto (2025)**: "La lenta agonia del SSN" - gap pro-capite 727€ vs OCSE
+
+### 2. Report Osservatorio GIMBE (~4/anno)
+Report tematici numerati per anno (es. 1/2025, 2/2025).
+Temi: mobilità sanitaria, spesa privata, autonomia differenziata, scuole e salute.
+- URL: https://www.gimbe.org/pagine/290/it/report-osservatorio-gimbe
+
+### 3. Monitoraggio COVID-19 (2020-2024)
+Oltre 200 report settimanali, monitoraggio vaccinale, advocacy trasparenza.
+- URL: https://coronavirus.gimbe.org/
+
+### 4. Analisi tematiche ricorrenti
+- **Liste di attesa**: monitoraggio DL 73/2024 e piattaforma PNLA
+- **Mobilità sanitaria**: record 5.15 mld€ nel 2023
+- **Forza lavoro**: 93.000 medici fuori dal SSN, crisi infermieristica
+- **PNRR M6**: solo 12.7% Case della Comunità attive con servizi
+- **Sanità digitale/FSE**: solo 42% cittadini con consenso FSE
+- **Sprechi**: 21.59 mld€ (19% della spesa) - tassonomia a 6 categorie
+- **Autonomia differenziata**: rischi per equità sanitaria
+
+### 5. Altre pubblicazioni
+- **Evidence** (rivista open access): https://www.evidence.it/
+- **Carta GIMBE**: documento programmatico per la tutela della salute
+- **Conferenza Nazionale GIMBE**: 16 edizioni (2006-2023)
+- **GIMBE Education**: corsi ECM su EBP, clinical governance
+
+## File nel repository
+- `gimbe_report_completo.json` - Dataset strutturato completo
+- `8_rapporto_gimbe_ssn.pdf` - PDF 8° Rapporto (già presente)
+
+## Licenza
+Dati pubblici - Fondazione GIMBE / CC-BY-NC
+"""
+
+
+# =============================================================================
+# SEZIONE 5: REPORT OASI - CERGAS BOCCONI
 # =============================================================================
 
 def build_oasi_bocconi():
@@ -1838,15 +2322,15 @@ Dati pubblici raccolti da fonti istituzionali e società scientifiche.
 
 def main():
     print("=" * 70)
-    print("ARRICCHIMENTO REPOSITORY - RAPPORTI SCIENTIFICI, ONS, OASI, AIFA")
+    print("ARRICCHIMENTO REPOSITORY - RAPPORTI SCIENTIFICI, ONS, OASI, AIFA, GIMBE")
     print("=" * 70)
 
     # 1. Crea directory
-    print("\n[1/8] Creazione directory...")
+    print("\n[1/9] Creazione directory...")
     create_directories()
 
     # 2. Genera dati ONS
-    print("\n[2/8] Generazione dati Osservatorio Nazionale Screening...")
+    print("\n[2/9] Generazione dati Osservatorio Nazionale Screening...")
     ons_data = build_ons_data()
     save_json(ons_data, os.path.join(ONS_RAW_DIR, 'ons_screening_completo.json'))
 
@@ -1857,12 +2341,12 @@ def main():
     print(f"  Salvato: {os.path.relpath(readme_ons_path, BASE_DIR)}")
 
     # 3. Genera dati società scientifiche italiane
-    print("\n[3/8] Generazione catalogo società scientifiche italiane...")
+    print("\n[3/9] Generazione catalogo società scientifiche italiane...")
     it_data = build_societa_scientifiche_italiane()
     save_json(it_data, os.path.join(SOCIETA_IT_DIR, 'rapporti_societa_italiane.json'))
 
     # 4. Genera dati società scientifiche europee
-    print("\n[4/8] Generazione catalogo società scientifiche europee...")
+    print("\n[4/9] Generazione catalogo società scientifiche europee...")
     eu_data = build_societa_scientifiche_europee()
     save_json(eu_data, os.path.join(SOCIETA_EU_DIR, 'rapporti_societa_europee.json'))
 
@@ -1872,8 +2356,19 @@ def main():
         f.write(create_societa_scientifiche_readme())
     print(f"  Salvato: {os.path.relpath(readme_soc_path, BASE_DIR)}")
 
-    # 5. Genera dati OASI Bocconi
-    print("\n[5/8] Generazione dati OASI - CERGAS Bocconi...")
+    # 5. Genera dati GIMBE
+    print("\n[5/9] Generazione dati Fondazione GIMBE...")
+    gimbe_data = build_gimbe_reports()
+    save_json(gimbe_data, os.path.join(GIMBE_RAW_DIR, 'gimbe_report_completo.json'))
+
+    # README GIMBE
+    readme_gimbe_path = os.path.join(GIMBE_RAW_DIR, 'README.md')
+    with open(readme_gimbe_path, 'w', encoding='utf-8') as f:
+        f.write(create_gimbe_readme())
+    print(f"  Salvato: {os.path.relpath(readme_gimbe_path, BASE_DIR)}")
+
+    # 6. Genera dati OASI Bocconi
+    print("\n[6/9] Generazione dati OASI - CERGAS Bocconi...")
     oasi_data = build_oasi_bocconi()
     save_json(oasi_data, os.path.join(OASI_RAW_DIR, 'oasi_bocconi_completo.json'))
 
@@ -1883,8 +2378,8 @@ def main():
         f.write(create_oasi_readme())
     print(f"  Salvato: {os.path.relpath(readme_oasi_path, BASE_DIR)}")
 
-    # 6. Genera dati AIFA
-    print("\n[6/8] Generazione dati AIFA...")
+    # 7. Genera dati AIFA
+    print("\n[7/9] Generazione dati AIFA...")
     aifa_data = build_aifa_reports()
     save_json(aifa_data, os.path.join(AIFA_RAW_DIR, 'aifa_report_completo.json'))
 
@@ -1894,8 +2389,8 @@ def main():
         f.write(create_aifa_readme())
     print(f"  Salvato: {os.path.relpath(readme_aifa_path, BASE_DIR)}")
 
-    # 7. Genera dataset processed
-    print("\n[7/8] Generazione dataset processati...")
+    # 8. Genera dataset processed
+    print("\n[8/9] Generazione dataset processati...")
 
     # CSV regionali screening
     save_csv_screening(
@@ -1967,8 +2462,32 @@ def main():
     }
     save_json(aifa_summary, os.path.join(PROCESSED_DIR, 'aifa_report_sintesi.json'))
 
-    # 8. Riepilogo
-    print("\n[8/8] Riepilogo finale...")
+    # JSON processato GIMBE
+    gimbe_summary = {
+        "fonte": gimbe_data['fonte'],
+        "url": gimbe_data['url'],
+        "rapporti_annuali_ssn": [
+            {
+                "edizione": r['edizione'],
+                "titolo": r['titolo'],
+                "anno": r['anno'],
+                "url": r.get('url', ''),
+                "dati_chiave": r.get('dati_chiave', {})
+            }
+            for r in gimbe_data['rapporti_annuali_ssn']
+        ],
+        "report_osservatorio": gimbe_data['report_osservatorio'],
+        "mobilita_sanitaria": gimbe_data['mobilita_sanitaria'],
+        "liste_attesa": gimbe_data['liste_attesa'],
+        "forza_lavoro": gimbe_data['forza_lavoro'],
+        "pnrr_m6": gimbe_data['pnrr_m6'],
+        "sprechi_sanitari": gimbe_data['sprechi_sanitari'],
+        "sanita_digitale": gimbe_data['sanita_digitale']
+    }
+    save_json(gimbe_summary, os.path.join(PROCESSED_DIR, 'gimbe_report_sintesi.json'))
+
+    # 9. Riepilogo
+    print("\n[9/9] Riepilogo finale...")
     print("=" * 70)
 
     n_it = len(it_data['societa'])
@@ -1998,6 +2517,15 @@ def main():
     print(f"  - {len(oasi_data['osservatori_correlati'])} osservatori correlati (OCPS, MASAN, OLTC)")
     print(f"  - Spesa pubblica Italia: {oasi_data['rapporti_annuali'][1]['dati_chiave']['spesa_pubblica_pil_percentuale']}% PIL vs 9-11% in Francia/Germania/UK")
 
+    print(f"\nFONDAZIONE GIMBE:")
+    n_rapporti_gimbe = len(gimbe_data['rapporti_annuali_ssn'])
+    n_osservatorio = len(gimbe_data['report_osservatorio'])
+    print(f"  - {n_rapporti_gimbe} Rapporti annuali sul SSN (2016-2025)")
+    print(f"  - {n_osservatorio} Report Osservatorio GIMBE")
+    print(f"  - Monitoraggio: liste attesa, mobilità sanitaria, PNRR M6, COVID-19, FSE")
+    print(f"  - Analisi forza lavoro: {gimbe_data['forza_lavoro']['medici']['fuori_ssn']:,} medici fuori SSN")
+    print(f"  - Sprechi sanitari: {gimbe_data['sprechi_sanitari']['stima_2017_miliardi']} mld euro ({gimbe_data['sprechi_sanitari']['percentuale_spesa']}% spesa)")
+
     print(f"\nAIFA - AGENZIA ITALIANA DEL FARMACO:")
     print(f"  - {n_rapporti_aifa} report/piattaforme catalogati")
     print(f"  - Spesa farmaceutica totale 2024: {aifa_data['dati_aggregati_spesa_farmaceutica']['spesa_totale_miliardi_euro']} miliardi euro")
@@ -2009,6 +2537,7 @@ def main():
     print(f"    - datasets/raw/societa_scientifiche/italiane/rapporti_societa_italiane.json")
     print(f"    - datasets/raw/societa_scientifiche/europee/rapporti_societa_europee.json")
     print(f"    - datasets/raw/societa_scientifiche/README.md")
+    print(f"    - datasets/raw/gimbe/gimbe_report_completo.json + README.md")
     print(f"    - datasets/raw/oasi_bocconi/oasi_bocconi_completo.json + README.md")
     print(f"    - datasets/raw/aifa/aifa_report_completo.json + README.md")
     print(f"  PROCESSED:")
@@ -2016,6 +2545,7 @@ def main():
     print(f"    - datasets/processed/ons_screening_regionali_2023.csv")
     print(f"    - datasets/processed/ons_screening_serie_storiche.csv")
     print(f"    - datasets/processed/rapporti_societa_scientifiche.csv")
+    print(f"    - datasets/processed/gimbe_report_sintesi.json")
     print(f"    - datasets/processed/oasi_bocconi_sintesi.json")
     print(f"    - datasets/processed/aifa_report_sintesi.json")
 

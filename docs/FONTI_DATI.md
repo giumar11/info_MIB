@@ -49,11 +49,12 @@ Questo documento elenca tutte le fonti dati istituzionali italiane utilizzate e 
 - **Contenuto**: Accordo Collettivo Nazionale 2019-2021, integrazione specialisti nella medicina territoriale
 - **URL**: https://www.enpam.it/wp-content/uploads/Guida-per-spec-ambulatoriali-ed-2024.pdf
 
-### 7. GIMBE - 8° Rapporto sul SSN
-- **File**: `datasets/raw/gimbe/8_rapporto_gimbe_ssn.pdf`
-- **Dimensione**: 30 MB
-- **Contenuto**: Analisi critica su spesa sanitaria, mobilità sanitaria, rinuncia alle cure
-- **URL**: https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf
+### 7. GIMBE - Rapporti completi sul SSN
+- **File**: `datasets/raw/gimbe/gimbe_report_completo.json`
+- **Dimensione**: 15.2 KB
+- **Contenuto**: 8 rapporti annuali SSN (2016-2025), 7 report Osservatorio, mobilità sanitaria, liste d'attesa, forza lavoro, PNRR M6, COVID-19, salute digitale, sprechi
+- **URL**: https://www.salviamo-ssn.it/
+- **Aggiornamento**: Marzo 2026
 
 ### 8. UNIAMO - Report Malattie Rare 2024
 - **File**: `datasets/raw/uniamo/report_malattie_rare_2024.pdf`
@@ -153,6 +154,8 @@ I dataset istituzionali vengono generalmente aggiornati con le seguenti frequenz
 | PASSI/PASSI d'Argento | Continuo (pool biennali) |
 | Orphadata | Trimestrale |
 | Rapporto Osservatorio Salute | Annuale (dicembre) |
+| Rapporto GIMBE SSN | Annuale |
+| Osservatorio GIMBE | Periodico |
 
 Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fonti originali.
 
@@ -236,3 +239,35 @@ Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fo
 7. **Prontuario Farmaceutico Nazionale (PFN)** - Formulario ufficiale SSN
 8. **Monitoraggio Note AIFA** - Condizioni prescrittive regolatorie
 9. **Horizon Scanning** - Analisi prospettica farmaci in pipeline
+
+---
+
+## Fondazione GIMBE - Analisi critica SSN
+
+### Catalogo completo report GIMBE (8 rapporti SSN + 7 report Osservatorio + monitoraggi)
+- **File**: `datasets/raw/gimbe/gimbe_report_completo.json`
+- **Dimensione**: 15.2 KB
+- **URL Campagne**: https://www.salviamo-ssn.it/
+- **URL Osservatorio**: https://www.gimbe.org/osservatorio
+- **URL COVID-19**: https://coronavirus.gimbe.org/
+- **Licenza**: CC-BY-NC
+- **Aggiornamento**: Marzo 2026
+
+**Rapporti annuali sul SSN (8 edizioni)**:
+1. **1° Rapporto (2016)** - Prima analisi critica sulla sostenibilità del SSN
+2. **2° Rapporto (2017)** - Analisi definanziamento e LEA
+3. **3° Rapporto (2018)** - Gap con standard europei
+4. **4° Rapporto (2019)** - Disuguaglianze regionali
+5. **5° Rapporto (2020)** - Impatto COVID-19 sul SSN
+6. **6° Rapporto (2021)** - Rilancio SSN e PNRR
+7. **7° Rapporto (2023)** - Crisi personale e liste d'attesa
+8. **8° Rapporto (2025)** - Definanziamento: -€ 6.4 mld; 4.5 mln rinunciano a cure
+
+**Report Osservatorio GIMBE**:
+- Mobilità sanitaria interregionale (€ 4.6 mld nel 2022)
+- Liste di attesa (visite specialistiche e interventi chirurgici)
+- Forza lavoro SSN (93.000 medici fuori SSN, 65.000 infermieri mancanti)
+- Monitoraggio PNRR Missione 6 Salute
+- Monitoraggio settimanale COVID-19 (174 report)
+- Salute digitale e Fascicolo Sanitario Elettronico
+- Sprechi e inefficienze (€ 21.59 mld, 19% spesa pubblica)

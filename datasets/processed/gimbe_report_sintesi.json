@@ -1,0 +1,330 @@
+{
+  "fonte": "Fondazione GIMBE",
+  "url": {
+    "sito_principale": "https://www.gimbe.org/",
+    "salviamo_ssn": "https://salviamo-ssn.it/",
+    "covid_monitoring": "https://coronavirus.gimbe.org/",
+    "evidence_journal": "https://www.evidence.it/",
+    "education": "https://www.gimbeducation.it/",
+    "report_osservatorio": "https://www.gimbe.org/pagine/290/it/report-osservatorio-gimbe",
+    "conferenza": "https://www.conferenzagimbe.it/",
+    "carta_gimbe": "https://salviamo-ssn.it/salviamo-ssn/carta.it-IT.html"
+  },
+  "rapporti_annuali_ssn": [
+    {
+      "edizione": "1° Rapporto",
+      "titolo": "Rapporto sulla sostenibilità del SSN 2016-2025",
+      "anno": 2016,
+      "url": "https://www.salviamo-ssn.it/rapporto/1-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "fabbisogno_sanitario_stimato_2025_miliardi": 200,
+        "sprechi_recuperabili_anno_miliardi": 25,
+        "prospettiva_temporale": "2016-2025"
+      }
+    },
+    {
+      "edizione": "2° Rapporto",
+      "titolo": "2° Rapporto GIMBE sulla sostenibilità del SSN",
+      "anno": 2017,
+      "url": "https://www.salviamo-ssn.it/attivita/rapporto/2-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "fabbisogno_sanitario_stimato_2025_miliardi": 210
+      }
+    },
+    {
+      "edizione": "3° Rapporto",
+      "titolo": "3° Rapporto GIMBE sulla sostenibilità del SSN",
+      "anno": 2018,
+      "url": "https://test.salviamo-ssn.it/rapporto/3-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "sprechi_totali_2017_miliardi": 21.59,
+        "sprechi_percentuale_spesa_sanitaria": 19,
+        "sprechi_dettaglio": {
+          "sovra_utilizzo_miliardi": 6.48,
+          "frodi_abusi_miliardi": 4.75,
+          "costi_acquisto_eccessivi_miliardi": 2.16,
+          "sotto_utilizzo_miliardi": 3.24,
+          "complessita_amministrativa_miliardi": 2.37,
+          "inadeguato_coordinamento_miliardi": 2.59
+        },
+        "incremento_nominale_fsn_2013_2018_miliardi": 7,
+        "incremento_reale_netto_miliardi": "meno di 6"
+      }
+    },
+    {
+      "edizione": "4° Rapporto",
+      "titolo": "4° Rapporto GIMBE sulla sostenibilità del SSN",
+      "anno": 2019,
+      "url": "https://salviamo-ssn.it/attivita/rapporto/4-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "spesa_no_value_percentuale": 9,
+        "spesa_no_value_miliardi": 14.1,
+        "spesa_low_negative_value_percentuale": 16,
+        "spesa_low_negative_value_miliardi": 24.6,
+        "spesa_totale_pil_percentuale": 8.9,
+        "media_ocse_pil_percentuale": 8.8,
+        "piano_rilancio_punti": 12
+      }
+    },
+    {
+      "edizione": "5° Rapporto",
+      "titolo": "5° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+      "anno": 2022,
+      "url": "https://www.salviamo-ssn.it/attivita/rapporto/5-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "sfide_politiche": [
+          "Approccio One Health",
+          "Finanziamento pubblico",
+          "Aggiornamento/monitoraggio/esigibilità LEA",
+          "Governance Stato-Regioni"
+        ],
+        "nota": "Rischio concreto di perdere un modello sanitario pubblico, equo e universale"
+      }
+    },
+    {
+      "edizione": "6° Rapporto",
+      "titolo": "6° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+      "anno": 2023,
+      "url": "https://salviamo-ssn.it/attivita/rapporto/6-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "principi_traditi": "Universalità, uguaglianza, equità",
+        "piano_rilancio_punti": 14
+      }
+    },
+    {
+      "edizione": "7° Rapporto",
+      "titolo": "7° Rapporto GIMBE sul Servizio Sanitario Nazionale",
+      "anno": 2024,
+      "url": "https://salviamo-ssn.it/attivita/rapporto/7-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "rinuncia_cure_milioni_persone": 4.5,
+        "rinuncia_motivi_economici_milioni": 2.5,
+        "gap_spesa_pro_capite_vs_ocse_euro": 889,
+        "gap_totale_vs_ocse_miliardi": 52.4,
+        "incremento_spesa_2023_miliardi": 4.286,
+        "incremento_a_carico_famiglie_miliardi": 3.806,
+        "incremento_fondi_assicurazioni_milioni": 553,
+        "crollo_spesa_prevenzione_percentuale": -18.6,
+        "regioni_adempimento_lea_2022": 13,
+        "fsn_incremento_2010_2024_miliardi": 28.4,
+        "fsn_perso_pre_pandemia_2010_2019_miliardi": 37,
+        "piano_rilancio_punti": 13
+      }
+    },
+    {
+      "edizione": "8° Rapporto",
+      "titolo": "8° Rapporto GIMBE sul SSN - La lenta agonia del Servizio Sanitario Nazionale",
+      "anno": 2025,
+      "url": "https://www.salviamo-ssn.it/attivita/rapporto/8-rapporto-gimbe.it-IT.html",
+      "dati_chiave": {
+        "gap_spesa_pro_capite_vs_ocse_euro": 727,
+        "gap_totale_vs_ocse_miliardi": 42.9,
+        "definanziamento_ultimi_3_anni_miliardi": 13.1,
+        "spesa_famiglie_miliardi": 41.3,
+        "rinuncia_cure_percentuale": "1 italiano su 10",
+        "fsn_pil_2025_2026_percentuale": 6.1,
+        "fsn_pil_2028_percentuale": 5.8,
+        "gap_cumulativo_2025_2028_miliardi": 40.4,
+        "medici_fuori_ssn": 93000,
+        "infermieri_x1000_abitanti": 6.5,
+        "infermieri_x1000_media_ocse": 9.5,
+        "strutture_sanitarie_totali": 30000,
+        "strutture_private_accreditate_percentuale": 58,
+        "spesa_famiglie_privato_crescita_2016_2023_percentuale": 137,
+        "case_comunita_pianificate": 1723,
+        "case_comunita_attive_con_servizi": 218,
+        "case_comunita_attive_percentuale": 12.7,
+        "case_comunita_con_personale_completo": 46,
+        "case_comunita_con_personale_percentuale": 4.4,
+        "ospedali_comunita_pianificati": 592,
+        "ospedali_comunita_attivi": 153,
+        "ospedali_comunita_attivi_percentuale": 26,
+        "piano_rilancio_punti": 15
+      }
+    }
+  ],
+  "report_osservatorio": [
+    {
+      "numero": "1/2023",
+      "titolo": "Regionalismo differenziato in sanità",
+      "data": "2023-01",
+      "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+      "tema": "Autonomia differenziata"
+    },
+    {
+      "numero": "4/2023",
+      "titolo": "Il ruolo della filiera healthcare nel SSN",
+      "data": "2023-11",
+      "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+      "tema": "Filiera sanitaria"
+    },
+    {
+      "numero": "1/2024",
+      "titolo": "La mobilità sanitaria interregionale nel 2021",
+      "data": "2024-01-16",
+      "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+      "tema": "Mobilità sanitaria"
+    },
+    {
+      "numero": "2/2024",
+      "titolo": "L'autonomia differenziata in sanità",
+      "data": "2024-03-21",
+      "url_pdf": "https://documenti.camera.it/leg19/documentiAcquisiti/COM01/Audizioni/leg19.com01.Audizioni.Memoria.PUBBLICO.ideGes.34026.26-03-2024-11-34-12.951.pdf",
+      "tema": "Autonomia differenziata"
+    },
+    {
+      "numero": "3/2024",
+      "titolo": "Scuole che Promuovono Salute",
+      "data": "2024-05-29",
+      "url_pdf": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+      "tema": "Promozione della salute"
+    },
+    {
+      "numero": "1/2025",
+      "titolo": "La mobilità sanitaria interregionale nel 2022",
+      "data": "2025-02-11",
+      "url_pdf": "https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+      "tema": "Mobilità sanitaria",
+      "dati_chiave": {
+        "mobilita_record_miliardi": 5.04,
+        "top_attrazione": [
+          "Lombardia",
+          "Emilia-Romagna",
+          "Veneto"
+        ],
+        "peggior_saldo_negativo": {
+          "Calabria": -326.9,
+          "Campania": -306.3,
+          "Puglia": -253.2
+        },
+        "saldo_negativo_cumulativo_10_anni_miliardi": 14
+      }
+    },
+    {
+      "numero": "2/2025",
+      "titolo": "La spesa sanitaria privata in Italia nel 2023",
+      "data": "2025-02",
+      "url_pdf": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+      "tema": "Spesa sanitaria privata",
+      "dati_chiave": {
+        "spesa_sanitaria_totale_miliardi": 176.1,
+        "pubblica_percentuale": 74,
+        "out_of_pocket_percentuale": 23,
+        "intermediata_percentuale": 3,
+        "out_of_pocket_miliardi": "oltre 40",
+        "spesa_famiglie_basso_valore_percentuale": 40
+      }
+    }
+  ],
+  "mobilita_sanitaria": {
+    "descrizione": "Report annuali sulla migrazione sanitaria interregionale",
+    "dati_2023": {
+      "mobilita_record_miliardi": 5.15,
+      "ricoveri_fuori_regione_privato_percentuale": 54.5,
+      "ricoveri_fuori_regione_privato_miliardi": 1.966,
+      "top_saldo_positivo": {
+        "Lombardia_milioni": 645.8,
+        "Emilia_Romagna_milioni": 564.9,
+        "Veneto_milioni": 212.1
+      }
+    }
+  },
+  "liste_attesa": {
+    "descrizione": "Monitoraggio periodico delle liste di attesa e del DL 73/2024",
+    "dati_2024": {
+      "rinuncia_prestazioni_milioni": 5.8,
+      "rinuncia_per_tempi_attesa_milioni": 4.0,
+      "variazione_vs_2023_percentuale": 51,
+      "rinuncia_motivi_economici_milioni": 3.1,
+      "decreti_attuativi_previsti": 6,
+      "decreti_attuativi_approvati_gen_2025": 1,
+      "decreti_attuativi_pubblicati_giu_2025": 3,
+      "piattaforma_pnla_servizi_monitorati_milioni": 57.8,
+      "nota": "A 18 mesi dalla legge, la piattaforma pubblica non offre dati disaggregati regionali"
+    }
+  },
+  "forza_lavoro": {
+    "descrizione": "Analisi sulla crisi del personale del SSN",
+    "medici": {
+      "totale_italia": 315720,
+      "x1000_abitanti": 5.4,
+      "ranking_ocse": "2°",
+      "fuori_ssn": 93000,
+      "fuori_ssn_percentuale": 29.4,
+      "dimissioni_volontarie_2022": 4349,
+      "dimissioni_volontarie_2016": 1564
+    },
+    "mmg": {
+      "mancanti_gen_2024": 5575,
+      "calo_2019_2023": -4749,
+      "calo_percentuale": -12.8,
+      "pensionamento_entro_2027": 7300
+    },
+    "infermieri": {
+      "x1000_abitanti_italia": 6.5,
+      "x1000_abitanti_ocse": 9.5,
+      "gap_retributivo_vs_europa_percentuale": 19,
+      "domande_sotto_posti_disponibili": true,
+      "dimissioni_volontarie_2022": 6651,
+      "infermieri_aggiuntivi_dm77": "19.450-26.850"
+    },
+    "personale_generale": {
+      "spending_review_2012_2024_miliardi_sottratti": 33,
+      "emigrazione_2000_2022": 180000
+    }
+  },
+  "pnrr_m6": {
+    "descrizione": "Monitoraggio indipendente degli investimenti PNRR in sanità",
+    "stanziamento_miliardi": 15.63,
+    "riduzioni_quantitative": {
+      "case_comunita_ridotte": -312,
+      "cot_ridotte": -120,
+      "ospedali_comunita_ridotti": -93,
+      "posti_terapia_intensiva_ridotti": -808,
+      "posti_semi_intensiva_ridotti": -995
+    },
+    "stato_spesa_nov_2023": {
+      "risorse_assegnate_percentuale": 83.6,
+      "risorse_spese_percentuale": 1
+    },
+    "case_comunita_mar_2025_operative_percentuale": 35,
+    "telemedicina_dic_2025": {
+      "pazienti_target": 300000,
+      "pazienti_raggiunti": 467479,
+      "fse_mmg_alimentazione_percentuale": 95.2,
+      "fse_mmg_target_percentuale": 85
+    }
+  },
+  "sprechi_sanitari": {
+    "descrizione": "Tassonomia GIMBE degli sprechi in sanità",
+    "stima_2017_miliardi": 21.59,
+    "percentuale_spesa": 19,
+    "categorie": [
+      "Sovra-utilizzo (overuse)",
+      "Frodi e abusi",
+      "Costi di acquisto eccessivi",
+      "Sotto-utilizzo (underuse)",
+      "Complessità amministrativa",
+      "Inadeguato coordinamento dell'assistenza"
+    ],
+    "obiettivo": "Recuperare almeno 1 euro ogni 2 sprecati su 10 spesi",
+    "piano_nazionale_sprechi": "Mai varato in Italia"
+  },
+  "sanita_digitale": {
+    "descrizione": "Monitoraggio del Fascicolo Sanitario Elettronico e telemedicina",
+    "fse_consenso_cittadini_percentuale": 42,
+    "fse_consenso_range": {
+      "max": "92% (Emilia-Romagna)",
+      "min": "1% (Abruzzo, Calabria, Campania)"
+    },
+    "tipologie_documenti_disponibili_tutte_regioni": 4,
+    "tipologie_documenti_target": 16,
+    "tipologie_nazionali_disponibili": 6,
+    "attivazione_servizi_digitali_range": {
+      "max": "56% (Toscana)",
+      "min": "7% (Calabria)"
+    },
+    "mmg_accesso_fse_percentuale": 95,
+    "specialisti_abilitati_percentuale": 72
+  }
+}
