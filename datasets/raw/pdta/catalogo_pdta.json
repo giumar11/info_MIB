@@ -1,0 +1,1179 @@
+{
+  "metadata": {
+    "titolo": "Catalogo PDTA Italia - Percorsi Diagnostico-Terapeutici Assistenziali",
+    "descrizione": "Catalogo completo dei PDTA disponibili pubblicamente a livello nazionale, regionale e aziendale",
+    "ultimo_aggiornamento": "2026-03-07",
+    "versione": "1.0",
+    "fonti_principali": [
+      "AGENAS - Agenzia Nazionale per i Servizi Sanitari Regionali",
+      "Ministero della Salute",
+      "ISS - Istituto Superiore di Sanita",
+      "SNLG - Sistema Nazionale Linee Guida",
+      "Reti Oncologiche Regionali",
+      "Portali regionali sanita"
+    ]
+  },
+  "nazionale": [
+    {
+      "id": "NAZ_AGENAS_001",
+      "titolo": "PPDTA Diabete Mellito nell'adulto",
+      "ente": "AGENAS / ALTEMS",
+      "anno": 2026,
+      "patologia": "Diabete Mellito tipo 2",
+      "codice_icd10": "E11",
+      "tipo_documento": "PPDTA",
+      "url_pdf": "https://www.agenas.gov.it/images/2026/hta/PPDTA_Diabete_Mellito_adulto.pdf",
+      "url_pagina": "https://www.agenas.gov.it/aree-tematiche/comunicazione/primo-piano/2718-consultazione-pubblica-nuovi-ppdta-per-diabete-mellito,-asma-grave-e-bpco-nell%E2%80%99adulto",
+      "stato": "consultazione_pubblica_chiusa",
+      "note": "Consultazione pubblica aperta dal 09/02/2026 al 27/02/2026. Elaborato con supporto esperti clinici e referenti regionali."
+    },
+    {
+      "id": "NAZ_AGENAS_002",
+      "titolo": "PPDTA Asma Grave nell'adulto",
+      "ente": "AGENAS / ALTEMS",
+      "anno": 2026,
+      "patologia": "Asma Grave",
+      "codice_icd10": "J45",
+      "tipo_documento": "PPDTA",
+      "url_pdf": "https://www.agenas.gov.it/images/2026/hta/PPDTA_Asma_Grave_adulto.pdf",
+      "url_pagina": "https://www.agenas.gov.it/aree-tematiche/comunicazione/primo-piano/2718-consultazione-pubblica-nuovi-ppdta-per-diabete-mellito,-asma-grave-e-bpco-nell%E2%80%99adulto",
+      "stato": "consultazione_pubblica_chiusa",
+      "note": "Consultazione pubblica aperta dal 09/02/2026 al 27/02/2026"
+    },
+    {
+      "id": "NAZ_AGENAS_003",
+      "titolo": "PPDTA BPCO nell'adulto",
+      "ente": "AGENAS / ALTEMS",
+      "anno": 2026,
+      "patologia": "Broncopneumopatia Cronica Ostruttiva",
+      "codice_icd10": "J44",
+      "tipo_documento": "PPDTA",
+      "url_pdf": "https://www.agenas.gov.it/images/2026/hta/PPDTA_BPCO_adulto.pdf",
+      "url_pagina": "https://www.agenas.gov.it/aree-tematiche/comunicazione/primo-piano/2718-consultazione-pubblica-nuovi-ppdta-per-diabete-mellito,-asma-grave-e-bpco-nell%E2%80%99adulto",
+      "stato": "consultazione_pubblica_chiusa",
+      "note": "Consultazione pubblica aperta dal 09/02/2026 al 27/02/2026"
+    },
+    {
+      "id": "NAZ_MIN_001",
+      "titolo": "Piano Nazionale della Cronicita",
+      "ente": "Ministero della Salute",
+      "anno": 2016,
+      "patologia": "Patologie croniche multiple",
+      "codice_icd10": "multiple",
+      "tipo_documento": "Piano Nazionale",
+      "url_pdf": "https://www.salute.gov.it/imgs/C_17_pubblicazioni_2584_allegato.pdf",
+      "url_pagina": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=4654&area=programmazioneSanitariaLea&menu=vuoto",
+      "stato": "vigente",
+      "note": "Approvato in Conferenza Stato-Regioni il 15/09/2016. Contiene indirizzi per PDTA su: malattie renali croniche, artrite reumatoide, IBD, scompenso cardiaco, Parkinson, demenze, BPCO, asma, diabete."
+    },
+    {
+      "id": "NAZ_MIN_002",
+      "titolo": "Piano Nazionale della Cronicita - Aggiornamento 2024",
+      "ente": "Ministero della Salute",
+      "anno": 2024,
+      "patologia": "Patologie croniche multiple",
+      "codice_icd10": "multiple",
+      "tipo_documento": "Aggiornamento Piano Nazionale",
+      "url_pdf": "https://www.quotidianosanita.it/allegati/allegato1737108617.pdf",
+      "url_pagina": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=4654&area=programmazioneSanitariaLea&menu=vuoto",
+      "stato": "in_approvazione",
+      "note": "Aggiunge 3 nuove patologie: obesita, epilessia, endometriosi"
+    },
+    {
+      "id": "NAZ_ISS_001",
+      "titolo": "Linee di indirizzo Nazionali PDTA per le Demenze",
+      "ente": "ISS - Istituto Superiore di Sanita",
+      "anno": 2021,
+      "patologia": "Demenze (Alzheimer e altre)",
+      "codice_icd10": "F00-F03, G30",
+      "tipo_documento": "Linee di indirizzo",
+      "url_pdf": "https://www.iss.it/documents/20126/5783571/Testo+Linee+di+indirizzo+Nazionali+sui+Percorsi+Diagnostico+Terapeutici+Assistenziali+(PDTA)+per+le+demenze.pdf/d5123f6a-2161-6c42-5377-8796cce29fe0?t=1626170681347",
+      "url_pagina": "https://www.iss.it/linee-guida1",
+      "stato": "vigente",
+      "note": "Definizione condivisa di PDTA per le demenze, coinvolgimento di Ministero, ISS, Regioni, AGENAS e associazioni pazienti"
+    },
+    {
+      "id": "NAZ_ISS_002",
+      "titolo": "Manuale metodologico per la produzione di linee guida di pratica clinica (SNLG)",
+      "ente": "ISS / CNEC",
+      "anno": 2023,
+      "patologia": "Trasversale - metodologico",
+      "codice_icd10": "n/a",
+      "tipo_documento": "Manuale metodologico",
+      "url_pdf": "https://www.aiom.it/wp-content/uploads/2023/04/2023_ISS_SNLG_Manuale_Metodologico_v1.3.3.pdf",
+      "url_pagina": "https://snlg.iss.it/",
+      "stato": "vigente",
+      "note": "Framework per la costruzione di LG che sono la base dei PDTA"
+    },
+    {
+      "id": "NAZ_MIN_003",
+      "titolo": "Linee di indirizzo Nazionali PDTA per le Demenze (Ministero)",
+      "ente": "Ministero della Salute / Conferenza Unificata",
+      "anno": 2017,
+      "patologia": "Demenze (Alzheimer e altre)",
+      "codice_icd10": "F00-F03, G30",
+      "tipo_documento": "Linee di indirizzo",
+      "url_pdf": "https://www.salute.gov.it/imgs/C_17_pagineAree_4893_listaFile_itemName_0_file.pdf",
+      "url_pagina": "https://www.salute.gov.it/portale/demenze/dettaglioContenutiDemenze.jsp?lingua=italiano&id=4893&area=demenze&menu=vuoto",
+      "stato": "vigente",
+      "note": "Approvato dalla Conferenza Unificata il 26/10/2017"
+    },
+    {
+      "id": "NAZ_MIN_004",
+      "titolo": "PDTA Tutela della fertilita nei pazienti oncologici",
+      "ente": "Ministero della Salute / Conferenza Stato-Regioni",
+      "anno": 2019,
+      "patologia": "Oncologia / Preservazione della fertilita",
+      "codice_icd10": "C00-C97, Z31",
+      "tipo_documento": "Accordo Stato-Regioni",
+      "url_pdf": null,
+      "url_pagina": "https://www.statoregioni.it/it/conferenza-stato-regioni/sedute-2019/seduta-del-21022019/atti/repertorio-atto-n-27csr/",
+      "stato": "vigente",
+      "note": "Accordo Rep. Atti n. 27/CSR del 21/02/2019. Percorso in 13 punti con presa in carico entro 48-72 ore."
+    },
+    {
+      "id": "NAZ_CSR_001",
+      "titolo": "PDTA Malattie Infiammatorie Croniche Intestinali (MICI)",
+      "ente": "Conferenza Stato-Regioni / CnAMC-Cittadinanzattiva / AMICI onlus",
+      "anno": 2015,
+      "patologia": "Malattia di Crohn, Colite Ulcerosa",
+      "codice_icd10": "K50-K51",
+      "tipo_documento": "Accordo Stato-Regioni",
+      "url_pdf": "https://www.fnopi.it/archivio_news/attualita/1586/ACCORDO%20MICI.pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Primo PDTA nazionale per malattie croniche approvato come Accordo Stato-Regioni (Rep. Atti n. 171/CSR del 20/10/2015). Elaborato con associazioni pazienti."
+    },
+    {
+      "id": "NAZ_CSR_002",
+      "titolo": "PDTA Malattie Reumatiche Infiammatorie e Autoimmuni",
+      "ente": "Conferenza delle Regioni / CnAMC-Cittadinanzattiva / ANMAR",
+      "anno": 2015,
+      "patologia": "Artrite reumatoide e altre malattie reumatiche",
+      "codice_icd10": "M05-M06, M32-M35",
+      "tipo_documento": "Accordo Stato-Regioni",
+      "url_pdf": "https://www.sifoweb.it/images/pdf/attivita/attivita-scientifica/aree_scientifiche/Contin_assistenziale_H-T/documenti/PDTA_nelle_Malattie_REUMATICHE_INFIAMMATORIE_E_AUTOIMMUNI.pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Primo PDTA nazionale per malattie reumatiche. Sviluppato con associazioni pazienti."
+    },
+    {
+      "id": "NAZ_CSR_003",
+      "titolo": "Revisione Linee Guida organizzative Rete Oncologica",
+      "ente": "Conferenza Stato-Regioni",
+      "anno": 2019,
+      "patologia": "Oncologia (framework organizzativo)",
+      "codice_icd10": "C00-C97",
+      "tipo_documento": "Accordo Stato-Regioni",
+      "url_pdf": null,
+      "url_pagina": "https://www.statoregioni.it/it/conferenza-stato-regioni/sedute-2019/seduta-del-17042019/atti/repertorio-atto-n-59csr/",
+      "stato": "vigente",
+      "note": "Rep. Atti n. 59/CSR del 17/04/2019. Identifica i PDTA come strumento clinico-organizzativo essenziale per la gestione del paziente oncologico."
+    },
+    {
+      "id": "NAZ_CSR_004",
+      "titolo": "Piano Nazionale Malattie Rare 2023-2026",
+      "ente": "Conferenza Stato-Regioni / Ministero della Salute",
+      "anno": 2023,
+      "patologia": "Malattie rare (tutte)",
+      "codice_icd10": "multiple",
+      "tipo_documento": "Piano Nazionale",
+      "url_pdf": "https://www.malattierare.gov.it/normativa/download/792/PIANONAZIONALEMALATTIERARE2023(1).pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Approvato sotto Legge 175/2021 (Testo Unico Malattie Rare). Finanziamento 50M EUR. Prevede sviluppo PDTA con standard nazionali adattabili ai contesti locali."
+    },
+    {
+      "id": "NAZ_AIOM_001",
+      "titolo": "Linee Guida AIOM (39 documenti oncologici)",
+      "ente": "AIOM con ~75 societa scientifiche",
+      "anno": 2025,
+      "patologia": "Tutti i principali tumori + temi trasversali",
+      "codice_icd10": "C00-C97",
+      "tipo_documento": "Linee Guida SNLG",
+      "url_pdf": null,
+      "url_pagina": "https://www.aiom.it/en/linee-guida-aiom/",
+      "stato": "vigente",
+      "note": "39 linee guida oncologiche aggiornate annualmente, tutte inserite nel SNLG con valore legale. Oltre 4.3 milioni di download PDF dal 2013."
+    },
+    {
+      "id": "NAZ_AIOM_002",
+      "titolo": "Ruolo e competenze dell'oncologo nei PDTA",
+      "ente": "AIOM",
+      "anno": 2024,
+      "patologia": "Oncologia (trasversale)",
+      "codice_icd10": "C00-C97",
+      "tipo_documento": "Documento di consenso",
+      "url_pdf": "https://www.aiom.it/wp-content/uploads/2024/11/2024_AIOM_RUOLO-COMPETENZE-ONCOLOGO-PDTA.pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Definisce ruolo e competenze dell'oncologo nei PDTA"
+    },
+    {
+      "id": "NAZ_AMD_001",
+      "titolo": "PDTA Diabete tipo 1",
+      "ente": "AMD / SID / SIEDP",
+      "anno": 2019,
+      "patologia": "Diabete Mellito tipo 1",
+      "codice_icd10": "E10",
+      "tipo_documento": "Documento di consenso",
+      "url_pdf": "https://aemmedi.it/wp-content/uploads/2019/03/PDTA-Diabete-tipo-1.pdf",
+      "url_pagina": "https://aemmedi.it/linee-guida-e-raccomandazioni/",
+      "stato": "vigente",
+      "note": "Include percorso di transizione da cure pediatriche ad adulte"
+    },
+    {
+      "id": "NAZ_SID_001",
+      "titolo": "Linea Guida terapia diabete tipo 2",
+      "ente": "SID / AMD",
+      "anno": 2022,
+      "patologia": "Diabete Mellito tipo 2",
+      "codice_icd10": "E11",
+      "tipo_documento": "Linea Guida SNLG",
+      "url_pdf": "https://www.siditalia.it/pdf/LG_379_diabete_ed2022_feb2023.pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Inserita nel SNLG. Aggiornamento 2025 con raccomandazioni su monitoraggio continuo glucosio."
+    },
+    {
+      "id": "NAZ_SID_002",
+      "titolo": "Linea Guida terapia diabete tipo 1 (Ed. 2024)",
+      "ente": "SID / AMD",
+      "anno": 2024,
+      "patologia": "Diabete Mellito tipo 1",
+      "codice_icd10": "E10",
+      "tipo_documento": "Linea Guida SNLG",
+      "url_pdf": "https://www.siditalia.it/pdf/LG-196-La-terapia-del-diabete-di-tipo-1-Ed-2024.pdf",
+      "url_pagina": null,
+      "stato": "vigente",
+      "note": "Raccomanda monitoraggio continuo glucosio rispetto ad automonitoraggio capillare"
+    },
+    {
+      "id": "NAZ_SIC_001",
+      "titolo": "PDTA Amiloidosi Cardiaca (Consenso SIC/ANMCO/RIAC)",
+      "ente": "SIC / ANMCO / RIAC",
+      "anno": 2024,
+      "patologia": "Amiloidosi Cardiaca",
+      "codice_icd10": "E85",
+      "tipo_documento": "Documento di consenso",
+      "url_pdf": null,
+      "url_pagina": "https://www.giornaledicardiologia.it/archivio/4372/articoli/43703",
+      "stato": "vigente",
+      "note": "Primo PDTA nazionale per amiloidosi cardiaca. Pubblicato in G Ital Cardiol 2024;25(12):900-920."
+    }
+  ],
+  "regionale": {
+    "lombardia": {
+      "regione": "Lombardia",
+      "codice_istat": "03",
+      "ente_coordinamento": "Regione Lombardia - DG Welfare",
+      "note_generali": "Oltre 120 PDTA per malattie rare, PDTA-R oncologici tramite Rete Oncologica Lombarda. 59 presidi per malattie rare.",
+      "url_portale": "https://malattierare.marionegri.it/pdta-schede/",
+      "pdta": [
+        {
+          "id": "LOM_001",
+          "titolo": "PDTA-R Tumore della Mammella",
+          "delibera": "DGR XI/7755 del 28/12/2022",
+          "patologia": "Tumore della mammella",
+          "codice_icd10": "C50",
+          "anno": 2022,
+          "url_pdf": "https://www.regione.lombardia.it/wps/wcm/connect/a7b9a031-49c4-419e-8619-07c50454975c/DGR+7755+del+28+dicembre+2022.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LOM_002",
+          "titolo": "PDTA-R Disturbi Cognitivi e Demenze",
+          "delibera": "DGR XII/1553 del 18/12/2023",
+          "patologia": "Demenze e disturbi cognitivi",
+          "codice_icd10": "F00-F03, G30",
+          "anno": 2023,
+          "url_pdf": "https://www.demenze.it/documenti/geo_regioni/dgr_1553_18_12_2023.pdf",
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LOM_003",
+          "titolo": "PDTA Adrenoleucodistrofia",
+          "delibera": "DGR XII/5285 del 10/11/2025",
+          "patologia": "Adrenoleucodistrofia",
+          "codice_icd10": "E71.3",
+          "anno": 2025,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale",
+          "note": "Include screening neonatale dal 01/01/2026"
+        },
+        {
+          "id": "LOM_004",
+          "titolo": "Modello regionale PDTA",
+          "delibera": "DGR XI/6530 del 20/06/2022",
+          "patologia": "Trasversale - framework",
+          "codice_icd10": "n/a",
+          "anno": 2022,
+          "url_pdf": null,
+          "tipo": "framework",
+          "livello": "regionale",
+          "note": "Modello regionale per l'attuazione dei PDTA. Format per la stesura di PDTA."
+        },
+        {
+          "id": "LOM_005",
+          "titolo": "Pancreas Unit - Centri Hub e Spoke",
+          "delibera": "DGR XII/1802 del 29/01/2024",
+          "patologia": "Tumori del pancreas",
+          "codice_icd10": "C25",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "Centro Coordinamento Rete Malattie Rare (Istituto Mario Negri)",
+          "url": "https://malattierare.marionegri.it/pdta-schede/",
+          "n_pdta_stimati": 120,
+          "note": "Oltre 120 schede PDTA per malattie rare disponibili online"
+        }
+      ]
+    },
+    "veneto": {
+      "regione": "Veneto",
+      "codice_istat": "05",
+      "ente_coordinamento": "Regione Veneto - Area Sanita e Sociale",
+      "note_generali": "Modello PPDTA introdotto con DGR 239/2025. Ampio set di PDTA oncologici tramite Rete Oncologica Veneta e PDTA salute mentale.",
+      "url_portale": "https://salute.regione.veneto.it/web/rov/normativa-di-riferimento",
+      "pdta": [
+        {
+          "id": "VEN_001",
+          "titolo": "Modello regionale PPDTA",
+          "delibera": "DGR 239 del 12/03/2025",
+          "patologia": "Trasversale - framework",
+          "codice_icd10": "n/a",
+          "anno": 2025,
+          "url_pdf": "https://bur.regione.veneto.it/BurvServices/pubblica/Download.aspx?name=Dgr_239_25_AllegatoB_553867.pdf&type=9&storico=False",
+          "tipo": "framework",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_002",
+          "titolo": "Linee di indirizzo PDTA oncologici",
+          "delibera": "Decreto DG Area Sanita n. 82 del 23/05/2024",
+          "patologia": "Oncologia (tutti i tumori solidi)",
+          "codice_icd10": "C00-C97",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_003",
+          "titolo": "PDTA Demenze",
+          "delibera": "DGR 653 del 28/04/2015",
+          "patologia": "Demenze",
+          "codice_icd10": "F00-F03, G30",
+          "anno": 2019,
+          "url_pdf": "https://www.aulss8.veneto.it/wp-content/uploads/2023/04/9328-PDTA_demenza_regione_Veneto_2019.pdf",
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_004",
+          "titolo": "PDTA Disturbi depressivi",
+          "delibera": "Decreto DG n. 60 del 10/06/2019",
+          "patologia": "Disturbi depressivi",
+          "codice_icd10": "F32-F33",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "salute_mentale",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_005",
+          "titolo": "PDTA Disturbi schizofrenici",
+          "delibera": "Decreto DG n. 59 del 03/06/2019",
+          "patologia": "Schizofrenia",
+          "codice_icd10": "F20",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "salute_mentale",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_006",
+          "titolo": "PDTA Disturbo bipolare",
+          "delibera": "Decreto DG n. 54 del 28/05/2019",
+          "patologia": "Disturbo bipolare",
+          "codice_icd10": "F31",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "salute_mentale",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_007",
+          "titolo": "PDTA Disturbo borderline di personalita",
+          "delibera": "Decreto DG n. 53 del 28/05/2019",
+          "patologia": "Disturbo borderline",
+          "codice_icd10": "F60.3",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "salute_mentale",
+          "livello": "regionale"
+        },
+        {
+          "id": "VEN_008",
+          "titolo": "PDTA Disturbi della nutrizione e dell'alimentazione",
+          "delibera": "Decreto n. 16 del 01/06/2021",
+          "patologia": "DCA - Disturbi alimentari",
+          "codice_icd10": "F50",
+          "anno": 2021,
+          "url_pdf": null,
+          "tipo": "salute_mentale",
+          "livello": "regionale"
+        }
+      ],
+      "pdta_oncologici_rete": [
+        "Colon-Retto", "Epatobiliare", "Esofago", "Gastrico", "Mammella",
+        "Melanoma", "Pancreas", "Polmone", "Prostata", "Rene", "Sarcoma",
+        "Testa-Collo", "Tumore a cellule di Merkel", "Tumori Cerebrali",
+        "Tumori ereditari mammella/ovaio", "Tumori Ginecologici",
+        "Tumori del Peritoneo", "Vescica", "Carcinoma Basocellulare",
+        "Carcinoma Squamoso Cute"
+      ],
+      "asl_locali": [
+        {
+          "nome": "AULSS 6 Euganea",
+          "url": "https://www.aulss6.veneto.it/Percorsi-Diagnostici-Terapeutici-Assistenziali-PDTA",
+          "note": "Sezione PDTA aziendali disponibile online"
+        },
+        {
+          "nome": "AULSS 8 Berica",
+          "url": "https://www.aulss8.veneto.it/prestazioni/linee-guida-di-indirizzo-e-percorsi-diagnostico-terapeutici-assistenziali-pdta-definiti-dalla-ctrf-distretto-est-e-distretto-ovest/",
+          "note": "PDTA definiti dalla CTRF"
+        }
+      ]
+    },
+    "piemonte": {
+      "regione": "Piemonte",
+      "codice_istat": "01",
+      "ente_coordinamento": "Rete Oncologica Piemonte e Valle d'Aosta",
+      "note_generali": "Rete Oncologica interregionale con Valle d'Aosta dal 1998. Modello CAS-GIC-PSDTA. DGR 31-6377/2022 approva il nuovo regolamento.",
+      "url_portale": "https://reteoncologica.it/",
+      "pdta": [
+        {
+          "id": "PIE_001",
+          "titolo": "Regolamento CAS, GIC e PSDTA",
+          "delibera": "DGR 31-6377 del 28/12/2022",
+          "patologia": "Oncologia - Framework",
+          "codice_icd10": "C00-C97",
+          "anno": 2022,
+          "url_pdf": "https://www.regione.piemonte.it/governo/bollettino/abbonati/2023/03/attach/dgr_06377_1050_28122022.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "PIE_002",
+          "titolo": "PDTA Tumori del Pancreas",
+          "delibera": null,
+          "patologia": "Tumori del pancreas",
+          "codice_icd10": "C25",
+          "anno": null,
+          "url_pdf": "https://reteoncologica.it/wp-content/uploads/images/stories/Linee_guida_raccomandazioni_RETE/Rari_e_Sarcomi/RACC_DEF_PDTA_PANCREAS.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "PIE_003",
+          "titolo": "Convenzione Rete Oncologica Piemonte-VdA 2024-2026",
+          "delibera": "DGR 17-8195 del 19/02/2024",
+          "patologia": "Oncologia - Governance",
+          "codice_icd10": "C00-C97",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "governance",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "ASL TO4",
+          "url": "https://www.aslto4.piemonte.it/",
+          "note": "PDTA Mieloma disponibile",
+          "pdta_specifici": [
+            {
+              "titolo": "PDTA Mieloma",
+              "url_pdf": "https://www.aslto4.piemonte.it/sites/default/files/2025-02/PDTA%20Mieloma.pdf",
+              "anno": 2025
+            }
+          ]
+        }
+      ]
+    },
+    "emilia_romagna": {
+      "regione": "Emilia-Romagna",
+      "codice_istat": "08",
+      "ente_coordinamento": "ASSR Emilia-Romagna / Regione Emilia-Romagna",
+      "note_generali": "Approccio sistematico con guida regionale alla costruzione PDTA (2013). Rete Oncologica ed Emato-Oncologica regionale.",
+      "url_portale": "https://salute.regione.emilia-romagna.it/governo-clinico/valutaz-qual-assistenza/pdta/percorsi_diagnostico-terapeutici",
+      "url_assr": "https://assr.regione.emilia-romagna.it/attivita/innovazione-sanitaria/assist-territoriale/pdta",
+      "pdta": [
+        {
+          "id": "EMR_001",
+          "titolo": "Guida regionale alla costruzione dei PDTA",
+          "delibera": null,
+          "patologia": "Trasversale - metodologico",
+          "codice_icd10": "n/a",
+          "anno": 2013,
+          "url_pdf": "https://assr.regione.emilia-romagna.it/pubblicazioni/rapporti-documenti/guida-valutatori-PDTA-2013/@@download/publicationFile/Linee%20Guida%20PDTA.pdf",
+          "tipo": "framework",
+          "livello": "regionale"
+        },
+        {
+          "id": "EMR_002",
+          "titolo": "PDTA Malattia Renale Cronica",
+          "delibera": "DGR 2208/2019",
+          "patologia": "Malattia renale cronica",
+          "codice_icd10": "N18",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "nefrologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "EMR_003",
+          "titolo": "PDTA Mesotelioma Pleurico Maligno",
+          "delibera": "DGR 125 del 29/01/2024",
+          "patologia": "Mesotelioma pleurico maligno",
+          "codice_icd10": "C45",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale",
+          "note": "Rete istituita con DGR 1410/2018, aggiornata con DGR 2316/2022"
+        },
+        {
+          "id": "EMR_004",
+          "titolo": "PDTA Endometriosi",
+          "delibera": "DGR del 03/12/2019",
+          "patologia": "Endometriosi",
+          "codice_icd10": "N80",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "ginecologico",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "AUSL Reggio Emilia",
+          "url": "https://www.ausl.re.it/percorsi-assistenziali-pdta",
+          "pdta_aree_oncologiche": ["Mammella", "Tiroide", "Polmone", "Ovaio", "Colon-retto", "Linfomi", "Melanoma"],
+          "pdta_altre_patologie": ["Interstiziopatie polmonari", "Malattia di Huntington", "Mesotelioma", "Mieloma", "NET", "Obesita patologica", "Tumori Ginecologici", "Vasculiti"]
+        },
+        {
+          "nome": "AUSL Piacenza",
+          "url": "https://www.ausl.pc.it/it/prestazioni-e-percorsi-di-cura/percorsi-di-cura",
+          "note": "Percorsi di cura disponibili sul portale"
+        }
+      ]
+    },
+    "toscana": {
+      "regione": "Toscana",
+      "codice_istat": "09",
+      "ente_coordinamento": "Regione Toscana / ARS Toscana",
+      "note_generali": "Ampio sistema di PDTA con forte coinvolgimento dell'ARS. 3 ASL (Centro, Sud-Est, Nord-Ovest). Rete Toscana Malattie Rare molto attiva.",
+      "url_portale_malattie_rare": "https://malattierare.toscana.it/informazioni/atti-e-documenti/",
+      "url_ars": "https://www.ars.toscana.it/",
+      "pdta": [
+        {
+          "id": "TOS_001",
+          "titolo": "PDTA Tumore della Mammella",
+          "delibera": "Decreto n. 8098 del 15/04/2024",
+          "patologia": "Tumore della mammella",
+          "codice_icd10": "C50",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_002",
+          "titolo": "PDTA Melanoma",
+          "delibera": "Decreto 19930/2019",
+          "patologia": "Melanoma e tumori ginecologici",
+          "codice_icd10": "C43",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_003",
+          "titolo": "PDTA Tumore al Polmone",
+          "delibera": "Decreto 3823/2019",
+          "patologia": "Tumore del polmone",
+          "codice_icd10": "C34",
+          "anno": 2019,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_004",
+          "titolo": "PDTA Sclerosi Multipla",
+          "delibera": "Delibera 1285/2020",
+          "patologia": "Sclerosi multipla",
+          "codice_icd10": "G35",
+          "anno": 2020,
+          "url_pdf": null,
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_005",
+          "titolo": "PDTA Cefalea",
+          "delibera": "Delibera 1286/2020",
+          "patologia": "Cefalea",
+          "codice_icd10": "G43-G44",
+          "anno": 2020,
+          "url_pdf": null,
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_006",
+          "titolo": "PDTA Malattia Celiaca",
+          "delibera": "DGRT 22/2018",
+          "patologia": "Malattia celiaca",
+          "codice_icd10": "K90.0",
+          "anno": 2018,
+          "url_pdf": null,
+          "tipo": "gastroenterologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_007",
+          "titolo": "PDTA Medicina Integrata per malati oncologici",
+          "delibera": "Decreto 19664/2021",
+          "patologia": "Oncologia - Medicina integrata",
+          "codice_icd10": "C00-C97",
+          "anno": 2021,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_008",
+          "titolo": "PDTA Distrofie Retiniche Ereditarie",
+          "delibera": "DD 3798/2024",
+          "patologia": "Distrofie retiniche ereditarie",
+          "codice_icd10": "H35.5",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_009",
+          "titolo": "PDTA Emofilia A/B",
+          "delibera": "Atto 2023",
+          "patologia": "Emofilia A/B",
+          "codice_icd10": "D66-D67",
+          "anno": 2023,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_010",
+          "titolo": "PDTA Distrofia Muscolare di Duchenne/Becker",
+          "delibera": "Atto 2023",
+          "patologia": "Distrofia muscolare Duchenne/Becker",
+          "codice_icd10": "G71.0",
+          "anno": 2023,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_011",
+          "titolo": "PDTA SCID (Immunodeficienza combinata grave)",
+          "delibera": "DD 23091/2021",
+          "patologia": "SCID",
+          "codice_icd10": "D81",
+          "anno": 2021,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_012",
+          "titolo": "PDTA Miastenia Gravis",
+          "delibera": "DD 23091/2021",
+          "patologia": "Miastenia gravis",
+          "codice_icd10": "G70.0",
+          "anno": 2021,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        },
+        {
+          "id": "TOS_013",
+          "titolo": "PDTA Sclerosi Sistemica Progressiva",
+          "delibera": "Atto 2023",
+          "patologia": "Sclerosi sistemica progressiva",
+          "codice_icd10": "M34",
+          "anno": 2023,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "USL Nord-Ovest Toscana",
+          "url": "https://www.uslnordovest.toscana.it/percorsi-assistenziali/130-percorsi-assistenziali",
+          "note": "Portale PDTA aziendali"
+        },
+        {
+          "nome": "ISPRO Toscana (Screening Oncologici)",
+          "url": "https://www.ispro.toscana.it/",
+          "note": "PDTA screening e prevenzione oncologica"
+        }
+      ]
+    },
+    "lazio": {
+      "regione": "Lazio",
+      "codice_istat": "12",
+      "ente_coordinamento": "Regione Lazio - Direzione Salute",
+      "note_generali": "Linee di indirizzo regionali per PDTA nella cronicita (2020). CRMR per malattie rare con 21 Istituti e 457 codici esenzione.",
+      "url_portale": "https://www.salutelazio.it/mrl-pdta",
+      "pdta": [
+        {
+          "id": "LAZ_001",
+          "titolo": "Linee di indirizzo PDTA nella cronicita",
+          "delibera": "DD 15691 del 18/12/2020",
+          "patologia": "Patologie croniche - Framework",
+          "codice_icd10": "n/a",
+          "anno": 2020,
+          "url_pdf": null,
+          "tipo": "framework",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_002",
+          "titolo": "PDTA Obesita nell'adulto",
+          "delibera": "Atto G07058 del 24/05/2023",
+          "patologia": "Obesita",
+          "codice_icd10": "E66",
+          "anno": 2023,
+          "url_pdf": "https://www.regione.lazio.it/sites/default/files/documentazione/2024/PDTA_G07058_2023.pdf",
+          "tipo": "endocrinologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_003",
+          "titolo": "PDTA Patologie della Tiroide",
+          "delibera": "Atto G07058 del 24/05/2023",
+          "patologia": "Patologie tiroidee",
+          "codice_icd10": "E00-E07",
+          "anno": 2023,
+          "url_pdf": "https://www.regione.lazio.it/sites/default/files/documentazione/2024/PDTA_G07058_2023.pdf",
+          "tipo": "endocrinologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_004",
+          "titolo": "PDTA Patologie del Surrene",
+          "delibera": "Atto G07058 del 24/05/2023",
+          "patologia": "Patologie surrenali",
+          "codice_icd10": "E24-E27",
+          "anno": 2023,
+          "url_pdf": "https://www.regione.lazio.it/sites/default/files/documentazione/2024/PDTA_G07058_2023.pdf",
+          "tipo": "endocrinologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_005",
+          "titolo": "PDTA Neoplasie Neuroendocrine",
+          "delibera": "Atto G07058 del 24/05/2023",
+          "patologia": "Tumori neuroendocrini",
+          "codice_icd10": "C7A-C7B",
+          "anno": 2023,
+          "url_pdf": "https://www.regione.lazio.it/sites/default/files/documentazione/2024/PDTA_G07058_2023.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_006",
+          "titolo": "PDTA Demenze",
+          "delibera": "DD G01705 del 10/02/2023",
+          "patologia": "Demenze",
+          "codice_icd10": "F00-F03, G30",
+          "anno": 2023,
+          "url_pdf": "https://www.demenze.it/documenti/geo_regioni/det_g01705_2023_pdta_demenze_regione_lazio_burl.pdf",
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "LAZ_007",
+          "titolo": "PDTA Patologie ipotalamo-ipofisarie",
+          "delibera": "Atto G07058 del 24/05/2023",
+          "patologia": "Patologie ipotalamo-ipofisarie",
+          "codice_icd10": "E22-E23",
+          "anno": 2023,
+          "url_pdf": "https://www.regione.lazio.it/sites/default/files/documentazione/2024/PDTA_G07058_2023.pdf",
+          "tipo": "endocrinologico",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "ASL Roma 1",
+          "url": "https://www.aslroma1.it/percorsi-diagnostico-terapeutici-assistenziali-pdta",
+          "pdta_specifici": [
+            {
+              "titolo": "PDTA Demenze (declinazione aziendale)",
+              "url_pdf": "https://www.aslroma1.it/uploads/files/51_39_delibera_n._1705_CS_del_30.12.2024_-_PDTA_Demenze.pdf",
+              "anno": 2024
+            }
+          ]
+        }
+      ]
+    },
+    "campania": {
+      "regione": "Campania",
+      "codice_istat": "15",
+      "ente_coordinamento": "Regione Campania / Rete Oncologica Campana (ROC)",
+      "note_generali": "ROC istituita con DCA 98/2016, coordinata dall'IRCCS Pascale. Revisione annuale PDTA oncologici (6a edizione 2024). Ampio set di PDTA non oncologici.",
+      "url_portale": "https://www.regione.campania.it/regione/it/tematiche/pdta-percorsi-diagnostici-terapeutici-assistenziali",
+      "url_roc": "https://www.reteoncologicacampana.it/?page_id=25559",
+      "pdta": [
+        {
+          "id": "CAM_001",
+          "titolo": "Decreto approvazione PDTA oncologici 2024",
+          "delibera": "Decreto Dirigenziale n. 18 del 13/01/2025",
+          "patologia": "Oncologia - tutti i tumori",
+          "codice_icd10": "C00-C97",
+          "anno": 2024,
+          "url_pdf": "https://www.reteoncologicacampana.it/wp-content/uploads/2025/02/Decreto-18_2025-approvazione-PDTA-2024.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "CAM_002",
+          "titolo": "PDTA Tumore della Mammella (6a edizione)",
+          "delibera": "Decreto 18/2025",
+          "patologia": "Tumore della mammella",
+          "codice_icd10": "C50",
+          "anno": 2024,
+          "url_pdf": "https://www.reteoncologicacampana.it/wp-content/uploads/2025/01/PDTA-Mammella.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "CAM_003",
+          "titolo": "PDTA Tumore dell'Ovaio",
+          "delibera": "Decreto 18/2025",
+          "patologia": "Tumore dell'ovaio",
+          "codice_icd10": "C56",
+          "anno": 2024,
+          "url_pdf": "https://www.regione.campania.it/assets/documents/04-pdta-ovaio-2024.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "CAM_004",
+          "titolo": "PDTA Sclerosi Multipla",
+          "delibera": null,
+          "patologia": "Sclerosi multipla",
+          "codice_icd10": "G35",
+          "anno": 2024,
+          "url_pdf": "https://www.regione.campania.it/assets/documents/pdta-sclerosi-multipla-2024.pdf",
+          "tipo": "neurologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "CAM_005",
+          "titolo": "PDTA Lesioni Cutanee",
+          "delibera": null,
+          "patologia": "Lesioni cutanee / piede diabetico",
+          "codice_icd10": "L89, E11.6",
+          "anno": 2024,
+          "url_pdf": "https://www.regione.campania.it/assets/documents/pdta-lesioni-cutanee-2024.pdf",
+          "tipo": "dermatologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "CAM_006",
+          "titolo": "PDTA HIV/AIDS",
+          "delibera": "DD 863 del 30/09/2024",
+          "patologia": "HIV/AIDS",
+          "codice_icd10": "B20-B24",
+          "anno": 2024,
+          "url_pdf": null,
+          "tipo": "infettivologico",
+          "livello": "regionale"
+        }
+      ],
+      "pdta_oncologici_roc_6a_edizione": [
+        "Colon-retto", "Mammella", "Cervice uterina", "Ovaio", "Stomaco",
+        "Pancreas", "Testicolo", "Vescica", "Prostata", "Rene", "Polmone",
+        "Melanoma cutaneo e mucose", "Melanoma uveale", "Epatocarcinoma",
+        "SNC", "Neoplasie Neuroendocrine", "Testa Collo", "Endometrio", "Sarcomi"
+      ],
+      "pdta_oncologici_roc_5a_edizione": [
+        "Colangiocarcinoma", "Tiroide", "Tumori cute non melanoma"
+      ],
+      "pdta_oncologici_roc_4a_edizione": [
+        "Mesotelioma", "Tumori pediatrici - apparato muscolo-scheletrico"
+      ],
+      "asl_locali": [
+        {
+          "nome": "ASL Caserta",
+          "url": "https://www.aslcaserta.it/index.php/percorsi-diagnostici-terapeutici/",
+          "note": "Sezione PDTA aziendali"
+        },
+        {
+          "nome": "ASL Napoli 3 Sud",
+          "url": "https://vecchioportale.aslnapoli3sud.it/sitoweb/jportal/JPDocumento.do?id=1703&rev=6",
+          "note": "PDTA disponibili online"
+        }
+      ]
+    },
+    "puglia": {
+      "regione": "Puglia",
+      "codice_istat": "16",
+      "ente_coordinamento": "AReSS Puglia",
+      "note_generali": "Sistema PathLAB per progettazione, implementazione e monitoraggio PDTA (Delibera 86/2017). DGR 658/2018 approva documento tecnico per rete assistenziale tramite PDTA.",
+      "url_portale": "https://aress.regione.puglia.it/en/-/pathlab-sistema-regionale-pdta",
+      "pdta": [
+        {
+          "id": "PUG_001",
+          "titolo": "PathLAB - Sistema regionale PDTA",
+          "delibera": "Delibera AReSS 86/2017, DGR 658/2018",
+          "patologia": "Trasversale - Framework",
+          "codice_icd10": "n/a",
+          "anno": 2018,
+          "url_pdf": null,
+          "tipo": "framework",
+          "livello": "regionale"
+        },
+        {
+          "id": "PUG_002",
+          "titolo": "Tavolo farmaco/PDTA Malattie Rare",
+          "delibera": "DGR 226/2017",
+          "patologia": "Malattie rare",
+          "codice_icd10": "multiple",
+          "anno": 2017,
+          "url_pdf": null,
+          "tipo": "malattia_rara",
+          "livello": "regionale"
+        }
+      ],
+      "reti_cliniche_con_pdta": [
+        "Rete Oncologica Pugliese (polmone, mammella, prostata, colon-retto, utero)",
+        "Rete Trauma",
+        "Rete Stroke",
+        "Rete Cardiologica",
+        "Rete Ematologica",
+        "Rete Nefrodialitica",
+        "Rete Reumatologica",
+        "Rete Malattie Infettive"
+      ],
+      "asl_locali": [
+        {
+          "nome": "IRCCS Istituto Tumori Giovanni Paolo II - Bari",
+          "url": "https://www.sanita.puglia.it/web/irccs/percorsi-diagnostici-terapeutici-assistenziali-pdta-",
+          "note": "PDTA tumori polmonari (Del. 1023/2023), carcinoma mammario (Del. 116/2022), melanoma (Del. 329/2021), leucemia linfatica cronica (Del. 286/2021), colon-retto (Del. 328/2016)"
+        }
+      ]
+    },
+    "friuli_venezia_giulia": {
+      "regione": "Friuli Venezia Giulia",
+      "codice_istat": "06",
+      "ente_coordinamento": "ARCS - Azienda Regionale Coordinamento Salute",
+      "note_generali": "Rete Oncologica Regionale FVG avviata nel febbraio 2025. Piano Rete Oncologica 2025-2027 approvato. PDTA regionali entro 30/06/2026.",
+      "url_portale": "https://asugi.sanita.fvg.it/it/schede/s_dir_san/pdta_definizione.html",
+      "pdta": [
+        {
+          "id": "FVG_001",
+          "titolo": "Piano Rete Oncologica Regionale 2025-2027",
+          "delibera": null,
+          "patologia": "Oncologia - Piano strategico",
+          "codice_icd10": "C00-C97",
+          "anno": 2025,
+          "url_pdf": "https://arcs.sanita.fvg.it/media/uploads/2025/07/15/piano-della-rete-oncologica-regionale-fvg-2025-2027.pdf",
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "FVG_002",
+          "titolo": "PDTA Carcinoma Mammario",
+          "delibera": "Determina ARCS 465/2023",
+          "patologia": "Tumore della mammella",
+          "codice_icd10": "C50",
+          "anno": 2023,
+          "url_pdf": null,
+          "tipo": "oncologico",
+          "livello": "regionale"
+        },
+        {
+          "id": "FVG_003",
+          "titolo": "Linee annuali gestione SSR 2024",
+          "delibera": "DGR 2117/2023",
+          "patologia": "Governance sanitaria",
+          "codice_icd10": "n/a",
+          "anno": 2024,
+          "url_pdf": "http://mtom.regione.fvg.it/storage//2023_2117/Allegato%201%20alla%20Delibera%202117-2023.pdf",
+          "tipo": "governance",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "ASU GI (Giuliano Isontina)",
+          "url": "https://asugi.sanita.fvg.it/it/schede/s_dir_san/pdta_definizione.html",
+          "note": "Sezione PDTA con definizioni e percorsi aziendali"
+        }
+      ]
+    },
+    "sicilia": {
+      "regione": "Sicilia",
+      "codice_istat": "19",
+      "ente_coordinamento": "Assessorato della Salute - Regione Siciliana",
+      "note_generali": "PDTA regionali approvati con Decreti Assessoriali. Rete Endometriosi istituita con LR 27/2019.",
+      "url_portale": null,
+      "pdta": [
+        {
+          "id": "SIC_001",
+          "titolo": "PDTA Endometriosi",
+          "delibera": "Decreto Assessoriale n. 652 del 23/06/2025",
+          "patologia": "Endometriosi",
+          "codice_icd10": "N80",
+          "anno": 2025,
+          "url_pdf": null,
+          "tipo": "ginecologico",
+          "livello": "regionale",
+          "note": "Rete Endometriosi Sicilia, 3 livelli di riferimento. 50.000-80.000 donne stimate."
+        }
+      ]
+    },
+    "liguria": {
+      "regione": "Liguria",
+      "codice_istat": "07",
+      "ente_coordinamento": "Regione Liguria",
+      "note_generali": "Recepimento PNC con focus su arruolamento graduale: 2017 diabetici e BPCO, 2018 ipertesi e nefropatici.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "marche": {
+      "regione": "Marche",
+      "codice_istat": "11",
+      "ente_coordinamento": "Regione Marche",
+      "note_generali": "Recepimento PNC il 20/11/2017 con DGR che prevede ricognizione PDTA presenti nelle ASL e attivazione di quelli mancanti. Partecipa al progetto ISS di governance clinica.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "umbria": {
+      "regione": "Umbria",
+      "codice_istat": "10",
+      "ente_coordinamento": "Regione Umbria",
+      "note_generali": "Recepimento PNC. 7 documenti normativi regionali sui PDTA demenze, il piu alto numero tra le regioni.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "abruzzo": {
+      "regione": "Abruzzo",
+      "codice_istat": "13",
+      "ente_coordinamento": "Regione Abruzzo",
+      "note_generali": "PDTA per malattie reumatiche, infiammatorie e autoimmuni approvati dalla Giunta regionale.",
+      "url_portale": null,
+      "pdta": [
+        {
+          "id": "ABR_001",
+          "titolo": "PDTA Malattie reumatiche, infiammatorie e autoimmuni",
+          "delibera": "DGR (Assessore Paolucci)",
+          "patologia": "Malattie reumatiche, infiammatorie e autoimmuni",
+          "codice_icd10": "M05-M06, M32-M35",
+          "anno": null,
+          "url_pdf": null,
+          "tipo": "reumatologico",
+          "livello": "regionale"
+        }
+      ],
+      "asl_locali": [
+        {
+          "nome": "ASL Pescara",
+          "url": "https://www.asl.pe.it/DettaglioStruttura.jsp?id=205&idSezione=12",
+          "note": "Sezione PDTA aziendali: scompenso cardiaco, diabete mellito, tumore mammella, colon retto, polmone"
+        },
+        {
+          "nome": "ASL 2 Abruzzo (Chieti-Lanciano-Vasto)",
+          "url": null,
+          "note": "Corso autoapprendimento sul Piano Nazionale Cronicita",
+          "url_materiale": "https://lnx.asl2abruzzo.it/formazione/attachments/article/308/Pacchetto%20autoapprendimento%20corso%20PIANO%20NAZIONALE%20DELLA%20CRONICITA'.pdf"
+        }
+      ]
+    },
+    "sardegna": {
+      "regione": "Sardegna",
+      "codice_istat": "20",
+      "ente_coordinamento": "Regione Sardegna - Assessorato Sanita",
+      "note_generali": "1 documento normativo regionale PDTA demenze. PDTA in fase di sviluppo per altre patologie.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "calabria": {
+      "regione": "Calabria",
+      "codice_istat": "18",
+      "ente_coordinamento": "Regione Calabria",
+      "note_generali": "1 documento normativo regionale PDTA demenze. Regione in Piano di rientro sanitario.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "basilicata": {
+      "regione": "Basilicata",
+      "codice_istat": "17",
+      "ente_coordinamento": "Regione Basilicata",
+      "note_generali": "Sviluppo PDTA in corso.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "molise": {
+      "regione": "Molise",
+      "codice_istat": "14",
+      "ente_coordinamento": "Regione Molise",
+      "note_generali": "Regione commissariata. Sviluppo PDTA limitato.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "valle_d_aosta": {
+      "regione": "Valle d'Aosta",
+      "codice_istat": "02",
+      "ente_coordinamento": "Regione Autonoma Valle d'Aosta / USL Valle d'Aosta",
+      "note_generali": "Partecipa alla Rete Oncologica Piemonte e Valle d'Aosta. Recepimento PNC. Singola USL regionale.",
+      "url_portale": null,
+      "pdta": []
+    },
+    "trentino_alto_adige": {
+      "regione": "Trentino-Alto Adige",
+      "codice_istat": "04",
+      "ente_coordinamento": "Province Autonome di Trento e Bolzano",
+      "note_generali": "Competenza sanitaria alle Province Autonome. Recepimento PNC.",
+      "province": {
+        "trento": {
+          "ente": "APSS - Azienda Provinciale per i Servizi Sanitari",
+          "url_portale": "https://www.apss.tn.it/Servizi-e-Prestazioni/Percorsi-diagnostico-terapeutici",
+          "note": "Portale con elenco PDTA provinciali disponibile online"
+        },
+        "bolzano": {
+          "ente": "Azienda Sanitaria dell'Alto Adige",
+          "url_portale": null,
+          "note": "Recepimento PNC"
+        }
+      }
+    }
+  }
+}
