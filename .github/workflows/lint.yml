@@ -1,0 +1,22 @@
+name: Python lint
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Bytecode compile all scripts
+        run: python -m compileall scripts
+      - name: Validate enrichment sources JSON
+        run: python -c "import json; json.load(open('scripts/enrichment/sources.json'))"
+      - name: Smoke test orchestrator --list
+        run: python scripts/run_daily_enrichment.py --list

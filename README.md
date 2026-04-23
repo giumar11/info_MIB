@@ -8,6 +8,21 @@ Il progetto si basa su fonti dati istituzionali pubbliche e aggiornate, tra cui 
 
 ## Catalogo fonti machine-readable
 
+### Enrichment automatico
+
+Una pipeline giornaliera (`.github/workflows/daily_enrichment.yml`) scarica
+i **dataset e report originali** da tutte le fonti catalogate (Orphadata,
+ANIA, AIFA, GIMBE, UNIAMO, ISS, ISTAT, Osservasalute, ONS, OASI Bocconi,
+OECD/WHO, Ministero Salute, ENPAM) e rigenera gli estratti processati in
+`datasets/processed/`. Vedi [`docs/ENRICHMENT_PIPELINES.md`](docs/ENRICHMENT_PIPELINES.md)
+per dettagli sull'orchestratore, il manifest di download e l'aggiunta di
+nuove sorgenti. Esecuzione manuale:
+
+```bash
+python3 scripts/run_daily_enrichment.py --list
+python3 scripts/run_daily_enrichment.py --only ania
+```
+
 Il file `sources_catalog.csv` nella root del repository contiene un catalogo strutturato di tutte le fonti dati con i seguenti campi:
 
 | Campo | Descrizione |
@@ -78,6 +93,17 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 | **AIFA - OsMed** | Monitoraggio spesa farmaceutica nazionale e regionale, aderenza terapie | https://www.aifa.gov.it/osmed |
 
 **Percorso:** `datasets/raw/finanza/osmed/`
+
+### G) Assicurazione e sanità integrativa (ANIA)
+
+| Fonte | Descrizione | URL |
+|-------|-------------|-----|
+| **ANIA — L'Assicurazione Italiana** | Rapporto annuale su mercato assicurativo, premi vita/danni, RC | https://www.ania.it/ |
+| **ANIA — Assistenza Sanitaria Integrativa** | Analisi fondi sanitari, welfare aziendale, spesa privata intermediata | https://www.ania.it/welfare-e-sanita-integrativa |
+| **ANIA Trends RC Auto** | Monitoraggio trimestrale del ramo RC Auto | — |
+| **Italian Insurance in Figures** | Statistical yearbook (EN) | — |
+
+**Percorso:** `datasets/raw/ania/` — 8 report automatizzati dalla pipeline di enrichment.
 
 ---
 
