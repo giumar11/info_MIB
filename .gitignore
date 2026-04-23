@@ -1,2 +1,6 @@
 # Scheduler logs (generated at runtime)
 logs/
+scripts/__pycache__/
+scripts/pipelines/__pycache__/
+__pycache__/
+*.pyc
