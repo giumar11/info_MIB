@@ -1,2 +1,7 @@
 # Scheduler logs (generated at runtime)
 logs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo

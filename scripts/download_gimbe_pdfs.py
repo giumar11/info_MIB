@@ -136,10 +136,17 @@ GIMBE_PDFS = [
 
 
 def download_pdf(url, filepath, max_retries=3):
-    """Download a PDF with retries and exponential backoff."""
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
+    """Download a PDF with retries and exponential backoff.
+
+    Use INFO_MIB_INSECURE_SSL=1 to disable certificate verification for hosts
+    with broken SSL chains (not recommended).
+    """
+    if os.environ.get("INFO_MIB_INSECURE_SSL") == "1":
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+    else:
+        ctx = ssl.create_default_context()
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

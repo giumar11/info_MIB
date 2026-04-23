@@ -1,0 +1,81 @@
+name: Daily enrichment pipelines
+
+on:
+  schedule:
+    # Ogni giorno alle 04:00 UTC (~06:00 Europa/Roma d'estate, 05:00 d'inverno)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Categoria singola (lascia vuoto per eseguirle tutte)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry-run (nessun download)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas lxml
+
+      - name: Run enrichment pipelines
+        run: |
+          mkdir -p logs
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="--category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python scripts/enrichment_pipeline.py $ARGS
+
+      - name: Upload daily report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-report-${{ github.run_id }}
+          path: |
+            logs/enrichment_daily_*.log
+            logs/enrichment_daily_*.json
+            logs/update_report_*.json
+          retention-days: 30
+
+      - name: Commit new raw + processed data
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datasets/raw datasets/processed sources_catalog.csv logs/update_state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): enrichment giornaliero $(date +%F)"
+            git push
+          else
+            echo "Nessuna variazione da committare."
+          fi

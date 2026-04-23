@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import json
 import os
+from pathlib import Path
 
 def parse_orphadata_epidemiology(xml_path):
     """
@@ -148,9 +149,15 @@ def classify_complexity(df):
     return df
 
 def main():
-    # Percorsi
-    input_path = '/home/ubuntu/progetto_sanitario/datasets/raw/orphadata_epidemiology_it.xml'
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    base_dir = Path(__file__).resolve().parent.parent
+    raw_dir = base_dir / 'datasets' / 'raw'
+
+    candidates = [
+        raw_dir / 'orphadata' / 'orphadata_epidemiology_it.xml',
+        raw_dir / 'orphadata_epidemiology_it.xml',
+    ]
+    input_path = next((str(p) for p in candidates if p.exists()), str(candidates[0]))
+    output_dir = str(base_dir / 'datasets' / 'processed')
     
     os.makedirs(output_dir, exist_ok=True)
     

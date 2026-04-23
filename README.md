@@ -215,6 +215,74 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 ---
 
+## Sezione 7: Mercato assicurativo (ANIA)
+
+Report del mercato assicurativo italiano rilevanti per l'analisi del welfare
+sanitario integrativo, della spesa out-of-pocket mediata da polizze e della
+sanità complementare.
+
+| Fonte | Descrizione | Copertura | Frequenza |
+|-------|-------------|-----------|-----------|
+| **L'Assicurazione Italiana** | Rapporto annuale ANIA | Nazionale | Annuale |
+| **Trends Vita / Danni** | Nuova produzione e premi | Nazionale | Trimestrale |
+| **ANIA Trends Salute** | Welfare integrativo, fondi sanitari | Nazionale | Annuale |
+| **Welfare Index PMI** | Welfare aziendale (Generali + ANIA) | Nazionale | Annuale |
+| **Quaderno LTC** | Long Term Care | Nazionale | Periodico |
+| **Quaderno Previdenza** | Previdenza complementare | Nazionale | Periodico |
+| **Italian Insurance Data Bulletin** | Dati sintetici (EN) | Internazionale | Annuale |
+
+**Percorso:** `datasets/raw/ania/`
+
+Download: `python3 scripts/download_ania.py`
+
+---
+
+## Pipelines di enrichment giornaliero
+
+Il repository esegue ogni giorno un ciclo di enrichment che, per ciascuna
+categoria di documenti, (1) scarica/aggiorna i **documenti originali**
+(PDF, XML, CSV, XLSX), (2) rigenera gli estratti `processed/` e
+(3) verifica le fonti per nuove pubblicazioni.
+
+### Categorie coperte
+
+`governance`, `finance`, `reform`, `international`, `activity`, `analysis`,
+`analysis_gimbe`, `epidemiology`, `statistics`, `surveillance`,
+`rare_diseases`, `workforce`, `screening`, `pharma`, `pdta`, `access`,
+`performance`, `insurance` (ANIA).
+
+### Esecuzione
+
+```bash
+# Tutte le categorie
+python3 scripts/enrichment_pipeline.py
+
+# Singola categoria
+python3 scripts/enrichment_pipeline.py --category pdta
+python3 scripts/enrichment_pipeline.py --category insurance
+
+# Solo controllo aggiornamenti (senza download)
+python3 scripts/enrichment_pipeline.py --dry-run
+```
+
+### Schedulazione
+
+**GitHub Actions** (`.github/workflows/daily-enrichment.yml`): esecuzione
+automatica ogni giorno alle 04:00 UTC con commit/push delle nuove risorse.
+
+**Cron locale**:
+```bash
+python3 scripts/enrichment_pipeline.py --install-cron    # giornaliero 05:00
+python3 scripts/enrichment_pipeline.py --uninstall-cron
+```
+
+Output:
+- `logs/enrichment_daily_YYYY-MM-DD.json` - report strutturato
+- `logs/enrichment_daily_YYYY-MM-DD.log` - log dettagliato
+- `logs/update_state.json` - stato fonti per detection dei cambiamenti
+
+---
+
 ## Licenza e disclaimer
 
 *Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*

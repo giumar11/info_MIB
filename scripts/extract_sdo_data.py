@@ -7,6 +7,7 @@ Crea dataset utilizzabili per l'analisi delle patologie multi-specialistiche.
 import os
 import json
 import pandas as pd
+from pathlib import Path
 
 def create_sdo_summary():
     """
@@ -218,7 +219,8 @@ def create_population_segmentation():
     return segmentazione
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    base_dir = Path(__file__).resolve().parent.parent
+    output_dir = str(base_dir / 'datasets' / 'processed')
     os.makedirs(output_dir, exist_ok=True)
     
     print("=== ESTRAZIONE DATI SDO E CREAZIONE DATASET ===\n")
