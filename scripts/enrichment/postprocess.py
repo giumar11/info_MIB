@@ -9,8 +9,10 @@ le altre pipeline.
 from __future__ import annotations
 
 import logging
+import shutil
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
 from typing import Callable
 
@@ -50,15 +52,53 @@ def ministero_salute_post(results: list[DownloadResult]) -> list[str]:
     return [_run_script("extract_sdo_data.py")]
 
 
-def istat_post(results: list[DownloadResult]) -> list[str]:
-    if not _any_changed(results, {"ISTAT_HFA_DB"}):
-        return []
-    # Nota: analyze_hfa_chronic.py richiede l'HFA già decompresso in datasets/raw/istat/hfa/HFA/
+def _extract_hfa_zip(zip_path: Path, extract_root: Path) -> bool:
+    """Estrae il pacchetto HFA in extract_root/HFA/. Ritorna True se ok."""
+    if not zip_path.exists():
+        log.info("HFA zip non presente (%s), skip estrazione", zip_path)
+        return False
+    target = extract_root / "HFA"
+    # Pulisco il target per garantire corrispondenza 1:1 col nuovo zip.
+    if target.exists():
+        shutil.rmtree(target)
+    target.mkdir(parents=True, exist_ok=True)
     try:
-        return [_run_script("analyze_hfa_chronic.py")]
-    except subprocess.CalledProcessError as e:
-        log.warning("analyze_hfa_chronic.py fallito (probabile HFA non decompresso): %s", e)
-        return []
+        with zipfile.ZipFile(zip_path) as zf:
+            members = zf.namelist()
+            # Se il zip contiene già una directory root "HFA/", estrai direttamente;
+            # altrimenti i file vengono messi dentro HFA/.
+            root_dirs = {m.split("/", 1)[0] for m in members if "/" in m}
+            if root_dirs == {"HFA"}:
+                zf.extractall(extract_root)
+            else:
+                zf.extractall(target)
+    except zipfile.BadZipFile as e:
+        log.error("HFA zip corrotto: %s", e)
+        return False
+    log.info("HFA estratto in %s (%d file)", target, sum(1 for _ in target.rglob("*") if _.is_file()))
+    return True
+
+
+def istat_post(results: list[DownloadResult]) -> list[str]:
+    produced: list[str] = []
+    repo = _repo_root()
+    hfa_zip = repo / "datasets" / "raw" / "istat" / "hfa" / "hfa_italia.zip"
+    hfa_dir = repo / "datasets" / "raw" / "istat" / "hfa"
+    hfa_changed = _any_changed(results, {"ISTAT_HFA_DB"})
+    hfa_already_extracted = (hfa_dir / "HFA").exists() and any((hfa_dir / "HFA").iterdir())
+
+    # Estrai il zip se è cambiato oppure se non è mai stato estratto.
+    if hfa_changed or (hfa_zip.exists() and not hfa_already_extracted):
+        if _extract_hfa_zip(hfa_zip, hfa_dir):
+            produced.append(str(hfa_dir / "HFA"))
+
+    # Rigenera gli estratti solo se il zip è stato aggiornato (evita run lenti inutili).
+    if hfa_changed and (hfa_dir / "HFA").exists():
+        try:
+            produced.append(_run_script("analyze_hfa_chronic.py"))
+        except subprocess.CalledProcessError as e:
+            log.warning("analyze_hfa_chronic.py fallito: %s", e)
+    return produced
 
 
 def scientific_reports_post(results: list[DownloadResult]) -> list[str]:

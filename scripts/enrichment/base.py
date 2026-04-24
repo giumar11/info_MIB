@@ -15,14 +15,17 @@ Principi:
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import logging
 import os
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Iterable
+from urllib.parse import urljoin
 
 try:
     import requests
@@ -49,6 +52,7 @@ class SourceDef:
     landing_url: str = ""
     required: bool = False  # Se True, il fallimento viene considerato errore
     notes: str = ""
+    resolver: dict | None = None  # type=landing_regex + landing_url + pattern + prefer_latest
 
 
 @dataclass
@@ -130,6 +134,48 @@ class EnrichmentEngine:
             encoding="utf-8",
         )
 
+    # ---------------- resolver ----------------
+    _HREF_RE = re.compile(r'href\s*=\s*["\']([^"\']+?)["\']', re.IGNORECASE)
+
+    def _resolve_from_landing(self, resolver: dict) -> tuple[str, str]:
+        """Scarica la landing page e torna (url_risolto, errore).
+
+        resolver = {
+            "type": "landing_regex",
+            "landing_url": "https://...",
+            "pattern": "regex match sull'URL del PDF",
+            "prefer_latest": bool  # se True, sceglie l'URL con anno più recente
+        }
+        """
+        landing = resolver.get("landing_url", "")
+        pattern = resolver.get("pattern", r"\.pdf(\?|$)")
+        if not landing:
+            return "", "resolver senza landing_url"
+        try:
+            resp = self.session.get(landing, timeout=DEFAULT_TIMEOUT, allow_redirects=True)
+            resp.raise_for_status()
+        except requests.RequestException as e:
+            return "", f"landing GET fallito: {e}"
+
+        body = resp.text
+        hrefs = [html.unescape(m.group(1)) for m in self._HREF_RE.finditer(body)]
+        # Risolvi URL relativi rispetto alla landing
+        abs_urls = [urljoin(resp.url, h) for h in hrefs]
+        # Filtra: devono essere PDF e matchare il pattern utente
+        regex = re.compile(pattern, re.IGNORECASE)
+        candidates = [u for u in abs_urls if regex.search(u)]
+        if not candidates:
+            return "", f"nessun URL match per pattern {pattern!r} in {landing}"
+
+        if resolver.get("prefer_latest"):
+            # Euristica: massimizza la sequenza di 4 cifre (anno) trovata nell'URL
+            def year_key(u: str) -> tuple[int, int]:
+                years = [int(y) for y in re.findall(r"(20\d{2})", u)]
+                return (max(years) if years else 0, len(u))
+            candidates.sort(key=year_key, reverse=True)
+
+        return candidates[0], ""
+
     # ---------------- HTTP ----------------
     def _http_get(
         self, url: str, headers: dict, dest_path: Path
@@ -170,6 +216,22 @@ class EnrichmentEngine:
     def download(self, source: SourceDef, manifest_entries: dict) -> DownloadResult:
         dest_path = self.raw_dir / source.dest
         prior = manifest_entries.get(source.source_id, {})
+
+        # Se è definito un resolver, prova a risolvere l'URL prima di scaricare.
+        # Se la risoluzione fallisce, si prova comunque l'URL statico `source.url`.
+        effective_url = source.url
+        resolver_note = ""
+        if source.resolver and source.resolver.get("type") == "landing_regex":
+            resolved, rerr = self._resolve_from_landing(source.resolver)
+            if resolved:
+                effective_url = resolved
+                self.logger.info(
+                    "[%s] resolver: %s → %s", self.category, source.source_id, resolved
+                )
+            else:
+                resolver_note = f"resolver: {rerr}"
+                self.logger.warning("[%s] %s; uso URL statico", self.category, resolver_note)
+
         conditional_headers: dict[str, str] = {}
         if dest_path.exists():
             if prior.get("etag"):
@@ -177,17 +239,18 @@ class EnrichmentEngine:
             if prior.get("last_modified"):
                 conditional_headers["If-Modified-Since"] = prior["last_modified"]
 
-        status, headers, tmp, err = self._http_get(source.url, conditional_headers, dest_path)
+        status, headers, tmp, err = self._http_get(effective_url, conditional_headers, dest_path)
         now = datetime.now(timezone.utc).isoformat()
 
         if err:
+            combined_err = err if not resolver_note else f"{err} ({resolver_note})"
             return DownloadResult(
-                source_id=source.source_id, url=source.url, path=str(dest_path),
-                status="failed", error=err, fetched_at=now,
+                source_id=source.source_id, url=effective_url, path=str(dest_path),
+                status="failed", error=combined_err, fetched_at=now,
             )
         if status == 304 or tmp is None:
             return DownloadResult(
-                source_id=source.source_id, url=source.url, path=str(dest_path),
+                source_id=source.source_id, url=effective_url, path=str(dest_path),
                 status="unchanged", http_status=status,
                 sha256=prior.get("sha256", ""),
                 etag=prior.get("etag", ""),
@@ -204,7 +267,7 @@ class EnrichmentEngine:
         if prior.get("sha256") == new_sha and dest_path.exists():
             tmp.unlink(missing_ok=True)
             return DownloadResult(
-                source_id=source.source_id, url=source.url, path=str(dest_path),
+                source_id=source.source_id, url=effective_url, path=str(dest_path),
                 status="unchanged", http_status=status, bytes=size,
                 sha256=new_sha, etag=etag, last_modified=lm, fetched_at=now,
             )

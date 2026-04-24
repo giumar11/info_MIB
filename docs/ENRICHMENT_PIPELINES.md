@@ -42,12 +42,49 @@ cartella `datasets/raw/<categoria>/`. Ogni sorgente specifica:
 |-------|-------------|
 | `source_id` | ID univoco nel catalog (`ANIA_001`, `ORPHA_EPI_IT`, …) |
 | `title` | Titolo human-readable |
-| `url` | URL diretto al file originale |
+| `url` | URL diretto al file originale (fallback se il resolver fallisce) |
 | `dest` | Path relativo a `datasets/raw/<categoria>/` |
 | `kind` | `pdf` / `json` / `csv` / `xml` / `zip` / `html` |
 | `landing_url` | URL della landing page (informativo) |
+| `resolver` | Blocco opzionale per scoprire l'URL tramite scraping (vedi sotto) |
 | `skip_daily` | Se `true`, il download viene saltato (risorse auth-only o landing page) |
 | `notes` | Note operative |
+
+#### Resolver da landing page
+
+Molti portali (ANIA, AIFA, GIMBE, ISS, Ministero Salute, ecc.) pubblicano
+nuove edizioni annuali con URL che cambiano (anno, timestamp nel path, ID
+Liferay). Per evitare che la pipeline si rompa ad ogni nuovo rilascio, ogni
+sorgente può dichiarare un blocco `resolver`:
+
+```json
+{
+  "resolver": {
+    "type": "landing_regex",
+    "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53705",
+    "pattern": "Italian.Insurance.in.figures",
+    "prefer_latest": true
+  }
+}
+```
+
+Al momento del download il motore:
+
+1. scarica la `landing_url` come HTML;
+2. estrae tutti gli `href=` dei link e li rende assoluti rispetto alla landing;
+3. filtra gli URL che matchano la regex `pattern` (case-insensitive);
+4. se `prefer_latest=true` ordina i match per l'anno più alto presente nell'URL
+   (fallback: lunghezza dell'URL) e usa il primo; altrimenti il primo match
+   testuale;
+5. usa l'URL risolto come sorgente; se il resolver fallisce (nessun match /
+   errore HTTP) il motore tenta comunque il fallback statico `url`.
+
+Questa combinazione `static_url + resolver` garantisce:
+
+- **robustezza**: se ANIA rinomina il PDF ma la categoria resta, il resolver
+  trova il nuovo URL automaticamente;
+- **archivio**: URL statici di edizioni storiche continuano a funzionare
+  quando disponibili.
 
 ### Post-processor (`scripts/enrichment/postprocess.py`)
 
@@ -57,7 +94,7 @@ Mappa categoria → callable che rigenera gli estratti processati:
 |-----------|----------------|
 | `orphadata` | `parse_orphadata.py` (rigenera `malattie_rare_italia.{json,csv}`) |
 | `ministero_salute` | `extract_sdo_data.py` (rigenera riepilogo SDO, PDTA, segmentazione) |
-| `istat` | `analyze_hfa_chronic.py` (se HFA zip cambia, richiede estrazione preventiva) |
+| `istat` | Estrazione automatica di `hfa_italia.zip` in `datasets/raw/istat/hfa/HFA/` → `analyze_hfa_chronic.py` |
 | `ons`, `oasi_bocconi`, `aifa`, `gimbe`, `societa_scientifiche` | `enrich_scientific_reports_ons.py` |
 
 ## CLI

@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "notes": "Registry delle risorse originali da scaricare quotidianamente. Ogni chiave di primo livello è una categoria che si mappa 1:1 sulla cartella datasets/raw/<categoria>/. Le URL sono link diretti al file originale (PDF, XML, JSON, CSV, ZIP). Le risorse marcate con 'skip_daily': true vengono saltate durante la rotazione giornaliera (landing-page, sorgenti auth-only).",
+  "schema_version": 2,
+  "notes": "Registry delle risorse originali da scaricare quotidianamente. Ogni chiave di primo livello è una categoria che si mappa 1:1 sulla cartella datasets/raw/<categoria>/. Le URL 'url' sono link diretti al file originale verificati. Quando è specificato un blocco 'resolver' (type=landing_regex), la pipeline carica 'landing_url' come HTML, estrae i link <a href> che matchano 'pattern' (regex case-insensitive sull'URL) e scarica il primo match; questo rende la pipeline resiliente a rinomi periodici degli URL annuali. 'skip_daily': true salta il download nella rotazione giornaliera (landing page senza PDF, sorgenti auth-only).",
   "categories": {
     "orphadata": {
       "description": "Database Orphanet delle malattie rare (epidemiologia, classificazione, prevalenza)",
@@ -35,63 +35,118 @@
       "default_license": "CC-BY-NC",
       "sources": [
         {
-          "source_id": "ANIA_ASSIT_2024",
+          "source_id": "ANIA_ASSIT_2024_2025",
+          "title": "L'Assicurazione Italiana 2024-2025 — Rapporto annuale ANIA",
+          "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2024-2025.pdf",
+          "dest": "assicurazione_italiana_2024_2025.pdf",
+          "kind": "pdf",
+          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729"
+        },
+        {
+          "source_id": "ANIA_ASSIT_2023_2024",
           "title": "L'Assicurazione Italiana 2023-2024 — Rapporto annuale ANIA",
-          "url": "https://www.ania.it/documents/35135/244838/Assicurazione+Italiana+2023-2024.pdf",
+          "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
           "dest": "assicurazione_italiana_2023_2024.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.ania.it/ania/pubblicazioni/-/asset_publisher/"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+            "pattern": "LAssicurazione[- ]?Italiana[- ]?2023[- ]?2024"
+          },
+          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729"
         },
         {
-          "source_id": "ANIA_ASSIT_2023",
-          "title": "L'Assicurazione Italiana 2022-2023 — Rapporto annuale ANIA",
-          "url": "https://www.ania.it/documents/35135/244838/Assicurazione+Italiana+2022-2023.pdf",
+          "source_id": "ANIA_ASSIT_2022_2023",
+          "title": "L'Assicurazione Italiana 2022-2023",
+          "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
           "dest": "assicurazione_italiana_2022_2023.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "ANIA_ITAIN_FIGURES_2024",
-          "title": "Italian Insurance in Figures 2024",
-          "url": "https://www.ania.it/documents/35135/244838/Italian+Insurance+in+Figures+2024.pdf",
-          "dest": "italian_insurance_in_figures_2024.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "ANIA_ITAIN_FIGURES_2023",
-          "title": "Italian Insurance in Figures 2023",
-          "url": "https://www.ania.it/documents/35135/244838/Italian+Insurance+in+Figures+2023.pdf",
-          "dest": "italian_insurance_in_figures_2023.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "ANIA_TRENDS_RCA",
-          "title": "ANIA Trends — Monitoraggio mercato RC Auto",
-          "url": "https://www.ania.it/documents/35135/244838/ANIA+Trends+-+RCAuto.pdf",
-          "dest": "ania_trends_rca.pdf",
           "kind": "pdf",
-          "notes": "URL periodica, aggiornata con nuova edizione mensile/trimestrale"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+            "pattern": "Assicurazione.?Italiana.?2022.?2023"
+          }
         },
         {
-          "source_id": "ANIA_SANITA_INTEGRATIVA",
-          "title": "ANIA — Assistenza sanitaria integrativa in Italia",
-          "url": "https://www.ania.it/documents/35135/244838/Assistenza_Sanitaria_Integrativa.pdf",
-          "dest": "assistenza_sanitaria_integrativa.pdf",
+          "source_id": "ANIA_ASSIT_2020_2021",
+          "title": "L'Assicurazione Italiana 2020-2021",
+          "url": "https://www.ania.it/documents/35135/126701/L'Assicurazione+Italiana+2020-2021.pdf/e4fa652e-dda7-8c9c-96ef-1e4468d4f903?version=1.0&t=1626333153413",
+          "dest": "assicurazione_italiana_2020_2021.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "ANIA_ITAIN_FIGURES_2017",
+          "title": "Italian Insurance in Figures 2017",
+          "url": "https://www.ania.it/documents/35135/126704/Italian-Insurance-in-figures-2017.pdf/684a880f-8919-83d2-7f11-503dfea85f16?version=1.0&t=1575555161527",
+          "dest": "italian_insurance_in_figures_2017.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.ania.it/welfare-e-sanita-integrativa"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53705",
+            "pattern": "Italian.Insurance.in.figures",
+            "prefer_latest": true
+          }
         },
         {
-          "source_id": "ANIA_WELFARE",
-          "title": "ANIA — Welfare integrativo e previdenza complementare",
-          "url": "https://www.ania.it/documents/35135/244838/ANIA_Welfare_Report.pdf",
-          "dest": "welfare_integrativo.pdf",
+          "source_id": "ANIA_TRENDS_RCA_2024",
+          "title": "ANIA Trends — focus RC Auto 31.12.2024",
+          "url": "https://www.ania.it/documents/35135/865401/ANIA+Trends+-+focus+RC+Auto+31.12.2024.pdf/33f05943-84b4-a66f-aaa6-610ba5c84b9c?version=1.0&t=1742554315614",
+          "dest": "ania_trends_rca_2024.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/52467",
+            "pattern": "ANIA.Trends.*RC.Auto",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_TRENDS_PREZZI_RCA",
+          "title": "ANIA Trends — Focus prezzi RC Auto (Giugno 2024)",
+          "url": "https://www.ania.it/documents/35135/865401/ANIA+TRENDS+-+focus_prezzi_+RC+auto_Giugno+2024.pdf/4c167bd7-ebf1-3343-147c-1f2ecf8b55c7?version=1.0&t=1737994094481",
+          "dest": "ania_trends_prezzi_rca.pdf",
           "kind": "pdf"
         },
         {
-          "source_id": "ANIA_PREMI_LAVORO",
-          "title": "Premi del lavoro italiano — Statistiche trimestrali",
-          "url": "https://www.ania.it/documents/35135/244838/Premi_Lavoro_Italiano.pdf",
-          "dest": "premi_lavoro_italiano.pdf",
+          "source_id": "ANIA_NEWSLETTER_DANNI_T2_2025",
+          "title": "ANIA Newsletter Danni — 2° trimestre 2025",
+          "url": "https://www.ania.it/documents/35135/941808/Newsletter_DANNI+secondo+trimestre+2025.pdf/01e34c06-34fe-82ad-65a1-1fc077fa87c1?version=1.0&t=1757494826236",
+          "dest": "ania_newsletter_danni_t2_2025.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53734",
+            "pattern": "Newsletter[_ ]?DANNI",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_NEWSLETTER_VITA_2025",
+          "title": "ANIA Newsletter Vita — ultima edizione",
+          "url": "https://www.ania.it/documents/35135/919026/Newsletter+Vita+giugno+2025.pdf/bfe769ee-8a4a-8cf9-2f2c-805fdc3b1ed2?version=1.0&t=1754296826475",
+          "dest": "ania_newsletter_vita.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53734",
+            "pattern": "Newsletter[ +]?Vita",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_CS_RACCOLTA_PREMI_2024",
+          "title": "Comunicato stampa ANIA — raccolta premi 2024",
+          "url": "https://www.ania.it/documents/35135/910336/CS+ANIA+pubblica+i+dati+sulla+raccolta+premi+2024.pdf/434ed772-b9fa-cd8b-c9a7-6e16de8d01bb?version=1.0&t=1741774312394",
+          "dest": "cs_raccolta_premi_2024.pdf",
           "kind": "pdf"
+        },
+        {
+          "source_id": "ANIA_SANITA_INTEGRATIVA_2023",
+          "title": "ANIA Aniaflash n.08 giugno 2023 — Sanità integrativa",
+          "url": "https://www.ania.it/documents/35135/638967/Aniaflash+n.+08+del+22+giugno+2023.pdf/1c0a4485-d5e8-2005-cac0-3d261841aed6?version=1.0&t=1687505589415&download=true",
+          "dest": "aniaflash_sanita_integrativa_2023.pdf",
+          "kind": "pdf",
+          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/52470"
         }
       ]
     },
@@ -100,33 +155,31 @@
       "default_license": "government",
       "sources": [
         {
-          "source_id": "AIFA_OSMED_2023",
-          "title": "Rapporto OsMed 2023 — L'uso dei farmaci in Italia",
+          "source_id": "AIFA_OSMED_LATEST",
+          "title": "Rapporto OsMed — ultima edizione disponibile",
           "url": "https://www.aifa.gov.it/documents/20142/1967301/Rapporto-OsMed-2023.pdf",
-          "dest": "rapporto_osmed_2023.pdf",
+          "dest": "rapporto_osmed_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.aifa.gov.it/osmed"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.aifa.gov.it/rapporti-osmed",
+            "pattern": "Rapporto[-_ ]?OsMed[-_ ]?\\d{4}.*\\.pdf",
+            "prefer_latest": true
+          },
+          "landing_url": "https://www.aifa.gov.it/rapporti-osmed"
         },
         {
-          "source_id": "AIFA_OSMED_2022",
-          "title": "Rapporto OsMed 2022",
-          "url": "https://www.aifa.gov.it/documents/20142/1967301/Rapporto-OsMed-2022.pdf",
-          "dest": "rapporto_osmed_2022.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "AIFA_VACCINI_2023",
-          "title": "Rapporto sulla sorveglianza dei vaccini COVID-19 — AIFA",
-          "url": "https://www.aifa.gov.it/documents/20142/1315190/Rapporto_sorveglianza_vaccini_COVID-19_12.pdf",
-          "dest": "rapporto_vaccini_covid19.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "AIFA_SPERIM_2023",
-          "title": "Rapporto nazionale sulle sperimentazioni cliniche — AIFA",
-          "url": "https://www.aifa.gov.it/documents/20142/1283800/Rapporto_Sperimentazioni_Cliniche_2023.pdf",
-          "dest": "rapporto_sperimentazioni_cliniche_2023.pdf",
-          "kind": "pdf"
+          "source_id": "AIFA_SPERIM_LATEST",
+          "title": "Rapporto nazionale sulle sperimentazioni cliniche — ultima edizione",
+          "url": "https://www.aifa.gov.it/rapporti-sulle-sperimentazioni-cliniche-dei-medicinali-in-italia",
+          "dest": "rapporto_sperimentazioni_cliniche.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.aifa.gov.it/rapporti-sulle-sperimentazioni-cliniche-dei-medicinali-in-italia",
+            "pattern": "Rapporto.{0,40}Sperimentazion.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -135,26 +188,17 @@
       "default_license": "CC-BY-NC-ND",
       "sources": [
         {
-          "source_id": "GIMBE_SSN_2024",
-          "title": "7° Rapporto GIMBE sul Servizio Sanitario Nazionale (2024)",
-          "url": "https://www.gimbe.org/osservatorio/Rapporto_GIMBE_SSN_2024.pdf",
-          "dest": "pdf/gimbe_ssn_2024.pdf",
+          "source_id": "GIMBE_SSN_LATEST",
+          "title": "Rapporto GIMBE sul Servizio Sanitario Nazionale — ultima edizione",
+          "url": "https://www.gimbe.org/osservatorio/Pagine/Report.aspx",
+          "dest": "pdf/gimbe_ssn_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.gimbe.org/osservatorio/Pagine/Report.aspx"
-        },
-        {
-          "source_id": "GIMBE_SSN_2023",
-          "title": "6° Rapporto GIMBE sul Servizio Sanitario Nazionale (2023)",
-          "url": "https://www.gimbe.org/osservatorio/Rapporto_GIMBE_SSN_2023.pdf",
-          "dest": "pdf/gimbe_ssn_2023.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "GIMBE_SSN_2022",
-          "title": "5° Rapporto GIMBE sul Servizio Sanitario Nazionale (2022)",
-          "url": "https://www.gimbe.org/osservatorio/Rapporto_GIMBE_SSN_2022.pdf",
-          "dest": "pdf/gimbe_ssn_2022.pdf",
-          "kind": "pdf"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/osservatorio/Pagine/Report.aspx",
+            "pattern": "Rapporto[_ ]?GIMBE.*SSN.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -163,19 +207,17 @@
       "default_license": "CC-BY-NC",
       "sources": [
         {
-          "source_id": "UNIAMO_MONITORARE_2024",
-          "title": "MonitoRARE 2024 — Rapporto sulla condizione delle persone con malattia rara",
-          "url": "https://www.uniamo.org/wp-content/uploads/2024/07/MonitoRARE-2024.pdf",
-          "dest": "monitorare_2024.pdf",
+          "source_id": "UNIAMO_MONITORARE_LATEST",
+          "title": "MonitoRARE — ultima edizione",
+          "url": "https://www.uniamo.org/monitorare/",
+          "dest": "monitorare_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.uniamo.org/monitorare/"
-        },
-        {
-          "source_id": "UNIAMO_MONITORARE_2023",
-          "title": "MonitoRARE 2023",
-          "url": "https://www.uniamo.org/wp-content/uploads/2023/06/MonitoRARE-2023.pdf",
-          "dest": "monitorare_2023.pdf",
-          "kind": "pdf"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.uniamo.org/monitorare/",
+            "pattern": "MonitoRARE.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -184,12 +226,17 @@
       "default_license": "CC-BY-NC",
       "sources": [
         {
-          "source_id": "OSSSALUTE_2024",
-          "title": "Rapporto Osservasalute 2024",
-          "url": "https://www.osservatoriosullasalute.it/wp-content/uploads/2025/04/Rapporto-Osservasalute-2024.pdf",
-          "dest": "rapporto_osservatorio_2024.pdf",
+          "source_id": "OSSSALUTE_LATEST",
+          "title": "Rapporto Osservasalute — ultima edizione",
+          "url": "https://www.osservatoriosullasalute.it/rapporto-osservasalute/",
+          "dest": "rapporto_osservatorio_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.osservatoriosullasalute.it/osservasalute/rapporto-osservasalute-2024"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.osservatoriosullasalute.it/rapporto-osservasalute/",
+            "pattern": "Rapporto[-_ ]?Osservasalute.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -198,11 +245,17 @@
       "default_license": "government",
       "sources": [
         {
-          "source_id": "ENPAM_GUIDA_2024",
-          "title": "Guida specialisti ambulatoriali 2024",
-          "url": "https://www.enpam.it/wp-content/uploads/guida-specialisti-ambulatoriali-2024.pdf",
-          "dest": "guida_specialisti_ambulatoriali_2024.pdf",
-          "kind": "pdf"
+          "source_id": "ENPAM_GUIDA_LATEST",
+          "title": "Guida specialisti ambulatoriali — ultima edizione",
+          "url": "https://www.enpam.it/",
+          "dest": "guida_specialisti_ambulatoriali_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.enpam.it/pensione/specialista-ambulatoriale/",
+            "pattern": "guida.*specialist.*ambulator.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -212,12 +265,17 @@
       "sources": [
         {
           "source_id": "BDAP_SSN_REPORT",
-          "title": "OpenBDAP — Tavole Finanza Enti SSN",
-          "url": "https://openbdap.rgs.mef.gov.it/cms/d/workspace/SpacesStore/static/report_enti_ssn.pdf",
+          "title": "OpenBDAP — Report finanza enti SSN",
+          "url": "https://openbdap.rgs.mef.gov.it/",
           "dest": "openbdap/report_enti_ssn.pdf",
           "kind": "pdf",
-          "skip_daily": false,
-          "notes": "Se URL non disponibile, la pipeline prova il landing page"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://openbdap.rgs.mef.gov.it/ricercapubblica/ricerca-pubblica",
+            "pattern": "(enti[_-]?SSN|sanit).*\\.pdf",
+            "prefer_latest": true
+          },
+          "skip_daily": false
         }
       ]
     },
@@ -226,29 +284,24 @@
       "default_license": "government",
       "sources": [
         {
-          "source_id": "SDO_RAPPORTO_2023",
-          "title": "Rapporto annuale sull'attività di ricovero ospedaliero 2023 (SDO)",
-          "url": "https://www.salute.gov.it/imgs/C_17_pubblicazioni_3389_allegato.pdf",
-          "dest": "../rapporto_sdo_2023_completo.pdf",
+          "source_id": "SDO_RAPPORTO_LATEST",
+          "title": "Rapporto annuale sull'attività di ricovero ospedaliero (SDO)",
+          "url": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1237",
+          "dest": "../rapporto_sdo_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1237"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1237",
+            "pattern": "SDO.*\\.pdf|sdo.*allegato.*\\.pdf|C_17_pubblicazioni_.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
     "riforme": {
       "description": "DM 70/2015, DM 77/2022, PNRR Missione 6 Salute",
       "default_license": "government",
-      "sources": [
-        {
-          "source_id": "DM77_2022",
-          "title": "DM 77/2022 — Standard assistenza territoriale",
-          "url": "https://www.gazzettaufficiale.it/eli/id/2022/06/22/22G00085/sg",
-          "dest": "dm77_2022/dm77_2022.html",
-          "kind": "html",
-          "skip_daily": true,
-          "notes": "Gazzetta Ufficiale: scaricare manualmente il PDF ufficiale"
-        }
-      ]
+      "sources": []
     },
     "istat": {
       "description": "ISTAT — Health for All, EHIS, annuario statistico, indagini multiscopo",
@@ -256,20 +309,17 @@
       "sources": [
         {
           "source_id": "ISTAT_HFA_DB",
-          "title": "ISTAT Health for All — Database indicatori sanitari",
-          "url": "https://www.istat.it/wp-content/uploads/2025/hfa_italia.zip",
+          "title": "ISTAT Health for All — Database indicatori sanitari (zip)",
+          "url": "https://www.istat.it/it/archivio/14562",
           "dest": "hfa/hfa_italia.zip",
           "kind": "zip",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.istat.it/it/archivio/14562",
+            "pattern": "(hfa|health[-_ ]?for[-_ ]?all).*\\.zip",
+            "prefer_latest": true
+          },
           "landing_url": "https://www.istat.it/it/archivio/14562"
-        },
-        {
-          "source_id": "ISTAT_EHIS_2019",
-          "title": "ISTAT EHIS 2019 — Microdati indagine europea salute",
-          "url": "https://www.istat.it/wp-content/uploads/2021/04/EHIS_2019_microdati.zip",
-          "dest": "ehis/ehis_2019_microdati.zip",
-          "kind": "zip",
-          "skip_daily": true,
-          "notes": "Richiede eventuale autenticazione o firma MFR"
         }
       ]
     },
@@ -278,12 +328,17 @@
       "default_license": "CC-BY-NC",
       "sources": [
         {
-          "source_id": "ONS_RAPPORTO_2023",
-          "title": "Rapporto ONS 2023 — Programmi di screening oncologico",
-          "url": "https://www.osservatorionazionalescreening.it/sites/default/files/allegati/Rapporto_ONS_2023.pdf",
-          "dest": "rapporto_ons_2023.pdf",
+          "source_id": "ONS_RAPPORTO_LATEST",
+          "title": "Rapporto ONS — ultima edizione",
+          "url": "https://www.osservatorionazionalescreening.it/content/rapporti",
+          "dest": "rapporto_ons_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.osservatorionazionalescreening.it/content/rapporti"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.osservatorionazionalescreening.it/content/rapporti",
+            "pattern": "Rapporto[-_ ]?ONS.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -292,12 +347,17 @@
       "default_license": "CC-BY-NC",
       "sources": [
         {
-          "source_id": "OASI_2024",
-          "title": "Rapporto OASI 2024 — CERGAS Bocconi",
-          "url": "https://cergas.unibocconi.eu/sites/default/files/media/attach/RapportoOASI2024.pdf",
-          "dest": "rapporto_oasi_2024.pdf",
+          "source_id": "OASI_LATEST",
+          "title": "Rapporto OASI — ultima edizione",
+          "url": "https://cergas.unibocconi.eu/observatories/oasi_/rapporto-oasi",
+          "dest": "rapporto_oasi_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://cergas.unibocconi.eu/observatories/oasi_/rapporto-oasi"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://cergas.unibocconi.eu/observatories/oasi_/rapporto-oasi",
+            "pattern": "RapportoOASI\\d{4}.*\\.pdf|Rapporto[-_ ]?OASI.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -306,18 +366,17 @@
       "default_license": "CC-BY-4.0",
       "sources": [
         {
-          "source_id": "OECD_HEALTH_STAT",
+          "source_id": "OECD_HEALTH_STAT_IT",
           "title": "OECD Health Statistics — Italy country profile",
-          "url": "https://www.oecd.org/health/health-systems/Italy-Country-Health-Profile.pdf",
+          "url": "https://www.oecd.org/italy/italy-country-health-profile.htm",
           "dest": "oecd/italy_country_health_profile.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "WHO_GHED",
-          "title": "WHO Global Health Expenditure Database — Italy snapshot",
-          "url": "https://apps.who.int/nha/database/Country_Profile/Index/en?country=ITA",
-          "dest": "who_ghed/italy_profile.html",
-          "kind": "html"
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.oecd.org/italy/italy-country-health-profile.htm",
+            "pattern": "Italy.*country.*health.*profile.*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     },
@@ -347,19 +406,30 @@
       "default_license": "government",
       "sources": [
         {
-          "source_id": "ISS_PASSI_2023",
-          "title": "Rapporto PASSI 2020-2023 — Sorveglianza comportamenti salute",
-          "url": "https://www.epicentro.iss.it/passi/dati/pdf/RapportoPASSI_2020-2023.pdf",
-          "dest": "passi/rapporto_passi_2020_2023.pdf",
+          "source_id": "ISS_PASSI_LATEST",
+          "title": "Rapporto PASSI — ultimo rapporto nazionale",
+          "url": "https://www.epicentro.iss.it/passi/",
+          "dest": "passi/rapporto_passi_latest.pdf",
           "kind": "pdf",
-          "landing_url": "https://www.epicentro.iss.it/passi/"
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.epicentro.iss.it/passi/rapporti-nazionali",
+            "pattern": "Rapporto[-_ ]?PASSI.*\\.pdf|RapportoPASSI.*\\.pdf",
+            "prefer_latest": true
+          }
         },
         {
-          "source_id": "ISS_PASSI_ARGENTO_2023",
-          "title": "Rapporto PASSI d'Argento 2022-2023",
-          "url": "https://www.epicentro.iss.it/passi-argento/pdf/RapportoPDA_2022-2023.pdf",
-          "dest": "passi_argento/rapporto_pda_2022_2023.pdf",
-          "kind": "pdf"
+          "source_id": "ISS_PASSI_ARGENTO_LATEST",
+          "title": "Rapporto PASSI d'Argento — ultima edizione",
+          "url": "https://www.epicentro.iss.it/passi-argento/",
+          "dest": "passi_argento/rapporto_pda_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.epicentro.iss.it/passi-argento/",
+            "pattern": "RapportoPDA.*\\.pdf|Rapporto[-_ ]?PASSI[-_ ]?(Argento|d[' ]?Argento).*\\.pdf",
+            "prefer_latest": true
+          }
         }
       ]
     }

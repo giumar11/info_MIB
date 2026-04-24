@@ -64,6 +64,7 @@ def build_sources(category_cfg: dict) -> list[SourceDef]:
                 landing_url=item.get("landing_url", ""),
                 required=item.get("required", False),
                 notes=item.get("notes", ""),
+                resolver=item.get("resolver"),
             )
         )
     return out
