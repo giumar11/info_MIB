@@ -215,6 +215,66 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 ---
 
+## Pipelines di enrichment giornaliere
+
+Ogni categoria di documenti ha una pipeline dichiarativa in `scripts/pipelines/`.
+L'orchestrator `scripts/run_daily_enrichment.py` le esegue una volta al giorno,
+scaricando SEMPRE gli originali (PDF, XML, XLSX, ZIP, CSV) dalle fonti
+istituzionali e tenendo traccia di hash SHA-256, dimensioni, Last-Modified in
+`datasets/raw/<categoria>/manifest.json`.
+
+### Pipeline registrate
+
+| Pipeline ID | Copertura |
+|-------------|-----------|
+| `aifa` | AIFA - OsMed, Vaccini, Sperimentazione, Attivita, Horizon Scanning |
+| `ania` | ANIA + IVASS - Rapporto Annuale, Osservatorio Sanita, Welfare, Fondi Sanitari, Position Paper |
+| `gimbe` | Fondazione GIMBE - 8 Rapporti SSN + Osservatorio tematico |
+| `governance` | AGENAS PNE, LEA/NSG, PNGLA, OpenBDAP |
+| `international` | OECD, Eurostat, WHO GHED, KFF, Commonwealth Fund, NAIC, EU Country Health Profile |
+| `istat` | Health for All, EHIS, Rapporti Annuali, anziani multimorbidita |
+| `ministero_salute` | SDO rapporto + Open Data, Annuario Statistico SSN |
+| `oasi` | OASI CERGAS SDA Bocconi 2019-2025 |
+| `ons` | Osservatorio Nazionale Screening (cervice, mammella, colon) |
+| `orphanet` | Orphadata XML (epidemiology, nomenclature, classification, natural history) |
+| `osservatorio_salute` | Rapporto Osservasalute 2022-2025 |
+| `pdta` | PDTA nazionali (AGENAS, ISS, Conferenza Stato-Regioni) + regionali (tutte le regioni + PA) |
+| `riforme` | DM 77/2022, DM 70/2015, PNRR Missione 6 |
+| `scientific_societies` | AIOM, AIRTUM, SID, SIN, SIR, AIPO, RIDT, SIP + ESC, ERA, ERS |
+
+### Schedulazione
+
+```bash
+# Installa il cron giornaliero (ogni giorno alle 07:00)
+python3 scripts/run_daily_enrichment.py --install-cron
+
+# Esegui manualmente una sola pipeline
+python3 scripts/run_daily_enrichment.py --pipeline ania
+python3 scripts/run_daily_enrichment.py --pipeline gimbe --force
+
+# Anteprima di cio che verrebbe scaricato oggi
+python3 scripts/run_daily_enrichment.py --dry-run
+
+# Elenco pipeline
+python3 scripts/run_daily_enrichment.py --list
+```
+
+### Frequenze
+
+Ogni risorsa ha un campo `frequency` (`continuous`, `weekly`, `monthly`,
+`quarterly`, `annual`, `biennial`, `periodic`, `static`). L'orchestrator la
+riscarica solo quando l'ultima data di fetch eccede la soglia prevista, per
+evitare richieste inutili ai server. `--force` bypassa la soglia.
+
+### Update checker (separato)
+
+Il vecchio `scripts/scheduler_check_updates.py` controlla SOLO se le URL delle
+fonti nel catalogo hanno cambiato (Last-Modified / ETag / hash pagina) senza
+scaricare i file. E' complementare all'enrichment e schedulabile mensilmente
+con `--install-cron`.
+
+---
+
 ## Licenza e disclaimer
 
 *Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
