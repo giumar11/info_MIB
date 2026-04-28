@@ -132,21 +132,6 @@
             "pattern": "Newsletter[ +]?Vita",
             "prefer_latest": true
           }
-        },
-        {
-          "source_id": "ANIA_CS_RACCOLTA_PREMI_2024",
-          "title": "Comunicato stampa ANIA — raccolta premi 2024",
-          "url": "https://www.ania.it/documents/35135/910336/CS+ANIA+pubblica+i+dati+sulla+raccolta+premi+2024.pdf/434ed772-b9fa-cd8b-c9a7-6e16de8d01bb?version=1.0&t=1741774312394",
-          "dest": "cs_raccolta_premi_2024.pdf",
-          "kind": "pdf"
-        },
-        {
-          "source_id": "ANIA_SANITA_INTEGRATIVA_2023",
-          "title": "ANIA Aniaflash n.08 giugno 2023 — Sanità integrativa",
-          "url": "https://www.ania.it/documents/35135/638967/Aniaflash+n.+08+del+22+giugno+2023.pdf/1c0a4485-d5e8-2005-cac0-3d261841aed6?version=1.0&t=1687505589415&download=true",
-          "dest": "aniaflash_sanita_integrativa_2023.pdf",
-          "kind": "pdf",
-          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/52470"
         }
       ]
     },
@@ -184,19 +169,249 @@
       ]
     },
     "gimbe": {
-      "description": "Fondazione GIMBE — rapporti su sostenibilità SSN e criticità sanità",
+      "description": "Fondazione GIMBE — Rapporti annuali sul SSN (sostenibilità) e Report Osservatorio GIMBE su criticità del SSN, mobilità sanitaria, LEA, screening, vaccinazioni, COVID-19, autonomia differenziata",
       "default_license": "CC-BY-NC-ND",
       "sources": [
         {
-          "source_id": "GIMBE_SSN_LATEST",
-          "title": "Rapporto GIMBE sul Servizio Sanitario Nazionale — ultima edizione",
-          "url": "https://www.gimbe.org/osservatorio/Pagine/Report.aspx",
-          "dest": "pdf/gimbe_ssn_latest.pdf",
+          "source_id": "GIMBE_RAPP_001",
+          "title": "1° Rapporto GIMBE sulla sostenibilità del Servizio Sanitario Nazionale 2016-2025",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/Rapporto_GIMBE_Sostenibilita_SSN_2016-2025.pdf",
+          "dest": "pdf/1_Rapporto_GIMBE_Sostenibilita_SSN_2016-2025.pdf",
+          "kind": "pdf",
+          "landing_url": "https://www.salviamo-ssn.it/attivita/rapporto/1-rapporto-gimbe.it-IT.html"
+        },
+        {
+          "source_id": "GIMBE_RAPP_003",
+          "title": "3° Rapporto GIMBE sulla sostenibilità del SSN (2018)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/3_Rapporto_GIMBE.pdf",
+          "dest": "pdf/3_Rapporto_GIMBE.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_004",
+          "title": "4° Rapporto GIMBE sulla sostenibilità del SSN (2019)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+          "dest": "pdf/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_005",
+          "title": "5° Rapporto GIMBE sul Servizio Sanitario Nazionale (2022)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/5_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/5_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_006",
+          "title": "6° Rapporto GIMBE sul Servizio Sanitario Nazionale (2023)",
+          "url": "https://salviamo-ssn.it/var/contenuti/6_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/6_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_007",
+          "title": "7° Rapporto GIMBE sul Servizio Sanitario Nazionale (2024)",
+          "url": "https://salviamo-ssn.it/var/contenuti/7_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/7_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_008",
+          "title": "8° Rapporto GIMBE sul Servizio Sanitario Nazionale (2025)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/8_Rapporto_GIMBE_SSN_2025.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_LATEST",
+          "title": "Rapporto GIMBE sul SSN — ultima edizione (resolver)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/rapporto_gimbe_ssn_latest.pdf",
           "kind": "pdf",
           "resolver": {
             "type": "landing_regex",
-            "landing_url": "https://www.gimbe.org/osservatorio/Pagine/Report.aspx",
-            "pattern": "Rapporto[_ ]?GIMBE.*SSN.*\\.pdf",
+            "landing_url": "https://www.salviamo-ssn.it/attivita/rapporto.it-IT.html",
+            "pattern": "_Rapporto_GIMBE(_SSN)?\\.pdf",
+            "prefer_latest": true
+          }
+        },
+
+        {
+          "source_id": "GIMBE_OSS_2019_04",
+          "title": "Report Osservatorio GIMBE 4/2019 — Liste d'attesa",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.04_Liste_attesa.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.04_Liste_attesa.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2019_06",
+          "title": "Report Osservatorio GIMBE 6/2019 — Mobilità sanitaria interregionale 2017",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.06_Mobilita_sanitaria_2017.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.06_Mobilita_sanitaria_2017.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2019_07",
+          "title": "Report Osservatorio GIMBE 7/2019 — Definanziamento SSN 2010-2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.07_Definanziamento_SSN.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.07_Definanziamento_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2020_01",
+          "title": "Report Osservatorio GIMBE 1/2020 — Ticket 2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2020.01_Ticket_2019.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2020.01_Ticket_2019.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2020_02",
+          "title": "Report Osservatorio GIMBE 2/2020 — Mobilità sanitaria interregionale 2018",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2020.02_Mobilita_sanitaria_2018.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2020.02_Mobilita_sanitaria_2018.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_01",
+          "title": "Report Osservatorio GIMBE 1/2021 — Impatto COVID-19 su prestazioni sanitarie",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.01_Impatto_COVID_19_prestazioni_sanitarie.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.01_Impatto_COVID_19_prestazioni_sanitarie.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_02",
+          "title": "Report Osservatorio GIMBE 2/2021 — Sicurezza COVID-19 nelle scuole",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.02_Sicurezza_COVID_19_scuole.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.02_Sicurezza_COVID_19_scuole.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_03",
+          "title": "Report Osservatorio GIMBE 3/2021 — Vaccinazione antinfluenzale in Italia",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.03_Vaccinazione_antinfluenzale_in_Italia.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.03_Vaccinazione_antinfluenzale_in_Italia.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_01",
+          "title": "Report Osservatorio GIMBE 1/2022 — Monitoraggio programmi elettorali 2022",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.01_Monitoraggio_GIMBE_programmi_elettorali_2022.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.01_Monitoraggio_programmi_elettorali_2022.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_02",
+          "title": "Report Osservatorio GIMBE 2/2022 — Adempimenti LEA 2010-2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.02_Adempimenti_LEA_2010-2019.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.02_Adempimenti_LEA_2010-2019.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_03",
+          "title": "Report Osservatorio GIMBE 3/2022 — Isterectomie nel trattamento dei fibromi uterini",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.03_Isterectomie_fibromi_uterini.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.03_Isterectomie_fibromi_uterini.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_01",
+          "title": "Report Osservatorio GIMBE 1/2023 — Regionalismo differenziato in sanità",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_02",
+          "title": "Report Osservatorio GIMBE 2/2023 — Mobilità sanitaria interregionale 2020",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.02_Mobilita_sanitaria_2020.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.02_Mobilita_sanitaria_2020.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_04",
+          "title": "Report Osservatorio GIMBE 4/2023 — Ruolo filiera healthcare nel SSN",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_01",
+          "title": "Report Osservatorio GIMBE 1/2024 — Mobilità sanitaria interregionale 2021",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_02",
+          "title": "Report Osservatorio GIMBE 2/2024 — Autonomia differenziata in sanità",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata_in_sanita.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata_in_sanita.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_03",
+          "title": "Report Osservatorio GIMBE 3/2024 — Scuole che Promuovono Salute",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2025_01",
+          "title": "Report Osservatorio GIMBE 1/2025 — Mobilità sanitaria interregionale 2022",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/mobilita2022",
+            "pattern": "Report_Osservatorio_GIMBE_2025\\.01.*Mobilita.*\\.pdf",
+            "prefer_latest": true
+          },
+          "notes": "URL gimbe.org diretto da pattern; mirror di backup: https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2025_02",
+          "title": "Report Osservatorio GIMBE 2/2025 — Spesa sanitaria privata in Italia 2023",
+          "url": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2026_01",
+          "title": "Report Osservatorio GIMBE 1/2026 — Mobilità sanitaria interregionale 2023",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/mobilita2023",
+            "pattern": "Report_Osservatorio_GIMBE_2026.*Mobilita.*\\.pdf",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "GIMBE_OSS_2026_ENDO",
+          "title": "Report Osservatorio GIMBE 2026 — Endometriosi: evidenze scientifiche e diseguaglianze regionali",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.02_Endometriosi.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2026_Endometriosi.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/endometriosi",
+            "pattern": "Report_Osservatorio_GIMBE_2026.*[Ee]ndometriosi.*\\.pdf",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "GIMBE_OSS_LATEST",
+          "title": "Ultimo Report Osservatorio GIMBE pubblicato (resolver dinamico)",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "dest": "osservatorio/report_osservatorio_gimbe_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/pagine/290/it/report-osservatorio-gimbe",
+            "pattern": "Report_Osservatorio_GIMBE_\\d{4}\\.\\d{2}.*\\.pdf",
             "prefer_latest": true
           }
         }

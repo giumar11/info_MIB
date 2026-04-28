@@ -14,16 +14,23 @@ Questa cartella raccoglie i report ANIA **originali** scaricati dalla pipeline
 traccia per ciascun file: URL sorgente, SHA256, ETag, Last-Modified e data
 ultimo check.
 
-### Report principali
+### Report principali (solo pubblicazioni integrali — primary sources)
 
 | File | Descrizione | Aggiornamento |
 |------|-------------|---------------|
-| `assicurazione_italiana_<anno>.pdf` | Rapporto annuale "L'Assicurazione Italiana" — overview del mercato assicurativo | annuale (giugno) |
-| `italian_insurance_in_figures_<anno>.pdf` | Statistical yearbook in inglese | annuale |
-| `ania_trends_rca.pdf` | Monitoraggio mercato RC Auto (prezzi, sinistri, frequenza) | trimestrale |
-| `assistenza_sanitaria_integrativa.pdf` | Analisi welfare e sanità integrativa privata | annuale |
-| `welfare_integrativo.pdf` | Report su previdenza complementare e welfare aziendale | periodico |
-| `premi_lavoro_italiano.pdf` | Statistiche trimestrali su premi vita e danni | trimestrale |
+| `assicurazione_italiana_<anno>.pdf` | Rapporto annuale "L'Assicurazione Italiana" — overview del mercato assicurativo (edizioni 2020-2021, 2022-2023, 2023-2024, 2024-2025) | annuale (giugno-luglio) |
+| `italian_insurance_in_figures_2017.pdf` | Statistical yearbook in inglese (edizione storica disponibile pubblicamente) | annuale |
+| `ania_trends_rca_2024.pdf` | ANIA Trends — monitoraggio mercato RC Auto al 31.12.2024 (prezzi, sinistri, frequenza) | trimestrale |
+| `ania_trends_prezzi_rca.pdf` | ANIA Trends — focus prezzi RC Auto (giugno 2024) | trimestrale |
+| `ania_newsletter_danni_t2_2025.pdf` | Newsletter Danni — 2° trimestre 2025, statistiche premi diretti rami danni | trimestrale |
+| `ania_newsletter_vita.pdf` | Newsletter Vita — flussi e riserve dell'assicurazione vita (ultima edizione) | trimestrale |
+
+### Documenti non inclusi
+Per rispettare il principio "solo documenti originali integrali", la pipeline
+**non scarica**: comunicati stampa (CS, Aniaflash flash), abstract/sintesi,
+estratti per capitoli. Quando una statistica è citata da un comunicato, il dato
+primario è disponibile nei rapporti annuali ("L'Assicurazione Italiana") o
+nelle Newsletter Vita/Danni elencate sopra.
 
 ## Rilevanza per info_MIB
 
