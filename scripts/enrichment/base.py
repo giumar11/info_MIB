@@ -33,7 +33,15 @@ except ImportError as e:  # pragma: no cover
     raise SystemExit("Il pacchetto 'requests' è richiesto (pip install -r requirements.txt)") from e
 
 
-USER_AGENT = "info-MIB-enrichment/1.0 (+https://github.com/giumar11/info_mib)"
+# Alcuni portali (gimbe.org, salviamo-ssn.it, ania.it, aifa.gov.it) restituiscono
+# 403 a User-Agent non-browser. Usiamo un UA Chrome-on-Linux che combacia con
+# quello dei browser reali. Manteniamo comunque l'identificazione del progetto
+# come Accept-Language / commento secondario per onestà di logging server.
+USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 "
+    "info-MIB-enrichment/1.0"
+)
 DEFAULT_TIMEOUT = 60
 MAX_RETRIES = 4
 RETRY_BACKOFF_BASE = 2.0

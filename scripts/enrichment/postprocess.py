@@ -115,13 +115,15 @@ def migrate_db_post(results: list[DownloadResult]) -> list[str]:
 
 
 # Registry categoria → hook
+#
+# Nota: lo script `enrich_scientific_reports_ons.py` non viene registrato come
+# hook automatico perché — oltre a generare gli estratti JSON in
+# datasets/processed/ — sovrascrive in modo distruttivo i README curati nelle
+# cartelle datasets/raw/{gimbe,oasi_bocconi,aifa,ons,societa_scientifiche}/.
+# Per evitare la perdita dei contenuti curati, lo script va invocato a mano
+# quando si vogliono rigenerare le sintesi.
 POST_HOOKS: dict[str, Callable[[list[DownloadResult]], list[str]]] = {
     "orphadata": orphadata_post,
     "ministero_salute": ministero_salute_post,
     "istat": istat_post,
-    "ons": scientific_reports_post,
-    "oasi_bocconi": scientific_reports_post,
-    "aifa": scientific_reports_post,
-    "gimbe": scientific_reports_post,
-    "societa_scientifiche": scientific_reports_post,
 }

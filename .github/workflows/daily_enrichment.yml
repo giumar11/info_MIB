@@ -6,7 +6,9 @@ name: Daily enrichment pipelines
 # ramo principale.
 #
 # Trigger: schedulato ogni giorno alle 04:00 UTC (06:00 Europe/Rome d'estate)
-# + workflow_dispatch per run manuali (con scelta categoria opzionale).
+# + workflow_dispatch per run manuali (con scelta categoria opzionale)
+# + push su branch claude/* o quando cambia la registry, per popolare il repo
+#   con i PDF originali appena viene aggiornato l'elenco delle sorgenti.
 
 on:
   schedule:
@@ -21,6 +23,16 @@ on:
         description: "Categorie da saltare (separate da spazio)"
         required: false
         default: ""
+  push:
+    branches:
+      - 'claude/**'
+      - main
+    paths:
+      - 'scripts/enrichment/sources.json'
+      - 'scripts/enrichment/base.py'
+      - 'scripts/enrichment/postprocess.py'
+      - 'scripts/run_daily_enrichment.py'
+      - '.github/workflows/daily_enrichment.yml'
 
 permissions:
   contents: write
