@@ -1,0 +1,652 @@
+{
+  "schema_version": 2,
+  "notes": "Registry delle risorse originali da scaricare quotidianamente. Ogni chiave di primo livello è una categoria che si mappa 1:1 sulla cartella datasets/raw/<categoria>/. Le URL 'url' sono link diretti al file originale verificati. Quando è specificato un blocco 'resolver' (type=landing_regex), la pipeline carica 'landing_url' come HTML, estrae i link <a href> che matchano 'pattern' (regex case-insensitive sull'URL) e scarica il primo match; questo rende la pipeline resiliente a rinomi periodici degli URL annuali. 'skip_daily': true salta il download nella rotazione giornaliera (landing page senza PDF, sorgenti auth-only).",
+  "categories": {
+    "orphadata": {
+      "description": "Database Orphanet delle malattie rare (epidemiologia, classificazione, prevalenza)",
+      "default_license": "CC-BY-4.0",
+      "sources": [
+        {
+          "source_id": "ORPHA_EPI_IT",
+          "title": "Orphadata - Epidemiologia malattie rare (italiano)",
+          "url": "https://www.orphadata.com/data/xml/it_product9_ages.xml",
+          "dest": "orphadata_epidemiology_it.xml",
+          "kind": "xml",
+          "landing_url": "https://www.orphadata.com/epidemiology/"
+        },
+        {
+          "source_id": "ORPHA_EPI_EN",
+          "title": "Orphadata - Epidemiology rare diseases (English)",
+          "url": "https://www.orphadata.com/data/xml/en_product9_ages.xml",
+          "dest": "orphadata_epidemiology_en.xml",
+          "kind": "xml"
+        },
+        {
+          "source_id": "ORPHA_NATHIST_IT",
+          "title": "Orphadata - Storia naturale malattie rare (italiano)",
+          "url": "https://www.orphadata.com/data/xml/it_product9_prev.xml",
+          "dest": "orphadata_prevalence_it.xml",
+          "kind": "xml"
+        }
+      ]
+    },
+    "ania": {
+      "description": "Associazione Nazionale fra le Imprese Assicuratrici (ANIA) — report su mercato assicurativo italiano, rami vita/danni, RC auto, assistenza sanitaria integrativa, welfare",
+      "default_license": "CC-BY-NC",
+      "sources": [
+        {
+          "source_id": "ANIA_ASSIT_2024_2025",
+          "title": "L'Assicurazione Italiana 2024-2025 — Rapporto annuale ANIA",
+          "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2024-2025.pdf",
+          "dest": "assicurazione_italiana_2024_2025.pdf",
+          "kind": "pdf",
+          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729"
+        },
+        {
+          "source_id": "ANIA_ASSIT_2023_2024",
+          "title": "L'Assicurazione Italiana 2023-2024 — Rapporto annuale ANIA",
+          "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
+          "dest": "assicurazione_italiana_2023_2024.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+            "pattern": "LAssicurazione[- ]?Italiana[- ]?2023[- ]?2024"
+          },
+          "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729"
+        },
+        {
+          "source_id": "ANIA_ASSIT_2022_2023",
+          "title": "L'Assicurazione Italiana 2022-2023",
+          "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
+          "dest": "assicurazione_italiana_2022_2023.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+            "pattern": "Assicurazione.?Italiana.?2022.?2023"
+          }
+        },
+        {
+          "source_id": "ANIA_ASSIT_2020_2021",
+          "title": "L'Assicurazione Italiana 2020-2021",
+          "url": "https://www.ania.it/documents/35135/126701/L'Assicurazione+Italiana+2020-2021.pdf/e4fa652e-dda7-8c9c-96ef-1e4468d4f903?version=1.0&t=1626333153413",
+          "dest": "assicurazione_italiana_2020_2021.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "ANIA_ITAIN_FIGURES_2017",
+          "title": "Italian Insurance in Figures 2017",
+          "url": "https://www.ania.it/documents/35135/126704/Italian-Insurance-in-figures-2017.pdf/684a880f-8919-83d2-7f11-503dfea85f16?version=1.0&t=1575555161527",
+          "dest": "italian_insurance_in_figures_2017.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53705",
+            "pattern": "Italian.Insurance.in.figures",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_TRENDS_RCA_2024",
+          "title": "ANIA Trends — focus RC Auto 31.12.2024",
+          "url": "https://www.ania.it/documents/35135/865401/ANIA+Trends+-+focus+RC+Auto+31.12.2024.pdf/33f05943-84b4-a66f-aaa6-610ba5c84b9c?version=1.0&t=1742554315614",
+          "dest": "ania_trends_rca_2024.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/52467",
+            "pattern": "ANIA.Trends.*RC.Auto",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_TRENDS_PREZZI_RCA",
+          "title": "ANIA Trends — Focus prezzi RC Auto (Giugno 2024)",
+          "url": "https://www.ania.it/documents/35135/865401/ANIA+TRENDS+-+focus_prezzi_+RC+auto_Giugno+2024.pdf/4c167bd7-ebf1-3343-147c-1f2ecf8b55c7?version=1.0&t=1737994094481",
+          "dest": "ania_trends_prezzi_rca.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "ANIA_NEWSLETTER_DANNI_T2_2025",
+          "title": "ANIA Newsletter Danni — 2° trimestre 2025",
+          "url": "https://www.ania.it/documents/35135/941808/Newsletter_DANNI+secondo+trimestre+2025.pdf/01e34c06-34fe-82ad-65a1-1fc077fa87c1?version=1.0&t=1757494826236",
+          "dest": "ania_newsletter_danni_t2_2025.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53734",
+            "pattern": "Newsletter[_ ]?DANNI",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ANIA_NEWSLETTER_VITA_2025",
+          "title": "ANIA Newsletter Vita — ultima edizione",
+          "url": "https://www.ania.it/documents/35135/919026/Newsletter+Vita+giugno+2025.pdf/bfe769ee-8a4a-8cf9-2f2c-805fdc3b1ed2?version=1.0&t=1754296826475",
+          "dest": "ania_newsletter_vita.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.ania.it/pubblicazioni/-/categories/53734",
+            "pattern": "Newsletter[ +]?Vita",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "aifa": {
+      "description": "Agenzia Italiana del Farmaco — report OsMed, vaccini, sperimentazioni, registri",
+      "default_license": "government",
+      "sources": [
+        {
+          "source_id": "AIFA_OSMED_LATEST",
+          "title": "Rapporto OsMed — ultima edizione disponibile",
+          "url": "https://www.aifa.gov.it/documents/20142/1967301/Rapporto-OsMed-2023.pdf",
+          "dest": "rapporto_osmed_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.aifa.gov.it/rapporti-osmed",
+            "pattern": "Rapporto[-_ ]?OsMed[-_ ]?\\d{4}.*\\.pdf",
+            "prefer_latest": true
+          },
+          "landing_url": "https://www.aifa.gov.it/rapporti-osmed"
+        },
+        {
+          "source_id": "AIFA_SPERIM_LATEST",
+          "title": "Rapporto nazionale sulle sperimentazioni cliniche — ultima edizione",
+          "url": "https://www.aifa.gov.it/rapporti-sulle-sperimentazioni-cliniche-dei-medicinali-in-italia",
+          "dest": "rapporto_sperimentazioni_cliniche.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.aifa.gov.it/rapporti-sulle-sperimentazioni-cliniche-dei-medicinali-in-italia",
+            "pattern": "Rapporto.{0,40}Sperimentazion.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "gimbe": {
+      "description": "Fondazione GIMBE — Rapporti annuali sul SSN (sostenibilità) e Report Osservatorio GIMBE su criticità del SSN, mobilità sanitaria, LEA, screening, vaccinazioni, COVID-19, autonomia differenziata",
+      "default_license": "CC-BY-NC-ND",
+      "sources": [
+        {
+          "source_id": "GIMBE_RAPP_001",
+          "title": "1° Rapporto GIMBE sulla sostenibilità del Servizio Sanitario Nazionale 2016-2025",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/Rapporto_GIMBE_Sostenibilita_SSN_2016-2025.pdf",
+          "dest": "pdf/1_Rapporto_GIMBE_Sostenibilita_SSN_2016-2025.pdf",
+          "kind": "pdf",
+          "landing_url": "https://www.salviamo-ssn.it/attivita/rapporto/1-rapporto-gimbe.it-IT.html"
+        },
+        {
+          "source_id": "GIMBE_RAPP_003",
+          "title": "3° Rapporto GIMBE sulla sostenibilità del SSN (2018)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/3_Rapporto_GIMBE.pdf",
+          "dest": "pdf/3_Rapporto_GIMBE.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_004",
+          "title": "4° Rapporto GIMBE sulla sostenibilità del SSN (2019)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+          "dest": "pdf/4_Rapporto_GIMBE_Sostenibilita_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_005",
+          "title": "5° Rapporto GIMBE sul Servizio Sanitario Nazionale (2022)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/5_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/5_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_006",
+          "title": "6° Rapporto GIMBE sul Servizio Sanitario Nazionale (2023)",
+          "url": "https://salviamo-ssn.it/var/contenuti/6_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/6_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_007",
+          "title": "7° Rapporto GIMBE sul Servizio Sanitario Nazionale (2024)",
+          "url": "https://salviamo-ssn.it/var/contenuti/7_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/7_Rapporto_GIMBE_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_008",
+          "title": "8° Rapporto GIMBE sul Servizio Sanitario Nazionale (2025)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/8_Rapporto_GIMBE_SSN_2025.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_RAPP_LATEST",
+          "title": "Rapporto GIMBE sul SSN — ultima edizione (resolver)",
+          "url": "https://www.salviamo-ssn.it/var/contenuti/8_Rapporto_GIMBE_SSN.pdf",
+          "dest": "pdf/rapporto_gimbe_ssn_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.salviamo-ssn.it/attivita/rapporto.it-IT.html",
+            "pattern": "_Rapporto_GIMBE(_SSN)?\\.pdf",
+            "prefer_latest": true
+          }
+        },
+
+        {
+          "source_id": "GIMBE_OSS_2019_04",
+          "title": "Report Osservatorio GIMBE 4/2019 — Liste d'attesa",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.04_Liste_attesa.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.04_Liste_attesa.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2019_06",
+          "title": "Report Osservatorio GIMBE 6/2019 — Mobilità sanitaria interregionale 2017",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.06_Mobilita_sanitaria_2017.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.06_Mobilita_sanitaria_2017.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2019_07",
+          "title": "Report Osservatorio GIMBE 7/2019 — Definanziamento SSN 2010-2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2019.07_Definanziamento_SSN.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2019.07_Definanziamento_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2020_01",
+          "title": "Report Osservatorio GIMBE 1/2020 — Ticket 2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2020.01_Ticket_2019.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2020.01_Ticket_2019.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2020_02",
+          "title": "Report Osservatorio GIMBE 2/2020 — Mobilità sanitaria interregionale 2018",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2020.02_Mobilita_sanitaria_2018.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2020.02_Mobilita_sanitaria_2018.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_01",
+          "title": "Report Osservatorio GIMBE 1/2021 — Impatto COVID-19 su prestazioni sanitarie",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.01_Impatto_COVID_19_prestazioni_sanitarie.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.01_Impatto_COVID_19_prestazioni_sanitarie.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_02",
+          "title": "Report Osservatorio GIMBE 2/2021 — Sicurezza COVID-19 nelle scuole",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.02_Sicurezza_COVID_19_scuole.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.02_Sicurezza_COVID_19_scuole.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2021_03",
+          "title": "Report Osservatorio GIMBE 3/2021 — Vaccinazione antinfluenzale in Italia",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2021.03_Vaccinazione_antinfluenzale_in_Italia.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2021.03_Vaccinazione_antinfluenzale_in_Italia.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_01",
+          "title": "Report Osservatorio GIMBE 1/2022 — Monitoraggio programmi elettorali 2022",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.01_Monitoraggio_GIMBE_programmi_elettorali_2022.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.01_Monitoraggio_programmi_elettorali_2022.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_02",
+          "title": "Report Osservatorio GIMBE 2/2022 — Adempimenti LEA 2010-2019",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.02_Adempimenti_LEA_2010-2019.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.02_Adempimenti_LEA_2010-2019.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2022_03",
+          "title": "Report Osservatorio GIMBE 3/2022 — Isterectomie nel trattamento dei fibromi uterini",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2022.03_Isterectomie_fibromi_uterini.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2022.03_Isterectomie_fibromi_uterini.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_01",
+          "title": "Report Osservatorio GIMBE 1/2023 — Regionalismo differenziato in sanità",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.01_Regionalismo_differenziato_in_sanita.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_02",
+          "title": "Report Osservatorio GIMBE 2/2023 — Mobilità sanitaria interregionale 2020",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.02_Mobilita_sanitaria_2020.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.02_Mobilita_sanitaria_2020.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2023_04",
+          "title": "Report Osservatorio GIMBE 4/2023 — Ruolo filiera healthcare nel SSN",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2023.04_Ruolo_filiera_healthcare_nel_SSN.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_01",
+          "title": "Report Osservatorio GIMBE 1/2024 — Mobilità sanitaria interregionale 2021",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.01_Mobilita_sanitaria_2021.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_02",
+          "title": "Report Osservatorio GIMBE 2/2024 — Autonomia differenziata in sanità",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata_in_sanita.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.02_Autonomia_differenziata_in_sanita.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2024_03",
+          "title": "Report Osservatorio GIMBE 3/2024 — Scuole che Promuovono Salute",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2024.03_Scuole_che_promuovono_salute.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2025_01",
+          "title": "Report Osservatorio GIMBE 1/2025 — Mobilità sanitaria interregionale 2022",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/mobilita2022",
+            "pattern": "Report_Osservatorio_GIMBE_2025\\.01.*Mobilita.*\\.pdf",
+            "prefer_latest": true
+          },
+          "notes": "URL gimbe.org diretto da pattern; mirror di backup: https://www.avis.it/wp-content/uploads/2025/03/Report_Osservatorio_GIMBE_2025.01_Mobilita_sanitaria_2022.pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2025_02",
+          "title": "Report Osservatorio GIMBE 2/2025 — Spesa sanitaria privata in Italia 2023",
+          "url": "https://salviamo-ssn.it/var/contenuti/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2025.02_Spesa_sanitaria_privata_2023.pdf",
+          "kind": "pdf"
+        },
+        {
+          "source_id": "GIMBE_OSS_2026_01",
+          "title": "Report Osservatorio GIMBE 1/2026 — Mobilità sanitaria interregionale 2023",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/mobilita2023",
+            "pattern": "Report_Osservatorio_GIMBE_2026.*Mobilita.*\\.pdf",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "GIMBE_OSS_2026_ENDO",
+          "title": "Report Osservatorio GIMBE 2026 — Endometriosi: evidenze scientifiche e diseguaglianze regionali",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.02_Endometriosi.pdf",
+          "dest": "osservatorio/Report_Osservatorio_GIMBE_2026_Endometriosi.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/endometriosi",
+            "pattern": "Report_Osservatorio_GIMBE_2026.*[Ee]ndometriosi.*\\.pdf",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "GIMBE_OSS_LATEST",
+          "title": "Ultimo Report Osservatorio GIMBE pubblicato (resolver dinamico)",
+          "url": "https://www.gimbe.org/osservatorio/Report_Osservatorio_GIMBE_2026.01_Mobilita_sanitaria_2023.pdf",
+          "dest": "osservatorio/report_osservatorio_gimbe_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.gimbe.org/pagine/290/it/report-osservatorio-gimbe",
+            "pattern": "Report_Osservatorio_GIMBE_\\d{4}\\.\\d{2}.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "uniamo": {
+      "description": "UNIAMO — Federazione Italiana Malattie Rare",
+      "default_license": "CC-BY-NC",
+      "sources": [
+        {
+          "source_id": "UNIAMO_MONITORARE_LATEST",
+          "title": "MonitoRARE — ultima edizione",
+          "url": "https://www.uniamo.org/monitorare/",
+          "dest": "monitorare_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.uniamo.org/monitorare/",
+            "pattern": "MonitoRARE.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "osservatorio_salute": {
+      "description": "Osservatorio Nazionale sulla Salute nelle Regioni Italiane (Università Cattolica)",
+      "default_license": "CC-BY-NC",
+      "sources": [
+        {
+          "source_id": "OSSSALUTE_LATEST",
+          "title": "Rapporto Osservasalute — ultima edizione",
+          "url": "https://www.osservatoriosullasalute.it/rapporto-osservasalute/",
+          "dest": "rapporto_osservatorio_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.osservatoriosullasalute.it/rapporto-osservasalute/",
+            "pattern": "Rapporto[-_ ]?Osservasalute.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "enpam": {
+      "description": "Ente Nazionale di Previdenza e Assistenza dei Medici — guide specialistica ambulatoriale",
+      "default_license": "government",
+      "sources": [
+        {
+          "source_id": "ENPAM_GUIDA_LATEST",
+          "title": "Guida specialisti ambulatoriali — ultima edizione",
+          "url": "https://www.enpam.it/",
+          "dest": "guida_specialisti_ambulatoriali_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.enpam.it/pensione/specialista-ambulatoriale/",
+            "pattern": "guida.*specialist.*ambulator.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "finanza": {
+      "description": "OpenBDAP (RGS/MEF) e OsMed — dati finanza pubblica sanitaria",
+      "default_license": "government",
+      "sources": [
+        {
+          "source_id": "BDAP_SSN_REPORT",
+          "title": "OpenBDAP — Report finanza enti SSN",
+          "url": "https://openbdap.rgs.mef.gov.it/",
+          "dest": "openbdap/report_enti_ssn.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://openbdap.rgs.mef.gov.it/ricercapubblica/ricerca-pubblica",
+            "pattern": "(enti[_-]?SSN|sanit).*\\.pdf",
+            "prefer_latest": true
+          },
+          "skip_daily": false
+        }
+      ]
+    },
+    "ministero_salute": {
+      "description": "Ministero della Salute — SDO (Schede di Dimissione Ospedaliera), PNE, dati ricoveri",
+      "default_license": "government",
+      "sources": [
+        {
+          "source_id": "SDO_RAPPORTO_LATEST",
+          "title": "Rapporto annuale sull'attività di ricovero ospedaliero (SDO)",
+          "url": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1237",
+          "dest": "../rapporto_sdo_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.salute.gov.it/portale/temi/p2_6.jsp?lingua=italiano&id=1237",
+            "pattern": "SDO.*\\.pdf|sdo.*allegato.*\\.pdf|C_17_pubblicazioni_.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "riforme": {
+      "description": "DM 70/2015, DM 77/2022, PNRR Missione 6 Salute",
+      "default_license": "government",
+      "sources": []
+    },
+    "istat": {
+      "description": "ISTAT — Health for All, EHIS, annuario statistico, indagini multiscopo",
+      "default_license": "CC-BY-3.0",
+      "sources": [
+        {
+          "source_id": "ISTAT_HFA_DB",
+          "title": "ISTAT Health for All — Database indicatori sanitari (zip)",
+          "url": "https://www.istat.it/it/archivio/14562",
+          "dest": "hfa/hfa_italia.zip",
+          "kind": "zip",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.istat.it/it/archivio/14562",
+            "pattern": "(hfa|health[-_ ]?for[-_ ]?all).*\\.zip",
+            "prefer_latest": true
+          },
+          "landing_url": "https://www.istat.it/it/archivio/14562"
+        }
+      ]
+    },
+    "ons": {
+      "description": "Osservatorio Nazionale Screening — monitoraggio programmi oncologici",
+      "default_license": "CC-BY-NC",
+      "sources": [
+        {
+          "source_id": "ONS_RAPPORTO_LATEST",
+          "title": "Rapporto ONS — ultima edizione",
+          "url": "https://www.osservatorionazionalescreening.it/content/rapporti",
+          "dest": "rapporto_ons_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.osservatorionazionalescreening.it/content/rapporti",
+            "pattern": "Rapporto[-_ ]?ONS.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "oasi_bocconi": {
+      "description": "OASI Report — Osservatorio sulle Aziende e sul Sistema Sanitario italiano (CERGAS SDA Bocconi)",
+      "default_license": "CC-BY-NC",
+      "sources": [
+        {
+          "source_id": "OASI_LATEST",
+          "title": "Rapporto OASI — ultima edizione",
+          "url": "https://cergas.unibocconi.eu/observatories/oasi_/rapporto-oasi",
+          "dest": "rapporto_oasi_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://cergas.unibocconi.eu/observatories/oasi_/rapporto-oasi",
+            "pattern": "RapportoOASI\\d{4}.*\\.pdf|Rapporto[-_ ]?OASI.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "internazionale": {
+      "description": "OECD, Eurostat, WHO — confronti internazionali su spesa e outcomes sanitari",
+      "default_license": "CC-BY-4.0",
+      "sources": [
+        {
+          "source_id": "OECD_HEALTH_STAT_IT",
+          "title": "OECD Health Statistics — Italy country profile",
+          "url": "https://www.oecd.org/italy/italy-country-health-profile.htm",
+          "dest": "oecd/italy_country_health_profile.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.oecd.org/italy/italy-country-health-profile.htm",
+            "pattern": "Italy.*country.*health.*profile.*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    },
+    "sistema_sanitario": {
+      "description": "Report su sistemi sanitari italiano e internazionale (KFF, Commonwealth Fund, NAIC)",
+      "default_license": "mixed",
+      "sources": []
+    },
+    "societa_scientifiche": {
+      "description": "Rapporti di società scientifiche italiane ed europee (AIOM, AIRTUM, SID, SIN, ESC, ERS...)",
+      "default_license": "mixed",
+      "sources": []
+    },
+    "governance": {
+      "description": "PNE (AGENAS), LEA/NSG (Ministero Salute), PNGLA",
+      "default_license": "government",
+      "sources": []
+    },
+    "pdta": {
+      "description": "Percorsi Diagnostico Terapeutici Assistenziali (nazionali + regionali)",
+      "default_license": "government",
+      "sources": [],
+      "notes": "La pipeline riusa scripts/download_pdta.py che contiene il dizionario PDTA_DOWNLOADS"
+    },
+    "iss": {
+      "description": "Istituto Superiore di Sanità — PASSI, PASSI d'Argento, registri",
+      "default_license": "government",
+      "sources": [
+        {
+          "source_id": "ISS_PASSI_LATEST",
+          "title": "Rapporto PASSI — ultimo rapporto nazionale",
+          "url": "https://www.epicentro.iss.it/passi/",
+          "dest": "passi/rapporto_passi_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.epicentro.iss.it/passi/rapporti-nazionali",
+            "pattern": "Rapporto[-_ ]?PASSI.*\\.pdf|RapportoPASSI.*\\.pdf",
+            "prefer_latest": true
+          }
+        },
+        {
+          "source_id": "ISS_PASSI_ARGENTO_LATEST",
+          "title": "Rapporto PASSI d'Argento — ultima edizione",
+          "url": "https://www.epicentro.iss.it/passi-argento/",
+          "dest": "passi_argento/rapporto_pda_latest.pdf",
+          "kind": "pdf",
+          "resolver": {
+            "type": "landing_regex",
+            "landing_url": "https://www.epicentro.iss.it/passi-argento/",
+            "pattern": "RapportoPDA.*\\.pdf|Rapporto[-_ ]?PASSI[-_ ]?(Argento|d[' ]?Argento).*\\.pdf",
+            "prefer_latest": true
+          }
+        }
+      ]
+    }
+  }
+}

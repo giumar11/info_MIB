@@ -164,10 +164,13 @@ def create_proxy_analysis():
     return multi_specialist_conditions
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
-    hfa_dir = '/home/ubuntu/progetto_sanitario/datasets/raw/hfa_istat/HFA'
-    
-    os.makedirs(output_dir, exist_ok=True)
+    repo_root = Path(__file__).resolve().parent.parent
+    output_dir = repo_root / 'datasets' / 'processed'
+    hfa_dir = repo_root / 'datasets' / 'raw' / 'istat' / 'hfa' / 'HFA'
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = str(output_dir)
+    hfa_dir = str(hfa_dir)
     
     print("=== ANALISI DATI HFA ISTAT ===\n")
     
