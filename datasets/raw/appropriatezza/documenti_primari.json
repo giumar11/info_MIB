@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Documenti primari sull'appropriatezza prescrittiva in Italia",
+  "description": "Catalogo machine-readable delle fonti istituzionali primarie sull'appropriatezza prescrittiva, derivato dall'articolo Il Sole 24 Ore AIAwJSTC.",
+  "last_updated": "2026-05-13",
+  "documents": [
+    {
+      "id": "APP_MS_001",
+      "level": "national",
+      "owner": "Ministero della Salute",
+      "type": "decreto_ministeriale",
+      "number": "DM 9 dicembre 2015",
+      "common_name": "Decreto appropriatezza / Decreto Lorenzin",
+      "title": "Condizioni di erogabilità e indicazioni di appropriatezza prescrittiva delle prestazioni di assistenza ambulatoriale erogabili nell'ambito del Servizio Sanitario Nazionale",
+      "publication": "GU Serie Generale n. 15 del 20/01/2016",
+      "redazionale_code": "16A00398",
+      "canonical_url": "https://www.gazzettaufficiale.it/eli/id/2016/01/20/16A00398/sg",
+      "pdf_url": "https://sistemats1.sanita.finanze.it/portale/documents/20182/30793/DM+9+dicembre+2015.pdf",
+      "status": "partially_superseded",
+      "superseded_by": "DPCM 12/01/2017 (nuovi LEA)",
+      "scope": ["odontoiatria", "genetica_medica", "diagnostica_per_immagini", "esami_laboratorio", "dermatologia_allergologica", "medicina_nucleare"],
+      "covered_services_count": 203,
+      "key_concepts": ["condizione_di_erogabilita", "indicazione_appropriatezza_prescrittiva"]
+    },
+    {
+      "id": "APP_MS_002",
+      "level": "national",
+      "owner": "Governo / Ministero della Salute",
+      "type": "decreto_legge",
+      "number": "DL 73/2024",
+      "common_name": "Decreto Liste d'Attesa Schillaci",
+      "title": "Misure urgenti per la riduzione dei tempi delle liste di attesa delle prestazioni sanitarie",
+      "publication": "GU Serie Generale n. 132 del 07/06/2024",
+      "canonical_url": "https://www.gazzettaufficiale.it/eli/id/2024/06/07/24G00091/sg",
+      "converted_into": "Legge 29 luglio 2024, n. 107",
+      "conversion_url": "https://www.gazzettaufficiale.it/eli/id/2024/07/30/24G00121/sg",
+      "in_force_since": "2024-08-01",
+      "parliamentary_dossier": "https://temi.camera.it/leg19/provvedimento/misure-urgenti-per-la-riduzione-dei-tempi-delle-liste-di-attesa-delle-prestazioni-sanitarie.html",
+      "status": "in_force",
+      "key_articles": [
+        {"article": 1, "topic": "Piattaforma Nazionale Liste d'Attesa (PNLA) presso AGENAS"},
+        {"article": 2, "topic": "Organismo di verifica e controllo"},
+        {"article": 3, "topic": "CUP unico regionale o infra-regionale obbligatorio"},
+        {"article": 4, "topic": "Obbligo classe priorità + quesito diagnostico ICD-9-CM in ricetta"},
+        {"article": 5, "topic": "Apertura serale e weekend, Sanità Militare"},
+        {"article": 7, "topic": "Flat tax 15% prestazioni aggiuntive personale"},
+        {"article": 8, "topic": "Superamento medici gettonisti"}
+      ]
+    },
+    {
+      "id": "APP_MS_003",
+      "level": "national",
+      "owner": "Presidenza Consiglio dei Ministri / Ministero della Salute",
+      "type": "dpcm",
+      "number": "DPCM 12 gennaio 2017",
+      "common_name": "Nuovi LEA",
+      "title": "Definizione e aggiornamento dei livelli essenziali di assistenza, di cui all'articolo 1, comma 7, del decreto legislativo 30 dicembre 1992, n. 502",
+      "publication": "GU Serie Generale n. 65 del 18/03/2017 — Suppl. Ordinario n. 15",
+      "canonical_url": "https://www.gazzettaufficiale.it/eli/id/2017/03/18/17A02015/sg",
+      "status": "in_force",
+      "relevant_annexes": ["Allegato 4 - Nomenclatore specialistica ambulatoriale", "Allegato 4D - Condizioni di erogabilità e appropriatezza"]
+    },
+    {
+      "id": "APP_MS_004",
+      "level": "national",
+      "owner": "Ministero della Salute / AGENAS / Regioni",
+      "type": "intesa_stato_regioni",
+      "number": "Rep. 28/CSR del 21/02/2019",
+      "common_name": "PNGLA 2019-2021",
+      "title": "Piano Nazionale di Governo delle Liste di Attesa per il triennio 2019-2021",
+      "canonical_url": "https://www.salute.gov.it/portale/listeAttesa/dettaglioContenutiListeAttesa.jsp?lingua=italiano&id=4754",
+      "status": "in_force",
+      "introduces": ["modello_RAO", "classi_priorita_UBDP"],
+      "in_repo_path": "datasets/raw/governance/pngla/"
+    },
+    {
+      "id": "APP_MS_005",
+      "level": "national",
+      "owner": "AIFA",
+      "type": "determinazioni",
+      "common_name": "Note AIFA",
+      "title": "Determinazioni AIFA - Condizioni di rimborsabilità farmaci a carico SSN",
+      "canonical_url": "https://www.aifa.gov.it/note-aifa",
+      "status": "in_force",
+      "scope": "appropriatezza_prescrittiva_farmacologica"
+    },
+    {
+      "id": "APP_MS_006",
+      "level": "national",
+      "owner": "Ministero della Salute",
+      "type": "decreto_ministeriale",
+      "number": "DM 23 giugno 2023",
+      "common_name": "Decreto Tariffe",
+      "title": "Approvazione del nomenclatore tariffario della specialistica ambulatoriale e della protesica",
+      "publication": "GU n. 158 del 08/07/2023",
+      "canonical_url": "https://www.gazzettaufficiale.it/eli/id/2023/07/08/23A03883/sg",
+      "status": "in_force",
+      "in_force_since": "2025-01-01"
+    },
+    {
+      "id": "APP_MS_007",
+      "level": "national",
+      "owner": "Parlamento Italiano",
+      "type": "legge",
+      "number": "Legge 8 marzo 2017, n. 24",
+      "common_name": "Legge Gelli-Bianco",
+      "title": "Disposizioni in materia di sicurezza delle cure e della persona assistita, nonché in materia di responsabilità professionale degli esercenti le professioni sanitarie",
+      "canonical_url": "https://www.gazzettaufficiale.it/eli/id/2017/03/17/17G00041/sg",
+      "relevance": "Art. 5 - obbligo di rispetto delle linee guida SNLG-ISS"
+    },
+    {
+      "id": "APP_PUG_001",
+      "level": "regional",
+      "owner": "Regione Puglia",
+      "type": "dgr",
+      "number": "DGR n. 479 del 18/03/2014",
+      "title": "Linee guida per la prescrizione e la prenotazione, secondo criteri di priorità, delle prestazioni specialistiche ambulatoriali",
+      "publication": "BURP n. 45 del 02/04/2014",
+      "canonical_url": "https://www.sanita.puglia.it/documents/20182/286437/DGR+479-2014.PDF/1de3c8a5-ffa2-455e-a4de-fab63a2bb1ae",
+      "guidelines_pdf_url": "https://www.sanita.puglia.it/documents/20182/121650/Linee_guida_prescrizioni_marzo_2014_DGR.pdf/bbfd58d9-aa79-4a88-a318-b8ddcd1a9889",
+      "status": "in_force",
+      "introduces": ["modello_RAO_Puglia", "livello_appropriatezza_critico_60pct"]
+    },
+    {
+      "id": "APP_PUG_002",
+      "level": "regional",
+      "owner": "Regione Puglia",
+      "type": "dgr",
+      "number": "DGR n. 735 del 18/04/2019",
+      "title": "Piano Regionale di Governo delle Liste di Attesa (PRGLA) — Triennio 2019/2021. Adozione.",
+      "canonical_url": "https://www.sanita.puglia.it/documents/20182/77835901/DGR+735+18_04_+2019+adozione+del+PRGLA+triennio+2019+2021/f514229f-b728-4677-83a1-a85da6b5e179",
+      "mirror_url": "https://www.aforp.org/riservata/trasparenza/delibere/2019/uploads/71af6_Deliberazione_N_735_2_del_18.04.2019.pdf",
+      "status": "in_force",
+      "obligations": ["adozione_PAA_aziendale_60gg", "trasmissione_mensile_flussi", "audit_concordanza_RAO"]
+    },
+    {
+      "id": "APP_PUG_003",
+      "level": "regional",
+      "owner": "AReSS Puglia",
+      "type": "studio",
+      "year": 2025,
+      "title": "Algoritmo AI (LLaMA 3.1) per l'appropriatezza delle prescrizioni di esami diagnostici",
+      "press_release_url": "https://press.regione.puglia.it/-/aress-puglia-un-algoritmo-ai-per-migliorare-l-appropriatezza-delle-prescrizioni-di-esami-diagnostici",
+      "sample_size": 17000,
+      "asl_involved": ["ASL Bari", "ASL Foggia", "ASL Lecce"],
+      "model": "LLaMA 3.1",
+      "results": {
+        "pienamente_appropriate_pct": 38.9,
+        "generalmente_inappropriate_pct": 43.0
+      },
+      "presented_at": {
+        "event": "Forum Logos & Téchne",
+        "organizer": "FIASO",
+        "venue": "Siracusa",
+        "year": 2025
+      }
+    },
+    {
+      "id": "APP_PUG_004",
+      "level": "regional",
+      "owner": "AReSS Puglia",
+      "type": "sistema_pdta",
+      "title": "PathLAB - Sistema Regionale PDTA Puglia",
+      "canonical_url": "https://aress.regione.puglia.it/en/-/pathlab-sistema-regionale-pdta",
+      "in_repo_path": "datasets/raw/pdta/regionale/puglia/"
+    },
+    {
+      "id": "APP_ISS_001",
+      "level": "national",
+      "owner": "Istituto Superiore di Sanità",
+      "type": "sistema_linee_guida",
+      "common_name": "SNLG - Sistema Nazionale Linee Guida",
+      "title": "Sistema Nazionale Linee Guida - ISS CNEC",
+      "canonical_url": "https://www.iss.it/snlg",
+      "consultation_url": "https://www.iss.it/snlg-consultazione",
+      "methodology": ["GRADE", "AGREE II"],
+      "legal_base": "Legge 24/2017 (Gelli-Bianco) art. 5",
+      "role_in_DL73_2024": "Elaborazione linee guida appropriatezza prescrittiva per supporto decisionale prescrittori"
+    }
+  ],
+  "key_figures_from_article": {
+    "source_article": {
+      "title": "Liste d'attesa, troppe ricette per visite ed esami: parte la caccia all'appropriatezza",
+      "outlet": "Il Sole 24 Ore",
+      "article_code": "AIAwJSTC",
+      "url_it": "https://www.ilsole24ore.com/art/liste-d-attesa-troppe-ricette-visite-ed-esami-parte-caccia-appropriatezza-AIAwJSTC",
+      "url_en": "https://en.ilsole24ore.com/art/waiting-lists-too-many-prescriptions-visits-and-examinations-part-of-the-hunt-for-appropriateness-AIAwJSTC"
+    },
+    "figures": {
+      "inappropriate_share_national_pct": 20,
+      "estimated_inappropriate_spending_eur_bn_year": 20,
+      "puglia_aress_sample_size": 17000,
+      "puglia_aress_fully_appropriate_pct": 38.9,
+      "puglia_aress_inappropriate_pct": 43.0,
+      "prescriptions_per_1000_inhabitants_2025": {
+        "lazio": 1569.5,
+        "veneto": 889.7,
+        "puglia": 1328.4
+      }
+    },
+    "officials_cited": [
+      {"name": "Orazio Schillaci", "role": "Ministro della Salute"}
+    ]
+  }
+}

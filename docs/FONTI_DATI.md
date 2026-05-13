@@ -242,6 +242,43 @@ Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fo
 
 ---
 
+## Appropriatezza e inappropriatezza prescrittiva
+
+Sezione dedicata al **governo dell'appropriatezza prescrittiva** delle prestazioni sanitarie ambulatoriali (visite ed esami), arricchita a partire dall'articolo de Il Sole 24 Ore *"Liste d'attesa, troppe ricette per visite ed esami: parte la caccia all'appropriatezza"* (codice `AIAwJSTC`).
+
+**Cartella principale:** [`datasets/raw/appropriatezza/`](../datasets/raw/appropriatezza/)
+**Catalogo machine-readable:** [`datasets/raw/appropriatezza/documenti_primari.json`](../datasets/raw/appropriatezza/documenti_primari.json)
+
+### Fonti primarie nazionali — Ministero della Salute / Parlamento
+
+| ID | Documento | Riferimento | URL canonico |
+|----|-----------|-------------|--------------|
+| `APP_MS_001` | **DM 9 dicembre 2015** "Decreto Lorenzin" — Condizioni di erogabilità e indicazioni di appropriatezza prescrittiva (203 prestazioni) | GU n. 15 del 20/01/2016 | https://www.gazzettaufficiale.it/eli/id/2016/01/20/16A00398/sg |
+| `APP_MS_002` | **DL 73/2024 + L. 107/2024** "Decreto Schillaci Liste d'Attesa" — PNLA, CUP unico, quesito diagnostico ICD-9-CM | GU n. 132 del 07/06/2024 | https://www.gazzettaufficiale.it/eli/id/2024/06/07/24G00091/sg |
+| `APP_MS_003` | **DPCM 12 gennaio 2017** — Nuovi LEA (Allegati 4 e 4D) | GU n. 65 del 18/03/2017 | https://www.gazzettaufficiale.it/eli/id/2017/03/18/17A02015/sg |
+| `APP_MS_004` | **PNGLA 2019-2021** — Modello RAO e classi priorità U/B/D/P | Intesa Stato-Regioni 21/02/2019 | https://www.salute.gov.it/portale/listeAttesa/ |
+| `APP_MS_005` | **Note AIFA** — appropriatezza prescrittiva farmaci | continuo | https://www.aifa.gov.it/note-aifa |
+| `APP_MS_006` | **DM 23 giugno 2023** — Nuovo Decreto Tariffe specialistica ambulatoriale | GU n. 158 del 08/07/2023 | https://www.gazzettaufficiale.it/eli/id/2023/07/08/23A03883/sg |
+| `APP_MS_007` | **Legge 24/2017** Gelli-Bianco — Linee guida SNLG come riferimento legale | GU n. 64 del 17/03/2017 | https://www.gazzettaufficiale.it/eli/id/2017/03/17/17G00041/sg |
+| `APP_ISS_001` | **SNLG — Sistema Nazionale Linee Guida** ISS-CNEC | continuo | https://www.iss.it/snlg |
+
+### Fonti primarie regionali — Regione Puglia
+
+| ID | Documento | Riferimento | URL canonico |
+|----|-----------|-------------|--------------|
+| `APP_PUG_001` | **DGR Puglia n. 479/2014** — Linee guida prescrizione e prenotazione, modello RAO regionale | BURP n. 45 del 02/04/2014 | https://www.sanita.puglia.it/documents/20182/286437/DGR+479-2014.PDF/1de3c8a5-ffa2-455e-a4de-fab63a2bb1ae |
+| `APP_PUG_002` | **DGR Puglia n. 735/2019** — Adozione PRGLA 2019-2021 | 18/04/2019 | https://www.sanita.puglia.it/documents/20182/77835901/DGR+735+18_04_+2019+adozione+del+PRGLA+triennio+2019+2021/f514229f-b728-4677-83a1-a85da6b5e179 |
+| `APP_PUG_003` | **AReSS Puglia** — Algoritmo AI LLaMA 3.1 su 17.000 prescrizioni (38,9% appropriate, 43% inappropriate) | Forum FIASO Logos & Téchne, Siracusa 2025 | https://press.regione.puglia.it/-/aress-puglia-un-algoritmo-ai-per-migliorare-l-appropriatezza-delle-prescrizioni-di-esami-diagnostici |
+| `APP_PUG_004` | **PathLAB AReSS Puglia** — Sistema PDTA regionale (già nel repo) | continuo | https://aress.regione.puglia.it/en/-/pathlab-sistema-regionale-pdta |
+
+### Numeri-chiave dall'articolo
+
+- **20%** delle visite/esami in Italia è inappropriato → **~20 mld €/anno** di spesa (Min. Schillaci).
+- Puglia (studio AReSS): **38,9%** prescrizioni pienamente appropriate, **43%** inappropriate (campione 17.000).
+- Prescrizioni per 1.000 abitanti (2025): Lazio **1.569,5**, Puglia **1.328,4**, Veneto **889,7**.
+
+---
+
 ## Fondazione GIMBE - Analisi critica SSN
 
 ### Catalogo completo report GIMBE (8 rapporti SSN + 7 report Osservatorio + monitoraggi)
