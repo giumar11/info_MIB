@@ -59,6 +59,19 @@ Il file `sources_catalog.csv` nella root del repository contiene un catalogo str
 
 **Percorso:** `datasets/raw/governance/pngla/`
 
+### E) Appropriatezza prescrittiva
+
+| Fonte | Descrizione | URL |
+|-------|-------------|-----|
+| **DM 9/12/2015** Decreto Lorenzin | Condizioni di erogabilità e indicazioni di appropriatezza prescrittiva (203 prestazioni) | https://www.gazzettaufficiale.it/eli/id/2016/01/20/16A00398/sg |
+| **DL 73/2024 + L. 107/2024** Decreto Schillaci | PNLA, CUP unico, quesito diagnostico ICD-9-CM in ricetta | https://www.gazzettaufficiale.it/eli/id/2024/06/07/24G00091/sg |
+| **DGR Puglia 479/2014 + 735/2019** | Linee guida RAO e PRGLA Regione Puglia | https://www.sanita.puglia.it/ |
+| **AReSS Puglia — AI LLaMA 3.1** | Studio su 17.000 prescrizioni: 38,9% appropriate, 43% inappropriate | https://press.regione.puglia.it/-/aress-puglia-un-algoritmo-ai-per-migliorare-l-appropriatezza-delle-prescrizioni-di-esami-diagnostici |
+| **SNLG — ISS** | Sistema Nazionale Linee Guida (riferimento appropriatezza clinica) | https://www.iss.it/snlg |
+
+**Percorso:** `datasets/raw/appropriatezza/` (con sotto-cartelle `ministero_salute/`, `regione_puglia/`, `iss/`, `aress_puglia/`)
+**Catalogo JSON:** `datasets/raw/appropriatezza/documenti_primari.json`
+
 ---
 
 ## Sezione 2: Finanza del SSN
