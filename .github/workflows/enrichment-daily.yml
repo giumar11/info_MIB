@@ -1,0 +1,72 @@
+name: Enrichment giornaliera dataset
+
+# Pipeline di enrichment giornaliera: per ogni categoria di documenti del
+# repository scarica gli originali (report/dataset) e rigenera gli estratti
+# processati, poi committa le novità.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:00 UTC (07:00 Europe/Rome in ora legale)
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      category:
+        description: 'Categoria singola da eseguire (vuoto = tutte)'
+        required: false
+        default: ''
+      skip_download:
+        description: 'Salta il download degli originali (solo process/check)'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: enrichment-daily
+  cancel-in-progress: false
+
+jobs:
+  enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas lxml
+
+      - name: Esegui pipeline di enrichment
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="$ARGS --category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.skip_download }}" = "true" ]; then
+            ARGS="$ARGS --skip-download"
+          fi
+          python3 scripts/enrichment_pipeline.py $ARGS
+
+      - name: Commit e push delle novità
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Aggiungi originali e processati (logs/ è in .gitignore)
+          git add datasets/ sources_catalog.csv
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da committare."
+          else
+            git commit -m "chore: enrichment giornaliera dataset ($(date -u +%Y-%m-%d))"
+            for i in 1 2 3 4; do
+              git push && break || { echo "push fallito, retry $i"; sleep $((2**i)); }
+            done
+          fi

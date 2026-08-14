@@ -116,7 +116,7 @@ def transform_malattie_rare_for_sql(malattie: List[Dict]) -> List[Dict]:
             "prevalenza_valore": None,
             "eta_esordio": m.get("age_of_onset"),
             "complessita_score": m.get("complexity_score", 0),
-            "complessita_livello": m.get("complexity_level", "bassa").lower(),
+            "complessita_livello": (m.get("complexity_level") or "bassa").lower(),
             "fonte_dati": "Orphadata"
         }
         for m in malattie
@@ -186,7 +186,7 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
             "tipo": "rara",
             "complessita": {
                 "score": m.get("complexity_score", 0),
-                "livello": m.get("complexity_level", "bassa").lower()
+                "livello": (m.get("complexity_level") or "bassa").lower()
             },
             "prevalenza": {
                 "classe": m.get("prevalence_class"),
