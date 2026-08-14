@@ -149,6 +149,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
+| **ANIA** | Rapporto annuale assicurazione, spesa sanitaria privata e ramo Malattia | `datasets/raw/ania/` |
 
 **Documentazione:** `docs/sistema_sanitario/CATALOGO_FONTI.md`
 
@@ -193,16 +194,53 @@ info_MIB/
 │   │   ├── internazionale/      # OECD, Eurostat, WHO
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
+│   │   ├── ania/               # Report ANIA (assicurativo)
 │   │   ├── istat/               # Health for All, EHIS
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
+├── .github/workflows/           # Pipeline enrichment giornaliera (CI)
 ├── docs/
 │   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
 └── scripts/                     # Script Python elaborazione
 ```
+
+---
+
+## Pipeline di enrichment giornaliera
+
+Il repository include una pipeline che, **ogni giorno**, per ciascuna categoria
+di documenti scarica i **report e dataset originali** dalle fonti ufficiali
+(non solo gli estratti processati) e rigenera gli estratti in `datasets/processed/`.
+
+**Orchestratore:** `scripts/enrichment_pipeline.py`
+
+```bash
+python3 scripts/enrichment_pipeline.py            # tutte le categorie
+python3 scripts/enrichment_pipeline.py --list      # elenca le categorie
+python3 scripts/enrichment_pipeline.py --category ania
+python3 scripts/enrichment_pipeline.py --dry-run
+```
+
+Categorie coperte: `gimbe`, `pdta`, `ania`, `orphadata`, `sdo`, `istat_hfa`,
+`scientific_reports`, `sources_check`.
+
+**Schedulazione automatica:** GitHub Actions
+(`.github/workflows/enrichment-daily.yml`) esegue la pipeline ogni giorno alle
+05:00 UTC e committa gli originali scaricati e gli estratti aggiornati.
+Ogni esecuzione produce un manifest in `logs/enrichment_YYYY-MM-DD.json`.
+
+I singoli downloader di originali possono essere eseguiti anche in autonomia:
+
+```bash
+python3 scripts/download_gimbe_pdfs.py    # rapporti GIMBE (PDF originali)
+python3 scripts/download_pdta.py           # documenti PDTA (PDF originali)
+python3 scripts/download_ania_reports.py    # report ANIA (PDF originali)
+```
+
+Documentazione completa: `docs/PIPELINE_ENRICHMENT.md`.
 
 ---
 

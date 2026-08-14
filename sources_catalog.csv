@@ -104,3 +104,6 @@ PDTA_SIC_001,PDTA Regione Sicilia (CEFPAS / Rete Oncologica),Regione Sicilia / C
 PDTA_TAA_001,PDTA Trentino-Alto Adige (Province Autonome),PA Trento / PA Bolzano,pdta,https://www.provincia.tn.it/,government,periodic,regional,asl,datasets/raw/pdta/regionale/trentino_alto_adige/,2026-03-07,
 PDTA_UMB_001,PDTA Regione Umbria,Regione Umbria,pdta,https://www.regione.umbria.it/,government,periodic,regional,asl,datasets/raw/pdta/regionale/umbria/,2026-03-07,
 PDTA_VDA_001,PDTA Valle d'Aosta (Rete Piemonte-VdA),Azienda USL Valle d'Aosta,pdta,https://www.ausl.vda.it/,government,periodic,regional,asl,datasets/raw/pdta/regionale/valle_d_aosta/,2026-03-07,
+ANIA_001,L'Assicurazione Italiana - Rapporto annuale ANIA,ANIA,insurance,https://www.ania.it/pubblicazioni/-/categories/53705,proprietary,annual,national,national,datasets/raw/ania/,2026-08-14,
+ANIA_002,L'Assicurazione Italiana - Appendice Statistica,ANIA,insurance,https://www.ania.it/pubblicazioni/-/categories/53729,proprietary,annual,national,national,datasets/raw/ania/,2026-08-14,
+ANIA_003,ANIA - Sanità integrativa e spesa sanitaria privata (ramo Malattia),ANIA,insurance,https://www.ania.it/infopolizze-salute,proprietary,annual,national,national,datasets/raw/ania/,2026-08-14,
