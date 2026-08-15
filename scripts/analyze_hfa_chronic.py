@@ -164,8 +164,9 @@ def create_proxy_analysis():
     return multi_specialist_conditions
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
-    hfa_dir = '/home/ubuntu/progetto_sanitario/datasets/raw/hfa_istat/HFA'
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_dir = os.path.join(base_dir, 'datasets', 'processed')
+    hfa_dir = os.path.join(base_dir, 'datasets', 'raw', 'hfa_istat', 'HFA')
     
     os.makedirs(output_dir, exist_ok=True)
     

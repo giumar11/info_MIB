@@ -621,7 +621,7 @@ def main():
     failed = 0
 
     if args.level in ("nazionale", "all"):
-        t, s, f = download_level("nazionale", dry_run=args.dry_run)
+        t, s, f = download_level("nazionale", region=args.region, dry_run=args.dry_run)
         total += t
         success += s
         failed += f
