@@ -1,0 +1,42 @@
+{
+  "description": "Registro dei report/dataset ORIGINALI scaricabili via URL diretto, organizzati per categoria. Consumato da scripts/download_original_reports.py. Ogni voce ha un URL a PDF/file diretto verificato e una destinazione relativa alla root del repository. Estendere questo file per aggiungere nuovi originali.",
+  "last_updated": "2026-08-15",
+  "reports": [
+    {
+      "id": "AIFA_OSMED_2024",
+      "category": "aifa",
+      "title": "L'uso dei farmaci in Italia - Rapporto Nazionale OsMed 2024",
+      "owner": "AIFA - Agenzia Italiana del Farmaco",
+      "year": 2024,
+      "url": "https://www.aifa.gov.it/documents/20142/3159201/AIFA_Rapporto_OsMed_2024.pdf",
+      "dest": "datasets/raw/aifa/pdf/AIFA_Rapporto_OsMed_2024.pdf"
+    },
+    {
+      "id": "AIFA_COMUNICATO_OSMED_2024",
+      "category": "aifa",
+      "title": "Comunicato AIFA 51/2025 - Rapporto OsMed 2024 (sintesi)",
+      "owner": "AIFA - Agenzia Italiana del Farmaco",
+      "year": 2025,
+      "url": "https://www.aifa.gov.it/documents/20142/2694929/Comunicato_AIFA_51-2025.pdf",
+      "dest": "datasets/raw/aifa/pdf/Comunicato_AIFA_51-2025_OsMed_2024.pdf"
+    },
+    {
+      "id": "AIOM_NUMERI_CANCRO_2024",
+      "category": "societa_scientifiche",
+      "title": "I numeri del cancro in Italia 2024 (AIOM/AIRTUM)",
+      "owner": "AIOM, AIRTUM, Fondazione AIOM, ONS, PASSI",
+      "year": 2024,
+      "url": "https://www.aiom.it/wp-content/uploads/2025/01/2024_NDC_web-def.pdf",
+      "dest": "datasets/raw/societa_scientifiche/italiane/pdf/AIOM_Numeri_del_cancro_2024.pdf"
+    },
+    {
+      "id": "ONS_RAPPORTO_SCREENING",
+      "category": "ons",
+      "title": "Rapporto ONS - Screening oncologici in Italia (versione Ministero Salute)",
+      "owner": "Osservatorio Nazionale Screening / ISS / Ministero della Salute",
+      "year": 2024,
+      "url": "https://www.salute.gov.it/imgs/C_17_pubblicazioni_3511_allegato.pdf",
+      "dest": "datasets/raw/ons/pdf/Rapporto_ONS_screening.pdf"
+    }
+  ]
+}

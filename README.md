@@ -149,6 +149,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
+| **ANIA** | Rapporti sul mercato assicurativo (ramo salute, sanità integrativa) | `datasets/raw/ania/` |
 
 **Documentazione:** `docs/sistema_sanitario/CATALOGO_FONTI.md`
 
@@ -193,7 +194,9 @@ info_MIB/
 │   │   ├── internazionale/      # OECD, Eurostat, WHO
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
+│   │   ├── ania/                # Report ANIA (assicurativo)
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── _catalog/            # Registro report originali scaricabili
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
@@ -212,6 +215,51 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 - `datasets/raw/ministero_salute/DATA_DICTIONARY.md` - SDO
 - `datasets/raw/governance/pne/DATA_DICTIONARY.md` - PNE
+
+---
+
+## Pipeline di enrichment automatiche (giornaliere)
+
+Il repository include pipeline di enrichment eseguite **ogni giorno** su tutte
+le categorie di documenti. Principio guida: **dove il documento o dataset
+originale esiste ed è scaricabile, la pipeline scarica l'originale** (PDF, XML,
+CSV), non solo l'estratto processato da noi.
+
+**Orchestratore:** `scripts/run_daily_enrichment.py`
+
+```bash
+python3 scripts/run_daily_enrichment.py              # pipeline completa
+python3 scripts/run_daily_enrichment.py --no-network # solo re-build estratti (offline)
+python3 scripts/run_daily_enrichment.py --only download  # solo download originali
+python3 scripts/run_daily_enrichment.py --dry-run    # elenca i passi
+```
+
+Le tre fasi:
+
+| Fase | Passi | Rete |
+|------|-------|------|
+| **enrich** | ricostruzione estratti (ONS, società scientifiche, OASI, AIFA, GIMBE, SDO, Orphanet, ISTAT HFA) e dataset `migration_ready` | no |
+| **download** | download PDF/dataset **originali**: GIMBE, PDTA, **ANIA**, AIFA (OsMed), ONS, società scientifiche (via registro `datasets/raw/_catalog/original_reports.json`) | sì |
+| **monitor** | controllo aggiornamenti di tutte le fonti del catalogo | sì |
+
+**Schedulazione:** GitHub Actions `.github/workflows/daily-enrichment.yml` esegue
+la pipeline ogni giorno (05:17 UTC), committa i file nuovi/aggiornati e pubblica
+i log come artifact. Eseguibile anche manualmente da *Actions → Run workflow*.
+
+Script di download dei documenti originali:
+
+| Script | Documenti originali |
+|--------|---------------------|
+| `scripts/download_gimbe_pdfs.py` | Rapporti GIMBE (SSN + Osservatorio) |
+| `scripts/download_pdta.py` | PDTA nazionali e regionali |
+| `scripts/download_ania_reports.py` | Report ANIA (assicurativo) |
+| `scripts/download_original_reports.py` | AIFA/ONS/società (registro estendibile) |
+
+Per aggiungere un nuovo documento originale scaricabile è sufficiente
+aggiungere una voce a `datasets/raw/_catalog/original_reports.json` — nessuna
+modifica al codice.
+
+**Dipendenze:** `pip install -r requirements.txt` (pandas, requests).
 
 ---
 

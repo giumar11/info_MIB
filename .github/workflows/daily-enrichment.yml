@@ -1,0 +1,82 @@
+name: Daily enrichment pipelines
+
+# Esegue ogni giorno le pipeline di enrichment per tutte le categorie di
+# documenti del repository: ricostruisce gli estratti processati, scarica i
+# documenti/dataset ORIGINALI (GIMBE, PDTA, ANIA, AIFA, ONS, societa'
+# scientifiche) dove disponibili, controlla gli aggiornamenti delle fonti,
+# e committa automaticamente i file nuovi o modificati.
+
+on:
+  schedule:
+    # 05:17 UTC ogni giorno (minuto off-peak per non affollare :00)
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Modalita' di esecuzione"
+        required: false
+        default: "full"
+        type: choice
+        options:
+          - full          # tutte le fasi (default)
+          - enrich        # solo re-build estratti
+          - download      # solo download originali
+          - no-network    # solo passi offline
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run enrichment pipeline
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          case "$MODE" in
+            enrich)      python scripts/run_daily_enrichment.py --only enrich ;;
+            download)    python scripts/run_daily_enrichment.py --only download ;;
+            no-network)  python scripts/run_daily_enrichment.py --no-network ;;
+            *)           python scripts/run_daily_enrichment.py ;;
+          esac
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-logs
+          path: logs/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Commit updated datasets
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # logs/ e' in .gitignore: non viene committato
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica ai dataset da committare."
+          else
+            git commit -m "chore: aggiornamento automatico dataset ($(date -u +%Y-%m-%d))"
+            git push
+          fi
