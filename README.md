@@ -149,6 +149,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
+| **ANIA** | Report assicurativi: spesa sanitaria privata, welfare integrativo, assicurazioni malattia | `datasets/raw/ania/` |
 
 **Documentazione:** `docs/sistema_sanitario/CATALOGO_FONTI.md`
 
@@ -193,6 +194,7 @@ info_MIB/
 │   │   ├── internazionale/      # OECD, Eurostat, WHO
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
+│   │   ├── ania/                # Report ANIA (assicurativo, welfare integrativo)
 │   │   ├── istat/               # Health for All, EHIS
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
@@ -212,6 +214,62 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 - `datasets/raw/ministero_salute/DATA_DICTIONARY.md` - SDO
 - `datasets/raw/governance/pne/DATA_DICTIONARY.md` - PNE
+
+---
+
+## Automazione: pipeline di enrichment giornaliere
+
+Il repository include pipeline di enrichment che, **ogni giorno**, per tutte le
+categorie di documenti:
+
+1. **Scaricano i report / dataset ORIGINALI** dalle fonti istituzionali (non solo
+   estratti processati): GIMBE, PDTA nazionali/regionali, ANIA, ...
+2. **Rigenerano i dataset processati** (JSON/CSV) in modo deterministico.
+3. **Controllano gli aggiornamenti** di tutte le fonti del catalogo.
+4. **Committano automaticamente** le eventuali novità.
+
+### Orchestratore
+
+Lo script `scripts/run_enrichment.py` coordina tutte le pipeline per categoria:
+
+```bash
+python3 scripts/run_enrichment.py              # tutte le categorie giornaliere
+python3 scripts/run_enrichment.py --list        # elenca le pipeline
+python3 scripts/run_enrichment.py --category ania    # solo una categoria
+python3 scripts/run_enrichment.py --only-downloads   # solo download originali
+python3 scripts/run_enrichment.py --dry-run     # anteprima senza eseguire
+```
+
+| Pipeline | Categoria | Tipo | Scarica originali |
+|----------|-----------|------|:---:|
+| `gimbe` | gimbe | download | ✅ |
+| `pdta` | pdta | download | ✅ |
+| `ania` | ania (assicurativo) | download | ✅ |
+| `scientific_reports` | ONS, società scientifiche, OASI, AIFA | rigenerazione | — |
+| `sdo` | ministero_salute | rigenerazione | — |
+| `malattie_rare` | rare_diseases (Orphadata) | rigenerazione | — |
+| `istat_hfa` | istat | rigenerazione | — |
+| `update_check` | tutte | controllo aggiornamenti | — |
+| `migration` | migration (SQL/NoSQL) | on-demand (`--all`) | — |
+
+### Schedulazione (GitHub Actions)
+
+- **`.github/workflows/enrichment-daily.yml`** — esegue l'orchestratore ogni
+  giorno (cron `17 4 * * *`), committa e pusha le novità. Avviabile anche
+  manualmente (`workflow_dispatch`) con filtro per categoria o solo-download.
+- **`.github/workflows/ci.yml`** — su ogni PR/push valida gli script
+  (compilazione, smoke test, **guardia di determinismo** delle rigenerazioni).
+
+Per riproducibilità le date di build possono essere fissate con la variabile
+d'ambiente `INFO_MIB_BUILD_DATE=YYYY-MM-DD`.
+
+### Report ANIA (settore assicurativo)
+
+La categoria `ania` scarica i report originali ANIA
+(`scripts/download_ania_reports.py`) rilevanti per la spesa sanitaria privata e
+il welfare integrativo: relazione annuale *"L'Assicurazione Italiana"* (con
+sezione salute/welfare), edizioni in lingua inglese e appendici. Vedi
+`datasets/raw/ania/README.md`.
 
 ---
 

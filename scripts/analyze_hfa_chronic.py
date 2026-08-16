@@ -164,18 +164,33 @@ def create_proxy_analysis():
     return multi_specialist_conditions
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
-    hfa_dir = '/home/ubuntu/progetto_sanitario/datasets/raw/hfa_istat/HFA'
-    
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_dir = os.path.join(base_dir, 'datasets', 'processed')
+    hfa_dir = os.path.join(base_dir, 'datasets', 'raw', 'hfa_istat', 'HFA')
+
     os.makedirs(output_dir, exist_ok=True)
-    
+
     print("=== ANALISI DATI HFA ISTAT ===\n")
-    
+
+    output_path = os.path.join(output_dir, 'analisi_patologie_multispecialistiche.json')
+
+    if not os.path.isdir(hfa_dir):
+        print(f"ATTENZIONE: directory dati HFA non trovata: {hfa_dir}")
+        print("Il dataset ISTAT Health for All (HFA) non e' presente nel repository.")
+        print("Scaricalo in datasets/raw/hfa_istat/HFA prima di eseguire lo script.")
+        # Non sovrascriviamo un output gia' presente e valido con dati vuoti:
+        # se il file esiste lo lasciamo intatto ed usciamo senza errore.
+        if os.path.exists(output_path):
+            print(f"Output esistente preservato: {output_path}")
+            return
+        print("Nessun output esistente da preservare; niente da rigenerare.")
+        return
+
     # Analizza struttura HFA
     all_indicators, relevant_indicators = analyze_hfa_structure(hfa_dir)
     print(f"Indicatori totali trovati: {len(all_indicators)}")
     print(f"Indicatori rilevanti per malattie croniche: {len(relevant_indicators)}")
-    
+
     # Estrai categorie malattie croniche
     groups, key_indicators = extract_chronic_disease_data(hfa_dir)
     
@@ -190,7 +205,6 @@ def main():
         'patologie_multi_specialistiche': multi_specialist
     }
     
-    output_path = os.path.join(output_dir, 'analisi_patologie_multispecialistiche.json')
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     print(f"\nSalvato: {output_path}")

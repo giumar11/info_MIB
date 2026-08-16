@@ -138,8 +138,12 @@ GIMBE_PDFS = [
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
     ctx = ssl.create_default_context()
+    # Alcuni portali istituzionali usano catene TLS non standard: disabilitiamo
+    # la verifica per non far fallire il download. `verify_peer` NON e' un
+    # attributo valido di ssl.SSLContext (era un no-op): l'unico modo corretto
+    # e' impostare verify_mode = CERT_NONE (richiede check_hostname = False).
     ctx.check_hostname = False
-    ctx.verify_peer = False
+    ctx.verify_mode = ssl.CERT_NONE
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

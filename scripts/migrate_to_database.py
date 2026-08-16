@@ -14,6 +14,11 @@ from pathlib import Path
 from typing import Dict, List, Any
 from datetime import datetime
 
+# Data di build deterministica: usa INFO_MIB_BUILD_DATE se impostata (build
+# riproducibili / test), altrimenti la data odierna (solo YYYY-MM-DD, senza
+# orario, per evitare diff spuri ad ogni rigenerazione nella pipeline giornaliera).
+BUILD_DATE = os.environ.get("INFO_MIB_BUILD_DATE") or datetime.now().strftime("%Y-%m-%d")
+
 # Percorsi dataset
 BASE_DIR = Path(__file__).parent.parent
 PROCESSED_DIR = BASE_DIR / "datasets" / "processed"
@@ -195,7 +200,7 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
             },
             "specialisti": [],  # Da arricchire
             "fonti": [{"nome": "Orphadata", "url": m.get("expert_link")}],
-            "last_updated": datetime.now().isoformat()
+            "last_updated": BUILD_DATE
         }
         documents.append(doc)
     
@@ -222,7 +227,7 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
                 for i, spec in enumerate(pdta.get("specialisti_coinvolti", []))
             ],
             "fonti": [{"nome": pdta.get("fonte", ""), "url": None}],
-            "last_updated": datetime.now().isoformat()
+            "last_updated": BUILD_DATE
         }
         documents.append(doc)
     

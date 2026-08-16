@@ -27,6 +27,11 @@ import json
 import csv
 from datetime import datetime
 
+# Data di build deterministica: usa INFO_MIB_BUILD_DATE se impostata (build
+# riproducibili / test / pipeline), altrimenti la data odierna. Evita diff
+# spuri di sole date ad ogni rigenerazione nella pipeline giornaliera.
+BUILD_DATE = os.environ.get("INFO_MIB_BUILD_DATE") or datetime.now().strftime("%Y-%m-%d")
+
 # === CONFIGURAZIONE PERCORSI ===
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW_DIR = os.path.join(BASE_DIR, 'datasets', 'raw')
@@ -69,7 +74,7 @@ def build_ons_data():
         "descrizione": "L'ONS monitora i programmi di screening oncologici organizzati in Italia, raccogliendo dati su inviti, adesione, esiti e qualità dei programmi regionali.",
         "ultimo_rapporto": "Rapporto ONS 2024 (dati survey 2023)",
         "anno_dati": 2023,
-        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_estrazione": BUILD_DATE,
 
         # --- SCREENING MAMMOGRAFICO ---
         "screening_mammografico": {
@@ -339,7 +344,7 @@ def build_societa_scientifiche_italiane():
     """
 
     societa_italiane = {
-        "data_compilazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_compilazione": BUILD_DATE,
         "descrizione": "Catalogo delle principali società scientifiche italiane con rapporti e dati rilevanti per l'analisi delle criticità dei percorsi sociosanitari multi-specialistici",
 
         "societa": [
@@ -848,7 +853,7 @@ def build_societa_scientifiche_europee():
     """
 
     societa_europee = {
-        "data_compilazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_compilazione": BUILD_DATE,
         "descrizione": "Catalogo delle principali società scientifiche europee con rapporti e linee guida rilevanti per il confronto con il sistema sanitario italiano",
 
         "societa": [
@@ -1158,7 +1163,7 @@ def build_gimbe_reports():
         "presidente": "Nino Cartabellotta",
         "anno_fondazione": 1996,
         "natura": "Organizzazione indipendente senza scopo di lucro",
-        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_estrazione": BUILD_DATE,
         "descrizione": (
             "Fondazione GIMBE promuove l'integrazione delle migliori evidenze scientifiche "
             "in tutte le decisioni che riguardano la salute. Dal 2016 conduce la campagna "
@@ -1642,7 +1647,7 @@ def build_oasi_bocconi():
         "url_archivio_report": "https://cergas.unibocconi.eu/observatories/oasi_/oasi-report-home",
         "url_cergas": "https://cergas.unibocconi.eu/",
         "licenza": "Open Access (edizioni digitali)",
-        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_estrazione": BUILD_DATE,
         "descrizione": (
             "Il Rapporto OASI è il riferimento annuale per l'analisi del Servizio Sanitario "
             "Nazionale italiano. Ogni edizione raccoglie i risultati di 15-20 progetti di ricerca "
@@ -1772,7 +1777,7 @@ def build_aifa_reports():
         "natura_giuridica": "Ente pubblico che opera in autonomia sotto la direzione del Ministero della Salute",
         "url_principale": "https://www.aifa.gov.it/",
         "url_pubblicazioni": "https://www.aifa.gov.it/pubblicazioni",
-        "data_estrazione": datetime.now().strftime("%Y-%m-%d"),
+        "data_estrazione": BUILD_DATE,
         "descrizione": (
             "AIFA è l'autorità nazionale competente per l'attività regolatoria dei farmaci in Italia. "
             "Pubblica rapporti annuali sul consumo farmaceutico, sulla sperimentazione clinica, "

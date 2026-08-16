@@ -1,0 +1,61 @@
+name: CI
+
+# Validazione degli script di enrichment ad ogni push / pull request:
+#   - compilazione di tutti gli script Python,
+#   - smoke test dell'orchestratore (--list / --dry-run),
+#   - guardia di determinismo: rigenerando i dataset con una data di build
+#     fissa non devono comparire diff spurie.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'requirements.txt'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'requirements.txt'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installazione dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Compilazione di tutti gli script
+        run: python3 -m compileall -q scripts
+
+      - name: Smoke test orchestratore
+        run: |
+          python3 scripts/run_enrichment.py --list
+          python3 scripts/run_enrichment.py --dry-run
+
+      - name: Guardia di determinismo (rigenerazione offline)
+        env:
+          # Data fissa: la rigenerazione deve essere deterministica e non
+          # introdurre modifiche ai dataset committati.
+          INFO_MIB_BUILD_DATE: '2026-03-07'
+        run: |
+          python3 scripts/extract_sdo_data.py
+          python3 scripts/parse_orphadata.py
+          python3 scripts/enrich_scientific_reports_ons.py
+          python3 scripts/analyze_hfa_chronic.py
+          if ! git diff --quiet; then
+            echo "::error::La rigenerazione ha prodotto modifiche inattese ai dataset:"
+            git --no-pager diff --stat
+            exit 1
+          fi
+          echo "OK: rigenerazione deterministica, nessuna diff."
