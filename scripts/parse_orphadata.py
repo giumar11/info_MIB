@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import json
 import os
+import sys
 
 def parse_orphadata_epidemiology(xml_path):
     """
@@ -148,10 +149,16 @@ def classify_complexity(df):
     return df
 
 def main():
-    # Percorsi
-    input_path = '/home/ubuntu/progetto_sanitario/datasets/raw/orphadata_epidemiology_it.xml'
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
-    
+    # Percorsi (relativi alla root del repository per portabilità)
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    input_path = os.path.join(base_dir, 'datasets', 'raw', 'orphadata_epidemiology_it.xml')
+    output_dir = os.path.join(base_dir, 'datasets', 'processed')
+
+    if not os.path.exists(input_path):
+        print(f"ERRORE: file sorgente non trovato: {input_path}")
+        print("Scarica il dataset Orphadata epidemiology in datasets/raw/ prima di eseguire lo script.")
+        sys.exit(1)
+
     os.makedirs(output_dir, exist_ok=True)
     
     # Parse XML

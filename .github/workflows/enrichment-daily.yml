@@ -1,0 +1,80 @@
+name: Enrichment giornaliero
+
+# Pipeline di enrichment eseguita ogni giorno per tutte le categorie di
+# documenti del repository:
+#   - scarica i report / dataset ORIGINALI dalle fonti istituzionali
+#     (GIMBE, PDTA, ANIA, ...),
+#   - rigenera i dataset processati,
+#   - controlla gli aggiornamenti delle fonti del catalogo,
+#   - committa automaticamente le eventuali novità.
+
+on:
+  schedule:
+    # Ogni giorno alle 04:17 UTC (evita il minuto 0, orario di picco su Actions)
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+    inputs:
+      only_downloads:
+        description: 'Esegui solo i download dei report/dataset originali'
+        type: boolean
+        default: false
+      category:
+        description: 'Categoria singola da eseguire (opzionale, es. ania)'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: enrichment-daily
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installazione dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Calcola data di build stabile (vintage delle fonti raw)
+        id: vintage
+        run: |
+          D=$(git log -1 --format=%cd --date=format:%Y-%m-%d -- datasets/raw 2>/dev/null || true)
+          if [ -z "$D" ]; then D=$(date -u +%Y-%m-%d); fi
+          echo "date=$D" >> "$GITHUB_OUTPUT"
+          echo "INFO_MIB_BUILD_DATE = $D"
+
+      - name: Esecuzione pipeline di enrichment
+        env:
+          INFO_MIB_BUILD_DATE: ${{ steps.vintage.outputs.date }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.only_downloads }}" = "true" ]; then ARGS="$ARGS --only-downloads"; fi
+          if [ -n "${{ inputs.category }}" ]; then ARGS="$ARGS --category ${{ inputs.category }}"; fi
+          echo "Esecuzione: python3 scripts/run_enrichment.py $ARGS"
+          python3 scripts/run_enrichment.py $ARGS
+
+      - name: Commit e push delle novità
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nessuna novità: niente da committare."
+          else
+            SUMMARY=$(git diff --cached --name-only | sed 's/^/ - /')
+            git commit -m "chore(enrichment): aggiornamento automatico $(date -u +%Y-%m-%d)" \
+              -m "File aggiornati:" -m "$SUMMARY"
+            git push
+          fi
