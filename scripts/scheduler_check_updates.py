@@ -153,8 +153,8 @@ def check_source(source, previous_state, logger):
         'error': None
     }
 
-    # Salta fonti statiche
-    if source_id in STATIC_SOURCES:
+    # Salta fonti statiche (per ID esplicito o per frequenza 'static')
+    if source_id in STATIC_SOURCES or source.get('update_frequency') == 'static':
         result['status'] = 'skipped_static'
         logger.info(f"[{source_id}] {title} - Fonte statica, skip")
         return result
@@ -332,6 +332,8 @@ def is_check_due(source, state):
     # Intervalli di controllo basati sulla frequenza della fonte
     thresholds = {
         'continuous': 7,     # settimanale
+        'weekly': 7,         # settimanale
+        'monthly': 15,       # ogni due settimane
         'quarterly': 30,     # mensile
         'annual': 30,        # mensile
         'biennial': 60,      # bimestrale

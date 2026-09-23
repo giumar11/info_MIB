@@ -1,0 +1,114 @@
+{
+  "fonte": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+  "istituzione": "Associazione Nazionale fra le Imprese Assicuratrici (ANIA)",
+  "natura_giuridica": "Associazione di categoria delle imprese di assicurazione operanti in Italia",
+  "url_principale": "https://www.ania.it/",
+  "url_pubblicazioni": "https://www.ania.it/pubblicazioni",
+  "data_estrazione": "2026-09-23",
+  "descrizione": "ANIA rappresenta le imprese di assicurazione operanti in Italia. Pubblica il rapporto annuale 'L'Assicurazione Italiana', le appendici statistiche, le serie ANIA Trends sulla raccolta premi (Vita e Danni), analisi sulla previdenza, sul welfare e sull'assicurazione salute/malattia. I dati assicurativi (spesa sanitaria privata intermediata, fondi sanitari integrativi, polizze malattia) sono rilevanti come comparatore per la spesa out-of-pocket e il secondo pilastro sanitario del SSN.",
+  "rilevanza_sanitaria": "L'assicurazione malattia/salute e i fondi sanitari integrativi costituiscono la componente 'intermediata' della spesa sanitaria privata, complementare alla spesa out-of-pocket e alla spesa pubblica del SSN monitorata da GIMBE, OASI-Bocconi e Ministero della Salute.",
+  "rapporti": [
+    {
+      "titolo": "L'Assicurazione Italiana 2024-2025",
+      "acronimo": "AssItaliana",
+      "tipo": "Rapporto annuale sul mercato assicurativo italiano",
+      "anno_dati": 2024,
+      "data_pubblicazione": "2025-07-02",
+      "url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+      "frequenza": "Annuale (luglio)",
+      "dati_chiave": {
+        "premi_totali_miliardi_euro": 160,
+        "variazione_premi_percentuale": 17.1,
+        "premi_vita_miliardi_euro": 112,
+        "variazione_vita_percentuale": 21.0,
+        "premi_danni_miliardi_euro": 47,
+        "variazione_danni_percentuale": 8.9,
+        "quota_vita_distribuzione_banche_poste_percentuale": 57.8,
+        "quota_danni_distribuzione_agenti_percentuale": 74.5
+      },
+      "sezioni": [
+        "Executive Summary",
+        "Italia e altri Paesi a confronto",
+        "Il Vita",
+        "I Danni",
+        "La RC Auto",
+        "La distribuzione"
+      ]
+    },
+    {
+      "titolo": "L'Assicurazione Italiana 2022-2023",
+      "acronimo": "AssItaliana",
+      "tipo": "Rapporto annuale sul mercato assicurativo italiano",
+      "anno_dati": 2022,
+      "data_pubblicazione": "2023-07-04",
+      "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
+      "frequenza": "Annuale (luglio)"
+    },
+    {
+      "titolo": "L'Assicurazione Italiana 2020-2021",
+      "acronimo": "AssItaliana",
+      "tipo": "Rapporto annuale sul mercato assicurativo italiano",
+      "anno_dati": 2020,
+      "data_pubblicazione": "2021-06-30",
+      "url": "https://www.ania.it/documents/35135/126701/L'Assicurazione+Italiana+2020-2021.pdf/e4fa652e-dda7-8c9c-96ef-1e4468d4f903?version=1.0&t=1626333153413",
+      "frequenza": "Annuale"
+    },
+    {
+      "titolo": "Appendice Statistica - L'Assicurazione Italiana",
+      "acronimo": "AppendiceStatistica",
+      "tipo": "Appendice statistica con conti tecnici per ramo e situazione patrimoniale del settore",
+      "anno_dati": 2024,
+      "url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+      "frequenza": "Annuale"
+    },
+    {
+      "titolo": "ANIA Trends - Premi del lavoro diretto Italiano",
+      "acronimo": "ANIATrends",
+      "tipo": "Statistiche periodiche sulla raccolta premi (Vita e Danni)",
+      "url": "https://www.ania.it/pubblicazioni/-/categories/53734",
+      "frequenza": "Mensile/Trimestrale",
+      "dati_chiave_2025": {
+        "premi_totali_miliardi_euro": 182,
+        "variazione_percentuale": 7.8,
+        "premi_vita_miliardi_euro": 130.9,
+        "variazione_vita_percentuale": 8.3,
+        "premi_danni_miliardi_euro": 51.1,
+        "variazione_danni_percentuale": 6.5
+      }
+    },
+    {
+      "titolo": "ANIA Trends - Nuova Produzione Vita",
+      "acronimo": "ANIATrendsVita",
+      "tipo": "Statistiche mensili sulla nuova produzione Vita",
+      "url": "https://www.ania.it/pubblicazioni/-/categories/52469",
+      "frequenza": "Mensile"
+    },
+    {
+      "titolo": "L'assicurazione salute (guida)",
+      "acronimo": "AssSalute",
+      "tipo": "Guida su polizze malattia, rimborso spese mediche, invalidita e non autosufficienza",
+      "url": "https://www.ania.it/infopolizze-salute",
+      "frequenza": "Aggiornamento periodico",
+      "rilevanza": "Polizze malattia, LTC (long term care), dread disease - secondo pilastro sanitario"
+    }
+  ],
+  "serie_pubblicazioni": [
+    {
+      "serie": "L'Assicurazione Italiana (rapporto annuale)",
+      "url_categoria": "https://www.ania.it/pubblicazioni/-/categories/53729",
+      "descrizione": "Rapporto annuale di riferimento, dal 2004 a oggi"
+    },
+    {
+      "serie": "ANIA Trends",
+      "url_categoria": "https://www.ania.it/pubblicazioni/-/categories/52459",
+      "descrizione": "Statistiche periodiche sulla raccolta premi"
+    },
+    {
+      "serie": "Salute / Welfare / Previdenza",
+      "url_categoria": "https://www.ania.it/infopolizze-salute",
+      "descrizione": "Assicurazione malattia, LTC, fondi sanitari integrativi, secondo welfare"
+    }
+  ],
+  "note_download": "I PDF con URL diretto verificato vengono scaricati da scripts/download_ania_reports.py in datasets/raw/ania/pdf/. Le edizioni piu recenti (2022-2023, 2024-2025) sono pubblicate su pagine Liferay con token di versione: aggiornare gli URL diretti nello script quando disponibili.",
+  "licenza": "Dati pubblici - ANIA. Uso dei contenuti soggetto ai termini del sito ania.it"
+}

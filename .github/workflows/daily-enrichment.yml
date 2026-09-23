@@ -1,0 +1,84 @@
+name: Daily enrichment
+
+# Pipeline di arricchimento giornaliera per tutte le categorie di documenti.
+# - Scarica i dataset/report ORIGINALI mancanti dalle fonti ufficiali
+#   (GIMBE, PDTA, ANIA, ...)
+# - Rigenera i dataset processati a partire dai grezzi
+# - Controlla gli aggiornamenti di tutte le fonti del catalogo
+# - Committa nel repo solo i file nuovi/aggiornati
+
+on:
+  schedule:
+    # Ogni giorno alle 05:30 UTC (07:30 ora italiana in estate, 06:30 in inverno)
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Categoria singola da arricchire (vuoto = tutte)"
+        required: false
+        default: ""
+      skip_download:
+        description: "Salta i download (solo processing/check)"
+        type: boolean
+        required: false
+        default: false
+
+# Serve per poter committare i nuovi file scaricati/rigenerati
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run enrichment pipeline
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="$ARGS --category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.skip_download }}" = "true" ]; then
+            ARGS="$ARGS --skip-download"
+          fi
+          echo "Eseguo: python scripts/enrich_daily.py $ARGS"
+          python scripts/enrich_daily.py $ARGS
+
+      - name: Upload enrichment report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-report
+          path: logs/enrichment_*.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Commit new and updated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # I log sono in .gitignore: vengono committati solo dataset/report
+          git add datasets/ sources_catalog.csv
+          if git diff --cached --quiet; then
+            echo "Nessuna novita da committare."
+          else
+            git commit -m "chore(enrichment): aggiornamento automatico dataset e report ($(date -u +%Y-%m-%d))"
+            git push
+          fi

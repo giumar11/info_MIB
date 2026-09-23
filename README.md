@@ -149,6 +149,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
+| **ANIA** | Report assicurativo (spesa sanitaria privata intermediata, fondi sanitari, polizze malattia) | `datasets/raw/ania/` |
 
 **Documentazione:** `docs/sistema_sanitario/CATALOGO_FONTI.md`
 
@@ -193,16 +194,58 @@ info_MIB/
 │   │   ├── internazionale/      # OECD, Eurostat, WHO
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
+│   │   ├── ania/                # Report ANIA (assicurativo/salute)
 │   │   ├── istat/               # Health for All, EHIS
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+├── scripts/                     # Script Python elaborazione + enrich_daily.py
+├── requirements.txt             # Dipendenze Python (pandas, requests)
+└── .github/workflows/           # Pipeline di arricchimento giornaliera
 ```
+
+---
+
+## Pipeline di arricchimento giornaliere
+
+Il repository è arricchito automaticamente ogni giorno per **tutte le categorie
+di documenti**. L'orchestratore `scripts/enrich_daily.py` esegue, per ogni
+categoria, lo step corrispondente:
+
+| Tipo | Categoria | Azione |
+|------|-----------|--------|
+| `download` | GIMBE, PDTA, ANIA | Scarica i **report/dataset originali** (PDF, dati grezzi) mancanti dalle fonti ufficiali |
+| `process` | Orphanet, SDO, ISTAT, report scientifici, migrazione | Rigenera i dataset processati a partire dai grezzi |
+| `check` | Tutto il catalogo | Rileva nuove pubblicazioni per le fonti senza downloader diretto |
+
+**Principio**: quando esistono, si caricano i **dataset originali e i report
+originali** (non solo gli estratti processati). Gli script scaricano solo i file
+mancanti, quindi ogni giorno vengono aggiunte solo le nuove pubblicazioni.
+
+### Esecuzione
+
+```bash
+pip install -r requirements.txt
+
+python3 scripts/enrich_daily.py            # tutte le categorie
+python3 scripts/enrich_daily.py --list      # elenca gli step
+python3 scripts/enrich_daily.py --category ania
+python3 scripts/enrich_daily.py --dry-run
+```
+
+### Automazione (GitHub Actions)
+
+Il workflow `.github/workflows/daily-enrichment.yml` esegue la pipeline ogni
+giorno alle 05:30 UTC (e su richiesta manuale via *workflow_dispatch*), quindi
+committa nel repository solo i file nuovi o aggiornati. Il report di ogni
+esecuzione è salvato in `logs/enrichment_YYYY-MM-DD.json` e caricato come
+artifact.
+
+Il controllo mensile puntuale delle fonti resta disponibile via
+`scripts/scheduler_check_updates.py` (con opzione `--install-cron`).
 
 ---
 

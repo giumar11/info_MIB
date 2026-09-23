@@ -1,0 +1,11 @@
+# Dipendenze Python per gli script di elaborazione e arricchimento.
+#
+# Molti script (download_*, enrich_*, scheduler_*, migrate_to_database) usano
+# solo la standard library. Le dipendenze qui elencate servono a:
+#   - pandas: analyze_hfa_chronic.py, extract_sdo_data.py, parse_orphadata.py
+#   - requests: scheduler_check_updates.py
+#
+# Installazione:  pip install -r requirements.txt
+
+pandas>=2.0
+requests>=2.31
