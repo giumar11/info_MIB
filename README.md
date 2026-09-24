@@ -149,6 +149,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
+| **ANIA** | Report settore assicurativo, welfare e sanità integrativa | `datasets/raw/ania/` |
 
 **Documentazione:** `docs/sistema_sanitario/CATALOGO_FONTI.md`
 
@@ -205,6 +206,44 @@ info_MIB/
 ```
 
 ---
+
+## Pipeline di enrichment automatiche
+
+Il repository si aggiorna con i **dataset e i report ORIGINALI** delle fonti
+(PDF, open data), non solo con gli estratti elaborati in JSON/CSV. Ogni
+categoria di documenti ha una pipeline di download dedicata, orchestrata da
+`scripts/run_daily_enrichment.py`:
+
+| Pipeline | Categoria | Script |
+|----------|-----------|--------|
+| `gimbe` | Rapporti GIMBE sul SSN + Osservatorio | `scripts/download_gimbe_pdfs.py` |
+| `pdta` | PDTA nazionali e regionali | `scripts/download_pdta.py` |
+| `ania` | Report settore assicurativo ANIA | `scripts/download_ania_reports.py` |
+| `societa_scientifiche` | Report originali società scientifiche italiane | `scripts/download_societa_reports.py` |
+| `ons` | Rapporti Osservatorio Nazionale Screening | `scripts/download_ons_reports.py` |
+
+```bash
+python3 scripts/run_daily_enrichment.py            # esegue tutte le pipeline
+python3 scripts/run_daily_enrichment.py --list       # elenca le pipeline
+python3 scripts/run_daily_enrichment.py --only ania   # solo una categoria
+python3 scripts/run_daily_enrichment.py --dry-run     # anteprima senza download
+```
+
+Le pipeline sono **idempotente** (scaricano solo i file mancanti, salvo
+`--force`) e **tolleranti agli errori** (un download fallito non blocca gli
+altri; ogni categoria registra esito, dimensione e hash SHA-256 nel proprio
+`manifest.json`).
+
+### Schedulazione giornaliera
+
+Il workflow **`.github/workflows/daily-enrichment.yml`** esegue l'orchestratore
+ogni giorno (05:00 UTC) e committa automaticamente i nuovi documenti scaricati.
+Può essere lanciato manualmente da GitHub (`workflow_dispatch`) con i parametri
+`force` e `only`. Lo stato dell'ultima esecuzione è salvato in
+`datasets/enrichment_status.json`.
+
+Il controllo periodico degli aggiornamenti delle fonti del catalogo resta
+gestito da `scripts/scheduler_check_updates.py`.
 
 ## Data dictionary
 

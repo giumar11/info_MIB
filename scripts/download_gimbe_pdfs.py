@@ -137,9 +137,12 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Verifica TLS mantenuta attiva (certificati validi). In precedenza qui
+    # era presente `ctx.verify_peer = False`, un attributo inesistente di
+    # ssl.SSLContext: veniva accettato silenziosamente senza alcun effetto
+    # (non disabilitava la verifica) e induceva in errore chi leggeva il
+    # codice. Usiamo il contesto sicuro di default.
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

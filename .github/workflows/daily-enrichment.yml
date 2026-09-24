@@ -1,0 +1,79 @@
+name: Daily data enrichment
+
+# Esegue ogni giorno le pipeline di enrichment che scaricano i dataset e i
+# report ORIGINALI (PDF, open data) di tutte le categorie di documenti del
+# repository, per ognuno dei dataset. Le nuove pubblicazioni vengono committate
+# automaticamente sul branch di default.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:00 UTC (~06:00/07:00 in Italia)
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Forza il ri-download dove supportato (true/false)"
+        required: false
+        default: "false"
+      only:
+        description: "Esegui solo questa categoria (es. ania, gimbe, pdta, ons, societa_scientifiche)"
+        required: false
+        default: ""
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run enrichment pipelines
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            ARGS="$ARGS --only ${{ github.event.inputs.only }}"
+          fi
+          echo "Eseguo: python3 scripts/run_daily_enrichment.py $ARGS"
+          python3 scripts/run_daily_enrichment.py $ARGS
+
+      - name: Commit and push new documents
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datasets/
+          if git diff --cached --quiet; then
+            echo "Nessun nuovo documento da committare."
+          else
+            COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+            git commit -m "chore(enrichment): aggiornamento automatico dataset e report originali ($(date -u +%Y-%m-%d)) [skip ci]"
+            git push
+            echo "Committati $COUNT file aggiornati/nuovi."
+          fi
+
+      - name: Upload run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-logs
+          path: logs/
+          if-no-files-found: ignore
+          retention-days: 14
