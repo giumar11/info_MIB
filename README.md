@@ -179,6 +179,48 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
+## Sezione 7: Assicurazione e sanità integrativa (ANIA)
+
+Dati e report sul mercato assicurativo italiano, rilevanti per l'analisi della
+spesa sanitaria privata, dei fondi sanitari integrativi e della RC sanitaria.
+
+| Fonte | Descrizione | Percorso |
+|-------|-------------|----------|
+| **ANIA** | L'Assicurazione Italiana (rapporto annuale), in Cifre, ANIA Trends (incl. Focus RC Sanitaria), report tematici | `datasets/raw/ania/` |
+
+**Download:** `python3 scripts/download_ania_reports.py`
+
+---
+
+## Pipeline di enrichment giornaliere
+
+Il repository include pipeline automatiche che, ogni giorno, per **ogni categoria
+di documenti**:
+
+- scaricano i **documenti/dataset originali** dalle fonti ufficiali (PDF, CSV, ...);
+- rigenerano gli **estratti strutturati** a partire dagli originali;
+- controllano gli **aggiornamenti** delle fonti del catalogo.
+
+**Orchestratore:** `scripts/daily_enrichment.py`
+
+```bash
+python3 scripts/daily_enrichment.py            # tutte le categorie
+python3 scripts/daily_enrichment.py --list     # elenca le pipeline
+python3 scripts/daily_enrichment.py --dry-run  # anteprima senza eseguire
+python3 scripts/daily_enrichment.py --category gimbe --category pdta
+python3 scripts/daily_enrichment.py --only-downloads
+```
+
+Categorie coperte: `gimbe`, `pdta`, `insurance` (ANIA), `scientific_reports`,
+`sdo`, `istat_hfa`, `orphadata`, `sources_update`.
+
+**Schedulazione:** eseguita automaticamente ogni giorno tramite GitHub Actions
+(`.github/workflows/daily-enrichment.yml`). Le nuove edizioni scaricate e gli
+estratti rigenerati vengono committati automaticamente; il report di esecuzione
+è disponibile come artifact del workflow (`logs/enrichment_report_YYYY-MM-DD.json`).
+
+---
+
 ## Struttura repository
 
 ```
@@ -194,6 +236,7 @@ info_MIB/
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── ania/                # Report ANIA (assicurativo)
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
@@ -201,7 +244,8 @@ info_MIB/
 │   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+├── scripts/                     # Script Python (download, enrichment, scheduler)
+└── .github/workflows/           # Pipeline enrichment giornaliere (GitHub Actions)
 ```
 
 ---

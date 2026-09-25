@@ -137,9 +137,10 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Contesto TLS di default: verifica il certificato usando la CA di sistema.
+    # (In precedenza il codice provava a impostare ctx.verify_peer, attributo
+    #  inesistente su ssl.SSLContext, che quindi non aveva alcun effetto.)
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

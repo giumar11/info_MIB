@@ -1,0 +1,82 @@
+name: Daily enrichment pipelines
+
+# Esegue ogni giorno le pipeline di enrichment per tutte le categorie di
+# documenti del repository: scarica i documenti/dataset ORIGINALI dalle fonti
+# ufficiali, rigenera gli estratti strutturati e controlla gli aggiornamenti
+# delle fonti. Le novità vengono committate automaticamente.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:30 UTC
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Categoria singola da eseguire (vuoto = tutte)"
+        required: false
+        default: ""
+      only_downloads:
+        description: "Esegui solo i download degli originali"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas
+
+      - name: Run enrichment pipelines
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="$ARGS --category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.only_downloads }}" = "true" ]; then
+            ARGS="$ARGS --only-downloads"
+          fi
+          python3 scripts/daily_enrichment.py $ARGS
+
+      - name: Upload enrichment report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-report
+          path: logs/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Commit new originals and updates
+        if: always()
+        run: |
+          git config user.name "info-mib-enrichment-bot"
+          git config user.email "actions@github.com"
+          # Committa solo i dati (originali + estratti) e il catalogo; i log
+          # restano esclusi tramite .gitignore.
+          git add datasets/ sources_catalog.csv
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da committare."
+          else
+            git commit -m "chore(enrichment): aggiornamento automatico dati $(date -u +%F)"
+            git push
+          fi

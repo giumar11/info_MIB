@@ -9,6 +9,9 @@ import pandas as pd
 import json
 import os
 
+# Directory base del repository (portabile, indipendente dalla macchina)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def parse_orphadata_epidemiology(xml_path):
     """
     Parsa il file XML di Orphadata con dati epidemiologici delle malattie rare.
@@ -149,8 +152,8 @@ def classify_complexity(df):
 
 def main():
     # Percorsi
-    input_path = '/home/ubuntu/progetto_sanitario/datasets/raw/orphadata_epidemiology_it.xml'
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    input_path = os.path.join(BASE_DIR, 'datasets', 'raw', 'orphadata', 'orphadata_epidemiology_it.xml')
+    output_dir = os.path.join(BASE_DIR, 'datasets', 'processed')
     
     os.makedirs(output_dir, exist_ok=True)
     
