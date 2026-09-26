@@ -1,0 +1,30 @@
+{
+  "fonte": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+  "url": "https://www.ania.it/",
+  "categoria": "insurance",
+  "data_estrazione": "2026-09-26",
+  "descrizione": "Sintesi strutturata dei report ANIA rilevanti per l'indirizzamento sociosanitario (assicurazione salute, sanita integrativa, welfare, spesa sanitaria privata). Schema pronto per la pipeline di enrichment: i campi quantitativi vengono popolati estraendo i dati dai PDF originali in datasets/raw/ania/pdf/. I valori null indicano dati non ancora estratti dalla fonte originale.",
+  "rapporti": [
+    {
+      "titolo": "L'assicurazione italiana 2024-2025",
+      "tipo": "Rapporto annuale settore assicurativo",
+      "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2024-2025.pdf",
+      "frequenza": "Annuale",
+      "temi_sociosanitari": [
+        "Ramo malattia/salute: premi e prestazioni",
+        "Spesa sanitaria privata e intermediata",
+        "Sanita integrativa e fondi sanitari",
+        "Welfare aziendale"
+      ],
+      "dati_chiave": {
+        "premi_ramo_malattia_mln_euro": null,
+        "premi_totali_danni_mln_euro": null,
+        "spesa_sanitaria_privata_mld_euro": null,
+        "quota_spesa_sanitaria_intermediata_percentuale": null,
+        "assicurati_ramo_salute_milioni": null
+      },
+      "stato_estrazione": "pending_download"
+    }
+  ],
+  "note_dati": "I dati quantitativi non sono ancora estratti: richiedono il download dei PDF originali (pipeline di enrichment giornaliera) e il parsing delle tavole statistiche ANIA. Nessun valore numerico e stato inserito per evitare dati non tracciabili alla fonte."
+}

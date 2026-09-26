@@ -271,3 +271,26 @@ Per mantenere i dati aggiornati, si consiglia di verificare periodicamente le fo
 - Monitoraggio settimanale COVID-19 (174 report)
 - Salute digitale e Fascicolo Sanitario Elettronico
 - Sprechi e inefficienze (€ 21.59 mld, 19% spesa pubblica)
+
+---
+
+## ANIA - Associazione Nazionale fra le Imprese Assicuratrici (settore assicurativo)
+
+- **Categoria**: `insurance`
+- **URL**: https://www.ania.it/
+- **Pubblicazioni**: https://www.ania.it/pubblicazioni
+- **Percorso**: `datasets/raw/ania/`
+- **Licenza**: Copyright ANIA (consultazione pubblica)
+
+**Rilevanza sociosanitaria**: documenta i canali di accesso alle cure
+complementari/alternativi al SSN — assicurazione malattia/salute, sanità
+integrativa, fondi sanitari, welfare aziendale e spesa sanitaria privata
+(out-of-pocket vs intermediata).
+
+**Report principali**:
+1. **L'assicurazione italiana** - rapporto annuale di riferimento (serie storica dal 2019-2020), con capitolo dedicato al ramo malattia/salute
+2. **Italian Insurance** - versione inglese del rapporto annuale
+3. **Appendice statistica** - tavole di dettaglio per ramo (vita, danni, malattia, RC auto)
+4. **Report tematici salute e welfare** - sanità integrativa, fondi sanitari, spesa privata
+
+Download dei PDF originali: `python3 scripts/download_ania_reports.py`

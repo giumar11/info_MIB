@@ -179,6 +179,71 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
+## Sezione 7: Settore assicurativo (ANIA)
+
+Report dell'**Associazione Nazionale fra le Imprese Assicuratrici (ANIA)** sul
+settore assicurativo italiano, rilevanti per l'indirizzamento sociosanitario
+perché documentano i **canali di accesso alle cure complementari/alternativi al
+SSN**: assicurazione malattia/salute, sanità integrativa, fondi sanitari, welfare
+aziendale e spesa sanitaria privata.
+
+| Fonte | Descrizione | URL |
+|-------|-------------|-----|
+| **L'assicurazione italiana** | Rapporto annuale di riferimento (serie storica dal 2019-2020) | https://www.ania.it/pubblicazioni |
+| **Italian Insurance** | Versione inglese del rapporto annuale | https://www.ania.it/pubblicazioni |
+| **Appendice statistica** | Tavole di dettaglio per ramo (vita, danni, malattia) | https://www.ania.it/pubblicazioni |
+| **Report tematici salute e welfare** | Sanità integrativa, fondi sanitari, spesa privata | https://www.ania.it/pubblicazioni |
+
+**Percorso:** `datasets/raw/ania/` (PDF originali in `datasets/raw/ania/pdf/`)
+
+Download dei PDF originali:
+```bash
+python3 scripts/download_ania_reports.py
+```
+
+---
+
+## Pipeline di enrichment automatica (giornaliera)
+
+Lo script `scripts/daily_enrichment_pipeline.py` orchestra, per **tutte le
+categorie di documenti** del repository, due tipi di step:
+
+1. **Download originali** — scarica i **dataset e i report originali** (PDF, CSV,
+   XML, ZIP) direttamente dalle fonti, quando esistono. Non ci si limita agli
+   estratti processati: dove la fonte pubblica un file scaricabile, viene salvato
+   in `datasets/raw/`. Sono coperti GIMBE, PDTA, ANIA e — tramite un downloader
+   generico *catalog-driven* — ogni altra fonte del catalogo con un file diretto.
+2. **Enrichment** — rigenera gli estratti processati (`datasets/processed/`) e i
+   dataset pronti per il database (`datasets/migration_ready/`).
+
+```bash
+# Tutte le categorie (download originali + enrichment)
+python3 scripts/daily_enrichment_pipeline.py
+
+# Solo una categoria / solo download / solo enrichment / anteprima
+python3 scripts/daily_enrichment_pipeline.py --category insurance
+python3 scripts/daily_enrichment_pipeline.py --originals-only
+python3 scripts/daily_enrichment_pipeline.py --enrich-only
+python3 scripts/daily_enrichment_pipeline.py --dry-run
+```
+
+**Schedulazione giornaliera**:
+- **GitHub Actions**: `.github/workflows/daily-enrichment.yml` (ogni giorno alle
+  05:30 UTC; committa automaticamente le novità). Avviabile anche manualmente
+  con *workflow_dispatch*.
+- **Cron locale**: `python3 scripts/daily_enrichment_pipeline.py --install-cron`
+  (esecuzione giornaliera alle 06:00).
+
+Ogni esecuzione produce un report in `logs/enrichment_report_YYYY-MM-DD.json`.
+Gli step di enrichment sono **idempotenti**: i file non vengono riscritti se i
+dati di origine non sono cambiati, evitando diff non significativi.
+
+Lo scheduler mensile di **controllo aggiornamenti** delle fonti
+(`scripts/scheduler_check_updates.py`) resta disponibile per il monitoraggio
+delle variazioni sui siti sorgente.
+
+---
+
 ## Struttura repository
 
 ```
@@ -194,14 +259,15 @@ info_MIB/
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── ania/                # Report ANIA (settore assicurativo)
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+├── scripts/                     # Script Python (download + enrichment + pipeline)
+└── .github/workflows/           # Pipeline di enrichment giornaliera (CI)
 ```
 
 ---

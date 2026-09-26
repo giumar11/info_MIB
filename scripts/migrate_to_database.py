@@ -173,8 +173,23 @@ def categorizza_tipo_patologia(nome: str) -> str:
         return "comune"
 
 
-def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict], 
-                        segmentazione: Dict) -> List[Dict]:
+def source_data_date(*filepaths: Path) -> str:
+    """
+    Ritorna la data (YYYY-MM-DD) dell'ultima modifica delle fonti processate.
+
+    Usare la data della FONTE (e non datetime.now()) rende l'output della
+    migrazione idempotente: i record non vengono riscritti a ogni esecuzione
+    della pipeline giornaliera, ma solo quando i dati di origine cambiano
+    davvero. Questo evita diff giganti e non significativi nel versioning.
+    """
+    mtimes = [p.stat().st_mtime for p in filepaths if p.exists()]
+    if not mtimes:
+        return datetime.now().strftime("%Y-%m-%d")
+    return datetime.fromtimestamp(max(mtimes)).strftime("%Y-%m-%d")
+
+
+def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
+                        segmentazione: Dict, data_aggiornamento: str) -> List[Dict]:
     """Crea documenti denormalizzati per NoSQL."""
     documents = []
     
@@ -195,7 +210,7 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
             },
             "specialisti": [],  # Da arricchire
             "fonti": [{"nome": "Orphadata", "url": m.get("expert_link")}],
-            "last_updated": datetime.now().isoformat()
+            "last_updated": data_aggiornamento
         }
         documents.append(doc)
     
@@ -222,7 +237,7 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
                 for i, spec in enumerate(pdta.get("specialisti_coinvolti", []))
             ],
             "fonti": [{"nome": pdta.get("fonte", ""), "url": None}],
-            "last_updated": datetime.now().isoformat()
+            "last_updated": data_aggiornamento
         }
         documents.append(doc)
     
@@ -285,7 +300,12 @@ def main():
     
     # Trasforma per NoSQL
     print("\nTrasformazione per NoSQL...")
-    nosql_documents = transform_for_nosql(malattie_rare, pdta_data, segmentazione)
+    data_aggiornamento = source_data_date(
+        PROCESSED_DIR / "malattie_rare_italia.json",
+        PROCESSED_DIR / "pdta_multidisciplinari.json",
+    )
+    nosql_documents = transform_for_nosql(
+        malattie_rare, pdta_data, segmentazione, data_aggiornamento)
     save_json(nosql_documents, OUTPUT_DIR / "nosql_patologie_collection.json")
     print(f"  - Salvato: {OUTPUT_DIR / 'nosql_patologie_collection.json'}")
     print(f"  - Documenti totali: {len(nosql_documents)}")

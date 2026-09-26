@@ -2106,8 +2106,40 @@ Dati pubblici - AIFA / Ministero della Salute
 # SEZIONE 6: GENERAZIONE OUTPUT
 # =============================================================================
 
+# Chiavi con data volatile (aggiornate a ogni esecuzione): vengono ignorate nel
+# confronto di idempotenza, cosi' la pipeline giornaliera non riscrive i file
+# quando cambia solo la data di generazione e non i dati veri.
+_VOLATILE_DATE_KEYS = ("data_estrazione", "data_compilazione", "data_generazione")
+
+
+def _strip_volatile(obj):
+    """Copia ricorsiva senza le chiavi-data volatili, per confronto stabile."""
+    if isinstance(obj, dict):
+        return {k: _strip_volatile(v) for k, v in obj.items()
+                if k not in _VOLATILE_DATE_KEYS}
+    if isinstance(obj, list):
+        return [_strip_volatile(v) for v in obj]
+    return obj
+
+
 def save_json(data, filepath):
-    """Salva dati in formato JSON."""
+    """
+    Salva dati in formato JSON in modo IDEMPOTENTE.
+
+    Se il file esiste gia' ed e' identico ai nuovi dati a parte le chiavi-data
+    volatili (data_estrazione, ...), non viene riscritto: si preserva il
+    contenuto esistente. Questo evita diff giornalieri non significativi.
+    """
+    if os.path.exists(filepath):
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                existing = json.load(f)
+            if _strip_volatile(existing) == _strip_volatile(data):
+                size_kb = os.path.getsize(filepath) / 1024
+                print(f"  Invariato: {os.path.relpath(filepath, BASE_DIR)} ({size_kb:.1f} KB)")
+                return
+        except (json.JSONDecodeError, OSError):
+            pass  # file corrotto/illeggibile: riscrivi
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     size_kb = os.path.getsize(filepath) / 1024

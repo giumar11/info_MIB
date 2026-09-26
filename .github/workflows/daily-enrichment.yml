@@ -1,0 +1,73 @@
+name: Daily enrichment pipeline
+
+# Pipeline di enrichment GIORNALIERA per tutte le categorie di documenti:
+# scarica gli originali (dataset e report) e rigenera gli estratti processati,
+# poi committa le eventuali novita'.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:30 UTC (~06:30/07:30 ora italiana)
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Categoria singola da elaborare (vuoto = tutte)"
+        required: false
+        default: ""
+      mode:
+        description: "Modalita': all | originals-only | enrich-only"
+        required: false
+        default: "all"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas
+
+      - name: Build pipeline arguments
+        id: args
+        run: |
+          ARGS=""
+          MODE="${{ github.event.inputs.mode }}"
+          CAT="${{ github.event.inputs.category }}"
+          if [ "$MODE" = "originals-only" ]; then ARGS="$ARGS --originals-only"; fi
+          if [ "$MODE" = "enrich-only" ]; then ARGS="$ARGS --enrich-only"; fi
+          if [ -n "$CAT" ]; then ARGS="$ARGS --category $CAT"; fi
+          echo "args=$ARGS" >> "$GITHUB_OUTPUT"
+
+      - name: Run daily enrichment pipeline
+        run: |
+          python3 scripts/daily_enrichment_pipeline.py ${{ steps.args.outputs.args }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Non versionare i log runtime (gia' in .gitignore) ne' le cache
+          git add -A datasets/ sources_catalog.csv
+          if git diff --cached --quiet; then
+            echo "Nessuna novita' da committare."
+          else
+            git commit -m "chore: enrichment giornaliero automatico ($(date -u +%F))"
+            git push
+          fi

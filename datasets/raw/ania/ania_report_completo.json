@@ -1,0 +1,62 @@
+{
+  "fonte": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+  "istituzione": "ANIA",
+  "natura_giuridica": "Associazione di categoria delle imprese di assicurazione operanti in Italia",
+  "url_principale": "https://www.ania.it/",
+  "url_pubblicazioni": "https://www.ania.it/pubblicazioni",
+  "categoria": "insurance",
+  "data_estrazione": "2026-09-26",
+  "descrizione": "Metadati strutturati dei report ANIA sul settore assicurativo italiano. Selezione orientata alla rilevanza sociosanitaria: assicurazione malattia/salute, sanità integrativa, fondi sanitari, welfare e spesa sanitaria privata come canali di accesso alle cure complementari/alternativi al SSN. I valori quantitativi vanno estratti dai PDF originali scaricati in datasets/raw/ania/pdf/.",
+  "rilevanza_sociosanitaria": [
+    "Assicurazione malattia/salute (ramo danni - malattia e infortuni)",
+    "Sanita integrativa e fondi sanitari",
+    "Welfare aziendale con componente sanitaria",
+    "Spesa sanitaria privata: out-of-pocket vs intermediata",
+    "Diffusione delle coperture salute tra famiglie e imprese"
+  ],
+  "rapporti": [
+    {
+      "id": "ANIA_ANNUALE",
+      "titolo": "L'assicurazione italiana",
+      "tipo": "rapporto annuale",
+      "frequenza": "annuale",
+      "descrizione": "Rapporto di riferimento del settore assicurativo italiano presentato all'Assemblea annuale ANIA. Comprende un capitolo dedicato al ramo malattia/salute e all'analisi della spesa sanitaria privata e della sanita integrativa.",
+      "url_landing": "https://www.ania.it/pubblicazioni/-/categories/53705",
+      "edizioni": [
+        {"anno": "2024-2025", "url_pdf": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2024-2025.pdf"},
+        {"anno": "2023-2024", "url_pdf": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2023-2024.pdf"},
+        {"anno": "2021-2022", "url_pdf": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2021-2022.pdf"},
+        {"anno": "2019-2020", "url_pdf": "https://www.ania.it/documents/35135/126701/LAssicurazione-Italiana-2019-2020.pdf"}
+      ]
+    },
+    {
+      "id": "ANIA_ANNUALE_EN",
+      "titolo": "Italian Insurance",
+      "tipo": "rapporto annuale (versione inglese)",
+      "frequenza": "annuale",
+      "descrizione": "Versione in lingua inglese del rapporto annuale sul settore assicurativo italiano.",
+      "url_landing": "https://www.ania.it/pubblicazioni/-/categories/53731",
+      "edizioni": [
+        {"anno": "2024-2025", "url_pdf": "https://www.ania.it/wp-content/uploads/2026/03/Italian-Insurance-2025_EN-WEBFULL-4.pdf"},
+        {"anno": "2022-2023", "url_pdf": "https://ania.it/wp-content/uploads/2026/03/Italian-Insurance-2022-2023-WEB.pdf"}
+      ]
+    },
+    {
+      "id": "ANIA_APPENDICE_STATISTICA",
+      "titolo": "L'assicurazione italiana - Appendice statistica",
+      "tipo": "tavole statistiche",
+      "frequenza": "annuale",
+      "descrizione": "Tavole statistiche di dettaglio per ramo (vita, danni, malattia, RC auto) allegate al rapporto annuale.",
+      "url_landing": "https://www.ania.it/pubblicazioni/-/categories/53729"
+    },
+    {
+      "id": "ANIA_TEMATICI_SALUTE_WELFARE",
+      "titolo": "Report tematici salute e welfare",
+      "tipo": "report tematici",
+      "frequenza": "periodica",
+      "descrizione": "Analisi su sanita integrativa, fondi sanitari, spesa sanitaria privata e welfare aziendale con componente sanitaria.",
+      "url_landing": "https://www.ania.it/pubblicazioni/-/categories/53705"
+    }
+  ],
+  "note_dati": "Questo file contiene esclusivamente metadati bibliografici e tematici. I dati quantitativi (premi, prestazioni, quote di mercato, spesa sanitaria privata) devono essere estratti dai PDF originali tramite la pipeline di enrichment, per garantire tracciabilita e verificabilita rispetto alla fonte."
+}

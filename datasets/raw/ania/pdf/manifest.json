@@ -1,0 +1,18 @@
+{
+  "description": "ANIA report PDF collection manifest",
+  "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+  "source_url": "https://www.ania.it/pubblicazioni",
+  "download_date": "2026-09-26",
+  "note": "Esegui 'python3 scripts/download_ania_reports.py' per scaricare i PDF mancanti",
+  "total": 6,
+  "downloaded": 0,
+  "failed": 0,
+  "files": [
+    {"filename": "LAssicurazione_Italiana_2024-2025.pdf", "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2024-2025.pdf", "category": "rapporto_annuale", "edition": "L'assicurazione italiana 2024-2025", "year": 2025, "status": "pending"},
+    {"filename": "LAssicurazione_Italiana_2023-2024.pdf", "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2023-2024.pdf", "category": "rapporto_annuale", "edition": "L'assicurazione italiana 2023-2024", "year": 2024, "status": "pending"},
+    {"filename": "LAssicurazione_Italiana_2021-2022.pdf", "url": "https://www.ania.it/wp-content/uploads/2026/03/LAssicurazione-Italiana-2021-2022.pdf", "category": "rapporto_annuale", "edition": "L'assicurazione italiana 2021-2022", "year": 2022, "status": "pending"},
+    {"filename": "LAssicurazione_Italiana_2019-2020.pdf", "url": "https://www.ania.it/documents/35135/126701/LAssicurazione-Italiana-2019-2020.pdf", "category": "rapporto_annuale", "edition": "L'assicurazione italiana 2019-2020", "year": 2020, "status": "pending"},
+    {"filename": "Italian_Insurance_2024-2025_EN.pdf", "url": "https://www.ania.it/wp-content/uploads/2026/03/Italian-Insurance-2025_EN-WEBFULL-4.pdf", "category": "rapporto_annuale_eng", "edition": "Italian Insurance 2024-2025 (EN)", "year": 2025, "status": "pending"},
+    {"filename": "Italian_Insurance_2022-2023_EN.pdf", "url": "https://ania.it/wp-content/uploads/2026/03/Italian-Insurance-2022-2023-WEB.pdf", "category": "rapporto_annuale_eng", "edition": "Italian Insurance 2022-2023 (EN)", "year": 2023, "status": "pending"}
+  ]
+}
