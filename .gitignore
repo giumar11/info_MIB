@@ -1,2 +1,6 @@
-# Scheduler logs (generated at runtime)
+# Scheduler / enrichment logs (generated at runtime)
 logs/
+
+# Python
+__pycache__/
+*.pyc

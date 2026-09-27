@@ -9,6 +9,9 @@ import pandas as pd
 import json
 from pathlib import Path
 
+# Directory base del repository (due livelli sopra questo file)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def read_hfa_titles(titles_path):
     """
     Legge i titoli degli indicatori HFA.
@@ -164,8 +167,8 @@ def create_proxy_analysis():
     return multi_specialist_conditions
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
-    hfa_dir = '/home/ubuntu/progetto_sanitario/datasets/raw/hfa_istat/HFA'
+    output_dir = os.path.join(BASE_DIR, 'datasets', 'processed')
+    hfa_dir = os.path.join(BASE_DIR, 'datasets', 'raw', 'hfa_istat', 'HFA')
     
     os.makedirs(output_dir, exist_ok=True)
     

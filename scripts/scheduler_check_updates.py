@@ -132,7 +132,10 @@ def check_source(source, previous_state, logger):
     3. Confronto con lo stato precedente
 
     Returns:
-        dict con risultato del controllo
+        tupla (result, new_state) dove result è il dict con l'esito del
+        controllo e new_state è il nuovo stato da persistere (None per le
+        fonti skippate o andate in errore, per cui si aggiorna solo
+        last_checked nel chiamante).
     """
     source_id = source['source_id']
     url = source['url']
@@ -157,7 +160,7 @@ def check_source(source, previous_state, logger):
     if source_id in STATIC_SOURCES:
         result['status'] = 'skipped_static'
         logger.info(f"[{source_id}] {title} - Fonte statica, skip")
-        return result
+        return result, None
 
     prev = previous_state.get(source_id, {})
     headers = {'User-Agent': USER_AGENT}
@@ -186,7 +189,7 @@ def check_source(source, previous_state, logger):
                 result['status'] = 'http_error'
                 result['error'] = f"HTTP {resp.status_code}"
                 logger.warning(f"[{source_id}] {title} - HTTP {resp.status_code}")
-                return result
+                return result, None
 
             head_data = {
                 'last_modified': resp.headers.get('Last-Modified', ''),
@@ -203,7 +206,7 @@ def check_source(source, previous_state, logger):
             result['status'] = 'timeout'
             result['error'] = f"Timeout dopo {REQUEST_TIMEOUT}s"
             logger.warning(f"[{source_id}] {title} - Timeout")
-            return result
+            return result, None
 
         except requests.exceptions.ConnectionError as e:
             if attempt < MAX_RETRIES:
@@ -212,13 +215,13 @@ def check_source(source, previous_state, logger):
             result['status'] = 'connection_error'
             result['error'] = str(e)[:200]
             logger.warning(f"[{source_id}] {title} - Errore connessione: {str(e)[:100]}")
-            return result
+            return result, None
 
         except requests.exceptions.RequestException as e:
             result['status'] = 'request_error'
             result['error'] = str(e)[:200]
             logger.warning(f"[{source_id}] {title} - Errore: {str(e)[:100]}")
-            return result
+            return result, None
 
     # Confronto header con stato precedente
     changes = []
@@ -257,7 +260,7 @@ def check_source(source, previous_state, logger):
                 result['status'] = 'http_error'
                 result['error'] = f"HTTP {resp.status_code}"
                 logger.warning(f"[{source_id}] {title} - GET HTTP {resp.status_code}")
-                return result
+                return result, None
 
             # Calcola hash del contenuto
             content_hash = hashlib.sha256(resp.content).hexdigest()
@@ -277,7 +280,7 @@ def check_source(source, previous_state, logger):
             result['status'] = 'request_error'
             result['error'] = 'GET fallito dopo retry'
             logger.warning(f"[{source_id}] {title} - GET fallito")
-            return result
+            return result, None
 
     # --- FASE 3: Valutazione risultato ---
     if changes:
@@ -332,6 +335,8 @@ def is_check_due(source, state):
     # Intervalli di controllo basati sulla frequenza della fonte
     thresholds = {
         'continuous': 7,     # settimanale
+        'weekly': 7,         # settimanale
+        'monthly': 15,       # bimensile (per intercettare i nuovi rilasci mensili)
         'quarterly': 30,     # mensile
         'annual': 30,        # mensile
         'biennial': 60,      # bimestrale
@@ -673,14 +678,13 @@ Esempi:
         source_id = source['source_id']
         logger.info(f"[{i}/{len(sources_to_check)}] Controllo {source_id}...")
 
-        check_result = check_source(source, state, logger)
+        # check_source ritorna sempre una tupla (result, new_state);
+        # new_state è None per fonti skippate o in errore.
+        result, new_state = check_source(source, state, logger)
 
-        # check_source ritorna (result, new_state) oppure solo result per skip/errori
-        if isinstance(check_result, tuple):
-            result, new_state = check_result
+        if new_state is not None:
             state[source_id] = new_state
         else:
-            result = check_result
             # Per fonti skippate/errori, aggiorna solo last_checked
             if source_id not in state:
                 state[source_id] = {}

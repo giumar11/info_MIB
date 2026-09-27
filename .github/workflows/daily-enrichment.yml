@@ -1,0 +1,70 @@
+name: Daily enrichment
+
+# Pipeline di enrichment giornaliera: scarica gli ORIGINALI (report e dataset)
+# dalle fonti ufficiali per tutte le categorie di documenti del repository e
+# controlla gli aggiornamenti del catalogo. I nuovi file vengono committati.
+
+on:
+  schedule:
+    # Ogni giorno alle 04:30 UTC (05:30/06:30 ora italiana)
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Esegui solo uno step (gimbe|pdta|ania|original_reports|scheduler)"
+        required: false
+        default: ""
+      force:
+        description: "Riscarica tutto (true/false)"
+        required: false
+        default: "false"
+
+# Evita esecuzioni sovrapposte
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run enrichment orchestrator
+        run: |
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            python3 scripts/run_daily_enrichment.py --only "${{ github.event.inputs.only }}"
+          else
+            python3 scripts/run_daily_enrichment.py
+          fi
+        env:
+          # I portali della PA a volte hanno catene CA incomplete.
+          INFOMIB_INSECURE_TLS: "0"
+
+      - name: Commit new originals and catalog updates
+        run: |
+          git config user.name "info-mib-bot"
+          git config user.email "info-mib-bot@users.noreply.github.com"
+          # Aggiungi solo i dati e i cataloghi/manifest (i log sono gitignored).
+          git add datasets/ sources_catalog.csv || true
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da committare."
+          else
+            git commit -m "chore(enrichment): aggiornamento automatico originali e catalogo [skip ci]"
+            git push
+          fi

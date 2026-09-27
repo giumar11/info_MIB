@@ -137,9 +137,14 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Verifica TLS attiva per default. Alcuni portali della PA hanno catene di
+    # certificati incomplete: in quei casi si può disattivare la verifica in modo
+    # ESPLICITO e CORRETTO impostando INFOMIB_INSECURE_TLS=1. (Il vecchio
+    # `ctx.verify_peer = False` era un attributo inesistente: un no-op silenzioso.)
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
+    if os.environ.get("INFOMIB_INSECURE_TLS", "").strip() in ("1", "true", "yes"):
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -239,7 +244,8 @@ def main():
         # Skip if already downloaded (unless --force)
         if not args.force and os.path.exists(filepath) and os.path.getsize(filepath) > 1000:
             size = os.path.getsize(filepath)
-            sha = hashlib.sha256(open(filepath, "rb").read()).hexdigest()
+            with open(filepath, "rb") as fh:
+                sha = hashlib.sha256(fh.read()).hexdigest()
             print(f"[{i}/{len(GIMBE_PDFS)}] SKIP (exists): {pdf['filename']} ({format_size(size)})")
             manifest.append({
                 "filename": pdf["filename"],

@@ -146,6 +146,7 @@ Questa sezione contiene report e analisi sulle principali problematiche del SSN 
 |-------|-------------|----------|
 | **Fondazione GIMBE** | Rapporti annuali sul SSN | `datasets/raw/gimbe/` |
 | **Osservatorio sulla Salute** | Rapporto annuale regioni | `datasets/raw/osservatorio_salute/` |
+| **ANIA** | Report settore assicurativo, ramo Salute e sanità integrativa | `datasets/raw/ania/` |
 | **CENSIS** | Rapporto annuale sanità | Link in catalogo |
 | **CREA Sanità** | Performance regionali | Link in catalogo |
 | **Corte dei Conti** | Relazione sulla gestione finanziaria | Link in catalogo |
@@ -179,6 +180,45 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
+## Pipeline di enrichment (aggiornamento automatico)
+
+Il repository include pipeline che scaricano gli **originali** (report e dataset)
+dalle fonti ufficiali per tutte le categorie di documenti, e monitorano gli
+aggiornamenti del catalogo. L'obiettivo è conservare i documenti originali, non
+solo gli estratti elaborati.
+
+### Esecuzione schedulata
+- **`.github/workflows/daily-enrichment.yml`** — gira **ogni giorno** (04:30 UTC),
+  esegue l'orchestratore, e committa i nuovi originali e gli aggiornamenti del
+  catalogo. Avviabile anche manualmente (`workflow_dispatch`).
+
+### Orchestratore
+- **`scripts/run_daily_enrichment.py`** — esegue in sequenza tutti gli step
+  (GIMBE, PDTA, ANIA, originali AIFA/OsMed, controllo aggiornamenti catalogo).
+  Ogni step è isolato: il fallimento di una fonte non interrompe gli altri.
+
+```bash
+python3 scripts/run_daily_enrichment.py            # tutti gli step
+python3 scripts/run_daily_enrichment.py --only ania
+python3 scripts/run_daily_enrichment.py --dry-run
+```
+
+### Downloader per categoria
+| Script | Categoria | Contenuto |
+|--------|-----------|-----------|
+| `download_gimbe_pdfs.py` | GIMBE | Rapporti annuali + Osservatorio |
+| `download_pdta.py` | PDTA | Percorsi nazionali/regionali |
+| `download_ania_reports.py` | ANIA | Report settore assicurativo (salute, welfare) |
+| `download_original_reports.py` | AIFA/OsMed + estendibile | Report/dataset originali |
+| `scheduler_check_updates.py` | tutte | Controllo aggiornamenti fonti del catalogo |
+
+Ogni downloader supporta `--check` (stato) e `--force` (riscarica), è idempotente
+(salta i file già presenti) e genera un manifest con checksum SHA-256. La verifica
+TLS è attiva per default e può essere disattivata in modo esplicito con
+`INFOMIB_INSECURE_TLS=1` per i portali con catena di certificati incompleta.
+
+---
+
 ## Struttura repository
 
 ```
@@ -193,15 +233,17 @@ info_MIB/
 │   │   ├── internazionale/      # OECD, Eurostat, WHO
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
+│   │   ├── aifa/                # Rapporti AIFA / OsMed (originali)
+│   │   ├── ania/                # Report ANIA (settore assicurativo)
 │   │   ├── istat/               # Health for All, EHIS
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+├── scripts/                     # Script Python: download originali + enrichment
+└── .github/workflows/           # Pipeline schedulate (enrichment giornaliero)
 ```
 
 ---

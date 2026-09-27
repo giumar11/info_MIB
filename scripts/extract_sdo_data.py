@@ -8,6 +8,9 @@ import os
 import json
 import pandas as pd
 
+# Directory base del repository (due livelli sopra questo file)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def create_sdo_summary():
     """
     Crea un riepilogo strutturato dei dati SDO 2023.
@@ -218,7 +221,7 @@ def create_population_segmentation():
     return segmentazione
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    output_dir = os.path.join(BASE_DIR, 'datasets', 'processed')
     os.makedirs(output_dir, exist_ok=True)
     
     print("=== ESTRAZIONE DATI SDO E CREAZIONE DATASET ===\n")
