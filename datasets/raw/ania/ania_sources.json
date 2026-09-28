@@ -1,0 +1,44 @@
+{
+  "description": "Catalogo delle pubblicazioni ANIA (Associazione Nazionale fra le Imprese Assicuratrici) da acquisire nella pipeline di enrichment. Le pagine di categoria del portale pubblicazioni ANIA vengono analizzate a runtime per individuare i PDF originali; in alternativa e' possibile elencare URL diretti gia' verificati in 'direct_pdfs'.",
+  "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+  "base_url": "https://www.ania.it",
+  "license": "Consultazione pubblica - (c) ANIA. Uso a scopo di ricerca/analisi.",
+  "note_provenance": "Il portale ANIA (Liferay) pubblica i documenti sotto /documents/<id>/... . Le pagine di categoria elencano le pubblicazioni con un pulsante 'APRI'. Lo scraper estrae gli href ai PDF/documenti. Se il portale rende gli elenchi via JavaScript e non vengono trovati link, popolare manualmente 'direct_pdfs' con gli URL verificati.",
+  "categories": [
+    {
+      "slug": "assicurazione_italiana",
+      "title": "L'Assicurazione Italiana - Relazione annuale e Appendice Statistica",
+      "description": "Rapporto annuale ANSA sull'evoluzione e l'andamento dell'attivita' assicurativa in Italia (Vita, Danni, distribuzione, Italia e altri Paesi a confronto). Presentato ogni anno all'Assemblea ANIA (luglio).",
+      "landing_page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+      "update_frequency": "annual",
+      "topics": ["vita", "danni", "distribuzione", "confronto_internazionale", "solvibilita"]
+    },
+    {
+      "slug": "pubblicazioni_generali",
+      "title": "Pubblicazioni ANIA (studi, rapporti tematici, welfare, sanita' integrativa)",
+      "description": "Studi e rapporti tematici ANIA, inclusi welfare, sanita' integrativa, previdenza e protezione.",
+      "landing_page": "https://www.ania.it/pubblicazioni/-/categories/53705",
+      "update_frequency": "periodic",
+      "topics": ["welfare", "sanita_integrativa", "previdenza", "protezione"]
+    },
+    {
+      "slug": "ania_trends",
+      "title": "ANIA Trends - Bollettini statistici periodici",
+      "description": "Bollettini statistici periodici ANIA sulla nuova produzione Vita, premi Danni, RC Auto e altri rami. Aggiornamento mensile/trimestrale.",
+      "landing_page": "https://www.ania.it/ania-trends",
+      "update_frequency": "monthly",
+      "topics": ["nuova_produzione_vita", "premi_danni", "rc_auto"]
+    }
+  ],
+  "direct_pdfs": [],
+  "_direct_pdfs_schema": {
+    "note": "Aggiungere qui gli URL PDF ANIA verificati manualmente per garantirne il download anche se lo scraping delle pagine di categoria non li individua.",
+    "example": {
+      "slug": "assicurazione_italiana",
+      "filename": "ANIA_L_assicurazione_italiana_2024_2025.pdf",
+      "title": "L'Assicurazione Italiana 2024-2025",
+      "url": "https://www.ania.it/documents/.../....pdf",
+      "year": 2025
+    }
+  }
+}

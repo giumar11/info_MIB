@@ -1,0 +1,88 @@
+name: Daily dataset enrichment
+
+# Pipeline di enrichment giornaliera: scarica i dataset e i report ORIGINALI
+# di tutte le categorie di documenti (governance, finanza, PDTA, GIMBE, OASI,
+# ISTAT, ONS, AIFA, Orphanet, ANIA/assicurativo, internazionale, ...) e li
+# committa nel repository. Gira su GitHub Actions perche' dispone di rete aperta
+# verso i portali istituzionali (a differenza delle sessioni cloud ristrette).
+
+on:
+  schedule:
+    # Ogni giorno alle 05:10 UTC (~07:10 Europe/Rome in ora legale)
+    - cron: '10 5 * * *'
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Limita a una categoria del catalogo (es. insurance, pdta). Vuoto = tutte."
+        required: false
+        default: ''
+      process:
+        description: "Rigenera anche gli estratti processati dagli originali"
+        type: boolean
+        required: false
+        default: false
+      force:
+        description: "Ri-scarica gli originali anche se gia' presenti"
+        type: boolean
+        required: false
+        default: false
+
+# Permesso di scrittura sul contenuto per committare i nuovi originali.
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Le fasi 1-2 usano solo la stdlib. pandas/lxml servono solo se si
+          # rigenerano gli estratti processati (--process).
+          if [ "${{ github.event.inputs.process }}" = "true" ]; then
+            pip install pandas lxml requests
+          fi
+
+      - name: Run enrichment pipeline
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="$ARGS --category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.process }}" = "true" ]; then
+            ARGS="$ARGS --process"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          echo "Esecuzione: python scripts/enrich_all.py $ARGS"
+          python scripts/enrich_all.py $ARGS
+
+      - name: Commit new originals and reports
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # logs/ e' in .gitignore: versioniamo solo dati e catalogo/manifest.
+          git add datasets/ sources_catalog.csv
+          if git diff --cached --quiet; then
+            echo "Nessuna variazione: niente da committare."
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "data: enrichment giornaliero dataset/report originali ($DATE) [skip ci]"
+            git push
+            echo "Modifiche committate e pushate."
+          fi

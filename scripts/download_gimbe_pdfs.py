@@ -137,9 +137,17 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Certificate chain verification stays ON (the secure default).
+    # Only strict hostname matching is relaxed, because a few Italian
+    # institutional hosts present certificates whose SAN does not match the
+    # exact vanity host used in the download URL while still chaining to a
+    # trusted CA.
+    # NOTE: the previous code set `ctx.verify_peer = False`, which was a bug:
+    # SSLContext has no such attribute, so the assignment was silently ignored
+    # and had no effect. The real attribute is `verify_mode`; we intentionally
+    # leave it at its default (CERT_REQUIRED) so certificates are still checked.
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
-    ctx.verify_peer = False
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
