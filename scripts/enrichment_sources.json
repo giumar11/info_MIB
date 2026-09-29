@@ -1,0 +1,221 @@
+{
+  "version": "1.0",
+  "description": "Catalogo delle fonti ORIGINALI (dataset e report) scaricabili automaticamente dalla pipeline di enrichment giornaliera. Per ogni categoria di documenti presente nella repository vengono scaricati i file originali (PDF, CSV, XML, ZIP) dai siti degli enti proprietari, non solo gli estratti processati internamente.",
+  "note": "Le categorie con la chiave 'script' delegano il download allo script dedicato (che mantiene l'elenco completo e verificato degli URL). Le categorie con 'sources' scaricano direttamente i file elencati. Le fonti-portale senza URL di download diretto sono monitorate da scheduler_check_updates.py.",
+  "categories": {
+    "gimbe": {
+      "description": "Rapporti annuali GIMBE sul SSN e report Osservatorio GIMBE",
+      "script": "download_gimbe_pdfs.py",
+      "script_args": [],
+      "check_args": ["--check"],
+      "force_arg": "--force"
+    },
+    "pdta": {
+      "description": "Percorsi Diagnostico-Terapeutici Assistenziali nazionali, regionali e locali",
+      "script": "download_pdta.py",
+      "script_args": ["--level", "all"],
+      "check_args": ["--dry-run", "--level", "all"],
+      "force_arg": null
+    },
+    "ania": {
+      "description": "Report ANIA - Associazione Nazionale fra le Imprese Assicuratrici (settore assicurativo, incluso ramo malattia/salute)",
+      "dest_dir": "datasets/raw/ania",
+      "sources": [
+        {
+          "id": "ANIA_AI_2020_2021",
+          "filename": "ANIA_Assicurazione_Italiana_2020-2021.pdf",
+          "url": "https://ania.it/documents/35135/439653/L'Assicurazione+Italiana+2020-2021.pdf/e4fa652e-dda7-8c9c-96ef-1e4468d4f903?t=1631084761328",
+          "title": "L'Assicurazione Italiana 2020-2021",
+          "year": 2021
+        },
+        {
+          "id": "ANIA_AI_2016_2017",
+          "filename": "ANIA_Assicurazione_Italiana_2016-2017.pdf",
+          "url": "http://www.ania.it/export/sites/default/it/pubblicazioni/rapporti-annuali/Assicurazione-Italiana/2016-2017/assicurazione_italiana_2016_2017.pdf",
+          "title": "L'Assicurazione Italiana 2016-2017",
+          "year": 2017
+        },
+        {
+          "id": "ANIA_AI_2013_2014",
+          "filename": "ANIA_Assicurazione_Italiana_2013-2014.pdf",
+          "url": "https://www.ania.it/documents/35135/439653/LAssicurazione-italiana-2013-2014.pdf/ef32cf39-58cb-6ea0-8bcd-76cc80ae69cd?version=1.0&t=1631084755067",
+          "title": "L'Assicurazione Italiana 2013-2014",
+          "year": 2014
+        },
+        {
+          "id": "ANIA_AI_2012_2013",
+          "filename": "ANIA_Assicurazione_Italiana_2012-2013.pdf",
+          "url": "https://ania.it/documents/35135/0/Assicurazione-Italiana-2012-2013.pdf/1a921ad3-efd4-6073-50f3-7c05a5770b0b?t=1576519512151",
+          "title": "L'Assicurazione Italiana 2012-2013",
+          "year": 2013
+        },
+        {
+          "id": "ANIA_AI_2010_2011",
+          "filename": "ANIA_Assicurazione_Italiana_2010-2011.pdf",
+          "url": "https://www.ania.it/documents/35135/126701/Assicurazione-Italiana-2010-2011.pdf/3edaf780-b76d-6074-6179-6704a2e09ce5?t=1575543834281",
+          "title": "L'Assicurazione Italiana 2010-2011",
+          "year": 2011
+        },
+        {
+          "id": "ANIA_AI_2008_2009",
+          "filename": "ANIA_Assicurazione_Italiana_2008-2009.pdf",
+          "url": "https://www.ania.it/documents/35135/439653/Assicurazione-Italiana-2008-2009.pdf/3f704c3a-ba61-734d-aad9-5fc93dcb4b5b?version=1.0&t=1631084725516",
+          "title": "L'Assicurazione Italiana 2008-2009",
+          "year": 2009
+        },
+        {
+          "id": "ANIA_AI_2006_2007",
+          "filename": "ANIA_Assicurazione_Italiana_2006-2007.pdf",
+          "url": "https://www.ania.it/documents/35135/439653/Assicurazione-Italiana-2006-2007.pdf/086b6f9e-63cc-f726-9250-2d094b628289?version=1.0&t=1631084718263",
+          "title": "L'Assicurazione Italiana 2006-2007",
+          "year": 2007
+        },
+        {
+          "id": "ANIA_AI_2004_2005",
+          "filename": "ANIA_Assicurazione_Italiana_2004-2005.pdf",
+          "url": "https://www.ania.it/documents/35135/439653/Assicurazione-Italiana+2004-2005.pdf/8f77f164-e796-e7d4-8be3-6d10ed158151?version=1.1&t=1751436630852",
+          "title": "L'Assicurazione Italiana 2004-2005",
+          "year": 2005
+        },
+        {
+          "id": "ANIA_AI_2003_2004",
+          "filename": "ANIA_Assicurazione_Italiana_2003-2004.pdf",
+          "url": "https://www.ania.it/documents/35135/439653/Assicurazione-Italiana-2003-2004.pdf/2d43c256-5fc2-9f76-046c-6cebf7cd0d3a?version=1.0&t=1631084732557",
+          "title": "L'Assicurazione Italiana 2003-2004",
+          "year": 2004
+        },
+        {
+          "id": "ANIA_AI_CIFRE_2016",
+          "filename": "ANIA_Assicurazione_Italiana_in_cifre_2016.pdf",
+          "url": "https://www.ania.it/documents/35135/343147/LAssicurazione-Italiana-in-cifre-ed.-2016.pdf/0f117840-95cf-05af-7fb1-9235cc90fdf9?version=1.0&t=1609664135254",
+          "title": "L'Assicurazione Italiana in cifre - ed. 2016",
+          "year": 2016
+        }
+      ],
+      "portal_references": [
+        {
+          "title": "L'Assicurazione Italiana 2022-2023",
+          "url": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
+          "note": "Edizione recente pubblicata tramite il document library ANIA; risolvere l'URL diretto del PDF dalla pagina di dettaglio."
+        },
+        {
+          "title": "L'Assicurazione Italiana / Appendice Statistica (elenco edizioni)",
+          "url": "https://www.ania.it/pubblicazioni/-/categories/53729",
+          "note": "Pagina catalogo ANIA con tutte le edizioni annuali e le appendici statistiche."
+        }
+      ]
+    },
+    "aifa": {
+      "description": "Report AIFA su uso dei farmaci (OsMed) e sperimentazioni cliniche (OsSC)",
+      "dest_dir": "datasets/raw/aifa",
+      "sources": [
+        {
+          "id": "AIFA_RAPPORTO_2024",
+          "filename": "Rapporto_AIFA_uso_farmaci_2024.pdf",
+          "url": "https://www.aifa.gov.it/documents/20142/1786663/Rapporto_AIFA_2024.pdf",
+          "title": "Rapporto AIFA sull'uso dei farmaci in Italia (OsMed) 2024",
+          "year": 2024
+        },
+        {
+          "id": "AIFA_OSSC_2024",
+          "filename": "Rapporto_OsSC_sperimentazioni_cliniche_2024.pdf",
+          "url": "https://www.aifa.gov.it/documents/20142/241008/21-Rapporto-OsSC_2024.pdf",
+          "title": "Rapporto OsSC sulla sperimentazione clinica dei medicinali 2024",
+          "year": 2024
+        }
+      ]
+    },
+    "oasi_bocconi": {
+      "description": "Rapporto OASI CERGAS Bocconi sullo stato del SSN",
+      "dest_dir": "datasets/raw/oasi_bocconi",
+      "sources": [
+        {
+          "id": "OASI_2024_FULL",
+          "filename": "Rapporto_OASI_2024.pdf",
+          "url": "https://cergas.unibocconi.eu/sites/default/files/media/attach/00_Oasi_2024_Rapporto_OASI_2024.pdf",
+          "title": "Rapporto OASI 2024 (indice/estratto)",
+          "year": 2024
+        },
+        {
+          "id": "OASI_2023_EXS_ENG",
+          "filename": "OASI_2023_Executive_Summary_ENG.pdf",
+          "url": "https://cergas.unibocconi.eu/sites/default/files/media/attach/EXS_OASI_2023_ENG.pdf",
+          "title": "OASI 2023 Executive Summary (English)",
+          "year": 2023
+        }
+      ]
+    },
+    "osservatorio_salute": {
+      "description": "Rapporto Osservatorio Nazionale sulla Salute nelle Regioni Italiane",
+      "dest_dir": "datasets/raw/osservatorio_salute",
+      "sources": [
+        {
+          "id": "ONS_RO_2025",
+          "filename": "Rapporto_Osservatorio_Salute_2025.pdf",
+          "url": "https://osservatoriosullasalute.it/wp-content/uploads/2025/12/RO-2025.pdf",
+          "title": "Rapporto Osservatorio sulla Salute 2025",
+          "year": 2025
+        }
+      ]
+    },
+    "uniamo": {
+      "description": "Rapporto UNIAMO (MonitoRare) sulle malattie rare in Italia",
+      "dest_dir": "datasets/raw/uniamo",
+      "sources": [
+        {
+          "id": "UNIAMO_2024",
+          "filename": "UNIAMO_MonitoRare_report_2024.pdf",
+          "url": "https://uniamo.org/wp-content/uploads/simple-file-list/2024_Uniamo-report_WEB.pdf",
+          "title": "UNIAMO - Rapporto MonitoRare 2024",
+          "year": 2024
+        }
+      ]
+    },
+    "enpam": {
+      "description": "Guide e documenti ENPAM per specialisti ambulatoriali",
+      "dest_dir": "datasets/raw/enpam",
+      "sources": [
+        {
+          "id": "ENPAM_GUIDA_2024",
+          "filename": "Guida_specialisti_ambulatoriali_2024.pdf",
+          "url": "https://www.enpam.it/wp-content/uploads/Guida-per-spec-ambulatoriali-ed-2024.pdf",
+          "title": "ENPAM - Guida per specialisti ambulatoriali ed. 2024",
+          "year": 2024
+        }
+      ]
+    },
+    "istat": {
+      "description": "Report e documentazione ISTAT su salute, anziani e multimorbidita",
+      "dest_dir": "datasets/raw/istat",
+      "sources": [
+        {
+          "id": "ISTAT_ANZIANI_2019",
+          "filename": "ISTAT_Report_anziani_2019.pdf",
+          "url": "https://www.istat.it/it/files/2021/07/Report-anziani-2019.pdf",
+          "title": "ISTAT - Anziani: le condizioni di salute in Italia e nell'UE (2019)",
+          "year": 2019
+        }
+      ]
+    },
+    "societa_scientifiche": {
+      "description": "Documenti e linee guida delle societa scientifiche italiane (AIOM, ISS-SNLG)",
+      "dest_dir": "datasets/raw/societa_scientifiche/italiane",
+      "sources": [
+        {
+          "id": "AIOM_ONCOLOGO_PDTA_2024",
+          "filename": "AIOM_ruolo_competenze_oncologo_PDTA_2024.pdf",
+          "url": "https://www.aiom.it/wp-content/uploads/2024/11/2024_AIOM_RUOLO-COMPETENZE-ONCOLOGO-PDTA.pdf",
+          "title": "AIOM - Ruolo e competenze dell'oncologo nei PDTA (2024)",
+          "year": 2024
+        },
+        {
+          "id": "ISS_SNLG_MANUALE_2023",
+          "filename": "ISS_SNLG_Manuale_Metodologico_2023.pdf",
+          "url": "https://www.aiom.it/wp-content/uploads/2023/04/2023_ISS_SNLG_Manuale_Metodologico_v1.3.3.pdf",
+          "title": "ISS SNLG - Manuale Metodologico per la produzione di linee guida (v1.3.3, 2023)",
+          "year": 2023
+        }
+      ]
+    }
+  }
+}

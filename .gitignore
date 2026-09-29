@@ -1,2 +1,9 @@
 # Scheduler logs (generated at runtime)
 logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# Download temporanei (file parziali)
+*.part

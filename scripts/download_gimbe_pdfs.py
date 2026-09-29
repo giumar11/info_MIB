@@ -137,9 +137,11 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Use a standard, certificate-verifying SSL context. The previous version
+    # set the non-existent attribute ``ctx.verify_peer`` (a no-op that silently
+    # created an unused attribute) while trying to disable verification; that is
+    # both a bug and insecure, so we keep verification enabled.
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

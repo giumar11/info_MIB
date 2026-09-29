@@ -194,15 +194,41 @@ info_MIB/
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── ania/                # Report ANIA (settore assicurativo)
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
+│   ├── ENRICHMENT_PIPELINE.md   # Pipeline di enrichment giornaliera
+│   ├── DATASETS.md
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+└── scripts/                     # Script Python (download originali + elaborazione)
 ```
+
+---
+
+## Pipeline di enrichment giornaliera
+
+I dataset e i **report originali** vengono mantenuti aggiornati automaticamente
+per **tutte le categorie di documenti** della repository. Ogni giorno la pipeline
+scarica i file originali (PDF, CSV, XML) dai siti degli enti proprietari — non
+solo gli estratti processati internamente — e apre una pull request con le novità.
+
+```bash
+python3 scripts/enrich_datasets.py --list     # categorie disponibili
+python3 scripts/enrich_datasets.py            # scarica gli originali mancanti
+python3 scripts/enrich_datasets.py --check    # verifica lo stato
+```
+
+Schedulazione: `.github/workflows/daily-enrichment.yml` (06:30 UTC) oppure
+`python3 scripts/enrich_datasets.py --install-cron`. Dettagli in
+[`docs/ENRICHMENT_PIPELINE.md`](docs/ENRICHMENT_PIPELINE.md).
+
+Tra le fonti è incluso **ANIA** (Associazione Nazionale fra le Imprese
+Assicuratrici), con la serie *"L'Assicurazione Italiana"*, rilevante per il
+welfare sanitario integrativo e la spesa sanitaria privata
+(`datasets/raw/ania/`).
 
 ---
 

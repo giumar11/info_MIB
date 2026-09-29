@@ -1,0 +1,99 @@
+name: Daily dataset enrichment
+
+# Pipeline di enrichment giornaliera: scarica i DATASET e i REPORT ORIGINALI
+# per tutte le categorie di documenti della repository e apre una PR con le novità.
+#
+# I runner di GitHub Actions hanno accesso a Internet aperto, quindi i download
+# dai siti degli enti (ANIA, AIFA, ISTAT, GIMBE, ...) funzionano qui anche se
+# non sono raggiungibili dall'ambiente di sviluppo con proxy ristretto.
+
+on:
+  schedule:
+    # Ogni giorno alle 06:30 UTC
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+    inputs:
+      categories:
+        description: "Categorie da elaborare (separate da spazio, vuoto = tutte)"
+        required: false
+        default: ""
+      force:
+        description: "Riscarica anche i file già presenti"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run enrichment (dataset e report originali)
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.categories }}" ]; then
+            for c in ${{ github.event.inputs.categories }}; do
+              ARGS="$ARGS --category $c"
+            done
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          python3 scripts/enrich_datasets.py $ARGS || true
+
+      - name: Run source update checker (monitoraggio portali)
+        run: |
+          python3 scripts/scheduler_check_updates.py --force || true
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nessuna novità: nessun file originale nuovo o aggiornato."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --cached --stat
+          fi
+
+      - name: Create pull request with new originals
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          DATE=$(date -u +%Y-%m-%d)
+          BRANCH="enrichment/daily-$DATE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git commit -m "chore(enrichment): aggiornamento giornaliero dataset e report originali ($DATE)"
+          git push -u origin "$BRANCH" --force
+          if gh pr list --head "$BRANCH" --state open --json number --jq 'length' | grep -q '^0$'; then
+            gh pr create \
+              --draft \
+              --title "Enrichment giornaliero — $DATE" \
+              --body "Aggiornamento automatico dei dataset e report **originali** per tutte le categorie di documenti (inclusi i report ANIA). Generato dalla pipeline \`daily-enrichment\`." \
+              --base main \
+              --head "$BRANCH"
+          else
+            echo "PR già esistente per $BRANCH."
+          fi
