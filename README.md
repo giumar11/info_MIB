@@ -179,6 +179,44 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
+## Sezione 7: Settore assicurativo (ANIA)
+
+Il comparto assicurativo intermedia gran parte della **spesa sanitaria
+privata** (fondi sanitari, polizze malattia). I dati di settore integrano
+l'analisi delle criticità di indirizzamento e della spesa out-of-pocket.
+
+| Fonte | Descrizione | URL |
+|-------|-------------|-----|
+| **ANIA** | Relazione annuale "L'Assicurazione Italiana", cifre di mercato, ANIA Trends, Osservatorio R.C. Auto | https://www.ania.it/pubblicazioni |
+| **IVASS** | Bollettino statistico dell'autorità di vigilanza (riscontro pubblico) | https://www.ivass.it/ |
+
+**Percorso:** `datasets/raw/ania/` — dettagli in `datasets/raw/ania/README.md`
+
+---
+
+## Pipeline di enrichment giornaliere
+
+Un sistema automatico mantiene nel repository i documenti **originali**
+(dataset grezzi e report PDF) di tutte le categorie, non solo gli estratti
+elaborati:
+
+- `scripts/run_enrichment.py` — orchestratore (download + validazione + manifest)
+- `scripts/enrichment_registry.py` — registro dichiarativo delle fonti per categoria
+- `.github/workflows/daily-enrichment.yml` — esecuzione **giornaliera** (apre una PR con i nuovi originali)
+- `datasets/raw/enrichment_manifest.json` — stato consolidato dei file
+
+I file scaricati vengono validati (dimensione, firma/magic bytes, scarto di
+pagine HTML di errore) per evitare PDF vuoti o corrotti. Documentazione
+completa in `docs/ENRICHMENT_PIPELINE.md`.
+
+```bash
+python3 scripts/run_enrichment.py --list          # elenca i target
+python3 scripts/run_enrichment.py --category ania # esegue una categoria
+python3 scripts/run_enrichment.py --report-only   # stato dei file locali
+```
+
+---
+
 ## Struttura repository
 
 ```
@@ -194,14 +232,17 @@ info_MIB/
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── ania/                # Report settore assicurativo (ANIA/IVASS)
+│   │   ├── enrichment_manifest.json  # Stato pipeline enrichment
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
+│   ├── DATASETS.md              # Documentazione dataset processati
+│   ├── ENRICHMENT_PIPELINE.md   # Pipeline di enrichment giornaliere
 │   └── FONTI_DATI.md
-└── scripts/                     # Script Python elaborazione
+└── scripts/                     # Script Python (elaborazione + enrichment)
 ```
 
 ---

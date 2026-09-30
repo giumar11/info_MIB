@@ -137,9 +137,16 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Use a properly-verifying TLS context. It honours the system CA store
+    # (and the SSL_CERT_FILE / REQUESTS_CA_BUNDLE env vars used by managed
+    # proxies), so certificate validation stays enabled.
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
+    ca_bundle = os.environ.get("SSL_CERT_FILE") or os.environ.get("REQUESTS_CA_BUNDLE")
+    if ca_bundle and os.path.exists(ca_bundle):
+        try:
+            ctx.load_verify_locations(ca_bundle)
+        except (ssl.SSLError, OSError):
+            pass
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "

@@ -1,0 +1,97 @@
+name: Daily enrichment pipelines
+
+# Esegue ogni giorno le pipeline di enrichment per tutte le categorie di
+# documenti (dataset e report originali), incluso ANIA (assicurativo).
+# I nuovi file scaricati e il manifest aggiornato vengono proposti tramite
+# una Pull Request automatica, così le modifiche restano revisionabili.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:30 UTC (07:30 Europe/Rome ora legale)
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Categoria singola da eseguire (vuoto = tutte)"
+        required: false
+        default: ""
+      force:
+        description: "Riscarica anche i file già presenti"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run enrichment pipelines
+        id: enrich
+        run: |
+          set -o pipefail
+          ARGS=""
+          if [ -n "${{ github.event.inputs.category }}" ]; then
+            ARGS="$ARGS --category ${{ github.event.inputs.category }}"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          echo "Esecuzione: python3 scripts/run_enrichment.py $ARGS"
+          # La pipeline ritorna 1 se ci sono download falliti: non deve
+          # bloccare il workflow, i fallimenti sono tracciati nel manifest.
+          python3 scripts/run_enrichment.py $ARGS || true
+
+      - name: Upload run report
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-report
+          path: logs/enrichment_*.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain datasets/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open Pull Request with new originals
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: enrichment/daily-update
+          base: main
+          title: "chore(enrichment): aggiornamento giornaliero dataset e report originali"
+          commit-message: "chore(enrichment): scarica dataset e report originali aggiornati"
+          body: |
+            Aggiornamento automatico prodotto dalla pipeline di enrichment giornaliera.
+
+            - Nuovi dataset/report originali scaricati in `datasets/raw/`
+            - Manifest aggiornato: `datasets/raw/enrichment_manifest.json`
+
+            Verificare i file scaricati prima del merge.
+          labels: |
+            enrichment
+            automated
+          add-paths: |
+            datasets/

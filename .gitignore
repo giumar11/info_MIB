@@ -1,2 +1,9 @@
 # Scheduler logs (generated at runtime)
 logs/
+
+# Temporary download artifacts from the enrichment pipeline
+*.part
+
+# Python cache
+__pycache__/
+*.pyc
