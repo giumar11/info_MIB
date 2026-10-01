@@ -620,7 +620,9 @@ def main():
     success = 0
     failed = 0
 
-    if args.level in ("nazionale", "all"):
+    # Se è richiesta una regione specifica, il livello nazionale viene saltato
+    # (il filtro --region si applica solo ai documenti regionali).
+    if args.level in ("nazionale", "all") and not args.region:
         t, s, f = download_level("nazionale", dry_run=args.dry_run)
         total += t
         success += s

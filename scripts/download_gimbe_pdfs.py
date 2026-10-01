@@ -137,9 +137,11 @@ GIMBE_PDFS = [
 
 def download_pdf(url, filepath, max_retries=3):
     """Download a PDF with retries and exponential backoff."""
+    # Contesto SSL con verifica attiva (il proxy di rete fornisce una CA
+    # bundle che copre tutti gli host). NB: la precedente riga
+    # `ctx.verify_peer = False` era un no-op (attributo inesistente su
+    # SSLContext) e lasciava comunque la verifica attiva.
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_peer = False
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -153,8 +155,16 @@ def download_pdf(url, filepath, max_retries=3):
             with urllib.request.urlopen(req, context=ctx, timeout=120) as resp:
                 data = resp.read()
 
+                # Rifiuta risposte troppo piccole o non-PDF (es. pagine di
+                # errore HTML) invece di salvarle come download valido.
                 if len(data) < 1000:
-                    print(f"    WARNING: File too small ({len(data)} bytes), may not be valid")
+                    print(f"    WARNING: file troppo piccolo ({len(data)} byte), "
+                          f"scartato")
+                    return None, None
+                if not data[:5].startswith(b"%PDF-"):
+                    print("    WARNING: contenuto non-PDF (probabile pagina di "
+                          "errore HTML), scartato")
+                    return None, None
 
                 with open(filepath, "wb") as f:
                     f.write(data)
