@@ -104,6 +104,15 @@ ANIA_REPORTS = [
                "8f77f164-e796-e7d4-8be3-6d10ed158151?version=1.1&t=1751436630852",
         "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
     },
+    {
+        "filename": "ANIA_Assicurazione_Italiana_2020_2021.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2020-2021",
+        "year": 2021,
+        "title": "L'Assicurazione Italiana 2020-2021",
+        "url": "https://www.ania.it/documents/35135/126701/L'Assicurazione+Italiana+2020-2021.pdf/e4fa652e-dda7-8c9c-96ef-1e4468d4f903?version=1.0&t=1626333153413",
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
     # --- Appendice Statistica alla Relazione Annuale ---
     {
         "filename": "ANIA_Appendice_Statistica_2024_2025.pdf",
@@ -123,6 +132,34 @@ ANIA_REPORTS = [
         "title": "Italian Insurance in 2024-2025 (English extract)",
         "url": None,
         "page": "https://www.ania.it/pubblicazioni/-/categories/53705",
+    },
+    {
+        "filename": "ANIA_Italian_Insurance_in_Figures_2017_EN.pdf",
+        "category": "english_extract",
+        "edition": "2017",
+        "year": 2017,
+        "title": "Italian Insurance in Figures 2017",
+        "url": "https://www.ania.it/documents/35135/126704/Italian-Insurance-in-figures-2017.pdf/684a880f-8919-83d2-7f11-503dfea85f16?version=1.0&t=1575555161527",
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53705",
+    },
+    # --- Newsletter trimestrali (rami danni / vita, incl. malattia) ---
+    {
+        "filename": "ANIA_Newsletter_Danni_2025_T2.pdf",
+        "category": "newsletter",
+        "edition": "T2 2025",
+        "year": 2025,
+        "title": "Newsletter Danni - secondo trimestre 2025",
+        "url": "https://www.ania.it/documents/35135/941808/Newsletter_DANNI+secondo+trimestre+2025.pdf/01e34c06-34fe-82ad-65a1-1fc077fa87c1?version=1.0&t=1757494826236",
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53734",
+    },
+    {
+        "filename": "ANIA_Newsletter_Vita_2025_06.pdf",
+        "category": "newsletter",
+        "edition": "giugno 2025",
+        "year": 2025,
+        "title": "Newsletter Vita - giugno 2025",
+        "url": "https://www.ania.it/documents/35135/919026/Newsletter+Vita+giugno+2025.pdf/bfe769ee-8a4a-8cf9-2f2c-805fdc3b1ed2?version=1.0&t=1754296826475",
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53734",
     },
 ]
 

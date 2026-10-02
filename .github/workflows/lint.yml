@@ -1,0 +1,47 @@
+name: Python lint
+
+# Controlli rapidi su ogni PR e push su main: gli script compilano, i file
+# JSON del repository sono validi e l'orchestratore delle pipeline si avvia.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Compile all scripts
+        run: python -m compileall -q scripts
+
+      - name: Validate JSON files
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          bad = []
+          for p in pathlib.Path(".").rglob("*.json"):
+              if ".git" in p.parts:
+                  continue
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+              except Exception as e:
+                  bad.append(f"{p}: {e}")
+          print("\n".join(bad) or "Tutti i file JSON sono validi")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Smoke test orchestratore
+        run: |
+          python scripts/run_enrichment.py --list
+          python scripts/run_enrichment.py --all --dry-run

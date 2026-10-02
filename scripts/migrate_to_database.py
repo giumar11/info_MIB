@@ -229,6 +229,23 @@ def transform_for_nosql(malattie: List[Dict], pdta_data: List[Dict],
     return documents
 
 
+def preserve_unchanged_timestamps(documents: List[Dict], previous_path: Path) -> List[Dict]:
+    """Mantiene il last_updated precedente per i documenti il cui contenuto non è
+    cambiato, così una nuova esecuzione senza modifiche reali non produce diff."""
+    if not previous_path.exists():
+        return documents
+    previous = {}
+    for doc in load_json(previous_path):
+        content = {k: v for k, v in doc.items() if k != "last_updated"}
+        previous[json.dumps(content, sort_keys=True, ensure_ascii=False)] = doc.get("last_updated")
+    for doc in documents:
+        content = {k: v for k, v in doc.items() if k != "last_updated"}
+        old = previous.get(json.dumps(content, sort_keys=True, ensure_ascii=False))
+        if old:
+            doc["last_updated"] = old
+    return documents
+
+
 def create_fasce_eta_data(segmentazione: Dict) -> List[Dict]:
     """Crea i dati per la tabella fasce_eta."""
     fasce = []
@@ -286,6 +303,8 @@ def main():
     # Trasforma per NoSQL
     print("\nTrasformazione per NoSQL...")
     nosql_documents = transform_for_nosql(malattie_rare, pdta_data, segmentazione)
+    nosql_documents = preserve_unchanged_timestamps(
+        nosql_documents, OUTPUT_DIR / "nosql_patologie_collection.json")
     save_json(nosql_documents, OUTPUT_DIR / "nosql_patologie_collection.json")
     print(f"  - Salvato: {OUTPUT_DIR / 'nosql_patologie_collection.json'}")
     print(f"  - Documenti totali: {len(nosql_documents)}")
