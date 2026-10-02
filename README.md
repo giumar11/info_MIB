@@ -179,6 +179,42 @@ Per stimare quali patologie richiedano il consulto del maggior numero di special
 
 ---
 
+## Sezione 7: Settore assicurativo (ANIA)
+
+| Fonte | Descrizione | Percorso |
+|-------|-------------|----------|
+| **ANIA** | Report annuali "L'Assicurazione Italiana", appendici statistiche e dossier tematici (welfare e salute integrativa, RC Auto, LTC) | `datasets/raw/ania/` |
+
+Il settore assicurativo è parte del welfare sanitario integrativo; i dati ANIA
+completano le fonti SSN sulla spesa sanitaria privata intermediata.
+Download originali: `python3 scripts/download_ania_pdfs.py`.
+
+---
+
+## Pipeline di enrichment schedulate
+
+Le pipeline di arricchimento girano **ogni giorno** per tutte le categorie di
+documenti del repository. L'orchestratore è `scripts/run_enrichment.py`:
+
+```bash
+python3 scripts/run_enrichment.py --list                  # elenca le categorie
+python3 scripts/run_enrichment.py --all                   # esegue tutte le categorie
+python3 scripts/run_enrichment.py --category ania         # una sola categoria
+python3 scripts/run_enrichment.py --all --dry-run         # anteprima dei comandi
+```
+
+Per ogni categoria la pipeline scarica i **documenti/dataset originali** (PDF,
+XML, CSV) e rigenera gli estratti elaborati. La schedulazione giornaliera è in
+`.github/workflows/daily-enrichment.yml` (cron `0 5 * * *`), che apre una Pull
+Request con gli aggiornamenti. Il controllo aggiornamenti delle fonti resta
+disponibile anche via `scripts/scheduler_check_updates.py`.
+
+Categorie coperte: sources_monitor, gimbe, pdta, ania, scientific_reports
+(ONS/società scientifiche/OASI/AIFA), sdo_ministero, malattie_rare (Orphadata),
+istat_hfa, migration.
+
+---
+
 ## Struttura repository
 
 ```
@@ -194,13 +230,14 @@ info_MIB/
 │   │   ├── ministero_salute/    # SDO, Open Data
 │   │   ├── gimbe/               # Rapporti GIMBE
 │   │   ├── istat/               # Health for All, EHIS
+│   │   ├── ania/                # Report ANIA (assicurativo)
 │   │   └── sistema_sanitario/   # Report criticità
 │   ├── processed/               # Dataset elaborati (JSON, CSV)
 │   └── migration_ready/         # Dati pronti per database
 ├── docs/
-│   ├── database_design/         # Schema SQL/NoSQL
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
+├── .github/workflows/          # Pipeline di enrichment schedulate
 └── scripts/                     # Script Python elaborazione
 ```
 

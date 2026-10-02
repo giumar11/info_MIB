@@ -1,0 +1,88 @@
+name: Daily enrichment pipelines
+
+# Pipeline di enrichment schedulata per tutte le categorie di documenti del
+# repository. Ogni giorno scarica i documenti/dataset originali aggiornati,
+# rigenera gli estratti elaborati e apre una Pull Request con le modifiche.
+#
+# NB: su GitHub Actions il trigger `schedule` è attivo solo quando il workflow
+# è presente sul branch di default. Finché questo file vive su un branch di
+# feature NON parte in automatico: va prima revisionato e unito.
+
+on:
+  schedule:
+    # Ogni giorno alle 05:00 UTC (07:00 in Italia d'estate / 06:00 d'inverno)
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "Categoria da eseguire (all = tutte)"
+        required: false
+        default: "all"
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-enrichment
+  cancel-in-progress: false
+
+jobs:
+  enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas lxml openpyxl
+
+      - name: Run enrichment pipelines
+        run: |
+          CATEGORY="${{ github.event.inputs.category || 'all' }}"
+          if [ "$CATEGORY" = "all" ]; then
+            python scripts/run_enrichment.py --all --continue-on-error
+          else
+            python scripts/run_enrichment.py --category "$CATEGORY"
+          fi
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain -- datasets sources_catalog.csv)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nessuna modifica ai dataset: niente PR."
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automated/daily-enrichment
+          base: main
+          commit-message: "chore(enrichment): aggiornamento automatico dataset"
+          title: "Daily enrichment: aggiornamento dataset"
+          body: |
+            Aggiornamento automatico generato dalla pipeline di enrichment
+            giornaliera (`scripts/run_enrichment.py --all`).
+
+            Include il download dei documenti originali aggiornati e la
+            rigenerazione degli estratti elaborati per tutte le categorie.
+
+            Revisionare i diff prima del merge.
+          labels: automated, enrichment
+          add-paths: |
+            datasets
+            sources_catalog.csv
+          delete-branch: true

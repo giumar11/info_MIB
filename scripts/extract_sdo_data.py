@@ -218,7 +218,8 @@ def create_population_segmentation():
     return segmentazione
 
 def main():
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    output_dir = os.path.join(base_dir, 'datasets', 'processed')
     os.makedirs(output_dir, exist_ok=True)
     
     print("=== ESTRAZIONE DATI SDO E CREAZIONE DATASET ===\n")

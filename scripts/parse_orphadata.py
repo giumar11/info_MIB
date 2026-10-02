@@ -93,13 +93,13 @@ def parse_orphadata_epidemiology(xml_path):
                     ages.append(age.text)
             disease_data['age_of_onset'] = ', '.join(ages) if ages else None
         
-        # Average age of onset
-        avg_onset = disorder.find('.//AverageAgeOfOnsets/AverageAgeOfOnset/Name')
+        # Average age of onset (schema Orphadata: AverageAgeOfOnsetList)
+        avg_onset = disorder.find('.//AverageAgeOfOnsetList/AverageAgeOfOnset/Name')
         if avg_onset is not None:
             disease_data['average_age_onset'] = avg_onset.text
-        
-        # Average age of death
-        avg_death = disorder.find('.//AverageAgeOfDeaths/AverageAgeOfDeath/Name')
+
+        # Average age of death (schema Orphadata: AverageAgeOfDeathList)
+        avg_death = disorder.find('.//AverageAgeOfDeathList/AverageAgeOfDeath/Name')
         if avg_death is not None:
             disease_data['average_age_death'] = avg_death.text
         
@@ -148,9 +148,10 @@ def classify_complexity(df):
     return df
 
 def main():
-    # Percorsi
-    input_path = '/home/ubuntu/progetto_sanitario/datasets/raw/orphadata_epidemiology_it.xml'
-    output_dir = '/home/ubuntu/progetto_sanitario/datasets/processed'
+    # Percorsi (relativi alla root del repository)
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    input_path = os.path.join(base_dir, 'datasets', 'raw', 'orphadata_epidemiology_it.xml')
+    output_dir = os.path.join(base_dir, 'datasets', 'processed')
     
     os.makedirs(output_dir, exist_ok=True)
     
