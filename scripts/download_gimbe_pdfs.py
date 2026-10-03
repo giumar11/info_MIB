@@ -19,6 +19,9 @@ import urllib.request
 import urllib.error
 import ssl
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from enrich_utils import write_json_stable
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDF_DIR = os.path.join(BASE_DIR, "datasets", "raw", "gimbe", "pdf")
 MANIFEST_PATH = os.path.join(PDF_DIR, "manifest.json")
@@ -303,17 +306,16 @@ def main():
         if i < len(GIMBE_PDFS):
             time.sleep(1)
 
-    # Save manifest
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump({
-            "description": "GIMBE Report PDF collection manifest",
-            "download_date": time.strftime("%Y-%m-%d"),
-            "note": "Run 'python3 scripts/download_gimbe_pdfs.py' to download missing PDFs",
-            "total": len(GIMBE_PDFS),
-            "downloaded": success,
-            "failed": failed,
-            "files": manifest,
-        }, f, indent=2, ensure_ascii=False)
+    # Save manifest (idempotente sul campo download_date)
+    write_json_stable({
+        "description": "GIMBE Report PDF collection manifest",
+        "download_date": time.strftime("%Y-%m-%d"),
+        "note": "Run 'python3 scripts/download_gimbe_pdfs.py' to download missing PDFs",
+        "total": len(GIMBE_PDFS),
+        "downloaded": success,
+        "failed": failed,
+        "files": manifest,
+    }, MANIFEST_PATH)
 
     print(f"\n{'=' * 70}")
     downloaded = success - skipped

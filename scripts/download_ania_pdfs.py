@@ -25,10 +25,15 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from enrich_utils import write_json_stable
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANIA_DIR = os.path.join(BASE_DIR, "datasets", "raw", "ania")
@@ -139,12 +144,12 @@ def download_pdf(url, filepath, max_retries=3):
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=120) as resp:
                 data = resp.read()
-            if len(data) < 1000:
-                print(f"    WARNING: file troppo piccolo ({len(data)} byte), "
-                      f"potrebbe non essere un PDF valido")
-            if not data[:5].startswith(b"%PDF-"):
-                print("    WARNING: il contenuto non inizia con %PDF- "
-                      "(potrebbe essere una pagina HTML)")
+            # Scarta contenuti che non sono PDF (es. pagine HTML di errore):
+            # non vanno salvati come download validi.
+            if len(data) < 1000 or not data[:5].startswith(b"%PDF-"):
+                print(f"    SCARTATO: il contenuto non e' un PDF valido "
+                      f"({len(data)} byte, header={data[:5]!r})")
+                return None, None
             with open(filepath, "wb") as f:
                 f.write(data)
             return len(data), hashlib.sha256(data).hexdigest()
@@ -155,6 +160,59 @@ def download_pdf(url, filepath, max_retries=3):
                 print(f"    Nuovo tentativo tra {wait}s...")
                 time.sleep(wait)
     return None, None
+
+
+def extract_pdf_links(html, base_url):
+    """Estrae i link a PDF da una pagina HTML di pubblicazione ANIA.
+
+    Riconosce sia gli href che terminano in ``.pdf`` sia gli URL "asset"
+    Liferay (``/documents/...`` e ``/export/sites/...``). Ritorna una lista di
+    URL assoluti deduplicati, nell'ordine di apparizione.
+    """
+    links = []
+    seen = set()
+    for match in re.findall(r'href=["\']([^"\']+)["\']', html, flags=re.I):
+        href = match.strip()
+        low = href.lower()
+        is_pdf = low.endswith(".pdf") or ".pdf?" in low or ".pdf#" in low
+        is_asset = "/documents/" in low or "/export/sites/" in low
+        if not (is_pdf or is_asset):
+            continue
+        absolute = urllib.parse.urljoin(base_url, href)
+        if absolute not in seen:
+            seen.add(absolute)
+            links.append(absolute)
+    return links
+
+
+def fetch_html(url, timeout=60):
+    """Scarica il contenuto HTML di una pagina. Ritorna str o None."""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,*/*",
+    }
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            charset = resp.headers.get_content_charset() or "utf-8"
+            return resp.read().decode(charset, errors="replace")
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
+        print(f"    Risoluzione pagina fallita ({url}): {e}")
+        return None
+
+
+def resolve_pdf_url(page_url):
+    """Prova a risolvere il link diretto al PDF dalla pagina di pubblicazione.
+
+    Ritorna il primo URL PDF trovato, oppure None se non risolvibile. Usato in
+    produzione (GitHub Actions, rete aperta) per gli elementi ``pending_url``.
+    """
+    html = fetch_html(page_url)
+    if not html:
+        return None
+    links = extract_pdf_links(html, page_url)
+    return links[0] if links else None
 
 
 def format_size(size_bytes):
@@ -238,8 +296,19 @@ def main():
             skipped += 1
             continue
 
-        if not rep.get("url"):
-            print(f"[{i}/{len(ANIA_REPORTS)}] PENDING (nessun url diretto): "
+        download_url = rep.get("url")
+        resolved_from_page = False
+        if not download_url and rep.get("page"):
+            print(f"[{i}/{len(ANIA_REPORTS)}] Risoluzione URL da pagina: "
+                  f"{rep['filename']}")
+            print(f"    Pagina: {rep['page']}")
+            download_url = resolve_pdf_url(rep["page"])
+            resolved_from_page = bool(download_url)
+            if download_url:
+                print(f"    Risolto: {download_url}")
+
+        if not download_url:
+            print(f"[{i}/{len(ANIA_REPORTS)}] PENDING (url non risolvibile): "
                   f"{rep['filename']}")
             print(f"    Risolvi il PDF da: {rep['page']}")
             entry.update({"size_bytes": 0, "sha256": None, "status": "pending_url"})
@@ -248,8 +317,11 @@ def main():
             continue
 
         print(f"[{i}/{len(ANIA_REPORTS)}] Download: {rep['filename']}")
-        print(f"    URL: {rep['url']}")
-        size, sha = download_pdf(rep["url"], filepath)
+        print(f"    URL: {download_url}")
+        if resolved_from_page:
+            entry["url"] = download_url
+            entry["url_resolved_from_page"] = True
+        size, sha = download_pdf(download_url, filepath)
         if size:
             print(f"    OK: {format_size(size)}")
             entry.update({"size_bytes": size, "size_human": format_size(size),
@@ -263,18 +335,17 @@ def main():
         if i < len(ANIA_REPORTS):
             time.sleep(1)
 
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump({
-            "description": "ANIA report collection manifest (assicurativo)",
-            "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
-            "publications_pages": ANIA_PUBLICATIONS_PAGES,
-            "download_date": time.strftime("%Y-%m-%d"),
-            "total": len(ANIA_REPORTS),
-            "downloaded": success,
-            "failed": failed,
-            "pending_url": pending,
-            "files": manifest,
-        }, f, indent=2, ensure_ascii=False)
+    write_json_stable({
+        "description": "ANIA report collection manifest (assicurativo)",
+        "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+        "publications_pages": ANIA_PUBLICATIONS_PAGES,
+        "download_date": time.strftime("%Y-%m-%d"),
+        "total": len(ANIA_REPORTS),
+        "downloaded": success,
+        "failed": failed,
+        "pending_url": pending,
+        "files": manifest,
+    }, MANIFEST_PATH)
 
     print(f"\n{'=' * 70}")
     downloaded = success - skipped

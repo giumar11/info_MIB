@@ -46,6 +46,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pandas lxml openpyxl
 
+      - name: Validate scripts (compile + unit tests)
+        run: |
+          python -m compileall -q scripts
+          python scripts/test_enrich.py
+
       - name: Run enrichment pipelines
         run: |
           CATEGORY="${{ github.event.inputs.category || 'all' }}"

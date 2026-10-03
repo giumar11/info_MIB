@@ -48,12 +48,22 @@ I file vengono salvati in `datasets/raw/ania/pdf/` e tracciati in
 
 ### Nota sugli URL
 Il portale ANIA (Liferay) usa URL "asset" con identificativi opachi che
-cambiano nel tempo. Per alcune edizioni recenti è indicata solo la pagina
-ufficiale di pubblicazione (`page`): questi elementi sono marcati come
-`pending_url` nel manifest e il link diretto al PDF va risolto dalla pagina.
-Le edizioni con URL diretto noto vengono scaricate automaticamente; il
-download verifica l'intestazione `%PDF-` e scarta eventuali pagine HTML di
-errore.
+cambiano nel tempo. Per le edizioni recenti è indicata solo la pagina
+ufficiale di pubblicazione (`page`).
+
+Lo script prova a **risolvere automaticamente** il link diretto al PDF dalla
+pagina di pubblicazione (estrae gli href a `.pdf` e gli asset Liferay
+`/documents/` e `/export/sites/`). Se la risoluzione riesce, il report viene
+scaricato e il manifest registra `url_resolved_from_page: true`; se non riesce,
+l'elemento resta `pending_url` e va risolto manualmente dalla pagina.
+Il download verifica l'intestazione `%PDF-` e **scarta** (non salva) le pagine
+HTML di errore, così da non spacciarle per PDF validi.
+
+### Nota sull'ambiente di esecuzione
+Il dominio `www.ania.it` è bloccato dal proxy di egress delle sessioni Claude
+sul web: in quell'ambiente il download non parte (403). Il download effettivo
+avviene nella **pipeline schedulata su GitHub Actions**
+(`.github/workflows/daily-enrichment.yml`), dove la rete è aperta.
 
 ## Licenza
 Dati e pubblicazioni ANIA - uso soggetto ai termini del sito ania.it.

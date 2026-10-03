@@ -19,6 +19,9 @@ import urllib.request
 import urllib.error
 from pathlib import Path
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from enrich_utils import write_json_stable
+
 # Base directory for PDTA downloads
 BASE_DIR = Path(__file__).parent.parent / "datasets" / "raw" / "pdta"
 
@@ -584,8 +587,7 @@ def create_manifest(dry_run=False):
         })
 
     manifest_path = BASE_DIR / "download_manifest.json"
-    with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=2)
+    write_json_stable(manifest, manifest_path)
     print(f"\nManifest saved to: {manifest_path}")
     print(f"Total PDFs: {len(manifest['files'])}")
 

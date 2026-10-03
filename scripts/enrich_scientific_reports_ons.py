@@ -23,9 +23,13 @@ Output:
 """
 
 import os
+import sys
 import json
 import csv
 from datetime import datetime
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from enrich_utils import write_json_stable
 
 # === CONFIGURAZIONE PERCORSI ===
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -2107,11 +2111,11 @@ Dati pubblici - AIFA / Ministero della Salute
 # =============================================================================
 
 def save_json(data, filepath):
-    """Salva dati in formato JSON."""
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    """Salva dati in formato JSON (idempotente sui campi data/ora)."""
+    rewritten = write_json_stable(data, filepath)
     size_kb = os.path.getsize(filepath) / 1024
-    print(f"  Salvato: {os.path.relpath(filepath, BASE_DIR)} ({size_kb:.1f} KB)")
+    stato = "Salvato" if rewritten else "Invariato"
+    print(f"  {stato}: {os.path.relpath(filepath, BASE_DIR)} ({size_kb:.1f} KB)")
 
 
 def save_csv_screening(ons_data, filepath):
