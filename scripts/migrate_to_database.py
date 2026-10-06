@@ -27,9 +27,38 @@ def load_json(filepath: Path) -> Any:
         return json.load(f)
 
 
+# Campi con la data/ora di generazione: cambiano ad ogni run ma non
+# rappresentano una variazione reale dei dati.
+_VOLATILE_KEYS = {"last_updated", "data_estrazione", "data_compilazione",
+                  "data_aggiornamento", "generated"}
+
+
+def _strip_volatile(obj: Any) -> Any:
+    """Copia ricorsiva senza i campi-data volatili (per confronto stabile)."""
+    if isinstance(obj, dict):
+        return {k: _strip_volatile(v) for k, v in obj.items()
+                if k not in _VOLATILE_KEYS}
+    if isinstance(obj, list):
+        return [_strip_volatile(x) for x in obj]
+    return obj
+
+
 def save_json(data: Any, filepath: Path) -> None:
-    """Salva dati in formato JSON."""
+    """Salva dati in formato JSON.
+
+    Preserva il file esistente quando le uniche differenze sono campi-data
+    volatili (es. ``last_updated``): evita che la pipeline giornaliera rigeneri
+    l'intero file ad ogni run quando i dati sorgente non sono cambiati.
+    """
     filepath.parent.mkdir(parents=True, exist_ok=True)
+    if filepath.exists():
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                old = json.load(f)
+            if _strip_volatile(old) == _strip_volatile(data):
+                return
+        except (json.JSONDecodeError, OSError):
+            pass
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 

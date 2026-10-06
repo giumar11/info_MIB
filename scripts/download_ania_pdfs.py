@@ -25,10 +25,15 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _stable_json import write_json_stable  # noqa: E402
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANIA_DIR = os.path.join(BASE_DIR, "datasets", "raw", "ania")
@@ -124,6 +129,45 @@ ANIA_REPORTS = [
         "url": None,
         "page": "https://www.ania.it/pubblicazioni/-/categories/53705",
     },
+    # --- Dossier e report tematici (RC Auto, welfare/salute, previdenza, LTC,
+    #     clima/catastrofi): url opaco non hardcodabile, si risolvono dalla
+    #     pagina ufficiale (vedi anche il resolver automatico in main()). ---
+    {
+        "filename": "ANIA_Dossier_RC_Auto.pdf",
+        "category": "dossier_rc_auto",
+        "edition": "ultima",
+        "year": None,
+        "title": "Dossier RC Auto (andamento prezzi e sinistri)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Welfare_Salute_Integrativa.pdf",
+        "category": "dossier_welfare_salute",
+        "edition": "ultima",
+        "year": None,
+        "title": "Welfare e salute integrativa (fondi sanitari, polizze salute, LTC)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Previdenza_Complementare.pdf",
+        "category": "dossier_previdenza",
+        "edition": "ultima",
+        "year": None,
+        "title": "Previdenza complementare e protezione",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Clima_Catastrofi_Naturali.pdf",
+        "category": "dossier_clima",
+        "edition": "ultima",
+        "year": None,
+        "title": "Clima e catastrofi naturali (protezione assicurativa)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
 ]
 
 
@@ -155,6 +199,46 @@ def download_pdf(url, filepath, max_retries=3):
                 print(f"    Nuovo tentativo tra {wait}s...")
                 time.sleep(wait)
     return None, None
+
+
+def _safe_filename(url):
+    """Ricava un filename PDF leggibile e sicuro da un URL ANIA."""
+    path = urllib.parse.urlparse(url).path
+    base = os.path.basename(path) or "ania_document"
+    base = urllib.parse.unquote(base)
+    if not base.lower().endswith(".pdf"):
+        base += ".pdf"
+    base = re.sub(r"[^A-Za-z0-9._-]+", "_", base).strip("_")
+    return f"ANIA_resolved_{base}"
+
+
+def resolve_pdf_links(page_url, timeout=60):
+    """Best-effort: estrae i link diretti a PDF da una pagina ANIA.
+
+    Legge l'HTML della pagina ufficiale di pubblicazione e restituisce gli URL
+    assoluti che puntano a un PDF. In caso di errore di rete (tipico quando la
+    policy di egress blocca il dominio) restituisce una lista vuota senza
+    sollevare eccezioni: la risoluzione è opzionale e non deve mai far fallire
+    la pipeline.
+    """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,*/*",
+    }
+    try:
+        req = urllib.request.Request(page_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
+        print(f"    (resolver) impossibile leggere {page_url}: {e}")
+        return []
+    links = set()
+    for m in re.finditer(r'href=["\']([^"\']+)["\']', html, flags=re.IGNORECASE):
+        href = m.group(1)
+        if ".pdf" in href.lower():
+            links.add(urllib.parse.urljoin(page_url, href))
+    return sorted(links)
 
 
 def format_size(size_bytes):
@@ -196,6 +280,8 @@ def main():
     parser = argparse.ArgumentParser(description="Download report ANIA (assicurativo)")
     parser.add_argument("--check", action="store_true", help="Mostra solo lo stato")
     parser.add_argument("--force", action="store_true", help="Riscarica tutto")
+    parser.add_argument("--no-resolve", action="store_true",
+                        help="Non risolvere i PDF dalle pagine ufficiali ANIA")
     args = parser.parse_args()
 
     os.makedirs(PDF_DIR, exist_ok=True)
@@ -263,18 +349,62 @@ def main():
         if i < len(ANIA_REPORTS):
             time.sleep(1)
 
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump({
-            "description": "ANIA report collection manifest (assicurativo)",
-            "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
-            "publications_pages": ANIA_PUBLICATIONS_PAGES,
-            "download_date": time.strftime("%Y-%m-%d"),
-            "total": len(ANIA_REPORTS),
-            "downloaded": success,
-            "failed": failed,
-            "pending_url": pending,
-            "files": manifest,
-        }, f, indent=2, ensure_ascii=False)
+    # --- Risoluzione automatica: scopre altri PDF dalle pagine ufficiali ---
+    # Garantisce che vengano scaricati *tutti* i report disponibili, non solo
+    # quelli con url hardcodato. Best-effort: gli errori di rete (es. dominio
+    # bloccato dalla egress policy) non fanno fallire la pipeline.
+    resolved_new = 0
+    if not args.no_resolve:
+        print(f"\n{'-' * 70}")
+        print("Risoluzione PDF dalle pagine ufficiali ANIA...")
+        known = {os.path.join(PDF_DIR, r["filename"]) for r in ANIA_REPORTS}
+        seen_urls = {r.get("url") for r in ANIA_REPORTS if r.get("url")}
+        for page_url in dict.fromkeys(ANIA_PUBLICATIONS_PAGES.values()):
+            for pdf_url in resolve_pdf_links(page_url):
+                if pdf_url in seen_urls:
+                    continue
+                seen_urls.add(pdf_url)
+                filepath = os.path.join(PDF_DIR, _safe_filename(pdf_url))
+                if filepath in known or (
+                        not args.force and os.path.exists(filepath)
+                        and os.path.getsize(filepath) > 1000):
+                    continue
+                print(f"  Scoperto: {pdf_url}")
+                size, sha = download_pdf(pdf_url, filepath)
+                if size:
+                    print(f"    OK: {format_size(size)} -> "
+                          f"{os.path.basename(filepath)}")
+                    manifest.append({
+                        "filename": os.path.basename(filepath),
+                        "category": "resolved_from_page",
+                        "title": os.path.basename(filepath),
+                        "url": pdf_url,
+                        "page": page_url,
+                        "size_bytes": size,
+                        "size_human": format_size(size),
+                        "sha256": sha,
+                        "status": "ok",
+                    })
+                    success += 1
+                    resolved_new += 1
+                else:
+                    print("    FALLITO")
+                time.sleep(1)
+        print(f"PDF risolti automaticamente: {resolved_new}")
+
+    write_json_stable({
+        "description": "ANIA report collection manifest (assicurativo)",
+        "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+        "publications_pages": ANIA_PUBLICATIONS_PAGES,
+        "download_date": time.strftime("%Y-%m-%d"),
+        "total": len(manifest),
+        "catalog_entries": len(ANIA_REPORTS),
+        "downloaded": success,
+        "resolved_from_pages": resolved_new,
+        "failed": failed,
+        "pending_url": pending,
+        "files": manifest,
+    }, MANIFEST_PATH)
 
     print(f"\n{'=' * 70}")
     downloaded = success - skipped

@@ -2106,8 +2106,45 @@ Dati pubblici - AIFA / Ministero della Salute
 # SEZIONE 6: GENERAZIONE OUTPUT
 # =============================================================================
 
+# Campi che contengono la data/ora di generazione: cambiano ad ogni run ma non
+# rappresentano una variazione dei dati. Vanno ignorati nel confronto per
+# evitare che la pipeline giornaliera produca diff/PR di solo rumore.
+_VOLATILE_KEYS = {
+    "data_estrazione", "data_compilazione", "data_aggiornamento",
+    "last_updated", "download_date", "generated", "generato_il",
+}
+
+
+def _strip_volatile(obj):
+    """Copia ricorsiva senza i campi-data volatili (per confronto stabile)."""
+    if isinstance(obj, dict):
+        return {k: _strip_volatile(v) for k, v in obj.items()
+                if k not in _VOLATILE_KEYS}
+    if isinstance(obj, list):
+        return [_strip_volatile(x) for x in obj]
+    return obj
+
+
 def save_json(data, filepath):
-    """Salva dati in formato JSON."""
+    """Salva dati in formato JSON.
+
+    Se il file esiste già e le uniche differenze rispetto ai nuovi dati sono
+    campi-data volatili (es. ``data_estrazione``), il file viene lasciato
+    invariato: così la pipeline giornaliera non genera diff quando le fonti
+    non sono cambiate. Quando i dati cambiano davvero il file viene riscritto
+    per intero, con le date aggiornate.
+    """
+    if os.path.exists(filepath):
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                old = json.load(f)
+            if _strip_volatile(old) == _strip_volatile(data):
+                size_kb = os.path.getsize(filepath) / 1024
+                print(f"  Invariato: {os.path.relpath(filepath, BASE_DIR)} "
+                      f"({size_kb:.1f} KB)")
+                return
+        except (json.JSONDecodeError, OSError):
+            pass
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     size_kb = os.path.getsize(filepath) / 1024

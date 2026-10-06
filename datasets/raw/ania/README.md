@@ -38,10 +38,20 @@ catastrofi naturali, ecc.
 I PDF originali si scaricano con:
 
 ```bash
-python3 scripts/download_ania_pdfs.py            # scarica i PDF mancanti
-python3 scripts/download_ania_pdfs.py --check    # mostra solo lo stato
-python3 scripts/download_ania_pdfs.py --force    # riscarica tutto
+python3 scripts/download_ania_pdfs.py             # scarica i PDF mancanti + risolve dalle pagine
+python3 scripts/download_ania_pdfs.py --check     # mostra solo lo stato
+python3 scripts/download_ania_pdfs.py --force     # riscarica tutto
+python3 scripts/download_ania_pdfs.py --no-resolve  # solo catalogo, senza risoluzione automatica
 ```
+
+Il catalogo copre tutti i flussi di pubblicazione ANIA: relazione annuale
+"L'Assicurazione Italiana" (più edizioni), Appendice Statistica, estratto in
+inglese e i dossier tematici (RC Auto, welfare/salute integrativa, previdenza
+complementare, clima e catastrofi naturali). Oltre agli URL noti, lo script
+risolve automaticamente i link ai PDF presenti nelle pagine ufficiali di
+pubblicazione, così da scaricare *tutti* i report disponibili (non solo quelli
+con URL hardcodato). La risoluzione è best-effort: eventuali errori di rete non
+interrompono la pipeline.
 
 I file vengono salvati in `datasets/raw/ania/pdf/` e tracciati in
 `datasets/raw/ania/download_manifest.json`.
