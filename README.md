@@ -209,6 +209,11 @@ XML, CSV) e rigenera gli estratti elaborati. La schedulazione giornaliera è in
 Request con gli aggiornamenti. Il controllo aggiornamenti delle fonti resta
 disponibile anche via `scripts/scheduler_check_updates.py`.
 
+La rigenerazione è **idempotente**: gli output JSON vengono riscritti solo
+quando cambia il contenuto sostanziale, ignorando i timestamp di generazione
+(helper `scripts/stable_json.py`). Così la pipeline giornaliera apre una PR
+solo in presenza di aggiornamenti reali, non di puro rumore sui timestamp.
+
 Categorie coperte: sources_monitor, gimbe, pdta, ania, scientific_reports
 (ONS/società scientifiche/OASI/AIFA), sdo_ministero, malattie_rare (Orphadata),
 istat_hfa, migration.

@@ -10,9 +10,13 @@ Data: 2026-01-30
 import json
 import csv
 import os
+import sys
 from pathlib import Path
 from typing import Dict, List, Any
 from datetime import datetime
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stable_json import write_json_stable
 
 # Percorsi dataset
 BASE_DIR = Path(__file__).parent.parent
@@ -28,10 +32,8 @@ def load_json(filepath: Path) -> Any:
 
 
 def save_json(data: Any, filepath: Path) -> None:
-    """Salva dati in formato JSON."""
-    filepath.parent.mkdir(parents=True, exist_ok=True)
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    """Salva dati in formato JSON, senza riscrivere se cambiano solo i timestamp."""
+    write_json_stable(data, filepath)
 
 
 def extract_specialisti_unique(pdta_data: List[Dict]) -> List[Dict]:

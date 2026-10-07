@@ -30,6 +30,9 @@ import time
 import urllib.error
 import urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stable_json import write_json_stable
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANIA_DIR = os.path.join(BASE_DIR, "datasets", "raw", "ania")
 PDF_DIR = os.path.join(ANIA_DIR, "pdf")
@@ -75,6 +78,51 @@ ANIA_REPORTS = [
         "page": "https://www.ania.it/dettaglio/-/asset_publisher/sj4agTtNdEk3/document/id/689939",
     },
     {
+        "filename": "ANIA_Assicurazione_Italiana_2021_2022.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2021-2022",
+        "year": 2022,
+        "title": "L'Assicurazione Italiana 2021-2022",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
+        "filename": "ANIA_Assicurazione_Italiana_2020_2021.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2020-2021",
+        "year": 2021,
+        "title": "L'Assicurazione Italiana 2020-2021",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
+        "filename": "ANIA_Assicurazione_Italiana_2019_2020.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2019-2020",
+        "year": 2020,
+        "title": "L'Assicurazione Italiana 2019-2020",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
+        "filename": "ANIA_Assicurazione_Italiana_2018_2019.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2018-2019",
+        "year": 2019,
+        "title": "L'Assicurazione Italiana 2018-2019",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
+        "filename": "ANIA_Assicurazione_Italiana_2017_2018.pdf",
+        "category": "rapporto_annuale",
+        "edition": "2017-2018",
+        "year": 2018,
+        "title": "L'Assicurazione Italiana 2017-2018",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
         "filename": "ANIA_Assicurazione_Italiana_2016_2017.pdf",
         "category": "rapporto_annuale",
         "edition": "2016-2017",
@@ -113,6 +161,25 @@ ANIA_REPORTS = [
         "title": "Appendice Statistica alla Relazione Annuale 2024-2025",
         "url": None,
         "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    {
+        "filename": "ANIA_Appendice_Statistica_2023_2024.pdf",
+        "category": "appendice_statistica",
+        "edition": "2023-2024",
+        "year": 2024,
+        "title": "Appendice Statistica alla Relazione Annuale 2023-2024",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53729",
+    },
+    # --- Dossier tematici welfare e salute integrativa (rilevanti per il SSN) ---
+    {
+        "filename": "ANIA_Welfare_Salute_Integrativa.pdf",
+        "category": "dossier_welfare_salute",
+        "edition": "ultima",
+        "year": 2025,
+        "title": "Welfare e salute integrativa - dossier tematico ANIA",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
     },
     # --- Estratto in inglese ---
     {
@@ -263,18 +330,17 @@ def main():
         if i < len(ANIA_REPORTS):
             time.sleep(1)
 
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump({
-            "description": "ANIA report collection manifest (assicurativo)",
-            "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
-            "publications_pages": ANIA_PUBLICATIONS_PAGES,
-            "download_date": time.strftime("%Y-%m-%d"),
-            "total": len(ANIA_REPORTS),
-            "downloaded": success,
-            "failed": failed,
-            "pending_url": pending,
-            "files": manifest,
-        }, f, indent=2, ensure_ascii=False)
+    write_json_stable({
+        "description": "ANIA report collection manifest (assicurativo)",
+        "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+        "publications_pages": ANIA_PUBLICATIONS_PAGES,
+        "download_date": time.strftime("%Y-%m-%d"),
+        "total": len(ANIA_REPORTS),
+        "downloaded": success,
+        "failed": failed,
+        "pending_url": pending,
+        "files": manifest,
+    }, MANIFEST_PATH)
 
     print(f"\n{'=' * 70}")
     downloaded = success - skipped

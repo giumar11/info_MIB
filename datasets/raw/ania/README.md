@@ -19,11 +19,13 @@ complementari alle fonti SSN del repository (GIMBE, OASI, AIFA).
 Rapporto annuale sull'andamento dell'attività assicurativa in Italia (vita e
 danni), presentato all'Assemblea annuale ANIA.
 - **URL**: https://www.ania.it/pubblicazioni/-/categories/53729
-- Edizioni recenti: 2024-2025, 2023-2024, 2022-2023, ...
+- Edizioni in catalogo: 2024-2025, 2023-2024, 2022-2023, 2021-2022, 2020-2021,
+  2019-2020, 2018-2019, 2017-2018, 2016-2017, 2005-2006, 2004-2005.
 
 ### 2. Appendice Statistica alla Relazione Annuale
 Conti tecnici per ramo e situazione patrimoniale del settore (dati di bilancio).
 - **URL**: https://www.ania.it/pubblicazioni/-/categories/53729
+- Edizioni in catalogo: 2024-2025, 2023-2024.
 
 ### 3. Italian Insurance (estratto in inglese)
 Executive summary in lingua inglese della relazione annuale.
