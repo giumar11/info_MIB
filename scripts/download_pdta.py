@@ -510,6 +510,18 @@ def download_file(url, dest_path, dry_run=False):
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=60) as response:
                 content = response.read()
+                # I target PDTA sono tutti PDF: rifiuta risposte troppo piccole
+                # o non-PDF (pagine di errore / redirect HTML serviti con 200)
+                # invece di salvarle. Un file spurio salvato verrebbe poi
+                # "skippato" per sempre perché dest_path.exists() diventa True.
+                if len(content) < 1000:
+                    print(f"  [WARN] Risposta troppo piccola ({len(content)} B), "
+                          f"scartata: {url}")
+                    return False
+                if not content[:5].startswith(b"%PDF-"):
+                    print(f"  [WARN] Contenuto non-PDF (probabile pagina HTML), "
+                          f"scartato: {url}")
+                    return False
                 with open(dest_path, "wb") as f:
                     f.write(content)
                 size_kb = len(content) / 1024

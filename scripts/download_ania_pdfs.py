@@ -139,12 +139,17 @@ def download_pdf(url, filepath, max_retries=3):
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=120) as resp:
                 data = resp.read()
+            # Rifiuta risposte troppo piccole o non-PDF (es. pagine di errore
+            # HTML) invece di salvarle come download valido: altrimenti il file
+            # spurio resterebbe su disco e verrebbe "skippato" per sempre.
             if len(data) < 1000:
                 print(f"    WARNING: file troppo piccolo ({len(data)} byte), "
-                      f"potrebbe non essere un PDF valido")
+                      f"scartato")
+                return None, None
             if not data[:5].startswith(b"%PDF-"):
-                print("    WARNING: il contenuto non inizia con %PDF- "
-                      "(potrebbe essere una pagina HTML)")
+                print("    WARNING: contenuto non-PDF (probabile pagina di "
+                      "errore HTML), scartato")
+                return None, None
             with open(filepath, "wb") as f:
                 f.write(data)
             return len(data), hashlib.sha256(data).hexdigest()
