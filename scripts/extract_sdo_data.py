@@ -8,65 +8,157 @@ import os
 import json
 import pandas as pd
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MINISTERO_DIR = os.path.join(BASE_DIR, 'datasets', 'raw', 'ministero_salute')
+SDO_ETA_SESSO_CSV = os.path.join(MINISTERO_DIR, 'dimissioni_ospedaliere_eta_sesso.csv')
+SDO_TIPOLOGIA_CSV = os.path.join(MINISTERO_DIR, 'dimissioni_ospedaliere_tipologia.csv')
+
+# MDC/DRG non sono presenti nei file open data aggregati del Ministero: questi
+# elenchi sono riferimenti editoriali di contesto, NON calcolati dai CSV.
+_MDC_RIFERIMENTO = [
+    {'codice': 'MDC 08', 'descrizione': 'Malattie e disturbi del sistema muscolo-scheletrico'},
+    {'codice': 'MDC 05', 'descrizione': 'Malattie e disturbi del sistema cardiocircolatorio'},
+    {'codice': 'MDC 06', 'descrizione': 'Malattie e disturbi dell\'apparato digerente'},
+    {'codice': 'MDC 04', 'descrizione': 'Malattie e disturbi dell\'apparato respiratorio'},
+    {'codice': 'MDC 14', 'descrizione': 'Gravidanza, parto e puerperio'},
+    {'codice': 'MDC 17', 'descrizione': 'Malattie e disturbi mieloproliferativi e neoplasie'},
+    {'codice': 'MDC 01', 'descrizione': 'Malattie e disturbi del sistema nervoso'},
+    {'codice': 'MDC 11', 'descrizione': 'Malattie e disturbi del rene e vie urinarie'},
+]
+_DRG_RIFERIMENTO = [
+    {'drg': '470', 'descrizione': 'Sostituzione articolazione maggiore', 'complessita': 'alta'},
+    {'drg': '127', 'descrizione': 'Insufficienza cardiaca e shock', 'complessita': 'alta'},
+    {'drg': '089', 'descrizione': 'Polmonite semplice e pleurite', 'complessita': 'media'},
+    {'drg': '014', 'descrizione': 'Malattie cerebrovascolari', 'complessita': 'alta'},
+    {'drg': '410', 'descrizione': 'Chemioterapia', 'complessita': 'alta'},
+    {'drg': '462', 'descrizione': 'Riabilitazione', 'complessita': 'media'},
+]
+
+
+def _parse_sdo_line(raw):
+    """Normalizza una riga dei CSV open data SDO del Ministero.
+
+    Il formato racchiude l'intera riga tra virgolette e separa i campi con ';';
+    i campi sono a loro volta tra doppie virgolette, es.
+    '"2022;""01000300"";""OSPEDALE MARIA VITTORIA"";""512"";..."'.
+    """
+    s = raw.rstrip('\r\n')
+    if s.startswith('"') and s.endswith('"'):
+        s = s[1:-1]
+    fields = []
+    for f in s.split(';'):
+        f = f.strip()
+        if f.startswith('""') and f.endswith('""'):
+            f = f[2:-2]
+        fields.append(f)
+    return fields
+
+
+def _to_int(value):
+    """Converte un numero in stile italiano ('10.487') in int, 0 se non valido."""
+    v = value.strip().strip('"').replace('.', '')
+    if v in ('', '-', 'n.d.', 'N.D.'):
+        return 0
+    try:
+        return int(v)
+    except ValueError:
+        return 0
+
+
+def _read_sdo_csv(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        lines = [ln for ln in f if ln.strip()]
+    if not lines:
+        return [], []
+    return _parse_sdo_line(lines[0]), [_parse_sdo_line(ln) for ln in lines[1:]]
+
+
 def create_sdo_summary():
+    """Aggrega i dati REALI dai CSV open data SDO del Ministero della Salute.
+
+    I totali sono calcolati sommando i valori per-istituto dei file originali in
+    datasets/raw/ministero_salute/ (non stime). Se i file non sono presenti lo
+    script segnala il problema e restituisce una struttura vuota, senza
+    inventare dati.
     """
-    Crea un riepilogo strutturato dei dati SDO 2023.
-    Basato sul Rapporto annuale sull'attività di ricovero ospedaliero.
-    """
-    
-    # Dati principali dal Rapporto SDO 2023
-    sdo_2023_summary = {
-        'anno': 2023,
-        'fonte': 'Ministero della Salute - Rapporto SDO 2023',
-        'url': 'https://www.salute.gov.it/new/it/pubblicazione/rapporto-annuale-sullattivita-di-ricovero-ospedaliero-dati-sdo-2023',
-        
-        'ricoveri_totali': {
-            'totale': 8930979,  # Dato 2023 stimato basato su trend
-            'acuti_ordinario': 5609000,
-            'acuti_day_hospital': 1675928,
-            'riabilitazione': 446000,
-            'lungodegenza': 200000
-        },
-        
-        # MDC (Major Diagnostic Categories) con maggior numero di ricoveri
-        'principali_mdc': [
-            {'codice': 'MDC 08', 'descrizione': 'Malattie e disturbi del sistema muscolo-scheletrico', 'ricoveri': 1150000},
-            {'codice': 'MDC 05', 'descrizione': 'Malattie e disturbi del sistema cardiocircolatorio', 'ricoveri': 980000},
-            {'codice': 'MDC 06', 'descrizione': 'Malattie e disturbi dell\'apparato digerente', 'ricoveri': 750000},
-            {'codice': 'MDC 04', 'descrizione': 'Malattie e disturbi dell\'apparato respiratorio', 'ricoveri': 620000},
-            {'codice': 'MDC 14', 'descrizione': 'Gravidanza, parto e puerperio', 'ricoveri': 580000},
-            {'codice': 'MDC 17', 'descrizione': 'Malattie e disturbi mieloproliferativi e neoplasie', 'ricoveri': 520000},
-            {'codice': 'MDC 01', 'descrizione': 'Malattie e disturbi del sistema nervoso', 'ricoveri': 480000},
-            {'codice': 'MDC 11', 'descrizione': 'Malattie e disturbi del rene e vie urinarie', 'ricoveri': 420000}
-        ],
-        
-        # DRG più frequenti (proxy per patologie complesse)
-        'drg_frequenti_complessi': [
-            {'drg': '470', 'descrizione': 'Sostituzione articolazione maggiore', 'complessita': 'alta'},
-            {'drg': '127', 'descrizione': 'Insufficienza cardiaca e shock', 'complessita': 'alta'},
-            {'drg': '089', 'descrizione': 'Polmonite semplice e pleurite', 'complessita': 'media'},
-            {'drg': '014', 'descrizione': 'Malattie cerebrovascolari', 'complessita': 'alta'},
-            {'drg': '410', 'descrizione': 'Chemioterapia', 'complessita': 'alta'},
-            {'drg': '462', 'descrizione': 'Riabilitazione', 'complessita': 'media'}
-        ],
-        
-        # Distribuzione per età
-        'distribuzione_eta': {
-            '0-14': {'percentuale': 8.5, 'ricoveri': 759000},
-            '15-44': {'percentuale': 22.3, 'ricoveri': 1991000},
-            '45-64': {'percentuale': 24.2, 'ricoveri': 2161000},
-            '65-74': {'percentuale': 18.5, 'ricoveri': 1652000},
-            '75+': {'percentuale': 26.5, 'ricoveri': 2367000}
-        },
-        
-        # Distribuzione per genere
-        'distribuzione_genere': {
-            'maschi': {'percentuale': 47.2, 'ricoveri': 4215000},
-            'femmine': {'percentuale': 52.8, 'ricoveri': 4715000}
+    if not (os.path.exists(SDO_ETA_SESSO_CSV) and os.path.exists(SDO_TIPOLOGIA_CSV)):
+        print(f"  ATTENZIONE: CSV open data SDO non trovati in {MINISTERO_DIR}.")
+        print("  Riepilogo SDO vuoto: nessun dato viene inventato.")
+        return {
+            'fonte': 'Ministero della Salute - Open Data SDO',
+            'stato': 'file_sorgente_mancante',
+            'file_attesi': [
+                os.path.relpath(SDO_ETA_SESSO_CSV, BASE_DIR),
+                os.path.relpath(SDO_TIPOLOGIA_CSV, BASE_DIR),
+            ],
         }
+
+    eta_header, eta_rows = _read_sdo_csv(SDO_ETA_SESSO_CSV)
+    tip_header, tip_rows = _read_sdo_csv(SDO_TIPOLOGIA_CSV)
+
+    age_cols = eta_header[4:]
+    by_age = {c: 0 for c in age_cols}
+    by_sex = {}
+    institutions = set()
+    anni = set()
+    grand = 0
+    for r in eta_rows:
+        if len(r) < 4:
+            continue
+        anni.add(r[0])
+        institutions.add(r[1])
+        sesso = r[3] or 'Non Definito'
+        for i, c in enumerate(age_cols):
+            idx = 4 + i
+            if idx < len(r):
+                val = _to_int(r[idx])
+                by_age[c] += val
+                by_sex[sesso] = by_sex.get(sesso, 0) + val
+                grand += val
+
+    tip_cols = tip_header[3:]
+    tip_tot = {c: 0 for c in tip_cols}
+    for r in tip_rows:
+        if len(r) < 4:
+            continue
+        for i, c in enumerate(tip_cols):
+            idx = 3 + i
+            if idx < len(r):
+                tip_tot[c] += _to_int(r[idx])
+
+    anno = sorted(anni)[-1] if anni else None
+
+    def _pct(part):
+        return round(100 * part / grand, 1) if grand else 0.0
+
+    return {
+        'anno': int(anno) if anno and anno.isdigit() else anno,
+        'fonte': 'Ministero della Salute - Open Data SDO (dimissioni ospedaliere)',
+        'url': 'https://www.dati.salute.gov.it/',
+        'metodo': ('Aggregazione dei valori per-istituto dai file open data '
+                   'originali in datasets/raw/ministero_salute/.'),
+        'file_sorgente': [
+            os.path.basename(SDO_ETA_SESSO_CSV),
+            os.path.basename(SDO_TIPOLOGIA_CSV),
+        ],
+        'strutture_conteggiate': len(institutions),
+        'dimissioni_totali': grand,
+        'distribuzione_eta': {
+            c.replace('Cl_età_', ''): {'ricoveri': by_age[c], 'percentuale': _pct(by_age[c])}
+            for c in age_cols
+        },
+        'distribuzione_genere': {
+            s: {'ricoveri': v, 'percentuale': _pct(v)} for s, v in sorted(by_sex.items())
+        },
+        'tipologia_dimissione': dict(tip_tot),
+        'riferimenti_curati': {
+            'nota': ('MDC e DRG non sono presenti nei file open data aggregati; '
+                     'questi elenchi sono riferimenti editoriali di contesto, '
+                     'non calcolati dai CSV.'),
+            'principali_mdc': _MDC_RIFERIMENTO,
+            'drg_frequenti_complessi': _DRG_RIFERIMENTO,
+        },
     }
-    
-    return sdo_2023_summary
 
 def create_multidisciplinary_pathways():
     """
@@ -224,9 +316,9 @@ def main():
     
     print("=== ESTRAZIONE DATI SDO E CREAZIONE DATASET ===\n")
     
-    # Crea riepilogo SDO
+    # Crea riepilogo SDO dai file open data originali del Ministero
     sdo_summary = create_sdo_summary()
-    sdo_path = os.path.join(output_dir, 'riepilogo_sdo_2023.json')
+    sdo_path = os.path.join(output_dir, 'riepilogo_sdo.json')
     with open(sdo_path, 'w', encoding='utf-8') as f:
         json.dump(sdo_summary, f, ensure_ascii=False, indent=2)
     print(f"Salvato: {sdo_path}")
@@ -254,9 +346,12 @@ def main():
     
     # Stampa riepilogo
     print("\n=== RIEPILOGO DATASET CREATI ===")
-    print(f"\n1. Riepilogo SDO 2023:")
-    print(f"   - Ricoveri totali: {sdo_summary['ricoveri_totali']['totale']:,}")
-    print(f"   - MDC principali: {len(sdo_summary['principali_mdc'])}")
+    if sdo_summary.get('stato') == 'file_sorgente_mancante':
+        print("\n1. Riepilogo SDO: NON generato (file open data mancanti).")
+    else:
+        print(f"\n1. Riepilogo SDO (anno {sdo_summary.get('anno')}, da open data originali):")
+        print(f"   - Dimissioni totali: {sdo_summary['dimissioni_totali']:,}")
+        print(f"   - Strutture conteggiate: {sdo_summary['strutture_conteggiate']:,}")
     
     print(f"\n2. PDTA Multidisciplinari:")
     print(f"   - Patologie mappate: {len(pdta)}")

@@ -62,27 +62,42 @@ def parse_orphadata_epidemiology(xml_path):
         if disorder_group is not None:
             disease_data['disorder_group'] = disorder_group.text
         
-        # Prevalence data
+        # Prevalence data.
+        # NB: il primo record <Prevalence> è spesso di tipo "Caso(i)/Famiglia"
+        # con <PrevalenceClass/> vuota (nel file italiano ~3.200 disorder su
+        # 6.443). La classe epidemiologica reale è in un record successivo, per
+        # cui NON ci si ferma al primo: si sceglie il record con PrevalenceClass
+        # valorizzata, dando priorità alla "Prevalenza puntuale".
         prevalence_list = disorder.find('PrevalenceList')
         if prevalence_list is not None:
-            for prevalence in prevalence_list.findall('Prevalence'):
-                # Prevalence Class
+            prevalences = prevalence_list.findall('Prevalence')
+            chosen = None
+            for prevalence in prevalences:
                 prev_class = prevalence.find('.//PrevalenceClass/Name')
-                if prev_class is not None:
+                if prev_class is None or not (prev_class.text and prev_class.text.strip()):
+                    continue
+                prev_type = prevalence.find('PrevalenceType/Name')
+                if prev_type is not None and prev_type.text == 'Prevalenza puntuale':
+                    chosen = prevalence
+                    break
+                if chosen is None:
+                    chosen = prevalence
+            if chosen is None and prevalences:
+                chosen = prevalences[0]
+
+            if chosen is not None:
+                prev_class = chosen.find('.//PrevalenceClass/Name')
+                if prev_class is not None and prev_class.text:
                     disease_data['prevalence_class'] = prev_class.text
-                
-                # Geographic
-                prev_geo = prevalence.find('.//PrevalenceGeographic/Name')
+
+                prev_geo = chosen.find('.//PrevalenceGeographic/Name')
                 if prev_geo is not None:
                     disease_data['prevalence_geo'] = prev_geo.text
-                
-                # Value
-                prev_value = prevalence.find('PrevalenceValMoy')
+
+                # Nel tracciato Orphadata l'elemento è <ValMoy> (non PrevalenceValMoy)
+                prev_value = chosen.find('ValMoy')
                 if prev_value is not None:
                     disease_data['prevalence_value'] = prev_value.text
-                
-                # Prendi solo il primo record di prevalenza
-                break
         
         # Age of onset
         age_onset_list = disorder.find('AverageAgeOfOnsetList')
