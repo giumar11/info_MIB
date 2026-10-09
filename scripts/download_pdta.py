@@ -19,6 +19,9 @@ import urllib.request
 import urllib.error
 from pathlib import Path
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stable_json import write_json_stable  # noqa: E402
+
 # Base directory for PDTA downloads
 BASE_DIR = Path(__file__).parent.parent / "datasets" / "raw" / "pdta"
 
@@ -510,11 +513,27 @@ def download_file(url, dest_path, dry_run=False):
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=60) as response:
                 content = response.read()
-                with open(dest_path, "wb") as f:
-                    f.write(content)
-                size_kb = len(content) / 1024
-                print(f"  [OK] Downloaded: {dest_path.name} ({size_kb:.0f} KB)")
-                return True
+
+            # Validazione contenuto: evita di salvare pagine HTML di errore con
+            # estensione .pdf (il server può rispondere 200 con una pagina web).
+            is_pdf_target = dest_path.suffix.lower() == ".pdf"
+            if is_pdf_target:
+                head = content[:1024].lstrip()
+                if not content[:5].startswith(b"%PDF-"):
+                    if head[:1] in (b"<",) or b"<html" in head.lower():
+                        print(f"  [ERROR] Contenuto non-PDF (pagina HTML?): {url}")
+                        return False
+                    print(f"  [WARN] Il file non inizia con %PDF-: {dest_path.name}")
+                if len(content) < 1000:
+                    print(f"  [ERROR] File troppo piccolo ({len(content)} B), "
+                          f"probabile errore: {url}")
+                    return False
+
+            with open(dest_path, "wb") as f:
+                f.write(content)
+            size_kb = len(content) / 1024
+            print(f"  [OK] Downloaded: {dest_path.name} ({size_kb:.0f} KB)")
+            return True
         except urllib.error.HTTPError as e:
             print(f"  [ERROR] HTTP {e.code}: {url}")
             if e.code in (403, 404):
@@ -584,8 +603,7 @@ def create_manifest(dry_run=False):
         })
 
     manifest_path = BASE_DIR / "download_manifest.json"
-    with open(manifest_path, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=2)
+    write_json_stable(manifest, manifest_path)
     print(f"\nManifest saved to: {manifest_path}")
     print(f"Total PDFs: {len(manifest['files'])}")
 
