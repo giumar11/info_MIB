@@ -25,9 +25,11 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -124,7 +126,106 @@ ANIA_REPORTS = [
         "url": None,
         "page": "https://www.ania.it/pubblicazioni/-/categories/53705",
     },
+    # --- Dossier e report tematici (welfare, salute, RC Auto, LTC, previdenza) ---
+    {
+        "filename": "ANIA_Welfare_Index_PMI_2024.pdf",
+        "category": "dossier_welfare",
+        "edition": "2024",
+        "year": 2024,
+        "title": "Welfare Index PMI - Rapporto (welfare e salute integrativa)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Salute_Integrativa_dossier.pdf",
+        "category": "dossier_salute",
+        "edition": "ultima",
+        "year": None,
+        "title": "Dossier salute e sanità integrativa (fondi e polizze salute)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_RC_Auto_dossier.pdf",
+        "category": "dossier_rc_auto",
+        "edition": "ultima",
+        "year": None,
+        "title": "Dossier RC Auto (prezzi, sinistri, frodi)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Long_Term_Care_dossier.pdf",
+        "category": "dossier_ltc",
+        "edition": "ultima",
+        "year": None,
+        "title": "Dossier Long Term Care (non autosufficienza)",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Previdenza_Complementare_dossier.pdf",
+        "category": "dossier_previdenza",
+        "edition": "ultima",
+        "year": None,
+        "title": "Dossier previdenza complementare e protezione",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/",
+    },
+    {
+        "filename": "ANIA_Trends_Premi_danni_vita.pdf",
+        "category": "trends",
+        "edition": "ultima",
+        "year": None,
+        "title": "ANIA Trends - Premi e raccolta rami danni e vita",
+        "url": None,
+        "page": "https://www.ania.it/pubblicazioni/-/categories/53705",
+    },
 ]
+
+
+def resolve_pdf_from_page(page_url, hints=()):
+    """Best-effort: estrae un link a PDF dalla pagina di pubblicazione ANIA.
+
+    Il portale Liferay di ANIA espone i PDF come asset con URL opachi che
+    cambiano nel tempo, perciò il link diretto non è stabile. Questa funzione
+    scarica l'HTML della pagina ufficiale e cerca i link a PDF (o agli asset
+    `/documents/`), preferendo quelli che contengono uno degli `hints` (es.
+    l'edizione o l'anno). Ritorna l'URL risolto o None.
+
+    NB: richiede accesso di rete a www.ania.it. Nel sandbox Claude Code il
+    dominio è bloccato dalla policy di egress (403); la risoluzione funziona
+    sul runner di GitHub Actions che esegue la pipeline giornaliera.
+    """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,*/*",
+    }
+    try:
+        req = urllib.request.Request(page_url, headers=headers)
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            html = resp.read().decode("utf-8", "ignore")
+    except (urllib.error.URLError, urllib.error.HTTPError, OSError) as e:
+        print(f"    Risoluzione pagina fallita ({page_url}): {e}")
+        return None
+
+    candidates = []
+    for href in re.findall(r'href=["\']([^"\']+)["\']', html):
+        low = href.lower()
+        if ".pdf" in low or "/documents/" in low:
+            candidates.append(urllib.parse.urljoin(page_url, href))
+    # Deduplica preservando l'ordine
+    seen = set()
+    candidates = [c for c in candidates if not (c in seen or seen.add(c))]
+
+    for hint in hints:
+        if not hint:
+            continue
+        for c in candidates:
+            if str(hint).lower() in c.lower():
+                return c
+    return candidates[0] if candidates else None
 
 
 def download_pdf(url, filepath, max_retries=3):
@@ -238,8 +339,21 @@ def main():
             skipped += 1
             continue
 
-        if not rep.get("url"):
-            print(f"[{i}/{len(ANIA_REPORTS)}] PENDING (nessun url diretto): "
+        download_url = rep.get("url")
+
+        # Senza url diretto, prova a risolvere il PDF dalla pagina ufficiale.
+        if not download_url and rep.get("page"):
+            print(f"[{i}/{len(ANIA_REPORTS)}] Risoluzione da pagina: {rep['filename']}")
+            print(f"    Pagina: {rep['page']}")
+            resolved = resolve_pdf_from_page(
+                rep["page"], hints=(rep.get("edition"), rep.get("year")))
+            if resolved:
+                print(f"    PDF risolto: {resolved}")
+                download_url = resolved
+                entry["resolved_url"] = resolved
+
+        if not download_url:
+            print(f"[{i}/{len(ANIA_REPORTS)}] PENDING (url non risolto): "
                   f"{rep['filename']}")
             print(f"    Risolvi il PDF da: {rep['page']}")
             entry.update({"size_bytes": 0, "sha256": None, "status": "pending_url"})
@@ -248,8 +362,8 @@ def main():
             continue
 
         print(f"[{i}/{len(ANIA_REPORTS)}] Download: {rep['filename']}")
-        print(f"    URL: {rep['url']}")
-        size, sha = download_pdf(rep["url"], filepath)
+        print(f"    URL: {download_url}")
+        size, sha = download_pdf(download_url, filepath)
         if size:
             print(f"    OK: {format_size(size)}")
             entry.update({"size_bytes": size, "size_human": format_size(size),

@@ -46,14 +46,33 @@ python3 scripts/download_ania_pdfs.py --force    # riscarica tutto
 I file vengono salvati in `datasets/raw/ania/pdf/` e tracciati in
 `datasets/raw/ania/download_manifest.json`.
 
-### Nota sugli URL
+## Report tracciati
+Lo script `scripts/download_ania_pdfs.py` traccia (oltre alle relazioni annuali
+"L'Assicurazione Italiana", l'Appendice Statistica e l'estratto in inglese) i
+dossier tematici del settore assicurativo rilevanti per il welfare sanitario:
+
+- **Welfare Index PMI** (welfare e salute integrativa)
+- **Salute e sanità integrativa** (fondi e polizze salute)
+- **RC Auto** (prezzi, sinistri, frodi)
+- **Long Term Care** (non autosufficienza)
+- **Previdenza complementare e protezione**
+- **ANIA Trends** (premi e raccolta rami danni e vita)
+
+### Nota sugli URL e risoluzione automatica
 Il portale ANIA (Liferay) usa URL "asset" con identificativi opachi che
-cambiano nel tempo. Per alcune edizioni recenti è indicata solo la pagina
-ufficiale di pubblicazione (`page`): questi elementi sono marcati come
-`pending_url` nel manifest e il link diretto al PDF va risolto dalla pagina.
-Le edizioni con URL diretto noto vengono scaricate automaticamente; il
-download verifica l'intestazione `%PDF-` e scarta eventuali pagine HTML di
-errore.
+cambiano nel tempo. Per le edizioni senza link diretto stabile è indicata la
+pagina ufficiale di pubblicazione (`page`): lo script tenta di **risolvere
+automaticamente** il PDF scaricando l'HTML della pagina e cercando i link ai
+PDF/asset (preferendo quelli che contengono l'anno/edizione). Se la risoluzione
+fallisce, l'elemento resta `pending_url` nel manifest. Il download verifica
+l'intestazione `%PDF-` e scarta eventuali pagine HTML di errore.
+
+### Nota sull'ambiente di esecuzione
+Nel sandbox Claude Code il dominio `www.ania.it` è **bloccato dalla policy di
+egress** dell'organizzazione (risposta 403): il download non è eseguibile da lì.
+La pipeline giornaliera `.github/workflows/daily-enrichment.yml` gira su runner
+GitHub Actions con accesso di rete completo ed è quella che scarica
+effettivamente i PDF ANIA.
 
 ## Licenza
 Dati e pubblicazioni ANIA - uso soggetto ai termini del sito ania.it.
