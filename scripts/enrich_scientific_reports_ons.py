@@ -2106,8 +2106,30 @@ Dati pubblici - AIFA / Ministero della Salute
 # SEZIONE 6: GENERAZIONE OUTPUT
 # =============================================================================
 
+DATE_KEYS = ("data_estrazione", "data_compilazione")
+
+
+def _without_dates(data):
+    if isinstance(data, dict):
+        return {k: _without_dates(v) for k, v in data.items() if k not in DATE_KEYS}
+    if isinstance(data, list):
+        return [_without_dates(v) for v in data]
+    return data
+
+
 def save_json(data, filepath):
-    """Salva dati in formato JSON."""
+    """Salva dati in formato JSON. Se il contenuto è invariato (a parte le date
+    di estrazione/compilazione) il file non viene riscritto, così le esecuzioni
+    giornaliere senza modifiche reali non producono diff."""
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            try:
+                unchanged = _without_dates(json.load(f)) == _without_dates(data)
+            except json.JSONDecodeError:
+                unchanged = False
+        if unchanged:
+            print(f"  Invariato: {os.path.relpath(filepath, BASE_DIR)}")
+            return
     with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     size_kb = os.path.getsize(filepath) / 1024
