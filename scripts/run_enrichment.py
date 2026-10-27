@@ -75,12 +75,6 @@ PIPELINES = {
         "kind": "enrich",
         "steps": [["analyze_hfa_chronic.py"]],
     },
-    # La migrazione consolida gli estratti rigenerati: va eseguita per ultima.
-    "migration": {
-        "description": "Consolidamento dataset -> formati migration_ready",
-        "kind": "consolidate",
-        "steps": [["migrate_to_database.py"]],
-    },
 }
 
 # Ordine di esecuzione con --all (download/monitor prima, consolidamento ultimo).
@@ -93,7 +87,6 @@ RUN_ORDER = [
     "sdo_ministero",
     "malattie_rare",
     "istat_hfa",
-    "migration",
 ]
 
 
