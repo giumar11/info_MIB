@@ -232,8 +232,7 @@ info_MIB/
 │   │   ├── istat/               # Health for All, EHIS
 │   │   ├── ania/                # Report ANIA (assicurativo)
 │   │   └── sistema_sanitario/   # Report criticità
-│   ├── processed/               # Dataset elaborati (JSON, CSV)
-│   └── migration_ready/         # Dati pronti per database
+│   └── processed/               # Dataset elaborati (JSON, CSV)
 ├── docs/
 │   ├── sistema_sanitario/       # Catalogo fonti criticità
 │   └── FONTI_DATI.md
@@ -254,7 +253,7 @@ Per i dataset core sono disponibili dizionari dati dettagliati:
 
 ## Licenza e disclaimer
 
-*Questo progetto è stato realizzato da Geen.ai SRL a scopo dimostrativo per l'analisi di dati sanitari pubblici. I dati aggregati e le analisi prodotte sono il risultato di elaborazioni e non sostituiscono una valutazione medica o rappresentano fonti ufficiali.*
+I contenuti, le analisi e le elaborazioni presenti in questo repository sono proprietà intellettuale di **Geen.ai SRL**. Tutti i diritti riservati.
 
 Le fonti dati utilizzate sono soggette alle rispettive licenze indicate nel file `sources_catalog.csv`.
 

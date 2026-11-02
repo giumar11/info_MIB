@@ -1,5 +1,4 @@
 # Questo repository contiene solo dati e script Python: non c'è un sito da
-# pubblicare. Il collegamento a Netlify è un residuo del vecchio sito Geen.ai
-# (rimosso), quindi ogni build viene saltata invece di fallire.
+# pubblicare. Ogni build viene saltata.
 [build]
   ignore = "exit 0"
