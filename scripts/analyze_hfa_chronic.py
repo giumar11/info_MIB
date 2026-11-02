@@ -169,22 +169,39 @@ def main():
     hfa_dir = os.path.join(base_dir, 'datasets', 'raw', 'istat', 'HFA')
     
     os.makedirs(output_dir, exist_ok=True)
-    
+
     print("=== ANALISI DATI HFA ISTAT ===\n")
-    
+
+    # La banca dati ISTAT "Health for All" (TITLES.TXT + Data/*.ind) non è
+    # inclusa nel repository: senza di essa l'estrazione indicatori resta vuota.
+    # Lo segnaliamo esplicitamente invece di produrre silenziosamente output
+    # vuoto.
+    hfa_available = (Path(hfa_dir) / 'TITLES' / 'TITLES.TXT').exists()
+    if not hfa_available:
+        print(f"ATTENZIONE: banca dati HFA non trovata in {hfa_dir}.")
+        print("  Gli indicatori HFA non verranno estratti (nessun dato inventato).")
+        print("  Scaricare 'Health for All - Italia' da ISTAT e scompattarla lì.")
+
     # Analizza struttura HFA
     all_indicators, relevant_indicators = analyze_hfa_structure(hfa_dir)
     print(f"Indicatori totali trovati: {len(all_indicators)}")
     print(f"Indicatori rilevanti per malattie croniche: {len(relevant_indicators)}")
-    
+
     # Estrai categorie malattie croniche
     groups, key_indicators = extract_chronic_disease_data(hfa_dir)
-    
+
     # Crea analisi proxy
     multi_specialist = create_proxy_analysis()
-    
+
     # Salva risultati
     results = {
+        'hfa_source': {
+            'dir_attesa': os.path.relpath(hfa_dir, base_dir),
+            'stato': 'disponibile' if hfa_available else 'sorgente_mancante',
+            'nota': ('indicatori_hfa_rilevanti estratti dalla banca dati ISTAT '
+                     'Health for All quando presente; patologie_multi_specialistiche '
+                     'è un\'analisi proxy curata, non derivata dai file HFA.'),
+        },
         'indicatori_hfa_rilevanti': relevant_indicators,
         'gruppi_tematici': groups,
         'indicatori_chiave': key_indicators,

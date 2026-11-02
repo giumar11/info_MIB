@@ -1,9 +1,9 @@
 {
   "totale_malattie": 6443,
   "distribuzione_complessita": {
-    "Bassa": 4881,
-    "Media": 1026,
-    "Alta": 536,
+    "Alta": 3618,
+    "Bassa": 2043,
+    "Media": 782,
     "Molto Alta": 0
   },
   "distribuzione_tipo": {
@@ -20,13 +20,13 @@
     "Anomalia biologica": 10
   },
   "distribuzione_prevalenza": {
-    "Sconosciuto": 1365,
-    "1-9 / 100 000": 559,
-    "<1 / 1 000 000": 536,
-    "1-9 / 1 000 000": 467,
-    "1-5 / 10 000": 222,
-    ">1 / 1000": 22,
-    "6-9 / 10 000": 17,
+    "<1 / 1 000 000": 3618,
+    "Sconosciuto": 1777,
+    "1-9 / 100 000": 461,
+    "1-9 / 1 000 000": 321,
+    "1-5 / 10 000": 228,
+    ">1 / 1000": 16,
+    "6-9 / 10 000": 12,
     "Non ancora documentata": 6
   }
 }

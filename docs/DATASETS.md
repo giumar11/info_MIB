@@ -103,19 +103,27 @@ Il file JSON è strutturato in sezioni:
 
 ---
 
-## 4. Riepilogo SDO 2023 (`riepilogo_sdo_2023.json`)
+## 4. Riepilogo SDO (`riepilogo_sdo.json`)
 
-Contiene dati aggregati estratti e rielaborati dal Rapporto annuale sull'attività di ricovero ospedaliero (SDO) per l'anno 2023.
+Contiene dati aggregati **calcolati direttamente dai file open data originali**
+del Ministero della Salute (dimissioni ospedaliere per fasce d'età/sesso e per
+tipologia di dimissione) presenti in `datasets/raw/ministero_salute/`. I totali
+sono ottenuti sommando i valori per-istituto dei CSV originali, non da stime.
 
 -   **Formato**: JSON
--   **Fonte Principale**: Ministero della Salute - Rapporto SDO 2023.
+-   **Fonte Principale**: Ministero della Salute - Open Data SDO (anno dei dati: 2022).
+-   **Generato da**: `scripts/extract_sdo_data.py`.
 
 ### Struttura dei dati
 
 Il file JSON è strutturato in sezioni:
 
--   `ricoveri_totali`: Numero totale di ricoveri suddivisi per regime (acuti, riabilitazione, etc.).
--   `principali_mdc`: Le 8 Major Diagnostic Categories con il maggior numero di ricoveri.
--   `drg_frequenti_complessi`: Una selezione di DRG (Diagnosis-Related Group) che rappresentano procedure complesse.
--   `distribuzione_eta`: Suddivisione percentuale e assoluta dei ricoveri per fascia d'età.
--   `distribuzione_genere`: Suddivisione percentuale e assoluta dei ricoveri per genere.
+-   `anno`: Anno di riferimento dei dati (ricavato dai CSV).
+-   `metodo` / `file_sorgente`: Provenienza e metodo di aggregazione.
+-   `strutture_conteggiate`: Numero di istituti presenti nei file.
+-   `dimissioni_totali`: Totale dimissioni aggregate dai file originali.
+-   `distribuzione_eta`: Dimissioni per classe d'età (valore e percentuale).
+-   `distribuzione_genere`: Dimissioni per sesso (valore e percentuale).
+-   `tipologia_dimissione`: Decessi, dimissioni a domicilio, trasferimenti.
+-   `riferimenti_curati`: Elenchi MDC/DRG editoriali di contesto (NON presenti
+    nei file open data aggregati, chiaramente etichettati come tali).

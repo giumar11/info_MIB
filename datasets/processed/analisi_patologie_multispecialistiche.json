@@ -1,4 +1,9 @@
 {
+  "hfa_source": {
+    "dir_attesa": "datasets/raw/istat/HFA",
+    "stato": "sorgente_mancante",
+    "nota": "indicatori_hfa_rilevanti estratti dalla banca dati ISTAT Health for All quando presente; patologie_multi_specialistiche è un'analisi proxy curata, non derivata dai file HFA."
+  },
   "indicatori_hfa_rilevanti": {},
   "gruppi_tematici": {
     "Gruppo 5": "Malattie croniche e infettive",

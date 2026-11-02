@@ -30,6 +30,9 @@ import time
 import urllib.error
 import urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stable_json import write_json_stable  # noqa: E402
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ANIA_DIR = os.path.join(BASE_DIR, "datasets", "raw", "ania")
 PDF_DIR = os.path.join(ANIA_DIR, "pdf")
@@ -176,12 +179,17 @@ def download_pdf(url, filepath, max_retries=3):
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=120) as resp:
                 data = resp.read()
+            # Rifiuta risposte troppo piccole o non-PDF (es. pagine di errore
+            # HTML) invece di salvarle come download valido: altrimenti il file
+            # spurio resterebbe su disco e verrebbe "skippato" per sempre.
             if len(data) < 1000:
                 print(f"    WARNING: file troppo piccolo ({len(data)} byte), "
-                      f"potrebbe non essere un PDF valido")
+                      f"scartato")
+                return None, None
             if not data[:5].startswith(b"%PDF-"):
-                print("    WARNING: il contenuto non inizia con %PDF- "
-                      "(potrebbe essere una pagina HTML)")
+                print("    WARNING: contenuto non-PDF (probabile pagina di "
+                      "errore HTML), scartato")
+                return None, None
             with open(filepath, "wb") as f:
                 f.write(data)
             return len(data), hashlib.sha256(data).hexdigest()
@@ -300,18 +308,17 @@ def main():
         if i < len(ANIA_REPORTS):
             time.sleep(1)
 
-    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
-        json.dump({
-            "description": "ANIA report collection manifest (assicurativo)",
-            "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
-            "publications_pages": ANIA_PUBLICATIONS_PAGES,
-            "download_date": time.strftime("%Y-%m-%d"),
-            "total": len(ANIA_REPORTS),
-            "downloaded": success,
-            "failed": failed,
-            "pending_url": pending,
-            "files": manifest,
-        }, f, indent=2, ensure_ascii=False)
+    write_json_stable({
+        "description": "ANIA report collection manifest (assicurativo)",
+        "owner": "ANIA - Associazione Nazionale fra le Imprese Assicuratrici",
+        "publications_pages": ANIA_PUBLICATIONS_PAGES,
+        "download_date": time.strftime("%Y-%m-%d"),
+        "total": len(ANIA_REPORTS),
+        "downloaded": success,
+        "failed": failed,
+        "pending_url": pending,
+        "files": manifest,
+    }, MANIFEST_PATH)
 
     print(f"\n{'=' * 70}")
     downloaded = success - skipped
